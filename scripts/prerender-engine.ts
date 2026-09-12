@@ -11,6 +11,39 @@ import { dirname, resolve } from 'node:path';
 import puppeteer, { type Browser, type Page } from 'puppeteer';
 import { PRERENDER_ROUTES } from '../src/app/config/prerender-routes';
 
+const PUPPETEER_LAUNCH_ARGS = [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-dev-shm-usage',
+  '--disable-gpu',
+] as const;
+
+async function launchPrerenderBrowser(): Promise<Browser> {
+  if (process.env.VERCEL === '1') {
+    const [{ default: chromium }, { default: puppeteerCore }] = await Promise.all([
+      import('@sparticuz/chromium'),
+      import('puppeteer-core'),
+    ]);
+
+    return puppeteerCore.launch({
+      args: [...chromium.args, ...PUPPETEER_LAUNCH_ARGS],
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: true,
+      timeout: 120_000,
+      protocolTimeout: 120_000,
+    });
+  }
+
+  return puppeteer.launch({
+    headless: true,
+    executablePath: puppeteer.executablePath(),
+    timeout: 120_000,
+    protocolTimeout: 120_000,
+    args: [...PUPPETEER_LAUNCH_ARGS],
+  });
+}
+
 const PREVIEW_HOST = '127.0.0.1';
 
 export interface PrerenderOptions {
@@ -156,13 +189,7 @@ export async function runPrerender(options: PrerenderOptions): Promise<void> {
 
   const preview = await startPreviewServer(distDir, previewPort);
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: puppeteer.executablePath(),
-    timeout: 120_000,
-    protocolTimeout: 120_000,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
-  });
+  const browser = await launchPrerenderBrowser();
 
   try {
     for (const route of routes) {

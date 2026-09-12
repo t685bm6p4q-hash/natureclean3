@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit",
     "precommit": "tsx scripts/dead-code-guard.ts && tsc --noEmit && knip --no-exit-code && npm run build",
     "prepare": "husky",
-    "postinstall": "puppeteer browsers install chrome",
+    "postinstall": "node -e \"if(process.env.VERCEL!=='1'){require('child_process').execSync('npx puppeteer browsers install chrome',{stdio:'inherit'})}\"",
     "dev": "vite"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "zod": "4.3.6"
   },
   "devDependencies": {
+    "@sparticuz/chromium": "^153.0.0",
     "@tailwindcss/vite": "4.1.12",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
@@ -43,6 +44,7 @@
     "knip": "5.85.0",
     "lint-staged": "16.2.7",
     "puppeteer": "24.36.1",
+    "puppeteer-core": "^25.10.0",
     "tailwindcss": "4.1.12",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
