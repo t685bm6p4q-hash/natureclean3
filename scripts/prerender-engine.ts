@@ -3,9 +3,10 @@
  * Utilisé par le plugin Vite (closeBundle) et par `npm run prerender`.
  */
 
-import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
+import { createServer as createHttpServer, type Server } from 'node:http';
 import { createServer } from 'node:net';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { extname, join } from 'node:path';
 import { dirname, resolve } from 'node:path';
 import puppeteer, { type Browser, type Page } from 'puppeteer';
 import { PRERENDER_ROUTES } from '../src/app/config/prerender-routes';
@@ -44,43 +45,53 @@ function routeToOutputFile(distDir: string, route: string): string {
   return resolve(distDir, route.slice(1), 'index.html');
 }
 
-function startPreviewServer(distDir: string, port: number): Promise<ChildProcessWithoutNullStreams> {
+const MIME_TYPES: Readonly<Record<string, string>> = {
+  '.css': 'text/css; charset=utf-8',
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.txt': 'text/plain; charset=utf-8',
+  '.webp': 'image/webp',
+  '.woff2': 'font/woff2',
+  '.xml': 'application/xml; charset=utf-8',
+};
+
+function resolveStaticFile(distDir: string, urlPath: string): string | null {
+  const normalizedPath = urlPath.split('?')[0] ?? '/';
+  const relativePath = normalizedPath === '/' ? 'index.html' : normalizedPath.replace(/^\//, '');
+  const directPath = join(distDir, relativePath);
+
+  if (existsSync(directPath) && statSync(directPath).isFile()) {
+    return directPath;
+  }
+
+  const spaFallback = join(distDir, 'index.html');
+  return existsSync(spaFallback) ? spaFallback : null;
+}
+
+/** Serveur statique local — plus fiable que `vite preview` sur Vercel CI. */
+function startPreviewServer(distDir: string, port: number): Promise<Server> {
   return new Promise((resolvePromise, reject) => {
-    const proc = spawn(
-      process.platform === 'win32' ? 'npx.cmd' : 'npx',
-      ['vite', 'preview', '--host', PREVIEW_HOST, '--port', String(port), '--strictPort'],
-      {
-        stdio: ['ignore', 'pipe', 'pipe'],
-        env: { ...process.env, VITE_PREVIEW_DIST: distDir },
-        cwd: process.cwd(),
-      },
-    );
+    const server = createHttpServer((request, response) => {
+      const filePath = resolveStaticFile(distDir, request.url ?? '/');
 
-    let settled = false;
-
-    const tryResolve = (chunk: Buffer): void => {
-      const text = chunk.toString();
-      if (!settled && (text.includes(`localhost:${port}`) || text.includes(`${PREVIEW_HOST}:${port}`))) {
-        settled = true;
-        resolvePromise(proc);
+      if (!filePath) {
+        response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+        response.end('Not found');
+        return;
       }
-    };
 
-    proc.stdout.on('data', tryResolve);
-    proc.stderr.on('data', tryResolve);
-    proc.on('error', reject);
-    proc.on('exit', (code) => {
-      if (!settled) {
-        reject(new Error(`vite preview a quitté avec le code ${code ?? 'unknown'}`));
-      }
+      const body = readFileSync(filePath);
+      const contentType = MIME_TYPES[extname(filePath)] ?? 'application/octet-stream';
+      response.writeHead(200, { 'Content-Type': contentType });
+      response.end(body);
     });
 
-    setTimeout(() => {
-      if (!settled) {
-        proc.kill();
-        reject(new Error('Timeout : vite preview ne répond pas après 45s'));
-      }
-    }, 45_000);
+    server.on('error', reject);
+    server.listen(port, PREVIEW_HOST, () => {
+      resolvePromise(server);
+    });
   });
 }
 
@@ -144,7 +155,6 @@ export async function runPrerender(options: PrerenderOptions): Promise<void> {
   console.log(`   Preview : ${previewUrl}`);
 
   const preview = await startPreviewServer(distDir, previewPort);
-  await new Promise((r) => setTimeout(r, 1500));
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -160,7 +170,15 @@ export async function runPrerender(options: PrerenderOptions): Promise<void> {
     }
   } finally {
     await browser.close();
-    preview.kill('SIGKILL');
+    await new Promise<void>((resolveClose, rejectClose) => {
+      preview.close((error) => {
+        if (error) {
+          rejectClose(error);
+          return;
+        }
+        resolveClose();
+      });
+    });
   }
 
   console.log(`✅ [vite-plugin-prerender] ${routes.length} fichiers HTML statiques générés\n`);
