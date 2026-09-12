@@ -20,7 +20,7 @@ interface SEOGuardianProps {
  * 3. Injection automatique aria-invalid sur les inputs en erreur
  * 4. Structured Data additionnelles (FAQ, Breadcrumb)
  */
-export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, description: overrideDesc, keywords: overrideKeywords, faqItems, disableReviews = false }: SEOGuardianProps) {
+export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, description: overrideDesc, keywords: overrideKeywords, faqItems }: SEOGuardianProps) {
 
   // useLayoutEffect : meta tags disponibles avant paint → capturés par le prerender Puppeteer
   useLayoutEffect(() => {
@@ -240,72 +240,6 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
       },
       'foundingDate': FOUNDING_YEAR,
       'slogan': 'Entretien et nettoyage éco-responsable à Marseille',
-      ...(!disableReviews && {
-        'aggregateRating': {
-          '@type': 'AggregateRating',
-          'ratingValue': '4.7',
-          'bestRating': '5',
-          'worstRating': '1',
-          'reviewCount': '12'
-        },
-        'review': [
-          {
-            '@type': 'Review',
-            'itemReviewed': {
-              '@type': 'LocalBusiness',
-              'name': COMPANY_NAME
-            },
-            'author': { '@type': 'Person', 'name': 'Olivier Courtois' },
-            'datePublished': '2026-05-02',
-            'reviewBody': 'Service très pro, merci à Sarah. Boîte très sérieuse et dynamique, super réactivité ! Rien à redire. Je recommande les yeux fermés !',
-            'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }
-          },
-          {
-            '@type': 'Review',
-            'itemReviewed': {
-              '@type': 'LocalBusiness',
-              'name': COMPANY_NAME
-            },
-            'author': { '@type': 'Person', 'name': 'Chloé Statue' },
-            'datePublished': '2026-04-28',
-            'reviewBody': 'Équipe de nettoyage très sérieuse, je recommande les yeux fermés ! Que ça soit après un événement ou pour un état des lieux, ils sont très efficaces et professionnels.',
-            'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }
-          },
-          {
-            '@type': 'Review',
-            'itemReviewed': {
-              '@type': 'LocalBusiness',
-              'name': COMPANY_NAME
-            },
-            'author': { '@type': 'Person', 'name': 'Camille Paris' },
-            'datePublished': '2026-01-15',
-            'reviewBody': 'Satisfait de la prestation. Une équipe ponctuelle, sérieuse et d\'un grand professionnalisme. Le travail est soigné, merci pour votre efficacité !',
-            'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }
-          },
-          {
-            '@type': 'Review',
-            'itemReviewed': {
-              '@type': 'LocalBusiness',
-              'name': COMPANY_NAME
-            },
-            'author': { '@type': 'Person', 'name': 'Li PO' },
-            'datePublished': '2024-02-10',
-            'reviewBody': 'Sérieux et efficace ! Agréablement surprise, j\'ai fait appel à cette société pour deux fins de chantiers, au top ! Arrangeants, professionnels et efficaces. Génial !',
-            'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }
-          },
-          {
-            '@type': 'Review',
-            'itemReviewed': {
-              '@type': 'LocalBusiness',
-              'name': COMPANY_NAME
-            },
-            'author': { '@type': 'Person', 'name': 'Edwige Dominique' },
-            'datePublished': '2023-05-15',
-            'reviewBody': 'Très satisfaite de la prestation lors du nettoyage de ma boutique. Je recommande fortement l\'entreprise pour son sérieux et surtout son efficacité.',
-            'reviewRating': { '@type': 'Rating', 'ratingValue': '4', 'bestRating': '5' }
-          }
-        ],
-      }),
       'sameAs': [
         'https://share.google/LGuTIovk5ovTXGzuc',
         'https://www.pagesjaunes.fr/pros/61828182',
@@ -478,7 +412,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
       if (scriptToRemove2) scriptToRemove2.remove();
       if (scriptToRemove3) scriptToRemove3.remove();
     };
-  }, [currentSection, overrideTitle, overrideDesc, overrideKeywords, faqItems, disableReviews]);
+  }, [currentSection, overrideTitle, overrideDesc, overrideKeywords, faqItems]);
 
   useEffect(() => {
     const formObserver = new MutationObserver(() => {
