@@ -1,0 +1,89 @@
+/* Animations pour le menu et les overlays */
+
+/* Mobile panel slide-in */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mobile-panel-enter {
+  animation: slideInRight 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.mobile-overlay-enter {
+  animation: fadeInOverlay 0.2s ease-out forwards;
+}
+
+/* ═══ Hero fade-in animation (replaces motion library) ═══ */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ncm-hero-fade-in {
+  animation: heroFadeIn 0.6s ease-out both;
+}
+
+/* ═══ Map marker stagger reveal ═══ */
+@keyframes mapMarkerPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.ncm-map-marker {
+  opacity: 0;
+  animation: mapMarkerPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ═══ Carousel slide-in (replaces motion in BeforeAfterCarousel) ═══ */
+@keyframes carouselFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ncm-carousel-fade-in {
+  animation: carouselFadeSlide 0.35s ease-out both;
+}
+
+/* ═══ Grid item appear (replaces motion in RealisationsPage) ═══ */
+@keyframes gridItemAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.ncm-grid-item-appear {
+  animation: gridItemAppear 0.3s ease-out both;
+}

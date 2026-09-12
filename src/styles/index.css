@@ -1,0 +1,6 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+@import './dropdown.css';
+/* slick-minimal.css est chargé directement dans ServiceCarousel.tsx
+   → sort du bundle CSS critique, ne bloque plus le FCP/LCP */

@@ -1,0 +1,12 @@
+# robots.txt — Nature Clean Marseille
+# https://natureclean.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://natureclean.fr/sitemap.xml
+
+# Bloquer les pages admin/API
+Disallow: /api/
+Disallow: /admin/

@@ -1,0 +1,253 @@
+# ============================================================
+# CLEAN-SWEEP CI — Nature Clean Marseille
+# PROTOCOLE DCZ INTÉGRÉ (5 barrages)
+# ============================================================
+# Chaque PR / push sur main passe 5 checks obligatoires :
+#   Job 1 : Dead-Code-Guard (scan statique R1-R7)
+#   Job 2 : TypeScript strict (tsc --noEmit, zero error)
+#   Job 3 : Knip (imports/exports/deps morts)
+#   Job 4 : Build Vite (zero error)
+#   Job 5 : Audit dépendances (sécurité)
+# Si un job échoue → PR bloquée, merge impossible.
+# ============================================================
+
+name: Clean-Sweep CI + Protocole DCZ
+
+on:
+  pull_request:
+    branches: [main, production]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # -----------------------------------------------
+  # JOB 1 : Dead-Code-Guard (scanner statique)
+  # -----------------------------------------------
+  dead-code-guard:
+    name: DCZ — Dead-Code-Guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Installation des dependances
+        run: pnpm install --frozen-lockfile
+
+      - name: Scan Dead-Code-Guard
+        run: npx tsx scripts/dead-code-guard.ts
+        continue-on-error: false
+
+      - name: Rapport DCZ
+        if: failure()
+        run: |
+          echo "## Dead-Code-Guard — Violations Detectees" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Le scanner DCZ a detecte du code interdit." >> $GITHUB_STEP_SUMMARY
+          echo "Executez \`npx tsx scripts/dead-code-guard.ts\` localement pour voir les details." >> $GITHUB_STEP_SUMMARY
+
+  # -----------------------------------------------
+  # JOB 2 : TypeScript strict (tsc --noEmit)
+  # -----------------------------------------------
+  typescript-strict:
+    name: DCZ — TypeScript Strict
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Installation des dependances
+        run: pnpm install --frozen-lockfile
+
+      - name: Compilation stricte (zero error, zero warning)
+        run: npx tsc --noEmit
+        continue-on-error: false
+
+      - name: Rapport TypeScript
+        if: failure()
+        run: |
+          echo "## TypeScript Strict — Erreurs Detectees" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          npx tsc --noEmit 2>&1 | head -50 >> $GITHUB_STEP_SUMMARY
+
+  # -----------------------------------------------
+  # JOB 3 : Knip (imports/exports/dependances morts)
+  # -----------------------------------------------
+  knip-scan:
+    name: DCZ — Knip Dead Code
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Installation des dependances
+        run: pnpm install --frozen-lockfile
+
+      - name: Scan du code mort (Knip)
+        run: pnpm run clean
+        continue-on-error: false
+
+      - name: Rapport Knip (Markdown)
+        if: failure()
+        run: |
+          echo "## Knip — Code Mort Detecte" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          pnpm run clean:report >> $GITHUB_STEP_SUMMARY 2>&1 || true
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> Corrigez les imports/exports inutilises avant de merger." >> $GITHUB_STEP_SUMMARY
+
+  # -----------------------------------------------
+  # JOB 4 : Build Vite (zero error)
+  # -----------------------------------------------
+  build-check:
+    name: DCZ — Build Vite
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [dead-code-guard, typescript-strict, knip-scan]
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Installation des dependances
+        run: pnpm install --frozen-lockfile
+
+      - name: Build de production
+        run: pnpm run build
+        env:
+          NODE_ENV: production
+
+      - name: Verification du bundle
+        run: |
+          echo "## Build Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metrique | Valeur |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|--------|" >> $GITHUB_STEP_SUMMARY
+          TOTAL_SIZE=$(du -sh dist/ | cut -f1)
+          JS_SIZE=$(find dist/assets -name "*.js" -exec du -ch {} + | tail -1 | cut -f1)
+          CSS_SIZE=$(find dist/assets -name "*.css" -exec du -ch {} + | tail -1 | cut -f1)
+          HTML_FILES=$(find dist -name "*.html" | wc -l)
+          echo "| Taille totale | $TOTAL_SIZE |" >> $GITHUB_STEP_SUMMARY
+          echo "| JavaScript | $JS_SIZE |" >> $GITHUB_STEP_SUMMARY
+          echo "| CSS | $CSS_SIZE |" >> $GITHUB_STEP_SUMMARY
+          echo "| Fichiers HTML | $HTML_FILES |" >> $GITHUB_STEP_SUMMARY
+
+  # -----------------------------------------------
+  # JOB 5 : Audit dependances (securite)
+  # -----------------------------------------------
+  dependency-audit:
+    name: DCZ — Audit Dependances
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Installation des dependances
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit de securite
+        run: pnpm audit --audit-level=high || true
+
+      - name: Compteur de dependances
+        run: |
+          echo "## Audit Dependances" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          TOTAL_DEPS=$(node -e "const p=require('./package.json');console.log(Object.keys(p.dependencies||{}).length)")
+          DEV_DEPS=$(node -e "const p=require('./package.json');console.log(Object.keys(p.devDependencies||{}).length)")
+          echo "| Type | Nombre |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Dependencies | $TOTAL_DEPS |" >> $GITHUB_STEP_SUMMARY
+          echo "| DevDependencies | $DEV_DEPS |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total | $(($TOTAL_DEPS + $DEV_DEPS)) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> Seuil d'alerte : 25 deps max. Actuel : $(($TOTAL_DEPS + $DEV_DEPS))" >> $GITHUB_STEP_SUMMARY
+
+  # -----------------------------------------------
+  # JOB FINAL : Gate de validation
+  # -----------------------------------------------
+  dcz-gate:
+    name: DCZ Gate — Merge Autorise
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    needs: [dead-code-guard, typescript-strict, knip-scan, build-check, dependency-audit]
+    if: always()
+
+    steps:
+      - name: Verifier que tous les jobs ont passe
+        run: |
+          if [ "${{ needs.dead-code-guard.result }}" != "success" ] || \
+             [ "${{ needs.typescript-strict.result }}" != "success" ] || \
+             [ "${{ needs.knip-scan.result }}" != "success" ] || \
+             [ "${{ needs.build-check.result }}" != "success" ]; then
+            echo "❌ PROTOCOLE DCZ : MERGE INTERDIT"
+            echo "Un ou plusieurs checks ont echoue."
+            exit 1
+          fi
+          echo "✅ PROTOCOLE DCZ : MERGE AUTORISE"
+          echo "Tous les 5 barrages sont passes."

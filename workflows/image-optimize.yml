@@ -1,0 +1,99 @@
+# ============================================================
+# IMAGE OPTIMIZER - Nature Clean Marseille
+# ============================================================
+# Niveau 2 : Robot de menage des images
+# Chaque image ajoutee dans /public/ est automatiquement :
+# - Compressee si > 500Ko
+# - Convertie en WebP + AVIF
+# ============================================================
+
+name: Image Optimizer
+
+on:
+  push:
+    paths:
+      - 'public/**/*.{png,jpg,jpeg,gif}'
+      - 'src/**/*.{png,jpg,jpeg,gif}'
+    branches: [main]
+  pull_request:
+    paths:
+      - 'public/**/*.{png,jpg,jpeg,gif}'
+      - 'src/**/*.{png,jpg,jpeg,gif}'
+
+jobs:
+  optimize:
+    name: Optimize Images
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installation de Sharp CLI
+        run: npm install -g sharp-cli@latest
+
+      - name: Detecter les nouvelles images
+        id: detect
+        run: |
+          # Trouver les images > 500Ko
+          LARGE_IMAGES=$(find public/ src/ -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -size +500k 2>/dev/null || true)
+          if [ -n "$LARGE_IMAGES" ]; then
+            echo "found=true" >> $GITHUB_OUTPUT
+            echo "## Images a optimiser:" >> $GITHUB_STEP_SUMMARY
+            echo "$LARGE_IMAGES" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "found=false" >> $GITHUB_OUTPUT
+            echo "## Aucune image a optimiser" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Optimiser les images
+        if: steps.detect.outputs.found == 'true'
+        run: |
+          # Compresser les PNG > 500Ko
+          find public/ src/ -type f -name "*.png" -size +500k -exec sh -c '
+            echo "Optimisation: {}"
+            sharp -i "{}" -o "{}" --quality 85 --format png 2>/dev/null || true
+          ' \;
+
+          # Compresser les JPEG > 500Ko  
+          find public/ src/ -type f \( -name "*.jpg" -o -name "*.jpeg" \) -size +500k -exec sh -c '
+            echo "Optimisation: {}"
+            sharp -i "{}" -o "{}" --quality 80 --format jpeg 2>/dev/null || true
+          ' \;
+
+          # Generer les WebP pour chaque image PNG/JPEG
+          find public/ -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -exec sh -c '
+            WEBP_PATH="${1%.*}.webp"
+            if [ ! -f "$WEBP_PATH" ]; then
+              echo "WebP: $WEBP_PATH"
+              sharp -i "$1" -o "$WEBP_PATH" --quality 80 --format webp 2>/dev/null || true
+            fi
+          ' _ {} \;
+
+      - name: Rapport de taille
+        if: steps.detect.outputs.found == 'true'
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Tailles apres optimisation:" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          find public/ src/ -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.webp" -o -name "*.avif" \) -exec ls -lh {} \; 2>/dev/null >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Commit des images optimisees
+        if: steps.detect.outputs.found == 'true' && github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "perf(images): compression automatique des images [skip ci]"
+          file_pattern: "public/**/*.{png,jpg,jpeg,webp,avif} src/**/*.{png,jpg,jpeg,webp,avif}"

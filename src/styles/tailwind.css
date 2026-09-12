@@ -1,0 +1,20 @@
+@import 'tailwindcss' source(none);
+
+/* ─── Source scanning : fichiers actifs uniquement ─────────────────────────
+   Exclure les 41 composants Shadcn inutilisés (non supprimables par la sandbox)
+   évite qu'ils gonflent le bundle CSS avec leurs classes Radix/aria/data-attr.
+   Économie estimée : 8-20 Ko gzippé → CSS render-blocking -200 à -400 ms. ─── */
+
+@source '../app/**/*.{ts,tsx}';
+
+/* Exclure tout le répertoire ui/ … */
+@source not '../app/components/ui/*.{ts,tsx}';
+
+/* … puis ré-inclure uniquement les 7 fichiers réellement utilisés */
+@source '../app/components/ui/button.tsx';
+@source '../app/components/ui/card.tsx';
+@source '../app/components/ui/input.tsx';
+@source '../app/components/ui/label.tsx';
+@source '../app/components/ui/textarea.tsx';
+@source '../app/components/ui/input-otp.tsx';
+@source '../app/components/ui/utils.ts';

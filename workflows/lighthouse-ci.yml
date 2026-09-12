@@ -1,0 +1,71 @@
+# ============================================================
+# LIGHTHOUSE CI - Nature Clean Marseille
+# ============================================================
+# Niveau 3 : Audit Lighthouse automatique sur chaque PR
+# Si un score descend sous 95 -> Alerte
+# Si un score descend sous 90 -> PR bloquee
+# ============================================================
+
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main, production]
+  push:
+    branches: [main]
+
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    name: Lighthouse Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Installation des dependances
+        run: pnpm install --frozen-lockfile
+
+      - name: Build de production
+        run: pnpm run build
+        env:
+          NODE_ENV: production
+
+      - name: Audit Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Rapport Lighthouse
+        if: always()
+        run: |
+          echo "## Lighthouse Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Les scores Lighthouse sont verifies automatiquement." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Categorie | Seuil Minimum |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|---------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Performance | 90 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Accessibilite | 90 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Best Practices | 90 |" >> $GITHUB_STEP_SUMMARY
+          echo "| SEO | 90 |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> Objectif: 100/100 sur tous les axes." >> $GITHUB_STEP_SUMMARY

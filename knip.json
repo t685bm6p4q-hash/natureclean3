@@ -1,0 +1,59 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": [
+    "src/main.tsx",
+    "src/app/App.tsx",
+    "src/app/routes.ts",
+    "api/*.ts"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "api/**/*.ts"
+  ],
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.d.ts",
+    "src/types/**",
+    "src/content/**",
+    "public/**"
+  ],
+  "ignoreDependencies": [
+    "@types/react",
+    "@types/react-dom",
+    "@types/react-slick",
+    "typescript",
+    "tsx",
+    "husky",
+    "lint-staged",
+    "slick-carousel",
+    "@tailwindcss/vite",
+    "@vitejs/plugin-react",
+    "tailwindcss",
+    "vite",
+    "tw-animate-css",
+    "zod",
+    "motion"
+  ],
+  "ignoreBinaries": [
+    "vite",
+    "tsc"
+  ],
+  "rules": {
+    "files": "error",
+    "dependencies": "error",
+    "unlisted": "error",
+    "binaries": "off",
+    "unresolved": "error",
+    "exports": "error",
+    "types": "error",
+    "duplicates": "error",
+    "enumMembers": "error",
+    "classMembers": "error"
+  },
+  "vite": {
+    "config": ["vite.config.ts"]
+  }
+}

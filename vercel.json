@@ -1,0 +1,155 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build:sitemap && npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.naturecleanmarseille.com" }],
+      "destination": "https://natureclean.fr/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "naturecleanmarseille.com" }],
+      "destination": "https://natureclean.fr/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.natureclean.fr" }],
+      "destination": "https://natureclean.fr/:path*",
+      "permanent": true
+    },
+
+    { "source": "/entretien-de-bureaux-marseille.html", "destination": "/nettoyage-bureaux-marseille", "permanent": true },
+    { "source": "/entretien-de-bureaux-marseille", "destination": "/nettoyage-bureaux-marseille", "permanent": true },
+    { "source": "/nettoyage-de-bureaux-marseille.html", "destination": "/nettoyage-bureaux-marseille", "permanent": true },
+    { "source": "/nettoyage-de-bureaux-marseille", "destination": "/nettoyage-bureaux-marseille", "permanent": true },
+    { "source": "/nettoyage-bureaux-marseille-13", "destination": "/nettoyage-bureaux-marseille", "permanent": true },
+    { "source": "/nettoyage-bureaux-professionnel-marseille", "destination": "/nettoyage-bureaux-marseille", "permanent": true },
+    { "source": "/entretien-bureaux-marseille", "destination": "/nettoyage-bureaux-marseille", "permanent": true },
+    { "source": "/nettoyage-industriel-marseille.html", "destination": "/nettoyage-industriel-marseille", "permanent": true },
+    { "source": "/nettoyage-de-bureaux", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-bureaux", "destination": "/services/entretien-bureaux", "permanent": true },
+
+    { "source": "/nettoyage-de-commerces-marseille.html", "destination": "/services/nettoyage-commerces", "permanent": true },
+    { "source": "/nettoyage-de-commerces-marseille", "destination": "/services/nettoyage-commerces", "permanent": true },
+    { "source": "/nettoyage-commerces", "destination": "/services/nettoyage-commerces", "permanent": true },
+
+    { "source": "/nettoyage-de-coproprietes-marseille.html", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-de-coproprietes-marseille", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-coproprietes", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-copropriete", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+
+    { "source": "/nettoyage-de-chantier-marseille.html", "destination": "/services/nettoyage-chantiers", "permanent": true },
+    { "source": "/nettoyage-de-chantier-marseille", "destination": "/services/nettoyage-chantiers", "permanent": true },
+    { "source": "/nettoyage-fin-de-chantier", "destination": "/services/nettoyage-chantiers", "permanent": true },
+    { "source": "/nettoyage-apres-chantier", "destination": "/services/nettoyage-chantiers", "permanent": true },
+
+    { "source": "/nettoyage-evenementiel-marseille.html", "destination": "/services/nettoyage-evenementiel", "permanent": true },
+    { "source": "/nettoyage-evenementiel-marseille", "destination": "/services/nettoyage-evenementiel", "permanent": true },
+
+    { "source": "/remise-en-etat-des-sols-marseille.html", "destination": "/services/remise-etat-sols", "permanent": true },
+    { "source": "/remise-en-etat-des-sols-marseille", "destination": "/services/remise-etat-sols", "permanent": true },
+    { "source": "/remise-en-etat-sols", "destination": "/services/remise-etat-sols", "permanent": true },
+
+    { "source": "/nettoyage-de-vitres-marseille.html", "destination": "/services/nettoyage-vitre", "permanent": true },
+    { "source": "/nettoyage-de-vitres-marseille", "destination": "/services/nettoyage-vitre", "permanent": true },
+    { "source": "/nettoyage-vitres", "destination": "/services/nettoyage-vitre", "permanent": true },
+    { "source": "/lavage-vitres", "destination": "/services/nettoyage-vitre", "permanent": true },
+
+    { "source": "/nettoyage-pour-particuliers-marseille.html", "destination": "/nettoyage-particuliers", "permanent": true },
+    { "source": "/nettoyage-pour-particuliers-marseille", "destination": "/nettoyage-particuliers", "permanent": true },
+    { "source": "/menage-a-domicile", "destination": "/nettoyage-particuliers", "permanent": true },
+    { "source": "/menage-domicile-marseille", "destination": "/nettoyage-particuliers", "permanent": true },
+
+    { "source": "/nos-services.html", "destination": "/services", "permanent": true },
+    { "source": "/nos-services", "destination": "/services", "permanent": true },
+    { "source": "/prestations", "destination": "/services", "permanent": true },
+
+    { "source": "/qui-sommes-nous.html", "destination": "/a-propos", "permanent": true },
+    { "source": "/qui-sommes-nous", "destination": "/a-propos", "permanent": true },
+    { "source": "/a-propos-de-nous", "destination": "/a-propos", "permanent": true },
+    { "source": "/notre-entreprise", "destination": "/a-propos", "permanent": true },
+
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/contactez-nous", "destination": "/contact", "permanent": true },
+    { "source": "/nous-contacter", "destination": "/contact", "permanent": true },
+
+    { "source": "/demande-de-devis.html", "destination": "/devis", "permanent": true },
+    { "source": "/demande-de-devis", "destination": "/devis", "permanent": true },
+    { "source": "/devis-gratuit", "destination": "/devis", "permanent": true },
+
+    { "source": "/nos-realisations.html", "destination": "/realisations", "permanent": true },
+    { "source": "/nos-realisations", "destination": "/realisations", "permanent": true },
+    { "source": "/galerie", "destination": "/realisations", "permanent": true },
+
+    { "source": "/zones-d-intervention.html", "destination": "/zones-intervention", "permanent": true },
+    { "source": "/zones-d-intervention", "destination": "/zones-intervention", "permanent": true },
+    { "source": "/zone-intervention", "destination": "/zones-intervention", "permanent": true },
+
+    { "source": "/actualites.html", "destination": "/actualites", "permanent": true },
+    { "source": "/blog.html", "destination": "/blog", "permanent": true },
+
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/accueil.html", "destination": "/", "permanent": true },
+    { "source": "/accueil", "destination": "/", "permanent": true },
+    { "source": "/home", "destination": "/", "permanent": true },
+
+    { "source": "/mentions-legales.html", "destination": "/", "permanent": true },
+    { "source": "/plan-du-site.html", "destination": "/sitemap.xml", "permanent": true },
+    { "source": "/plan-du-site", "destination": "/sitemap.xml", "permanent": true },
+
+    { "source": "/nettoyage-vitre-antibes", "destination": "/services/nettoyage-vitre", "permanent": true },
+    { "source": "/nettoyage-evenementiel-mandelieu", "destination": "/services/nettoyage-evenementiel", "permanent": true },
+    { "source": "/nettoyage-fin-chantier-frejus", "destination": "/services/nettoyage-chantiers", "permanent": true },
+    { "source": "/nettoyage-coproprietes-villeneuve-loubet", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-commerces-cagnes-sur-mer", "destination": "/services/nettoyage-commerces", "permanent": true },
+    { "source": "/nettoyage-commerces-saint-laurent-du-var", "destination": "/services/nettoyage-commerces", "permanent": true },
+    { "source": "/nettoyage-bureaux-mougins", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-bureaux-sophia-antipolis", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-evenementiel-grasse", "destination": "/services/nettoyage-evenementiel", "permanent": true },
+    { "source": "/nettoyage-coproprietes-hyeres", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-fin-chantier-nice", "destination": "/services/nettoyage-chantiers", "permanent": true },
+    { "source": "/nettoyage-bureaux-cannes", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-bureaux-toulon", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-coproprietes-allauch", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-coproprietes-plan-de-cuques", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-particuliers-cassis", "destination": "/nettoyage-particuliers", "permanent": true },
+    { "source": "/nettoyage-bureaux-cassis", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-bureaux-vitrolles", "destination": "/services/entretien-bureaux", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://res.cloudinary.com https://www.facebook.com https://www.google-analytics.com; connect-src 'self' https://res.cloudinary.com https://api.resend.com https://api.callmebot.com https://gate.whapi.cloud https://www.google-analytics.com https://stats.g.doubleclick.net; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" },
+        { "key": "X-Powered-By", "value": "Nature Clean" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}

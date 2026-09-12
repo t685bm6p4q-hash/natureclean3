@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Critical CSS inline — prevents white flash (default browser bg) before stylesheet loads.
+         Lighthouse SI measures visual progress: dark bg from 0ms = pixels already "done" = better SI.
+         Body bg matches the hero section gray-900 (#111827) — zero visible shift when CSS loads. -->
+    <style>
+      /* Seul ce qui n'est PAS dans le preflight Tailwind : la couleur de fond initiale.
+         Évite le flash blanc (white flash) avant que le CSS bundle charge.
+         NE PAS ajouter box-sizing ni resets ici : Tailwind preflight les gère déjà
+         et les dupliquer force des recalculs de style sur chaque élément du DOM. */
+      html,body{background:#111827}
+    </style>
+    <link rel="icon" type="image/png" sizes="64x64" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_64,h_64,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_32,h_32,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_png,q_auto,w_180,h_180,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entreprise de Nettoyage Marseille & PACA | Nature Clean</title>
+    
+    <!-- Canonical URL — injectée dynamiquement par SEO_Guardian.tsx (window.location.pathname) -->
+    <!-- PAS de canonical statique ici : ce index.html est servi pour TOUTES les routes SPA.    -->
+    <!-- Un canonical codé en dur "/" ici ferait croire à Google que toutes les pages sont des  -->
+    <!-- copies de l'accueil → "Autre page avec balise canonique correcte" en Search Console.   -->
+
+    <!-- DNS Prefetch pour les assets Cloudinary CDN -->
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+
+    <!-- Preload LCP Hero — démarre le téléchargement AVANT le JS bundle -->
+    <!-- f_webp : format explicite — élimine Vary:Accept cache-miss entre preload et <img>
+         q_30  : ultra-compressé, imperceptible sous dark overlay gray-900/80
+         850w  : couvre Moto G Power (412px × DPR 2 = 824px) — évite de charger 1200w
+         URLs DOIVENT correspondre exactement à celles de Home.tsx :
+           getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')
+           cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp') -->
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
+      imagesrcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
+      imagesizes="100vw"
+    />
+    
+    <!-- Meta description par défaut -->
+    <meta name="description" content="Nature Clean — Nettoyage professionnel à Marseille & PACA ⭐ 4,9/5. Bureaux, copropriétés, fin de chantier, médical. Devis gratuit en 2h. Éco-responsable." />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Entreprise de Nettoyage Marseille & PACA | Nature Clean" />
+    <meta property="og:description" content="Expert en nettoyage à Marseille et en région PACA : entretien de bureaux, commerces, copropriétés et fins de chantier. Demandez votre devis gratuit !" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#059669" />
+  </head>
+  <body>
+    <!--
+      HERO IMAGE — img réelle dans le HTML initial (hors React root).
+
+      Pourquoi cette img et pas seulement le <link rel="preload"> ?
+      ─────────────────────────────────────────────────────────────
+      Le preload <link> peut échouer à produire un cache HIT si :
+        • Cloudinary renvoie Vary:Accept → différence de headers entre preload et img
+        • La sélection du srcset diffère légèrement entre les deux contextes
+
+      Cette <img> est dans le HTML INITIAL → Chrome la télécharge dès le parse
+      (T≈75ms), AVANT que JavaScript évalue (T≈220ms) et AVANT que React rende (T≈1700ms).
+      Quand React ajoute la même <img src="f_webp,q_30,w_850,c_limit/..."> au DOM,
+      le navigateur trouve l'image en mémoire cache → cache HIT → LCP = FCP.
+
+      Règles de non-impact :
+        • opacity:0          → invisible (mais téléchargée — Chrome charge les ressources de tout
+                               élément non display:none, opacity:0 inclus)
+        • position:fixed     → hors du flux, zéro CLS
+        • pointer-events:none → non interactif
+        • z-index:-9999      → derrière tout
+        • aria-hidden="true" → ignorée par les lecteurs d'écran
+        • alt=""             → image décorative au sens WCAG
+
+      ⚠️  URLs DOIVENT correspondre EXACTEMENT à celles de Home.tsx :
+            src  → getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')
+            srcset → cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')
+          Toute divergence de format/qualité/largeur = cache MISS = LCP inchangé.
+    -->
+    <img
+      src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
+      srcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
+      sizes="100vw"
+      fetchpriority="high"
+      loading="eager"
+      decoding="async"
+      alt=""
+      aria-hidden="true"
+      style="position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;z-index:-9999;"
+    />
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- 
+      🔥 TRACKING ÉLITE NON-BLOQUANT (GA4 + Facebook Pixel)
+      TODO : Décommenter cette ligne une fois les vrais IDs configurés 
+      dans /public/tracking.js (GA4_ID + FB_PIXEL_ID)
+      <script src="/tracking.js" defer></script>
+    -->
+    
+    <!-- Noscript fallback pour SEO — liens crawlables sans JavaScript -->
+    <noscript>
+      <nav aria-label="Navigation principale sans JavaScript">
+        <ul>
+          <li><a href="/">Accueil — Nature Clean Marseille</a></li>
+          <li><a href="/services/nettoyage-chantiers">Nettoyage de chantiers à Marseille</a></li>
+          <li><a href="/services/nettoyage-coproprietes">Nettoyage de copropriétés à Marseille</a></li>
+          <li><a href="/services/nettoyage-commerces">Nettoyage de commerces à Marseille</a></li>
+          <li><a href="/services/entretien-bureaux">Entretien de bureaux à Marseille</a></li>
+          <li><a href="/services/remise-etat-sols">Remise en état des sols à Marseille</a></li>
+          <li><a href="/services/nettoyage-graffitis">Nettoyage de graffitis à Marseille</a></li>
+          <li><a href="/services/nettoyage-diogene">Nettoyage syndrome de Diogène à Marseille</a></li>
+        </ul>
+      </nav>
+    </noscript>
+
+    <!-- COUCHE 2 : Service Worker PWA (mode Survie) — production only -->
+    <script>
+      if ('serviceWorker' in navigator && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1') && !window.location.port) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function() {});
+        });
+      }
+    </script>
+  </body>
+</html>

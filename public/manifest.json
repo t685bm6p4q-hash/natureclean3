@@ -1,0 +1,20 @@
+{
+  "name": "Nature Clean Marseille",
+  "short_name": "Nature Clean",
+  "description": "Entreprise de nettoyage eco-responsable a Marseille. Bureaux, coproprietes, fin de chantier. Devis gratuit.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "lang": "fr",
+  "categories": ["business", "utilities"],
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

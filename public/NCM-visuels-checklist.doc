@@ -1,0 +1,474 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="utf-8">
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 15">
+<meta name="Originator" content="Microsoft Word 15">
+<!--[if gte mso 9]>
+<xml>
+<o:DocumentProperties>
+  <o:Title>Nature Clean Marseille - Checklist Visuels Site Web</o:Title>
+  <o:Author>Nature Clean</o:Author>
+</o:DocumentProperties>
+<w:WordDocument>
+  <w:View>Print</w:View>
+  <w:Zoom>100</w:Zoom>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  @page { size: A4; margin: 2cm; }
+  body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; color: #1a1a1a; line-height: 1.4; }
+  h1 { font-size: 22pt; color: #166534; border-bottom: 3px solid #22c55e; padding-bottom: 8pt; margin-top: 0; }
+  h2 { font-size: 16pt; color: #166534; background-color: #f0fdf4; padding: 6pt 10pt; border-left: 4px solid #22c55e; margin-top: 24pt; page-break-after: avoid; }
+  h3 { font-size: 13pt; color: #15803d; margin-top: 16pt; margin-bottom: 4pt; page-break-after: avoid; }
+  h4 { font-size: 11pt; color: #166534; margin-top: 10pt; margin-bottom: 4pt; }
+  table { border-collapse: collapse; width: 100%; margin: 8pt 0 16pt 0; font-size: 10pt; }
+  th { background-color: #166534; color: white; padding: 6pt 8pt; text-align: left; font-weight: bold; border: 1px solid #166534; }
+  td { padding: 5pt 8pt; border: 1px solid #d1d5db; vertical-align: top; }
+  tr:nth-child(even) td { background-color: #f9fafb; }
+  .fiche { border: 1px solid #d1d5db; padding: 10pt 14pt; margin: 10pt 0; background-color: #fafafa; page-break-inside: avoid; }
+  .fiche-titre { font-size: 12pt; font-weight: bold; color: #166534; margin-bottom: 6pt; border-bottom: 1px solid #e5e7eb; padding-bottom: 4pt; }
+  .champ { margin: 4pt 0; }
+  .champ b { color: #374151; display: inline-block; width: 120pt; }
+  .ligne-vide { border-bottom: 1px dotted #9ca3af; display: inline-block; width: 250pt; margin-left: 4pt; }
+  .tag-mock { background-color: #fef3c7; color: #92400e; padding: 1pt 6pt; font-size: 9pt; font-weight: bold; }
+  .tag-client { background-color: #d1fae5; color: #065f46; padding: 1pt 6pt; font-size: 9pt; font-weight: bold; }
+  .tag-shooting { background-color: #dbeafe; color: #1e40af; padding: 1pt 6pt; font-size: 9pt; font-weight: bold; }
+  .important { background-color: #fef2f2; border-left: 4px solid #ef4444; padding: 6pt 10pt; margin: 8pt 0; font-size: 10pt; }
+  .conseil { background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 6pt 10pt; margin: 8pt 0; font-size: 10pt; }
+  .recap-box { border: 2px solid #166534; padding: 10pt; margin: 12pt 0; background-color: #f0fdf4; }
+  .page-break { page-break-before: always; }
+  .notes-zone { border: 1px solid #d1d5db; min-height: 100pt; padding: 8pt; margin-top: 6pt; background-color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- PAGE DE GARDE -->
+<div style="text-align:center; padding-top:120pt;">
+  <p style="font-size:12pt; color:#6b7280; letter-spacing:2pt;">DOCUMENT INTERNE</p>
+  <h1 style="font-size:28pt; border:none; text-align:center; margin-top:20pt;">NATURE CLEAN MARSEILLE</h1>
+  <p style="font-size:18pt; color:#15803d; margin-top:10pt;">Checklist Visuels &amp; Photos du Site Web</p>
+  <br/><br/>
+  <p style="font-size:11pt; color:#6b7280;">Production &amp; collecte des visuels pour la refonte du site</p>
+  <br/><br/><br/>
+  <table style="width:60%; margin:auto; border:none;">
+    <tr><td style="border:none; padding:4pt;"><b>Date de creation :</b></td><td style="border:none; padding:4pt;">24 fevrier 2026</td></tr>
+    <tr><td style="border:none; padding:4pt;"><b>Responsable :</b></td><td style="border:none; border-bottom:1px dotted #999; padding:4pt;">&nbsp;</td></tr>
+    <tr><td style="border:none; padding:4pt;"><b>Photographe :</b></td><td style="border:none; border-bottom:1px dotted #999; padding:4pt;">&nbsp;</td></tr>
+    <tr><td style="border:none; padding:4pt;"><b>Total visuels :</b></td><td style="border:none; padding:4pt;">55 photos</td></tr>
+    <tr><td style="border:none; padding:4pt;"><b>Statut global :</b></td><td style="border:none; padding:4pt;">&#9744; En cours &nbsp;&nbsp; &#9744; Termine</td></tr>
+  </table>
+</div>
+
+<!-- MODE D'EMPLOI -->
+<div class="page-break"></div>
+<h2>MODE D'EMPLOI</h2>
+<p>Pour chaque visuel, remplis les champs et coche le statut correspondant :</p>
+<table style="width:80%;">
+  <tr><th style="width:30%;">Symbole</th><th>Signification</th></tr>
+  <tr><td>&#9744;</td><td>Case a cocher (non fait)</td></tr>
+  <tr><td>&#9745;</td><td>Case cochee (fait)</td></tr>
+  <tr><td><span class="tag-mock">MOCK</span></td><td>Photo Unsplash temporaire deja en place (a remplacer)</td></tr>
+  <tr><td><span class="tag-client">CLIENT</span></td><td>Vraie photo chantier/client (a garder)</td></tr>
+  <tr><td><span class="tag-shooting">SHOOTING</span></td><td>Photo a prendre sur site</td></tr>
+</table>
+<div class="conseil">
+  <b>Nommage des fichiers :</b> Utilise le code ref pour nommer tes fichiers.<br/>
+  Exemple : <code>A1-hero-homepage.jpg</code>, <code>B4a-hero-chantier.jpg</code>, <code>C7-equipe.jpg</code>
+</div>
+<div class="important">
+  <b>PRIORITES :</b> Les visuels marques &#9733; sont les plus visibles et impactants pour la conversion. A traiter en premier.
+</div>
+
+<!-- ====================== A. HOMEPAGE ====================== -->
+<div class="page-break"></div>
+<h2>A. HOMEPAGE (7 visuels)</h2>
+<p>La homepage est le hub central du site avec 11 sections.</p>
+
+<div class="fiche">
+  <div class="fiche-titre">A1 — Hero principal &#9733; PRIORITE HAUTE</div>
+  <div class="champ"><b>Emplacement :</b> Section hero, premier ecran visible du site</div>
+  <div class="champ"><b>Format requis :</b> 1920 x 1080 px minimum, paysage</div>
+  <div class="champ"><b>Ce qu'il faut :</b> Autolaveuse ou monobrosse en action sur grand sol. OU equipe Nature Clean en tenue verte avec machines pro.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+  <div class="champ"><b>Notes :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">A2 — Focus Bureaux</div>
+  <div class="champ"><b>Emplacement :</b> Section "Focus Bureaux &amp; Coproprietes" (cote gauche)</div>
+  <div class="champ"><b>Format requis :</b> 800 x 533 px, paysage</div>
+  <div class="champ"><b>Ce qu'il faut :</b> Open space lumineux et impeccable apres nettoyage. Postes de travail vides et propres.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+  <div class="champ"><b>Notes :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">A3 — Focus Coproprietes</div>
+  <div class="champ"><b>Emplacement :</b> Section "Focus Bureaux &amp; Coproprietes" (cote droit)</div>
+  <div class="champ"><b>Format requis :</b> 800 x 533 px, paysage</div>
+  <div class="champ"><b>Ce qu'il faut :</b> Hall d'immeuble moderne et propre. Entree, escalier eclaire, sol lave.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+  <div class="champ"><b>Notes :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">A4 — Preview Realisation 1</div>
+  <div class="champ"><b>Emplacement :</b> Section "Nos realisations" — carte 1</div>
+  <div class="champ"><b>Format requis :</b> 600 x 400 px, paysage</div>
+  <div class="champ"><b>Ce qu'il faut :</b> Sol marbre poli dans un hotel ou hall. Gros plan sur le reflet apres cristallisation.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">A5 — Preview Realisation 2</div>
+  <div class="champ"><b>Emplacement :</b> Section "Nos realisations" — carte 2</div>
+  <div class="champ"><b>Format requis :</b> 600 x 400 px, paysage</div>
+  <div class="champ"><b>Ce qu'il faut :</b> Chantier livre propre. Logement neuf vide, sols et vitres impeccables.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">A6 — Preview Realisation 3</div>
+  <div class="champ"><b>Emplacement :</b> Section "Nos realisations" — carte 3</div>
+  <div class="champ"><b>Format requis :</b> 600 x 400 px, paysage</div>
+  <div class="champ"><b>Ce qu'il faut :</b> Salle de reception/congres dressee. Tables mises, espace impeccable.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<!-- ====================== A7 EQUIPE (DETAILLE) ====================== -->
+<div class="page-break"></div>
+<div class="fiche">
+  <div class="fiche-titre">A7 — Photo equipe &#9733; PRIORITE HAUTE</div>
+  <div class="champ"><b>Emplacement :</b> Section "Notre equipe" + Realisations (C7) + page A propos</div>
+  <div class="champ"><b>Format requis :</b> 800 x 533 px minimum, paysage, haute resolution</div>
+  <br/>
+  <h4>LISTE COMPLETE DES SHOTS EQUIPE A PRENDRE</h4>
+  <p style="font-size:9pt; color:#6b7280;">Prevois 1h de shooting. Tenues propres et identiques. Logo visible.</p>
+
+  <table>
+    <tr>
+      <th style="width:5%;">&#9744;</th>
+      <th style="width:8%;">Ref</th>
+      <th style="width:22%;">Shot</th>
+      <th style="width:38%;">Description / consignes</th>
+      <th style="width:27%;">Fichier / Notes</th>
+    </tr>
+    <tr><td>&#9744;</td><td><b>A7-1</b></td><td>Photo de groupe officielle</td><td>Toute l'equipe alignee ou en demi-cercle, devant le vehicule sigle ou un hall propre. Sourires, posture droite. Logo visible.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-2</b></td><td>Photo de groupe decontractee</td><td>Meme lieu, ambiance naturelle. Rires, discussion entre collegues. Cote humain.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-3</b></td><td>En action — monobrosse</td><td>1-2 agents utilisant la monobrosse/autolaveuse. Vue 3/4, visage + machine + sol brillant.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-4</b></td><td>En action — nettoyage bureau</td><td>1 agent avec chiffon microfibre sur poste de travail. Gants, tenue propre.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-5</b></td><td>En action — vitres</td><td>1 agent avec raclette sur baie vitree ou vitrine. Reflet, geste precis.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-6</b></td><td>En action — aspirateur/balai</td><td>1 agent dans couloir ou escalier copropriete, aspirateur pro en main.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-7</b></td><td>Vehicule sigle</td><td>Vehicule(s) Nature Clean, logo bien visible. 3/4 avant, propre, devant immeuble.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-8</b></td><td>Materiel professionnel</td><td>Mise en scene du materiel : monobrosse, chariot, produits eco, aspirateur, raclette.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-9</b></td><td>Produits eco</td><td>Gros plan produits ecologiques. Flacons, sprays, etiquettes lisibles. Fond plantes vertes.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-10</b></td><td>Portrait gerant/responsable</td><td>Portrait cadre poitrine, sourire, tenue NC. Fond flou. Pour page "A propos".</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-11</b></td><td>Reunion/briefing equipe</td><td>2-3 personnes autour d'un planning ou tablette. Organisation et serieux.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-12</b></td><td>Detail mains + gants + produit</td><td>Gros plan mains gantees vaporisant un produit ou essuyant une surface.</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-13</b></td><td>Equipe devant chantier termine</td><td>Equipe posant fierement devant un hall/chantier fini. "Mission accomplie".</td><td></td></tr>
+    <tr><td>&#9744;</td><td><b>A7-14</b></td><td>Chargement du vehicule</td><td>Agent(s) chargeant/dechargeant le materiel du vehicule. Logistique pro.</td><td></td></tr>
+  </table>
+
+  <br/>
+  <div class="conseil">
+    <b>OU UTILISER CES PHOTOS SUR LE SITE :</b><br/>
+    <b>A7-1 ou A7-2</b> &rarr; Homepage section equipe (A7) + Realisations carte equipe (C7)<br/>
+    <b>A7-3</b> &rarr; Hero homepage (A1) si pas de meilleure option<br/>
+    <b>A7-4</b> &rarr; Page Bureaux contenu (B1b)<br/>
+    <b>A7-5</b> &rarr; Page Vitres contenu (B7b)<br/>
+    <b>A7-6</b> &rarr; Page Coproprietes contenu (B2b)<br/>
+    <b>A7-7</b> &rarr; Footer ou page Contact (E2)<br/>
+    <b>A7-8 + A7-9</b> &rarr; Page A propos / Eco (E1)<br/>
+    <b>A7-10</b> &rarr; Page A propos, section fondateur<br/>
+    <b>A7-11</b> &rarr; Page Devis (E3)<br/>
+    <b>A7-12</b> &rarr; Vignettes header ou illustrations blog<br/>
+    <b>A7-13</b> &rarr; Realisations (C7) ou Homepage preview<br/>
+    <b>A7-14</b> &rarr; Page A propos ou Realisations<br/>
+  </div>
+
+  <br/>
+  <div class="important">
+    <b>CHECKLIST AVANT LE SHOOTING :</b><br/>
+    &#9744; Tenues propres et identiques pour tout le monde<br/>
+    &#9744; Logo Nature Clean visible (polo, veste, casquette)<br/>
+    &#9744; Vehicule lave et sigle bien visible<br/>
+    &#9744; Materiel propre et range (monobrosse, chariot, produits)<br/>
+    &#9744; Reperer les lieux a l'avance (hall, bureau, chantier)<br/>
+    &#9744; Eclairage naturel — shooter le matin ou fin d'apres-midi<br/>
+    &#9744; Autorisation photo signee si visages de clients<br/>
+    &#9744; Telephone/appareil charge, stockage libre suffisant<br/>
+  </div>
+  <div class="champ"><b>Date shooting :</b> <span class="ligne-vide">&nbsp;</span></div>
+  <div class="champ"><b>Lieu(x) :</b> <span class="ligne-vide">&nbsp;</span></div>
+  <div class="champ"><b>Photographe :</b> <span class="ligne-vide">&nbsp;</span></div>
+  <div class="champ"><b>Notes :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<!-- ====================== B. PAGES SERVICES ====================== -->
+<div class="page-break"></div>
+<h2>B. PAGES SERVICES (16 visuels — 2 par page)</h2>
+
+<h3>B1 — Entretien Bureaux</h3>
+<div class="fiche">
+  <div class="fiche-titre">B1a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Vue large open space corporate, lumiere naturelle, sol impeccable.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B1b — Photo contenu</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Agent NC nettoyant un poste de travail avec chiffon microfibre.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<h3>B2 — Nettoyage Coproprietes</h3>
+<div class="fiche">
+  <div class="fiche-titre">B2a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Facade immeuble residentiel moderne Marseille. Entree propre, vegetation.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B2b — Photo contenu</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Cage d'escalier propre. Rampe brillante, marches lavees.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<h3>B3 — Nettoyage Commerces</h3>
+<div class="fiche">
+  <div class="fiche-titre">B3a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Vitrine de boutique etincelante. Reflets, devanture impeccable.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B3b — Photo contenu</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Agent nettoyant une vitrine de magasin ou sol de boutique.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<h3>B4 — Nettoyage Fin de Chantier &#9733;</h3>
+<div class="fiche">
+  <div class="fiche-titre">B4a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Chantier BTP en finition. Poussiere visible sur les sols.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B4b — Photo contenu &#9733; MONEY SHOT</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Logement neuf livre propre. Piece vide, fenetre propre, sol parfait. LA photo qui convainc.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<h3>B5 — Nettoyage Evenementiel</h3>
+<div class="fiche">
+  <div class="fiche-titre">B5a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Grande salle de reception/congres. Chaises alignees, eclairage scenique.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B5b — Photos contenu (x2)</div>
+  <div class="champ"><b>Statut :</b> &#9745; <span class="tag-client">CLIENT</span> — DEJA EN PLACE, NE PAS REMPLACER</div>
+  <div class="champ"><b>Fichier :</b> figma:asset/c0fc3083... et figma:asset/9c59a508...</div>
+</div>
+
+<h3>B6 — Remise en Etat des Sols</h3>
+<div class="fiche">
+  <div class="fiche-titre">B6a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Machine monobrosse/cristalliseuse sur sol marbre. Vue rapprochee, reflet visible.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B6b — Photo contenu</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Sol marbre brillant. Reflet miroir, vue en perspective.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<h3>B7 — Nettoyage de Vitres</h3>
+<div class="fiche">
+  <div class="fiche-titre">B7a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Laveur de vitres en hauteur. Raclette, reflet du ciel.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B7b — Photo contenu</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Baie vitree parfaitement propre. Transparence totale, zero trace.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<h3>B8 — Nettoyage Particuliers</h3>
+<div class="fiche">
+  <div class="fiche-titre">B8a — Hero banner</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Interieur salon/maison impeccable. Canape, sol brillant, lumiere douce.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+<div class="fiche">
+  <div class="fiche-titre">B8b — Photo contenu</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Jardin entretenu. Pelouse tondue, haies taillees, terrasse propre.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; &#9744; <span class="tag-mock">MOCK</span> &nbsp; &#9744; <span class="tag-client">CLIENT</span> &nbsp; &#9744; <span class="tag-shooting">SHOOTING</span></div>
+  <div class="champ"><b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<!-- ====================== C. REALISATIONS ====================== -->
+<div class="page-break"></div>
+<h2>C. PAGE REALISATIONS — Portfolio (15 cartes)</h2>
+
+<table>
+  <tr><th style="width:5%;">Ref</th><th style="width:22%;">Titre</th><th style="width:12%;">Categorie</th><th style="width:30%;">Ce qu'il faut</th><th style="width:8%;">Statut</th><th style="width:23%;">Fichier</th></tr>
+  <tr><td><b>C1</b></td><td>Congres syndical 500 couverts</td><td>Evenementiel</td><td>Salle dressee</td><td>&#9745; CLIENT</td><td>figma:asset existant</td></tr>
+  <tr><td><b>C2</b></td><td>Residence Les Calanques 45 lots</td><td>Copropriete</td><td>Cage escalier, halls propres</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C3</b></td><td>Programme neuf 120 logements</td><td>Fin de chantier</td><td>Appart vide post-nettoyage</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C4</b></td><td>Agence bancaire 300m2</td><td>Bureaux</td><td>Accueil/guichet propre</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C5</b></td><td>Hall marbre Art Deco</td><td>Sols</td><td>Marbre cristallise, reflet</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C6</b></td><td>Vitres immeuble 5 etages</td><td>Vitres</td><td>Facades vitrees etincelantes</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C7</b></td><td>Equipe en intervention</td><td>Equipe</td><td>Equipe, materiel, vehicule</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C8</b></td><td>Hotel 4* hall marbre</td><td>Sols</td><td>Hall luxe marbre poli</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C9</b></td><td>Entrepot logistique 2500m2</td><td>Fin chantier</td><td>Sol beton lave haute pression</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C10</b></td><td>Boutique pret-a-porter</td><td>Commerces</td><td>Sol + vitrine avant ouverture</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C11</b></td><td>Cabinet medical</td><td>Bureaux</td><td>Salle attente desinfectee</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C12</b></td><td>Mariage champetre 200 convives</td><td>Evenementiel</td><td>Tables en exterieur</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C13</b></td><td>Parking souterrain</td><td>Copropriete</td><td>Sol beton lave, marquage</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C14</b></td><td>Restaurant gastronomique</td><td>Commerces</td><td>Cuisine inox brillante</td><td>&#9744;</td><td></td></tr>
+  <tr><td><b>C15</b></td><td>Open space startup 80 postes</td><td>Bureaux</td><td>Bureaux propres en enfilade</td><td>&#9744;</td><td></td></tr>
+</table>
+
+<!-- ====================== D. AVANT/APRES ====================== -->
+<div class="page-break"></div>
+<h2>D. CARROUSEL AVANT / APRES (3 paires = 6 photos)</h2>
+<div class="important">
+  <b>CRUCIAL :</b> MEME ANGLE, MEME ECLAIRAGE, MEME CADRAGE pour les photos avant et apres !
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">D1 — Hall marbre &#9733; EFFET WOW</div>
+  <table style="width:100%;"><tr><th style="width:50%; background:#ef4444;">AVANT</th><th style="width:50%; background:#22c55e;">APRES</th></tr>
+  <tr><td>Sol sali, terne, rayures</td><td>Sol poli cristallise, reflet miroir</td></tr>
+  <tr><td>Fichier : <span class="ligne-vide">&nbsp;</span></td><td>Fichier : <span class="ligne-vide">&nbsp;</span></td></tr></table>
+  <div class="champ"><b>Statut :</b> &#9744; A faire</div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">D2 — Vitres immeuble</div>
+  <table style="width:100%;"><tr><th style="width:50%; background:#ef4444;">AVANT</th><th style="width:50%; background:#22c55e;">APRES</th></tr>
+  <tr><td>Vitres sales, traces, poussiere</td><td>Vitres cristallines, transparence</td></tr>
+  <tr><td>Fichier : <span class="ligne-vide">&nbsp;</span></td><td>Fichier : <span class="ligne-vide">&nbsp;</span></td></tr></table>
+  <div class="champ"><b>Statut :</b> &#9744; A faire</div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">D3 — Bureaux open-space</div>
+  <table style="width:100%;"><tr><th style="width:50%; background:#ef4444;">AVANT</th><th style="width:50%; background:#22c55e;">APRES</th></tr>
+  <tr><td>Bureau encombre, poussiere</td><td>Bureau impeccable, sol brillant</td></tr>
+  <tr><td>Fichier : <span class="ligne-vide">&nbsp;</span></td><td>Fichier : <span class="ligne-vide">&nbsp;</span></td></tr></table>
+  <div class="champ"><b>Statut :</b> &#9744; A faire</div>
+</div>
+
+<!-- ====================== E. PAGES SECONDAIRES ====================== -->
+<div class="page-break"></div>
+<h2>E. PAGES SECONDAIRES (6 visuels)</h2>
+
+<div class="fiche">
+  <div class="fiche-titre">E1 — Page A propos / Eco — Hero</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Produits eco. Sprays verts, flacons, plantes.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; <b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">E2 — Page Contact — Hero</div>
+  <div class="champ"><b>Format :</b> 1920 x 1080 px &nbsp; <b>Ce qu'il faut :</b> Vue Marseille (Vieux-Port) OU facade bureau Nature Clean.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; <b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">E3 — Page Devis — Hero</div>
+  <div class="champ"><b>Format :</b> 1080 x 720 px &nbsp; <b>Ce qu'il faut :</b> Equipe en discussion avec client. Carnet, sourires, pro.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; <b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">E4a — Blog "Etat des lieux de sortie"</div>
+  <div class="champ"><b>Format :</b> 600 x 400 px &nbsp; <b>Ce qu'il faut :</b> Appartement vide propre, cles sur comptoir.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; <b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">E4b — Blog "Nettoyage apres sinistre"</div>
+  <div class="champ"><b>Format :</b> 600 x 400 px &nbsp; <b>Ce qu'il faut :</b> Intervention apres degat des eaux. Equipement pro.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; <b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<div class="fiche">
+  <div class="fiche-titre">E4c — Blog "Normes chantier 2025"</div>
+  <div class="champ"><b>Format :</b> 600 x 400 px &nbsp; <b>Ce qu'il faut :</b> Chantier avec panneaux securite, casques.</div>
+  <div class="champ"><b>Statut :</b> &#9744; A faire &nbsp; <b>Fichier :</b> <span class="ligne-vide">&nbsp;</span></div>
+</div>
+
+<!-- ====================== F. VIGNETTES ====================== -->
+<h2>F. VIGNETTES HEADER (4 visuels 120x120)</h2>
+<table>
+  <tr><th>Ref</th><th>Page</th><th>Ce qu'il faut</th><th>Statut</th><th>Fichier</th></tr>
+  <tr><td>F1</td><td>Realisations</td><td>Mini mosaique chantiers ou sol brillant</td><td>&#9744;</td><td></td></tr>
+  <tr><td>F2</td><td>A propos</td><td>Mini equipe ou produit eco</td><td>&#9744;</td><td></td></tr>
+  <tr><td>F3</td><td>Blog</td><td>Mini cahier/clavier</td><td>&#9744;</td><td></td></tr>
+  <tr><td>F4</td><td>Contact</td><td>Mini telephone ou facade</td><td>&#9744;</td><td></td></tr>
+</table>
+
+<!-- ====================== RECAPITULATIF ====================== -->
+<div class="page-break"></div>
+<h2>RECAPITULATIF GENERAL</h2>
+<div class="recap-box">
+<table>
+  <tr><th>Zone</th><th style="text-align:center;">Nb</th><th style="text-align:center;">Faits</th><th style="text-align:center;">Reste</th></tr>
+  <tr><td>A. Homepage</td><td style="text-align:center;">7</td><td style="text-align:center;"></td><td style="text-align:center;"></td></tr>
+  <tr><td>B. Pages Services</td><td style="text-align:center;">16</td><td style="text-align:center;"></td><td style="text-align:center;"></td></tr>
+  <tr><td>C. Realisations</td><td style="text-align:center;">15</td><td style="text-align:center;"></td><td style="text-align:center;"></td></tr>
+  <tr><td>D. Avant/Apres</td><td style="text-align:center;">6</td><td style="text-align:center;"></td><td style="text-align:center;"></td></tr>
+  <tr><td>E. Pages secondaires</td><td style="text-align:center;">6</td><td style="text-align:center;"></td><td style="text-align:center;"></td></tr>
+  <tr><td>F. Vignettes Header</td><td style="text-align:center;">4</td><td style="text-align:center;"></td><td style="text-align:center;"></td></tr>
+  <tr><td>G. Logo</td><td style="text-align:center;">1</td><td style="text-align:center;">1</td><td style="text-align:center;">0</td></tr>
+  <tr style="background-color:#d1fae5;"><td><b>TOTAL</b></td><td style="text-align:center;"><b>55</b></td><td style="text-align:center;"><b></b></td><td style="text-align:center;"><b></b></td></tr>
+</table>
+</div>
+
+<!-- ====================== CONSEILS SHOOTING ====================== -->
+<h2>CONSEILS POUR LE SHOOTING</h2>
+<table>
+  <tr><th style="width:5%;">#</th><th style="width:20%;">Sujet</th><th>Conseil</th></tr>
+  <tr><td>1</td><td>Eclairage</td><td>Lumiere naturelle. Pas de flash direct. Matin ou fin d'apres-midi.</td></tr>
+  <tr><td>2</td><td>Cadrage</td><td>Toujours horizontal (paysage) sauf vignettes F1-F4 (carre).</td></tr>
+  <tr><td>3</td><td>Resolution</td><td>Min 3000 px large pour heros, 2000 px pour le reste.</td></tr>
+  <tr><td>4</td><td>Tenues</td><td>Uniforme NC propre, logo visible, gants, equipement.</td></tr>
+  <tr><td>5</td><td>Avant/Apres</td><td><b>MEME angle, MEME lumiere, MEME cadrage.</b></td></tr>
+  <tr><td>6</td><td>Droits</td><td>Autorisation ecrite si visages clients (RGPD).</td></tr>
+  <tr><td>7</td><td>Nommage</td><td>Code ref : A1-hero-homepage.jpg, C7-equipe.jpg</td></tr>
+  <tr><td>8</td><td>Format</td><td>JPG haute qualite. Conversion AVIF/WebP = je gere cote site.</td></tr>
+</table>
+
+<!-- ====================== NOTES ====================== -->
+<h2>NOTES PERSONNELLES</h2>
+<div class="notes-zone"><p style="color:#9ca3af; font-style:italic;">Remarques...</p><br/><br/><br/><br/><br/><br/></div>
+<br/>
+<div class="notes-zone"><p style="color:#9ca3af; font-style:italic;">Planning shooting / deadlines...</p><br/><br/><br/><br/><br/><br/></div>
+
+</body>
+</html>
