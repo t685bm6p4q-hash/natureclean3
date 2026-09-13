@@ -2,6 +2,7 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
+import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
 import { Phone, Trash2, Sparkles, Droplets, CheckCircle2, HardHat, Package, ArrowRight } from 'lucide-react';
@@ -29,10 +30,7 @@ export function NettoyageChantiersPage() {
           "@type": "Service",
           "name": "Nettoyage Fin de Chantier à Marseille",
           "description": "Remise en état après travaux, nettoyage de fin de chantier, évacuation de gravats et dépoussiérage complet pour professionnels et particuliers.",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "Nature Clean Marseille"
-          },
+          "provider": NATURE_CLEAN_PROVIDER,
           "areaServed": {
             "@type": "City",
             "name": "Marseille"

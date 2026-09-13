@@ -10,6 +10,7 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
+import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
 
 const FAQ_ITEMS: FAQItem[] = [
   { question: 'Quelles parties communes nettoyez-vous en copropriété ?', answer: 'L\'ensemble des parties communes : halls d\'entrée, escaliers, paliers, ascenseurs, parkings, local poubelles, caves et espaces verts communs. Un cahier des charges précis est établi avec le syndic — on précise notamment la fréquence de désinfection des points de contact (rampes, boutons d\'ascenseur) conformément aux recommandations de l\'ANSES.' },
@@ -29,10 +30,7 @@ export function NettoyageCoproprietesPage() {
           "@type": "Service",
           "name": "Nettoyage de Copropriétés à Marseille",
           "description": "Entretien régulier des parties communes, halls d'entrée, cages d'escalier et gestion des locaux poubelles pour les copropriétés et syndics.",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "Nature Clean Marseille"
-          },
+          "provider": NATURE_CLEAN_PROVIDER,
           "areaServed": {
             "@type": "City",
             "name": "Marseille"

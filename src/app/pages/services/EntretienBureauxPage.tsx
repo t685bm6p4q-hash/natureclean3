@@ -10,6 +10,7 @@ import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
+import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
 
 const FAQ_ITEMS: FAQItem[] = [
   { question: 'À quelle fréquence faut-il nettoyer des bureaux professionnels ?', answer: 'Sur le terrain, on observe deux réalités. Un open space de plus de 10 postes accumule quotidiennement poussière fine, résidus de café et micro-particules de toner — un passage quotidien est indispensable. Pour les petits bureaux, 2 à 3 interventions par semaine suffisent. Depuis la révision de la norme NF X50-790 en 2021, les cahiers des charges de propreté tertiaire intègrent explicitement la désinfection des surfaces tactiles à haute fréquence. On définit ensemble le planning lors du devis.' },
@@ -92,10 +93,7 @@ export function EntretienBureauxPage() {
           "@type": "Service",
           "name": "Entretien de Bureaux à Marseille",
           "description": "Nettoyage professionnel et régulier de bureaux, open-spaces et locaux commerciaux à Marseille. Produits écologiques et horaires flexibles.",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "Nature Clean Marseille"
-          },
+          "provider": NATURE_CLEAN_PROVIDER,
           "areaServed": {
             "@type": "City",
             "name": "Marseille"

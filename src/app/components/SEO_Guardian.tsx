@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { SEO_DATA } from '@/app/config/seo-data';
-import { BASE_URL, LOGO_URL, EMAIL, SIRET, FOUNDING_YEAR, COMPANY_FULL_NAME, COMPANY_NAME } from '@/app/utils/constants';
+import { BASE_URL, LOGO_URL } from '@/app/utils/constants';
+import { buildCleaningServiceJsonLd, serializeJsonLd } from '@/app/utils/cleaning-service-jsonld';
 
 interface SEOGuardianProps {
   currentSection?: string;
@@ -14,7 +15,7 @@ interface SEOGuardianProps {
  * SEO_Guardian - Composant invisible qui gère toute la stratégie SEO technique
  * 
  * Fonctionnalités:
- * 1. JSON-LD LocalBusiness enrichi avec tous les arrondissements de Marseille
+ * 1. JSON-LD CleaningService (sans aggregateRating / review) + arrondissements Marseille
  * 2. Gestion dynamique Title + Meta Description par section
  * 3. Injection automatique aria-invalid sur les inputs en erreur
  * 4. Structured Data additionnelles (FAQ, Breadcrumb)
@@ -105,152 +106,18 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     updateMetaTag('twitter:image', ogImageURL);
 
     // ============================================
-    // 2. JSON-LD LOCALBUSINESS ENRICHI
+    // 2. JSON-LD CleaningService (sans avis)
     // ============================================
-    
+
     const existingLocalBusiness = document.getElementById('jsonld-local-business');
     if (existingLocalBusiness) {
       existingLocalBusiness.remove();
     }
 
-    // Génération dynamique de tous les arrondissements de Marseille
-    const marseilleDistricts = Array.from({ length: 16 }, (_, i) => {
-      const district = String(i + 1).padStart(2, '0');
-      return {
-        '@type': 'City',
-        'name': `Marseille ${district} (13${district})`,
-        'addressRegion': 'Bouches-du-Rhône'
-      };
-    });
-
-    const localBusinessJsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'CleaningService',
-      '@id': BASE_URL,
-      'name': COMPANY_FULL_NAME,
-      'alternateName': COMPANY_NAME,
-      'image': LOGO_URL,
-      'logo': LOGO_URL,
-      'description': 'Entreprise d\'entretien et de nettoyage professionnel éco-responsable à Marseille. Ménage de bureaux, copropriétés, fin de chantier et particuliers. Propreté et hygiène garanties sur tous les arrondissements de Marseille (13001-13016), Aubagne, Aix-en-Provence et les Alpes-Maritimes.',
-      'url': BASE_URL,
-      'telephone': '+33484896875',
-      'email': EMAIL,
-      'priceRange': '$$',
-      'currenciesAccepted': 'EUR',
-      'paymentAccepted': 'Virement, Chèque, Espèces',
-      'address': {
-        '@type': 'PostalAddress',
-        'streetAddress': '22 Traverse Pupat',
-        'addressLocality': 'Marseille',
-        'postalCode': '13008',
-        'addressRegion': 'Bouches-du-Rhône',
-        'addressCountry': 'FR'
-      },
-      'geo': {
-        '@type': 'GeoCoordinates',
-        'latitude': 43.2965,
-        'longitude': 5.3698
-      },
-      'openingHoursSpecification': [
-        {
-          '@type': 'OpeningHoursSpecification',
-          'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-          'opens': '09:00',
-          'closes': '18:00'
-        }
-      ],
-      'areaServed': [
-        ...marseilleDistricts,
-        {
-          '@type': 'City',
-          'name': 'Aubagne',
-          'addressRegion': 'Bouches-du-Rhône'
-        },
-        {
-          '@type': 'City',
-          'name': 'Aix-en-Provence',
-          'addressRegion': 'Bouches-du-Rhône'
-        },
-        {
-          '@type': 'City',
-          'name': 'La Ciotat',
-          'addressRegion': 'Bouches-du-Rhône'
-        }
-      ],
-      'serviceType': [
-        'Entretien de bureaux',
-        'Ménage de copropriétés',
-        'Nettoyage fin de chantier',
-        'Ménage particuliers',
-        'Nettoyage industriel',
-        'Propreté commerciale',
-        'Nettoyage événementiel',
-        'Remise en état de sols',
-        'Hygiène et désinfection professionnelle',
-        'Entretien vitrerie',
-        'Entretien espaces verts communs'
-      ],
-      'hasOfferCatalog': {
-        '@type': 'OfferCatalog',
-        'name': 'Services de nettoyage professionnel',
-        'itemListElement': [
-          {
-            '@type': 'Offer',
-            'itemOffered': {
-              '@type': 'Service',
-              'name': 'Nettoyage de Bureaux & Locaux Professionnels',
-              'description': 'Entretien régulier ou ponctuel des espaces de travail, magasins et restaurants à Marseille et sa région',
-              'areaServed': 'Marseille, Bouches-du-Rhône'
-            }
-          },
-          {
-            '@type': 'Offer',
-            'itemOffered': {
-              '@type': 'Service',
-              'name': 'Nettoyage de Copropriétés & Parties Communes',
-              'description': 'Service dédié aux syndics et gestionnaires de copropriétés sur Marseille',
-              'areaServed': 'Marseille, Bouches-du-Rhône'
-            }
-          },
-          {
-            '@type': 'Offer',
-            'itemOffered': {
-              '@type': 'Service',
-              'name': 'Nettoyage Fin de Chantier',
-              'description': 'Intervention après construction, rénovation ou déménagement. Remise en état complète.',
-              'areaServed': 'Marseille, Aubagne, Aix-en-Provence'
-            }
-          },
-          {
-            '@type': 'Offer',
-            'itemOffered': {
-              '@type': 'Service',
-              'name': 'Nettoyage pour Particuliers & Seniors',
-              'description': 'Entretien de maisons particulières et accompagnement personnalisé pour seniors',
-              'areaServed': 'Marseille, Bouches-du-Rhône'
-            }
-          }
-        ]
-      },
-      'identifier': {
-        '@type': 'PropertyValue',
-        'propertyID': 'SIRET',
-        'value': SIRET
-      },
-      'foundingDate': FOUNDING_YEAR,
-      'slogan': 'Entretien et nettoyage éco-responsable à Marseille',
-      'sameAs': [
-        'https://share.google/LGuTIovk5ovTXGzuc',
-        'https://www.pagesjaunes.fr/pros/61828182',
-        'https://www.instagram.com/natureclean13/',
-        'https://www.linkedin.com/in/nature-clean-612261285/'
-      ]
-    };
-
     const scriptLocalBusiness = document.createElement('script');
     scriptLocalBusiness.id = 'jsonld-local-business';
     scriptLocalBusiness.type = 'application/ld+json';
-    scriptLocalBusiness.text = JSON.stringify(localBusinessJsonLd);
+    scriptLocalBusiness.text = serializeJsonLd(buildCleaningServiceJsonLd());
     document.head.appendChild(scriptLocalBusiness);
 
     // ============================================
