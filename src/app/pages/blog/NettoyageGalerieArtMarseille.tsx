@@ -28,7 +28,7 @@ export function NettoyageGalerieArtMarseille() {
         description="Spécialiste du nettoyage de galeries d'art et lieux d'exposition à Marseille. Entretien minutieux des sols, vitrines et cimaises sans risque pour vos œuvres. Devis sous 24h."
         keywords="nettoyage galerie art marseille, entretien espace exposition, nettoyage lieu culturel paca, propreté vernissage marseille"
         currentSection="blog"
-        disableReviews={true}
+
       />
 
       <article className="bg-white">

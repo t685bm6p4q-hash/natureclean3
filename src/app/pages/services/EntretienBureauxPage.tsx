@@ -85,7 +85,7 @@ const services = [
 export function EntretienBureauxPage() {
   return (
     <>
-      <SEO_Guardian currentSection="entretien-bureaux" faqItems={FAQ_ITEMS}  disableReviews={true} />
+      <SEO_Guardian currentSection="entretien-bureaux" faqItems={FAQ_ITEMS} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",

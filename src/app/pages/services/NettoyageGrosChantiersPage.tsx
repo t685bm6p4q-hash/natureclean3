@@ -45,7 +45,7 @@ export function NettoyageGrosChantiersPage() {
       <SEO_Guardian
         currentSection="nettoyage-gros-chantiers"
         faqItems={FAQ_CHANTIERS}
-        disableReviews={true}
+
       />
 
       <ServicePageHero

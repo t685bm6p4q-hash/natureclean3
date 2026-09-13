@@ -129,7 +129,7 @@ export function Blog() {
         description="Découvrez nos guides experts sur le nettoyage professionnel à Marseille : état des lieux, sinistres, chantiers. Conseils pratiques pour particuliers et professionnels."
         keywords="blog nettoyage marseille, conseils nettoyage 13, guide état des lieux, nettoyage après sinistre, normes chantier BTP"
         currentSection="blog"
-        disableReviews={true}
+
       />
 
       {/* Hero Section */}

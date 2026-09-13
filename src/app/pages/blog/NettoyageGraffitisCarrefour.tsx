@@ -29,7 +29,7 @@ export function NettoyageGraffitisCarrefour() {
         description="Nature Clean intervient en urgence pour effacer tags et graffitis sur la façade d'un Carrefour à Marseille. Protocole, techniques et résultat : découvrez notre retour d'expérience."
         keywords="nettoyage graffitis marseille, effacement tags façade, anti-graffiti grande surface, intervention urgence marseille, nature clean graffitis"
         currentSection="blog"
-        disableReviews={true}
+
       />
 
       <article className="bg-white">

@@ -53,7 +53,7 @@ export function BudgetBureaux2026() {
         keywords="prix nettoyage bureaux marseille, tarif nettoyage bureau m2, budget entretien locaux 13, cout nettoyage professionnel, devis nettoyage bureau marseille 2026"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
-        disableReviews={true}
+
       />
 
       <article className="bg-white">

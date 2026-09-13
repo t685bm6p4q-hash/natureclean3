@@ -21,7 +21,7 @@ const FAQ_ITEMS: FAQItem[] = [
 export function NettoyageCommercesPage() {
   return (
     <>
-      <SEO_Guardian currentSection="nettoyage-commerces" faqItems={FAQ_ITEMS}  disableReviews={true} />
+      <SEO_Guardian currentSection="nettoyage-commerces" faqItems={FAQ_ITEMS} />
 
       <ServicePageHero
         title="Nettoyage de commerces et magasins à Marseille"

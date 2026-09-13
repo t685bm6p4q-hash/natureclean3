@@ -94,7 +94,7 @@ export function ZonesInterventionPage() {
         description="Nature Clean intervient a Marseille (13001-13016), Aix-en-Provence, Aubagne et La Ciotat. Devis gratuit 04 84 89 68 75"
         keywords="zone intervention nettoyage marseille, nettoyage professionnel Bouches-du-Rhone, entreprise nettoyage 13, secteur intervention Nature Clean"
         faqItems={FAQ_ITEMS}
-        disableReviews={true}
+
       />
 
       <ServicePageHero

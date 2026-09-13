@@ -66,7 +66,7 @@ export function NettoyageEcologiqueEntreprise() {
         keywords="nettoyage ecologique entreprise, produits bio nettoyage professionnel, nettoyage eco-responsable bureaux marseille, RSE nettoyage, produits verts entreprise"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
-        disableReviews={true}
+
       />
 
       <article className="bg-white">

@@ -21,7 +21,7 @@ const FAQ_VITRE: FAQItem[] = [
 export function NettoyageVitrePage() {
   return (
     <>
-      <SEO_Guardian currentSection="nettoyage-vitre" faqItems={FAQ_VITRE}  disableReviews={true} />
+      <SEO_Guardian currentSection="nettoyage-vitre" faqItems={FAQ_VITRE} />
 
       <ServicePageHero
         title="Nettoyage de vitres professionnel à Marseille"

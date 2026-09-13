@@ -53,7 +53,7 @@ export function GeoLandingPage({ data }: GeoLandingPageProps) {
         description={data.seo.description}
         keywords={data.seo.keywords}
         faqItems={data.faqItems}
-        disableReviews={true}
+
       />
 
       <ServicePageHero

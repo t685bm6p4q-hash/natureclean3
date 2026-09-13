@@ -24,7 +24,7 @@ export function NettoyageApresSinistre() {
         description="Intervention rapide pour nettoyage après sinistre à Marseille : dégât des eaux, incendie, moisissures. Protocole professionnel certifié. Devis gratuit 04 84 89 68 75"
         keywords="nettoyage après sinistre marseille, dégât des eaux 13, nettoyage après incendie marseille, remise en état post-sinistre, intervention urgence 13001"
         currentSection="blog"
-        disableReviews={true}
+
       />
 
       <article className="bg-white">

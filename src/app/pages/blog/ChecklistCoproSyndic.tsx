@@ -48,7 +48,7 @@ export function ChecklistCoproSyndic() {
         keywords="checklist nettoyage copropriete, guide syndic nettoyage, entretien parties communes marseille, cahier charges nettoyage immeuble, frequence nettoyage copro"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
-        disableReviews={true}
+
       />
 
       <article className="bg-white">

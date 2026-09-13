@@ -397,7 +397,7 @@ export function RealisationsPage() {
 
   return (
     <>
-      <SEO_Guardian currentSection="realisations" disableReviews={true} />
+      <SEO_Guardian currentSection="realisations" />
 
       <ServicePageHero
         title="Nos Réalisations Nettoyage Marseille"

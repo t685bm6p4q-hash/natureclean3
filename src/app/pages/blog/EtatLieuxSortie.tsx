@@ -26,7 +26,7 @@ export function EtatLieuxSortie() {
         description="Comment préparer un état des lieux de sortie à Marseille et récupérer votre caution ? Guide expert avec checklist complète et conseils de nettoyage professionnel."
         keywords="état des lieux sortie marseille, nettoyage fin de bail 13, récupérer caution locative, nettoyage appartement marseille, état des lieux 13001, 13002, 13003"
         currentSection="blog"
-        disableReviews={true}
+
       />
 
       {/* Hero Article */}

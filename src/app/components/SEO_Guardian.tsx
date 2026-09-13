@@ -8,7 +8,6 @@ interface SEOGuardianProps {
   description?: string;
   keywords?: string;
   faqItems?: Array<{ question: string; answer: string }>;
-  disableReviews?: boolean;
 }
 
 /**

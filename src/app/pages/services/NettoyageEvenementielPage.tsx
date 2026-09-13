@@ -22,7 +22,7 @@ const FAQ_ITEMS: FAQItem[] = [
 export function NettoyageEvenementielPage() {
   return (
     <>
-      <SEO_Guardian currentSection="nettoyage-evenementiel" faqItems={FAQ_ITEMS}  disableReviews={true} />
+      <SEO_Guardian currentSection="nettoyage-evenementiel" faqItems={FAQ_ITEMS} />
 
       <ServicePageHero
         title="Nettoyage événementiel à Marseille"

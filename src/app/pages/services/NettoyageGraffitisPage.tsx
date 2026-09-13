@@ -8,7 +8,7 @@ import { IMAGES, getOptimizedCldUrl, cldSrcSet } from '@/app/utils/images';
 export function NettoyageGraffitisPage() {
   return (
     <>
-      <SEO_Guardian currentSection="nettoyage-graffitis" disableReviews={true} />
+      <SEO_Guardian currentSection="nettoyage-graffitis" />
       
       <div className="bg-slate-50 min-h-screen">
         <ServicePageHero

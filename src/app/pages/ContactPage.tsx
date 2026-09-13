@@ -27,7 +27,7 @@ export function ContactPage() {
 
   return (
     <>
-      <SEO_Guardian currentSection="contact" disableReviews={true} />
+      <SEO_Guardian currentSection="contact" />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-green-600 to-green-700 text-white py-20 md:py-28 overflow-hidden">

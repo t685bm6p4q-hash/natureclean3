@@ -22,7 +22,7 @@ const FAQ_ITEMS: FAQItem[] = [
 export function RemiseEtatSolsPage() {
   return (
     <>
-      <SEO_Guardian currentSection="remise-etat-sols" faqItems={FAQ_ITEMS}  disableReviews={true} />
+      <SEO_Guardian currentSection="remise-etat-sols" faqItems={FAQ_ITEMS} />
 
       <ServicePageHero
         title="Remise en état des sols à Marseille"

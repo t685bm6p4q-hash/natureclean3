@@ -244,7 +244,7 @@ export function QuotePage() {
 
   return (
     <>
-      <SEO_Guardian currentSection="quote" disableReviews={true} />
+      <SEO_Guardian currentSection="quote" />
 
       <div className="flex lg:h-[calc(100vh-80px)] w-full lg:overflow-hidden font-sans">
 

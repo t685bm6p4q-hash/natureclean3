@@ -46,7 +46,7 @@ export function NettoyageDiogenePage() {
       <SEO_Guardian
         currentSection="nettoyage-diogene"
         faqItems={FAQ_DIOGENE}
-        disableReviews={true}
+
       />
 
       <ServicePageHero

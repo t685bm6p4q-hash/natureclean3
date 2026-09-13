@@ -27,7 +27,7 @@ export function NettoyageTerrasseMarseille() {
         description="Découvrez nos conseils et réponses d'experts pour le nettoyage et l'entretien de votre terrasse à Marseille avant l'été : techniques, écologie, professionnels."
         keywords="nettoyage terrasse marseille, entretien terrasse, nettoyage extérieur PACA, Nature Clean"
         currentSection="blog"
-        disableReviews={true}
+
       />
 
       {/* Hero Article */}

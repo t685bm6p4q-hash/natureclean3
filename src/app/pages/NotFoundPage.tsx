@@ -7,7 +7,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from '@/app/utils/constants';
 export function NotFoundPage() {
   return (
     <>
-      <SEO_Guardian currentSection="home" disableReviews={true} />
+      <SEO_Guardian currentSection="home" />
       
       {/* Hero Section 404 */}
       <section className="relative bg-gradient-to-r from-green-600 to-green-700 text-white py-20 md:py-28">

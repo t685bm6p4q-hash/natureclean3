@@ -24,7 +24,7 @@ export function NormesChantier2025() {
         description="Obligations légales nettoyage fin de chantier 2025. Normes BTP, réglementation, protocole certifié pour promoteurs et artisans à Marseille. Devis gratuit."
         keywords="nettoyage fin de chantier marseille, normes BTP 2025, obligations légales chantier 13, réglementation nettoyage PACA, livraison chantier propre"
         currentSection="blog"
-        disableReviews={true}
+
       />
 
       <article className="bg-white">

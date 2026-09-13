@@ -8,7 +8,7 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 export function NatureCleanEcoPage() {
   return (
     <>
-      <SEO_Guardian currentSection="about"  disableReviews={true} />
+      <SEO_Guardian currentSection="about" />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-green-600 to-green-700 text-white py-20 md:py-28 overflow-hidden">

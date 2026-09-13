@@ -22,7 +22,7 @@ const FAQ_ITEMS: FAQItem[] = [
 export function NettoyageChantiersPage() {
   return (
     <>
-      <SEO_Guardian currentSection="nettoyage-chantiers" faqItems={FAQ_ITEMS}  disableReviews={true} />
+      <SEO_Guardian currentSection="nettoyage-chantiers" faqItems={FAQ_ITEMS} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",

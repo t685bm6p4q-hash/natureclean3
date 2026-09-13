@@ -61,7 +61,7 @@ const mainServices = [
 export function NettoyageParticuliersPage() {
   return (
     <>
-      <SEO_Guardian currentSection="nettoyage-particuliers" faqItems={FAQ_PARTICULIERS} disableReviews={true} />
+      <SEO_Guardian currentSection="nettoyage-particuliers" faqItems={FAQ_PARTICULIERS} />
 
       <ServicePageHero
         title="Nettoyage Particuliers Marseille"
