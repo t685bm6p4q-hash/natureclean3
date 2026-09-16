@@ -1,10 +1,12 @@
 import { Link } from 'react-router';
 import { Shield, Mail, MapPin, ChevronRight } from 'lucide-react';
+import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { EMAIL, EMAIL_HREF, PHONE_DISPLAY, PHONE_HREF } from '@/app/utils/constants';
 
 export function PolitiqueConfidentialitePage() {
   return (
     <>
+      <SEO_Guardian currentSection="privacy" />
       {/* Hero */}
       <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-14 md:py-20">
         <div className="container mx-auto px-4">

@@ -2,12 +2,16 @@ import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
 import { AlertCircle, Home, Search } from 'lucide-react';
 import { Link } from 'react-router';
-import { PHONE_DISPLAY, PHONE_HREF } from '@/app/utils/constants';
+import { BASE_URL, PHONE_DISPLAY, PHONE_HREF } from '@/app/utils/constants';
 
 export function NotFoundPage() {
   return (
     <>
-      <SEO_Guardian currentSection="home" />
+      <SEO_Guardian
+        currentSection="notfound"
+        noindex
+        canonicalHref={`${BASE_URL}/`}
+      />
       
       {/* Hero Section 404 */}
       <section className="relative bg-gradient-to-r from-green-600 to-green-700 text-white py-20 md:py-28">

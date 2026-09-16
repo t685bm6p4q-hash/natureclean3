@@ -101,4 +101,19 @@ export const SEO_DATA: Record<string, SEOEntry> = {
     description: '✨ Nature Clean intervient à Marseille (13001-13016), Aix-en-Provence, Aubagne et La Ciotat. Devis gratuit en 2h.',
     keywords: 'zones intervention Marseille, arrondissements Marseille, Aubagne, Aix-en-Provence, La Ciotat, devis gratuit nettoyage',
   },
+  privacy: {
+    title: 'Politique de confidentialité | Nature Clean Marseille',
+    description: 'Politique de confidentialité RGPD de Nature Clean Marseille : données collectées, cookies, droits d\'accès et de suppression.',
+    keywords: 'politique confidentialité Nature Clean, RGPD nettoyage Marseille',
+  },
+  legal: {
+    title: 'Mentions légales | Nature Clean Marseille',
+    description: 'Mentions légales de Nature Clean Marseille : éditeur du site, SIRET, hébergeur, contact. 22 Traverse Pupat, 13008 Marseille.',
+    keywords: 'mentions légales Nature Clean, SIRET 89020726900022, entreprise nettoyage Marseille',
+  },
+  notfound: {
+    title: 'Page introuvable | Nature Clean Marseille',
+    description: 'Cette page n\'existe pas ou a été déplacée. Retrouvez nos services de nettoyage à Marseille, demandez un devis gratuit ou contactez Nature Clean au 04 84 89 68 75.',
+    keywords: '',
+  },
 };

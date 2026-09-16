@@ -117,6 +117,7 @@ export function Footer() {
               {[
                 { icon: PartyPopper, label: 'Événementiel', href: '/services/nettoyage-evenementiel' },
                 { icon: Droplet, label: 'Nettoyage Vitres', href: '/services/nettoyage-vitre' },
+                { icon: HardHat, label: 'Gros chantiers', href: '/services/nettoyage-gros-chantiers' },
                 { icon: User, label: 'Ménage Particuliers', href: '/nettoyage-particuliers' },
               ].map((item) => (
                 <li key={item.href}>
@@ -143,7 +144,6 @@ export function Footer() {
                 { label: 'A propos', href: '/a-propos' },
                 { label: 'Blog & Conseils', href: '/blog' },
                 { label: 'Zones d\'intervention', href: '/zones-intervention' },
-                { label: 'Actualites', href: '/actualites' },
                 { label: 'Contact', href: '/contact' },
                 { label: 'Devis gratuit', href: '/devis' },
               ].map((item) => (
@@ -292,6 +292,10 @@ export function Footer() {
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-4 gap-y-1">
               <Link to="/politique-de-confidentialite" className="text-xs text-gray-400 hover:text-green-400 transition-colors">
                 Politique de confidentialité
+              </Link>
+              <span className="text-gray-700 text-xs hidden md:inline" aria-hidden="true">·</span>
+              <Link to="/mentions-legales" className="text-xs text-gray-400 hover:text-green-400 transition-colors">
+                Mentions légales
               </Link>
               <span className="text-gray-700 text-xs hidden md:inline" aria-hidden="true">·</span>
               <p className="text-xs text-gray-400 text-center md:text-right">

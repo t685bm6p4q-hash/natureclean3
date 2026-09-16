@@ -202,7 +202,9 @@ export function Home() {
             <span className="hidden md:block w-px h-5 bg-gray-200" aria-hidden="true" />
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <MapPin className="w-4 h-4 text-green-500" aria-hidden="true" />
-              <span>Marseille & PACA</span>
+              <Link to="/zones-intervention" className="hover:text-green-700 hover:underline">
+                Marseille & PACA
+              </Link>
             </div>
           </div>
         </div>

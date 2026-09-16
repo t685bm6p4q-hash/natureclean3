@@ -90,7 +90,6 @@
     { "source": "/zones-d-intervention", "destination": "/zones-intervention", "permanent": true },
     { "source": "/zone-intervention", "destination": "/zones-intervention", "permanent": true },
 
-    { "source": "/actualites.html", "destination": "/actualites", "permanent": true },
     { "source": "/blog.html", "destination": "/blog", "permanent": true },
 
     { "source": "/index.html", "destination": "/", "permanent": true },
@@ -98,7 +97,9 @@
     { "source": "/accueil", "destination": "/", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true },
 
-    { "source": "/mentions-legales.html", "destination": "/", "permanent": true },
+    { "source": "/mentions-legales.html", "destination": "/mentions-legales", "permanent": true },
+    { "source": "/actualites.html", "destination": "/blog", "permanent": true },
+    { "source": "/actualites", "destination": "/blog", "permanent": true },
     { "source": "/plan-du-site.html", "destination": "/sitemap.xml", "permanent": true },
     { "source": "/plan-du-site", "destination": "/sitemap.xml", "permanent": true },
 
@@ -123,7 +124,8 @@
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/admin", "destination": "/index.html" },
+    { "source": "/admin/:path*", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -149,6 +151,13 @@
       "source": "/(.*).html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/404.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
     }
   ]

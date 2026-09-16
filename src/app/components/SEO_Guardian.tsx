@@ -9,6 +9,10 @@ interface SEOGuardianProps {
   description?: string;
   keywords?: string;
   faqItems?: Array<{ question: string; answer: string }>;
+  /** 404 / pages non indexables : robots noindex,nofollow + pas de JSON-LD. */
+  noindex?: boolean;
+  /** Canonical forcé (accueil sur la 404). Sinon pathname courant. */
+  canonicalHref?: string;
 }
 
 /**
@@ -20,7 +24,7 @@ interface SEOGuardianProps {
  * 3. Injection automatique aria-invalid sur les inputs en erreur
  * 4. Structured Data additionnelles (FAQ, Breadcrumb)
  */
-export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, description: overrideDesc, keywords: overrideKeywords, faqItems }: SEOGuardianProps) {
+export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, description: overrideDesc, keywords: overrideKeywords, faqItems, noindex = false, canonicalHref }: SEOGuardianProps) {
 
   // useLayoutEffect : meta tags disponibles avant paint → capturés par le prerender Puppeteer
   useLayoutEffect(() => {
@@ -28,23 +32,18 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     // 1. GESTION DYNAMIQUE DES META TAGS PAR SECTION
     // ============================================
 
-    const currentSEO = SEO_DATA[currentSection] ?? SEO_DATA.home;
+    const currentSEO = SEO_DATA[currentSection] ?? (noindex ? SEO_DATA.notfound : SEO_DATA.home);
 
     // Mise à jour du titre
     document.title = overrideTitle || currentSEO.title;
 
-    // 🎯 CANONICAL URL - Source de vérité = window.location.pathname
+    // 🎯 CANONICAL URL — pathname courant, sauf override (404 → accueil)
     // ─────────────────────────────────────────────────────────────────
-    // Pourquoi window.location et PAS un pathMap statique ?
-    //   • Ce fichier index.html est servi pour TOUTES les routes SPA par Vercel.
-    //   • Un pathMap manuel nécessite une maintenance à chaque nouvelle route.
-    //   • window.location.pathname retourne TOUJOURS l'URL réelle de la page courante,
-    //     sans aucun risque de mismatch → 0 "Autre page avec balise canonique correcte"
-    //     en Search Console.
-    // Note : trailing slash sur "/" uniquement (la racine), pas sur les sous-pages.
+    // window.location.pathname = URL réelle → 0 "Autre page avec balise canonique".
+    // Trailing slash sur "/" uniquement. Sur la 404, canonicalHref force l'accueil.
     const rawPath = window.location.pathname;
     const canonicalPath = rawPath === '/' ? '/' : rawPath.replace(/\/$/, ''); // supprime trailing slash sauf racine
-    const canonicalURL = `${BASE_URL}${canonicalPath}`;
+    const canonicalURL = canonicalHref ?? `${BASE_URL}${canonicalPath}`;
     
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonical) {
@@ -81,7 +80,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     // Meta tags de base
     updateMetaTag('description', overrideDesc || currentSEO.description);
     updateMetaTag('keywords', overrideKeywords || currentSEO.keywords);
-    updateMetaTag('robots', 'index, follow');
+    updateMetaTag('robots', noindex ? 'noindex, nofollow' : 'index, follow');
     updateMetaTag('language', 'fr');
     updateMetaTag('geo.region', 'FR-13');
     updateMetaTag('geo.placename', 'Marseille');
@@ -104,6 +103,19 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     updateMetaTag('twitter:title', overrideTitle || currentSEO.title);
     updateMetaTag('twitter:description', overrideDesc || currentSEO.description);
     updateMetaTag('twitter:image', ogImageURL);
+
+    // 404 : retirer tout JSON-LD hérité d'une navigation SPA précédente
+    // (une page d'erreur qui se présente comme LocalBusiness = soft 404 Google).
+    if (noindex) {
+      document.getElementById('jsonld-local-business')?.remove();
+      document.getElementById('jsonld-breadcrumb')?.remove();
+      document.getElementById('jsonld-faq')?.remove();
+      return () => {
+        document.getElementById('jsonld-local-business')?.remove();
+        document.getElementById('jsonld-breadcrumb')?.remove();
+        document.getElementById('jsonld-faq')?.remove();
+      };
+    }
 
     // ============================================
     // 2. JSON-LD CleaningService (sans avis)
@@ -278,7 +290,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
       if (scriptToRemove2) scriptToRemove2.remove();
       if (scriptToRemove3) scriptToRemove3.remove();
     };
-  }, [currentSection, overrideTitle, overrideDesc, overrideKeywords, faqItems]);
+  }, [currentSection, overrideTitle, overrideDesc, overrideKeywords, faqItems, noindex, canonicalHref]);
 
   useEffect(() => {
     const formObserver = new MutationObserver(() => {

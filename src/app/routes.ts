@@ -67,6 +67,7 @@ export const router = createBrowserRouter([
       { path: 'nettoyage-coproprietes-aubagne', lazy: () => import('@/app/pages/geo/NettoyageCoproprietesAubagnePage').then(m => ({ Component: m.NettoyageCoproprietesAubagnePage })) },
       { path: 'nettoyage-coproprietes-la-ciotat', lazy: () => import('@/app/pages/geo/NettoyageCoproprietesLaCiotatPage').then(m => ({ Component: m.NettoyageCoproprietesLaCiotatPage })) },
       { path: 'politique-de-confidentialite', lazy: () => import('@/app/pages/PolitiqueConfidentialitePage').then(m => ({ Component: m.PolitiqueConfidentialitePage })) },
+      { path: 'mentions-legales', lazy: () => import('@/app/pages/MentionsLegalesPage').then(m => ({ Component: m.MentionsLegalesPage })) },
       { path: 'admin/security-audit', lazy: () => import('@/app/pages/SecurityAuditPage').then(m => ({ Component: m.SecurityAuditPage })) },
       { path: 'admin/site-audit', lazy: () => import('@/app/pages/SiteAuditPage').then(m => ({ Component: m.SiteAuditPage })) },
       { path: '*', lazy: () => import('@/app/pages/NotFoundPage').then(m => ({ Component: m.NotFoundPage })) },

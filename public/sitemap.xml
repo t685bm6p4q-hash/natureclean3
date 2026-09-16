@@ -1,230 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- ═══ Généré automatiquement le 2026-09-12 par scripts/generate-sitemap.ts ═══ -->
-  <!-- ═══ 37 URLs indexées — Zone : Marseille, Aix, Aubagne, La Ciotat ═══ -->
+  <!-- ═══ Généré automatiquement le 2026-09-16 par scripts/generate-sitemap.ts ═══ -->
+  <!-- ═══ 37 URLs — https://natureclean.fr ═══ -->
 
   <url>
     <loc>https://natureclean.fr/</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/devis</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/contact</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://natureclean.fr/a-propos</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://natureclean.fr/a-propos</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://natureclean.fr/realisations</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://natureclean.fr/actualites</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/zones-intervention</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/politique-de-confidentialite</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://natureclean.fr/mentions-legales</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://natureclean.fr/nettoyage-particuliers</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://natureclean.fr/services/entretien-bureaux</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services/nettoyage-commerces</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services/nettoyage-coproprietes</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services/nettoyage-chantiers</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://natureclean.fr/services/nettoyage-evenementiel</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services/remise-etat-sols</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services/nettoyage-graffitis</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://natureclean.fr/services/nettoyage-diogene</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://natureclean.fr/services/nettoyage-evenementiel</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services/nettoyage-vitre</loc>
-    <lastmod>2026-05-10</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://natureclean.fr/services/nettoyage-diogene</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/services/nettoyage-gros-chantiers</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://natureclean.fr/nettoyage-particuliers</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/etat-des-lieux-sortie-marseille</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/nettoyage-apres-sinistre</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/nettoyage-ecologique-produits-bio-entreprise</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/faq-nettoyage-terrasse-marseille</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/normes-nettoyage-chantier-2025</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/checklist-nettoyage-copropriete-syndic</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/budget-nettoyage-bureaux-marseille-2026</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/nettoyage-graffitis-carrefour-marseille</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/blog/nettoyage-galerie-art-marseille</loc>
-    <lastmod>2026-05-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/nettoyage-bureaux-marseille</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/nettoyage-fin-chantier-marseille</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/nettoyage-industriel-marseille</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/nettoyage-medical-marseille</loc>
-    <lastmod>2026-09-12</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/nettoyage-bureaux-aix-en-provence</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/nettoyage-coproprietes-aubagne</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://natureclean.fr/nettoyage-coproprietes-la-ciotat</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
