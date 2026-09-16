@@ -14,6 +14,31 @@ import { IMAGES } from '@/app/utils/images';
    Organisées en 5 catégories SEO
    ────────────────────────────────────────────── */
 const realisations = [
+  /* ── CAS CLIENTS (articles blog) ─── */
+  {
+    id: 'real-galerie-art-marseille',
+    title: "Entretien galerie d'art et espace d'exposition — Marseille",
+    alt: "Nettoyage professionnel galerie d'art Marseille — sols lustrés et vitrines sans trace Nature Clean",
+    category: 'Cas clients',
+    location: 'Marseille',
+    date: 'Septembre 2026',
+    image: IMAGES.galerieArtMarseille,
+    desc: "Lieux culturels exigeants : zéro poussière en suspension, produits neutres et aspiration HEPA pour protéger œuvres et cimaises. Nature Clean planifie l'intervention avant vernissage à Marseille. Retour de méthode et bonnes pratiques dans notre article dédié.",
+    link: '/blog/nettoyage-galerie-art-marseille',
+    color: 'purple',
+  },
+  {
+    id: 'real-graffitis-carrefour-marseille',
+    title: 'Effacement graffitis sur façade commerciale — Carrefour Marseille',
+    alt: 'Effacement tags et graffitis façade grande surface Marseille — intervention Nature Clean',
+    category: 'Cas clients',
+    location: 'Marseille',
+    date: 'Juin 2026',
+    image: IMAGES.graffitiCarrefourAvant,
+    desc: "Enseigne à flux intense : diagnostic du support (béton, vitrine, bardage), choix du procédé anti-graffiti et remise en état sans fermeture prolongée. Notre protocole d'urgence pour commerces marseillais est détaillé pas à pas dans le récit complet sur le blog.",
+    link: '/blog/nettoyage-graffitis-carrefour-marseille',
+    color: 'cyan',
+  },
   /* ── MAI 2026 ─── */
   {
     id: 'real-jd-sport',
