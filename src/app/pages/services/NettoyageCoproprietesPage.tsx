@@ -55,6 +55,36 @@ export function NettoyageCoproprietesPage() {
         devisLink="/devis?service=coproprietes"
       />
 
+      <section className="py-6 bg-green-50 border-y border-green-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+            Cette fiche détaille notre protocole syndic (parties communes, locaux poubelles, reporting ANSES).
+            Pour une recherche par commune :{' '}
+            <Link
+              to="/nettoyage-coproprietes-aubagne"
+              className="text-green-800 font-semibold underline underline-offset-2 hover:text-green-900"
+            >
+              copropriétés à Aubagne
+            </Link>
+            {' · '}
+            <Link
+              to="/nettoyage-coproprietes-la-ciotat"
+              className="text-green-800 font-semibold underline underline-offset-2 hover:text-green-900"
+            >
+              La Ciotat
+            </Link>
+            . Carte complète :{' '}
+            <Link
+              to="/zones-intervention"
+              className="text-green-800 font-semibold underline underline-offset-2 hover:text-green-900"
+            >
+              zones d&apos;intervention
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
       {/* ═══ INTRO TEXTE — ambient background ═══ */}
       <section className="relative py-16 md:py-20 bg-white overflow-hidden">
         <ImageWithFallback

@@ -11,6 +11,7 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { IMAGES } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
+import { ServiceGeoIntentBlock } from '@/app/components/ServiceGeoIntentBlock';
 
 const FAQ_ITEMS: FAQItem[] = [
   { question: 'Quel est le délai d\'intervention pour un nettoyage fin de chantier ?', answer: 'En général, on mobilise une équipe sous 48 à 72h après votre demande. Pour les urgences — remise des clés promoteur, visite de réception — on peut être là en 24h. Le vrai problème sur les chantiers marseillais, c\'est souvent la coordination avec les autres corps de métier. On règle ça dès le premier appel.' },
@@ -53,6 +54,13 @@ export function NettoyageChantiersPage() {
           { label: 'Nettoyage fin de chantier' },
         ]}
         devisLink="/devis?service=fin-chantier"
+      />
+
+      <ServiceGeoIntentBlock
+        serviceIntent="Ici : méthode fin de chantier, gravats, promoteurs et particuliers. Pour les interventions centrées sur Marseille intra-muros et la métropole, consultez"
+        geoHref="/nettoyage-fin-chantier-marseille"
+        geoLabel="notre page fin de chantier Marseille"
+        caseStudy={{ href: '/blog/normes-nettoyage-chantier-2025', label: 'normes et check-list chantier 2025' }}
       />
 
       {/* Introduction — ambient background */}

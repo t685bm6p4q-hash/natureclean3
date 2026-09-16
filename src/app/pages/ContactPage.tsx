@@ -9,17 +9,51 @@ import { IMAGES } from '@/app/utils/images';
 export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError(null);
     setIsSubmitting(true);
-    
-    // Simulation d'envoi (matching QuoteForm logic)
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const nom = String(fd.get('name') ?? '').trim();
+    const email = String(fd.get('email') ?? '').trim();
+    const telephone = String(fd.get('phone') ?? '').trim();
+    const message = String(fd.get('message') ?? '').trim();
+
+    const payload = {
+      nom,
+      prenom: '',
+      email,
+      telephone,
+      codePostal: '',
+      typeNettoyage: 'contact',
+      surface: '',
+      frequence: '',
+      message,
+      timestamp: new Date().toISOString(),
+      source: 'Formulaire contact',
+      sourcePage: '/contact',
+      referrer: typeof document !== 'undefined' ? document.referrer || 'Direct' : 'Direct',
+      journey: 'Contact — formulaire page /contact',
+    };
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch('/api/send-quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        throw new Error('Envoi impossible');
+      }
       setIsSubmitted(true);
+      form.reset();
     } catch (error) {
       console.error('Erreur lors de l\'envoi du message', error);
+      setSubmitError('L\'envoi a échoué. Appelez-nous au 04 84 89 68 75 ou réessayez dans quelques minutes.');
     } finally {
       setIsSubmitting(false);
     }
@@ -136,6 +170,11 @@ export function ContactPage() {
                   </div>
                 ) : (
                   <form className="space-y-4" onSubmit={handleSubmit}>
+                    {submitError && (
+                      <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2" role="alert">
+                        {submitError}
+                      </p>
+                    )}
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                         Nom complet <span className="text-red-500">*</span>

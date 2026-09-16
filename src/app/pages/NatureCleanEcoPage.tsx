@@ -1,7 +1,7 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { IMAGES } from '@/app/utils/images';
 import { Button } from '@/app/components/ui/button';
-import { Mail, MapPin } from 'lucide-react';
+import { Leaf, Mail, MapPin, Target } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
@@ -86,7 +86,7 @@ export function NatureCleanEcoPage() {
 
                 <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-600">
                   <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                    <span className="text-2xl">🌿</span>
+                    <Leaf className="w-6 h-6 text-green-600 shrink-0" aria-hidden="true" />
                     Notre engagement écologique
                   </h3>
                   <ul className="space-y-2 text-gray-700">
@@ -115,8 +115,11 @@ export function NatureCleanEcoPage() {
                   environnemental à <strong>Marseille et les Alpes-Maritimes</strong>.
                 </p>
 
-                <p className="font-semibold text-green-700 text-lg">
-                  🎯 Objectif 2026 : Extension des services de <strong>nettoyage écologique jusqu'à Cannes</strong> !
+                <p className="font-semibold text-green-700 text-lg flex items-start gap-2">
+                  <Target className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
+                  <span>
+                    Objectif 2026 : extension des services de <strong>nettoyage écologique jusqu&apos;à Cannes</strong>.
+                  </span>
                 </p>
               </div>
 

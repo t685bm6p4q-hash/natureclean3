@@ -123,6 +123,51 @@ export function GeoLandingPage({ data }: GeoLandingPageProps) {
         </div>
       </section>
 
+      {(data.serviceDifferentiator || (data.localProof && data.localProof.length > 0)) && (
+        <section className="py-10 bg-green-50 border-y border-green-100">
+          <div className="container mx-auto px-4 max-w-4xl space-y-6">
+            {data.serviceDifferentiator && (
+              <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                {data.serviceDifferentiator}{' '}
+                <Link
+                  to={data.serviceSlug}
+                  className="text-green-800 font-semibold underline underline-offset-2 hover:text-green-900"
+                >
+                  Voir la fiche service
+                </Link>
+                .
+              </p>
+            )}
+            {data.localProof && data.localProof.length > 0 && (
+              <div className="grid sm:grid-cols-2 gap-4">
+                {data.localProof.map((proof) => (
+                  <div
+                    key={proof.title}
+                    className="bg-white p-4 rounded-xl border border-green-100 shadow-sm"
+                  >
+                    <h3 className="font-bold text-gray-900 text-sm mb-1">{proof.title}</h3>
+                    <p className="text-sm text-gray-600">
+                      {proof.detail}
+                      {proof.href && (
+                        <>
+                          {' '}
+                          <Link
+                            to={proof.href}
+                            className="text-green-700 font-semibold underline underline-offset-2"
+                          >
+                            En savoir plus
+                          </Link>
+                        </>
+                      )}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ═══ POINTS FORTS ═══ */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">

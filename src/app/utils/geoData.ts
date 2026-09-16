@@ -28,6 +28,10 @@ export interface GeoPageData {
   conversionSubtitle: string;
   faqItems: FAQItem[];
   relatedGeoPages: string[];
+  /** Distinction explicite fiche service vs page locale (évite contenu dupliqué perçu). */
+  serviceDifferentiator?: string;
+  /** Preuves terrain (quartier, délai, cas client). */
+  localProof?: ReadonlyArray<{ title: string; detail: string; href?: string }>;
 }
 
 export const GEO_PAGES: Record<string, GeoPageData> = {
@@ -102,6 +106,19 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
       { question: 'Vous évacuez vraiment tous les gravats ou faut prévoir une benne ?', answer: 'On évacue tout : sacs de gravats, cartons, chutes de placo, résidus de ciment. Si le chantier a déjà une benne, parfait, on remplit. Sinon, on embarque tout dans notre camion et on va à la déchetterie de Septèmes ou des Aygalades. C\'est inclus dans le devis, pas de supplément surprise.' },
     ],
     relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
+    serviceDifferentiator:
+      'Page orientée livraison promoteur et rénovation à Marseille. La fiche service « nettoyage chantiers » décrit gravats, lessivage et certification pour tous types de chantiers en PACA.',
+    localProof: [
+      {
+        title: 'T3 après rénovation',
+        detail: '4 à 6 h avec 2 agents : évacuation gravats, lessivage complet, vitres.',
+      },
+      {
+        title: 'Urgence livraison',
+        detail: 'Check-list conforme aux attentes promoteurs et assureurs DO.',
+        href: '/blog/normes-nettoyage-chantier-2025',
+      },
+    ],
   },
 
   'nettoyage-bureaux-aix-en-provence': {
@@ -151,7 +168,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     heroAlt: 'Nettoyage désinfection cabinet médical Marseille — protocole sanitaire Nature Clean',
     seo: {
       title: 'Nettoyage Médical Marseille | Nature Clean',
-      description: 'Nettoyage médical à Marseille ⭐ 4,9/5 — Désinfection normes sanitaires : cabinets, dentistes, labos. Devis en 2h. 50% produits éco-certifiés.',
+      description: 'Nettoyage médical à Marseille — Désinfection normes sanitaires : cabinets, dentistes, labos. Devis sous 2 h. 50 % produits éco-certifiés.',
       keywords: 'nettoyage médical Marseille, désinfection cabinet médical Marseille, nettoyage clinique Marseille, entretien locaux santé 13, nettoyage pharmacie Marseille, protocole désinfection ARS Marseille',
     },
     intro: 'À Marseille, un cabinet médical ou paramédical ne peut pas se permettre l\'approximation. Nos clients dans le milieu de la santé nous le disent clairement : ils ont besoin d\'un prestataire qui connaît les protocoles, qui n\'arrive pas avec du produit multi-usage et une serpillière. Nature Clean intervient dans les cabinets de médecins généralistes, spécialistes, kinésithérapeutes, dentistes, infirmières libérales et laboratoires d\'analyses à Marseille. Produits virucides et bactéricides adaptés à chaque zone, traçabilité des interventions sur demande, et discrétion totale entre deux consultations.',
@@ -199,7 +216,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     heroAlt: 'Nettoyage de bureaux professionnels a Marseille — Nature Clean Marseille',
     seo: {
       title: 'Nettoyage Bureaux Marseille | Nature Clean',
-      description: 'Nettoyage de bureaux à Marseille ⭐ 4,9/5 — Devis en 2h, sans engagement. Joliette, Vieux-Port, 13001-13016. 50% éco-responsable. Nature Clean.',
+      description: 'Nettoyage de bureaux à Marseille — Devis sous 2 h. Joliette, Vieux-Port, 13001-13016. 50 % éco-responsable. Nature Clean.',
       keywords: 'nettoyage bureaux Marseille, entretien locaux Marseille, societe nettoyage Marseille, nettoyage professionnel Marseille 13, menage bureau Marseille, entreprise nettoyage 13008',
     },
     intro: 'Nature Clean est une entreprise de nettoyage professionnelle basee a Marseille 8e, et c\'est ici que nous intervenons au quotidien pour l\'entretien de vos bureaux et locaux professionnels. Du Vieux-Port a la Timone, du Prado aux Calanques, de la zone d\'activites de Vitrolles au technopole de Chateau-Gombert : nos equipes connaissent Marseille arrondissement par arrondissement, et nous assurons un nettoyage professionnel adapte a vos horaires, a votre surface et a votre secteur d\'activite.',
@@ -222,6 +239,18 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
       { question: 'Proposez-vous un contrat sans engagement longue duree ?', answer: 'Oui. Nous proposons une periode d\'essai de 4 semaines pour que vous puissiez evaluer la qualite de notre travail. Les contrats sont ensuite resiliables avec 1 mois de preavis. C\'est la qualite constante du resultat qui fidelyse nos clients — pas une clause contractuelle.' },
     ],
     relatedGeoPages: ['nettoyage-bureaux-aix-en-provence', 'nettoyage-coproprietes-aubagne'],
+    serviceDifferentiator:
+      'Cette page répond à une recherche locale (« bureaux + Marseille + quartier »). La fiche service « entretien de bureaux » détaille le protocole métier (sanitaires, moquettes, normes NF X50-790).',
+    localProof: [
+      {
+        title: 'Siège Marseille 8e — Traverse Pupat',
+        detail: 'Audit de vos locaux sous 24 h, démarrage possible sous 48 h après validation du devis.',
+      },
+      {
+        title: 'Open spaces > 400 m²',
+        detail: 'Intervention en binôme avant 8 h ou après 19 h pour limiter la gêne.',
+      },
+    ],
   },
 
   'nettoyage-coproprietes-aubagne': {
