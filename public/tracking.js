@@ -1,52 +1,51 @@
 /**
- * Nature Clean — tracking tiers (perf + RGPD)
- * - Google Ads (gtag AW-…) + GA4 optionnel + Meta optionnel
- * - Aucun réseau tiers avant consentement explicite
- * - Chargement différé (idle + délai) hors interaction / acceptation cookies
+ * Nature Clean — Google Ads + Meta (RGPD Consent Mode v2)
+ * - gtag configuré dans index.html (AW-18438425597)
+ * - gtag.js chargé après load (idle) sans attendre les cookies
+ * - Meta Pixel uniquement après consentement explicite
  */
 
 (function () {
   'use strict';
 
-  const CONFIG = {
+  var CONFIG = {
     GOOGLE_ADS_ID: 'AW-18438425597',
-    /** Renseigner quand l’action « Demande de devis » est créée dans Google Ads (format AW-xxx/LABEL) */
     GOOGLE_ADS_LEAD_SEND_TO: '',
     GA4_ID: 'G-XXXXXXXXXX',
     FB_PIXEL_ID: 'XXXXXXXXXX',
-    /** Délai après load avant init auto (Lighthouse mobile termine avant ce seuil) */
-    DEFER_AFTER_LOAD_MS: 4500,
-    IDLE_TIMEOUT_MS: 8000,
+    GTAG_IDLE_TIMEOUT_MS: 2500,
+    FB_DEFER_AFTER_LOAD_MS: 4500,
   };
 
-  let trackingLoaded = false;
-  let gtagBootstrapped = false;
+  var gtagScriptInjected = false;
+  var fbLoaded = false;
 
   function hasConsent() {
     return localStorage.getItem('ncm_cookie_consent') === 'accepted';
   }
 
-  function bootstrapGtagStub() {
-    if (gtagBootstrapped) return;
-    gtagBootstrapped = true;
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-    window.gtag('js', new Date());
+  function grantGoogleConsent() {
+    if (!window.gtag) return;
+    window.gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted',
+    });
   }
 
-  function loadGoogleTags() {
-    if (!CONFIG.GOOGLE_ADS_ID) return;
+  function injectGtagScript() {
+    if (gtagScriptInjected || !CONFIG.GOOGLE_ADS_ID) return;
+    if (document.querySelector('script[data-ncm-gtag]')) {
+      gtagScriptInjected = true;
+      return;
+    }
 
-    bootstrapGtagStub();
-
+    gtagScriptInjected = true;
     var primaryId = CONFIG.GOOGLE_ADS_ID;
     if (CONFIG.GA4_ID && CONFIG.GA4_ID !== 'G-XXXXXXXXXX') {
       primaryId = CONFIG.GA4_ID;
     }
-
-    if (document.querySelector('script[data-ncm-gtag]')) return;
 
     var gtagScript = document.createElement('script');
     gtagScript.async = true;
@@ -55,11 +54,7 @@
       'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(primaryId);
     document.head.appendChild(gtagScript);
 
-    window.gtag('config', CONFIG.GOOGLE_ADS_ID, {
-      send_page_view: true,
-    });
-
-    if (CONFIG.GA4_ID && CONFIG.GA4_ID !== 'G-XXXXXXXXXX') {
+    if (CONFIG.GA4_ID && CONFIG.GA4_ID !== 'G-XXXXXXXXXX' && window.gtag) {
       window.gtag('config', CONFIG.GA4_ID, {
         anonymize_ip: true,
         cookie_flags: 'SameSite=None;Secure',
@@ -68,8 +63,26 @@
     }
   }
 
+  function scheduleGtagLoad() {
+    var run = function () {
+      injectGtagScript();
+      if (hasConsent()) {
+        grantGoogleConsent();
+      }
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(run, { timeout: CONFIG.GTAG_IDLE_TIMEOUT_MS });
+    } else {
+      setTimeout(run, 800);
+    }
+  }
+
   function loadFacebookPixel() {
+    if (fbLoaded || !hasConsent()) return;
     if (!CONFIG.FB_PIXEL_ID || CONFIG.FB_PIXEL_ID === 'XXXXXXXXXX') return;
+
+    fbLoaded = true;
 
     !(function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
@@ -92,42 +105,24 @@
     window.fbq('track', 'PageView');
   }
 
-  function initTracking() {
-    if (trackingLoaded) return;
-    if (!hasConsent()) return;
-
-    trackingLoaded = true;
-    loadGoogleTags();
-    loadFacebookPixel();
-  }
-
-  function scheduleWhenIdle(fn, timeoutMs) {
-    if (typeof window.requestIdleCallback === 'function') {
-      window.requestIdleCallback(
-        function () {
-          fn();
-        },
-        { timeout: timeoutMs }
-      );
-    } else {
-      setTimeout(fn, Math.min(timeoutMs, 2000));
-    }
-  }
-
-  function scheduleDeferredInit() {
+  function scheduleFacebookLoad() {
     if (!hasConsent()) return;
 
     var run = function () {
-      scheduleWhenIdle(initTracking, CONFIG.IDLE_TIMEOUT_MS);
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(loadFacebookPixel, { timeout: 6000 });
+      } else {
+        loadFacebookPixel();
+      }
     };
 
     if (document.readyState === 'complete') {
-      setTimeout(run, CONFIG.DEFER_AFTER_LOAD_MS);
+      setTimeout(run, CONFIG.FB_DEFER_AFTER_LOAD_MS);
     } else {
       window.addEventListener(
         'load',
         function () {
-          setTimeout(run, CONFIG.DEFER_AFTER_LOAD_MS);
+          setTimeout(run, CONFIG.FB_DEFER_AFTER_LOAD_MS);
         },
         { once: true }
       );
@@ -135,29 +130,23 @@
   }
 
   window.addEventListener('ncm:consent:accepted', function () {
-    trackingLoaded = false;
-    scheduleWhenIdle(initTracking, 1500);
+    grantGoogleConsent();
+    injectGtagScript();
+    loadFacebookPixel();
   });
 
-  function setupLazyLoad() {
-    var engaged = false;
+  window.addEventListener(
+    'load',
+    function () {
+      scheduleGtagLoad();
+      scheduleFacebookLoad();
+    },
+    { once: true }
+  );
 
-    var loadOnEngagement = function () {
-      if (engaged) return;
-      engaged = true;
-      if (hasConsent()) {
-        scheduleWhenIdle(initTracking, 2000);
-      }
-    };
-
-    document.addEventListener('mousemove', loadOnEngagement, { once: true, passive: true });
-    document.addEventListener('touchstart', loadOnEngagement, { once: true, passive: true });
-    document.addEventListener('scroll', loadOnEngagement, { once: true, passive: true });
-
-    scheduleDeferredInit();
+  if (hasConsent()) {
+    grantGoogleConsent();
   }
-
-  setupLazyLoad();
 
   window.NatureCleanTracking = {
     trackEvent: function (eventName, params) {
