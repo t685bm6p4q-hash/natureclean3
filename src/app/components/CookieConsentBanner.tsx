@@ -15,7 +15,7 @@ export function CookieConsentBanner() {
     const stored = localStorage.getItem(STORAGE_KEY) as ConsentStatus | null;
     if (!stored) {
       // Légère temporisation pour ne pas bloquer le LCP
-      const t = setTimeout(() => setVisible(true), 800);
+      const t = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(t);
     } else {
       setStatus(stored);
@@ -62,7 +62,7 @@ export function CookieConsentBanner() {
               </div>
 
               <p className="text-sm text-gray-300 leading-relaxed mb-3">
-                Nature Clean Marseille utilise des cookies pour améliorer votre expérience de navigation et analyser le trafic (Google Analytics). Vos données ne sont jamais revendues.{' '}
+                Nature Clean Marseille utilise des cookies pour mesurer l’audience et l’efficacité de nos campagnes (Google Analytics, Google Ads). Vos données ne sont jamais revendues.{' '}
                 <Link
                   to="/politique-de-confidentialite"
                   className="text-green-400 hover:text-green-300 underline underline-offset-2 transition-colors"
@@ -85,7 +85,7 @@ export function CookieConsentBanner() {
                     <BarChart2 className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
                     <div>
                       <span className="font-semibold text-white">Cookies analytiques</span>{' '}
-                      — Google Analytics (audience anonymisée). Désactivables.
+                      — Google Analytics et Google Ads (mesure d’audience et conversions). Désactivables.
                     </div>
                   </div>
                 </div>

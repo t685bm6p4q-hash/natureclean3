@@ -123,6 +123,7 @@ export function Home() {
           height="1080"
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
           fetchpriority="high"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
