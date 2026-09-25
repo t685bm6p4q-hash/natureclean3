@@ -223,6 +223,14 @@ export function QuotePage() {
         }
         throw new Error(`HTTP_${response.status}`);
       }
+      if (window.NatureCleanTracking) {
+        window.NatureCleanTracking.trackConversion('Lead', 1);
+        window.NatureCleanTracking.trackEvent('form_submit', {
+          form_name: 'devis',
+          service: result.data.secteur,
+          source_page: payload.sourcePage,
+        });
+      }
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormData({ nom: '', email: '', telephone: '', adresse: '', secteur: matchedSector, typeSurfaceGraffiti: '', encombrement: '', nombrePostes: '', frequence: '', phasesEvenement: [], jaugeEvenement: '', typeVitrage: '', hauteurVitrage: '', etatVitrage: '', surface: '', description: '', rgpd: false });
