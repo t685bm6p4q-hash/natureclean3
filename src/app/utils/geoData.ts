@@ -302,9 +302,11 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     heroImage: IMAGES.openSpaceIndustrielNuit,
     heroAlt: 'Nettoyage industriel a Marseille — entrepots, ateliers, sites de production',
     seo: {
-      title: 'Nettoyage Industriel Marseille (13) | Nature Clean | Devis Gratuit',
-      description: 'Nettoyage industriel a Marseille : entrepots logistiques, ateliers, sites de production, plateformes. Degraissage, decapage, sols beton. Intervention 7j/7. Devis gratuit 04 84 89 68 75',
-      keywords: 'nettoyage industriel Marseille, nettoyage entrepot Marseille, nettoyage atelier Marseille, degraissage industriel 13, decapage sols beton Marseille, societe nettoyage industriel Bouches-du-Rhone',
+      title: 'Nettoyage Industriel Marseille | Entrepôts & ateliers 13 | Nature Clean',
+      description:
+        'Nettoyage industriel à Marseille : entrepôts, logistique, ateliers, dégraissage sols béton. Nuit & week-end · Protocoles HSE · Devis 24 h · 04 84 89 68 75',
+      keywords:
+        'nettoyage industriel marseille, nettoyage industriel paca, nettoyage entrepot marseille, nettoyage atelier 13, dégraissage industriel marseille, société nettoyage industriel bouches-du-rhône',
     },
     intro: 'Nature Clean est une entreprise marseillaise specialisee dans le nettoyage industriel. Nous intervenons dans les entrepots logistiques, ateliers de production, plateformes de stockage et sites industriels de Marseille et sa metropole — du port de la Joliette aux zones d\'activites d\'Arnavant, de la Cabucelle a Saint-Menet, en passant par les Aygalades, La Valentine et Vitrolles. Sols beton, machines, structures metalliques, zones de production : nos equipes disposent du materiel professionnel et des protocoles adaptes aux environnements industriels exigeants.',
     highlights: [
@@ -327,7 +329,20 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
       { question: 'Vos equipes sont-elles habilitees pour le travail en hauteur ?', answer: 'Oui, nos agents disposent des habilitations CACES nacelle et travail en hauteur pour le nettoyage des charpentes, structures metalliques, gaines de ventilation et eclairages industriels. Nous fournissons l\'attestation d\'habilitation sur demande.' },
       { question: 'Couvrez-vous les zones industrielles peripheriques de Marseille ?', answer: 'Oui, nous couvrons toutes les zones d\'activites de la metropole : Arnavant, La Cabucelle, Saint-Menet, La Valentine, Les Aygalades, Plan-de-Campagne, Vitrolles et la zone portuaire de Marseille-Fos. Notre siege a Marseille 8e garantit une reactivite optimale.' },
     ],
-    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-coproprietes-aubagne'],
+    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-fin-chantier-marseille'],
+    serviceDifferentiator:
+      'Page locale « industriel + Marseille » : entrepôts, dégraissage et horaires de nuit. La fiche service chantiers couvre aussi les remises en état après travaux.',
+    localProof: [
+      {
+        title: 'Zones portuaires & logistique',
+        detail: 'Joliette, Fos, Vitrolles, Arnavant — interventions hors production.',
+      },
+      {
+        title: 'Devis sous 48 h',
+        detail: 'Visite technique incluse pour surfaces > 500 m².',
+        href: '/blog/devis-nettoyage-marseille-guide',
+      },
+    ],
   },
 };
 

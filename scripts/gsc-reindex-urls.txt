@@ -14,6 +14,8 @@ https://natureclean.fr/nettoyage-coproprietes-aubagne
 https://natureclean.fr/services/entretien-bureaux
 https://natureclean.fr/services/nettoyage-coproprietes
 https://natureclean.fr/devis
+https://natureclean.fr/blog/devis-nettoyage-marseille-guide
+https://natureclean.fr/nettoyage-industriel-marseille
 
 ## 3. Anciennes URLs 06/Var (vérifier redirection 301 vers destination)
 # Dans Inspection : l’URL source doit afficher « Redirection » vers la bonne page.

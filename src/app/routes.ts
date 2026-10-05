@@ -54,6 +54,7 @@ export const router = createBrowserRouter([
       { path: 'blog/normes-nettoyage-chantier-2025', lazy: () => import('@/app/pages/blog/NormesChantier2025').then(m => ({ Component: m.NormesChantier2025 })) },
       { path: 'blog/checklist-nettoyage-copropriete-syndic', lazy: () => import('@/app/pages/blog/ChecklistCoproSyndic').then(m => ({ Component: m.ChecklistCoproSyndic })) },
       { path: 'blog/budget-nettoyage-bureaux-marseille-2026', lazy: () => import('@/app/pages/blog/BudgetBureaux2026').then(m => ({ Component: m.BudgetBureaux2026 })) },
+      { path: 'blog/devis-nettoyage-marseille-guide', lazy: () => import('@/app/pages/blog/DevisNettoyageMarseille').then(m => ({ Component: m.DevisNettoyageMarseille })) },
       { path: 'blog/nettoyage-ecologique-produits-bio-entreprise', lazy: () => import('@/app/pages/blog/NettoyageEcologiqueEntreprise').then(m => ({ Component: m.NettoyageEcologiqueEntreprise })) },
       { path: 'blog/faq-nettoyage-terrasse-marseille', lazy: () => import('@/app/pages/blog/NettoyageTerrasseMarseille').then(m => ({ Component: m.NettoyageTerrasseMarseille })) },
       { path: 'blog/nettoyage-graffitis-carrefour-marseille', lazy: () => import('@/app/pages/blog/NettoyageGraffitisCarrefour').then(m => ({ Component: m.NettoyageGraffitisCarrefour })) },

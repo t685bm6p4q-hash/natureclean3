@@ -45,6 +45,7 @@ export const PRERENDER_ROUTES: readonly string[] = [
   '/blog/normes-nettoyage-chantier-2025',
   '/blog/checklist-nettoyage-copropriete-syndic',
   '/blog/budget-nettoyage-bureaux-marseille-2026',
+  '/blog/devis-nettoyage-marseille-guide',
   '/blog/nettoyage-graffitis-carrefour-marseille',
   '/blog/nettoyage-galerie-art-marseille',
 

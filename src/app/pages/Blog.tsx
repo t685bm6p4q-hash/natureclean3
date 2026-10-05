@@ -19,6 +19,18 @@ interface BlogArticle {
 
 const articles: BlogArticle[] = [
   {
+    id: '10',
+    title: 'Devis nettoyage Marseille : guide gratuit et réponse sous 24 h',
+    excerpt:
+      'Comment obtenir un devis de nettoyage professionnel à Marseille ? Infos à préparer, délais, contenu d\'un bon devis et lien direct vers notre formulaire express.',
+    image: IMAGES.poigneeMainDevis,
+    date: '5 octobre 2026',
+    dateIso: '2026-10-05',
+    readTime: '6 min',
+    category: 'Devis',
+    slug: '/blog/devis-nettoyage-marseille-guide',
+  },
+  {
     id: '1',
     title: 'Comment préparer un état des lieux de sortie à Marseille',
     excerpt: 'Guide complet pour récupérer votre caution locative grâce à un nettoyage professionnel. Découvrez les zones critiques à nettoyer et les erreurs à éviter.',

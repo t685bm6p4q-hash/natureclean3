@@ -89,6 +89,12 @@ const localExpertisePages = [
     subtitle: 'Aubagne & Est marseillais',
     icon: Building2,
   },
+  {
+    to: '/nettoyage-industriel-marseille',
+    title: 'Nettoyage industriel',
+    subtitle: 'Entrepôts, ateliers, logistique',
+    icon: Cog,
+  },
 ] as const;
 
 const realisationsPreview = [
@@ -861,7 +867,7 @@ export function Home() {
               <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4 text-center">
                 Nos expertises locales
               </h3>
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {localExpertisePages.map((item) => {
                   const Icon = item.icon;
                   return (

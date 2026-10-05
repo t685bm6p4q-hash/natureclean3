@@ -81,6 +81,7 @@
     { "source": "/demande-de-devis.html", "destination": "/devis", "permanent": true },
     { "source": "/demande-de-devis", "destination": "/devis", "permanent": true },
     { "source": "/devis-gratuit", "destination": "/devis", "permanent": true },
+    { "source": "/devis-nettoyage-marseille", "destination": "/blog/devis-nettoyage-marseille-guide", "permanent": true },
 
     { "source": "/nos-realisations.html", "destination": "/realisations", "permanent": true },
     { "source": "/nos-realisations", "destination": "/realisations", "permanent": true },

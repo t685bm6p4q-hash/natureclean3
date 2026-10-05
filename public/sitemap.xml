@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- ═══ Généré automatiquement le 2026-10-05 par scripts/generate-sitemap.ts ═══ -->
-  <!-- ═══ 37 URLs — https://natureclean.fr ═══ -->
+  <!-- ═══ 38 URLs — https://natureclean.fr ═══ -->
 
   <url>
     <loc>https://natureclean.fr/</loc>
@@ -168,6 +168,12 @@
   </url>
   <url>
     <loc>https://natureclean.fr/blog/budget-nettoyage-bureaux-marseille-2026</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://natureclean.fr/blog/devis-nettoyage-marseille-guide</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>

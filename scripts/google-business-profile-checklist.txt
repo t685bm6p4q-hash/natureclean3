@@ -1,0 +1,86 @@
+# Fiche Google Business — audit & plan 30 jours (Nature Clean)
+# https://business.google.com
+
+═══════════════════════════════════════════════════════════════
+A. INFORMATIONS DE BASE (cohérence NAP = site natureclean.fr)
+═══════════════════════════════════════════════════════════════
+[ ] Nom affiché : Nature Clean (pas de mots-clés en plus du nom légal)
+[ ] Catégorie principale : Entreprise de nettoyage
+[ ] Catégories secondaires : Service de nettoyage de bureaux · Nettoyage de vitres (si pertinent)
+[ ] Adresse : identique aux mentions légales / site (si accueil public, sinon zone desservie)
+[ ] Téléphone : 04 84 89 68 75 (même numéro partout)
+[ ] Site web : https://natureclean.fr
+[ ] Lien devis : https://natureclean.fr/devis (dans description ou bouton Réservation si configuré)
+[ ] Horaaires : Lun–Sam 8h–18h (aligné site) + mention urgence chantier sur demande
+[ ] Zone desservie : Marseille + communes 13 réellement couvertes (pas Cannes/Nice si non servies)
+
+═══════════════════════════════════════════════════════════════
+B. DESCRIPTION (750 car. max — inclure mots-clés naturels)
+═══════════════════════════════════════════════════════════════
+Modèle à adapter :
+« Nature Clean, entreprise de nettoyage professionnel à Marseille (8e).
+Bureaux, copropriétés, fin de chantier, industriel et cabinets médicaux.
+Devis gratuit sous 24 h · Note 4,7/5 Google · Produits éco-responsables · RC Pro. »
+
+[ ] Pas de URL multiples ni de numéros en doublon
+[ ] Pas de promesses non vérifiables (« n°1 », « meilleur »)
+
+═══════════════════════════════════════════════════════════════
+C. PHOTOS & MÉDIAS (minimum 15, renouveler chaque mois)
+═══════════════════════════════════════════════════════════════
+[ ] Logo (même que site)
+[ ] Couverture : équipe ou chantier marseillais récent
+[ ] 5+ photos intérieur bureaux / copro / fin de chantier
+[ ] 2 photos avant/après (avec accord client)
+[ ] 1 vidéo courte < 30 s (optionnel, boost engagement)
+
+═══════════════════════════════════════════════════════════════
+D. AVIS GOOGLE (levier n°1 pour « entreprise nettoyage marseille »)
+═══════════════════════════════════════════════════════════════
+[ ] Lien court d’avis : partager depuis la fiche → « Demander des avis »
+[ ] Process : SMS/WhatsApp post-mission avec lien (1 fois / client satisfait)
+[ ] Répondre à TOUS les avis sous 48 h (merci + prénom + prestation)
+[ ] Objectif 30 jours : +5 avis récents avec mention « Marseille » ou type de prestation
+[ ] Ne jamais acheter d’avis (risque suspension)
+
+═══════════════════════════════════════════════════════════════
+E. PUBLICATIONS (2 / mois minimum)
+═══════════════════════════════════════════════════════════════
+Idées :
+- Photo chantier + « Fin de chantier livré à Marseille »
+- « Devis gratuit 24 h » + lien /devis
+- Article blog : /blog/devis-nettoyage-marseille-guide
+- Saison : fin de chantier été, rentrée bureaux septembre
+
+[ ] Chaque post : photo + CTA (Appeler · Devis · En savoir plus)
+
+═══════════════════════════════════════════════════════════════
+F. PRODUITS / SERVICES (si disponible dans l’interface)
+═══════════════════════════════════════════════════════════════
+[ ] Entretien bureaux Marseille
+[ ] Nettoyage copropriété
+[ ] Fin de chantier
+[ ] Nettoyage industriel
+[ ] Chaque entrée : description courte + lien page site correspondante
+
+═══════════════════════════════════════════════════════════════
+G. MESSAGES & RÉSERVATIONS
+═══════════════════════════════════════════════════════════════
+[ ] Activer Messages Google + réponse < 4 h en journée
+[ ] Message d’accueil automatique avec téléphone et délai devis 24 h
+
+═══════════════════════════════════════════════════════════════
+H. SUIVI MENSUEL (tableau perso)
+═══════════════════════════════════════════════════════════════
+| Mois | Vues fiche | Appels | Clics site | Demandes itinéraire | Nouveaux avis |
+|------|------------|--------|------------|---------------------|---------------|
+|      |            |        |            |                     |               |
+
+Comparer avec Search Console (requêtes marque « nature clean », « natureclean »).
+
+═══════════════════════════════════════════════════════════════
+I. PROBLÈMES FRÉQUENTS
+═══════════════════════════════════════════════════════════════
+- Doublon de fiche → fusionner via « Suggérer une modification » ou support Google
+- Ancienne adresse → vérifier sur Maps et signaler correction
+- Horaires « fermé » un jour de forte demande → mettre à jour avant week-end
