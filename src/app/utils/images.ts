@@ -42,7 +42,7 @@ export type { CldPreset, CldImgAttrs } from '@/app/utils/cloudinaryHelper';
 const P_logoNatureClean         = 'v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png';
 
 // ── HERO ──
-const P_heroHome                = 'v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg';
+const P_heroHome                = 'v1791196415/chaniter-nettoyage-nature-clean_axooeq.jpg';
 
 // ── AMBIANCE ──
 const P_vueMarseilleBasin       = 'v1773950699/nettoyage-sols-marseille-eco-responsable-nature_-_01_lnw8go.jpg';
@@ -61,21 +61,25 @@ const P_hallCoproBoites         = 'v1773950695/nettoyage-copropriete-cannes-imeu
 const P_hallClassiqueAscenseurs = 'v1773950696/nettoyage-immeuble-menage-imeuble-copro-nature-eco-responsablemarseille_-_01_simboh.jpg';
 const P_parkingSouterrain       = 'v1773950698/nettoyage-sols-marseille-menage-copropriete_-_01_ik24eq.jpg';
 
-// ── FIN DE CHANTIER ──
-const P_nettoyageFinChantier    = 'v1777394476/nettoyage-fin-de-chantier_mqdngl.jpg';
-const P_finChantierAppartement  = 'v1777394479/nettoyage-fin-de-chantier-appartement_upfmyt.jpg';
-const P_finChantierMaison       = 'v1777394479/nettoyage-fin-de-chantier-maison_zlarzz.jpg';
-const P_finChantierEquipe       = 'v1777394478/nettoyage-fin-de-chantier-nature-clean_ac8riy.jpg';
-const P_finChantierMarseille    = 'v1777394477/nettoyage-fin-de-chantier-Marseille_vqesnl.jpg';
-const P_finChantierMarseille13  = 'v1777394477/nettoyage-fin-de-chantier-marseille-13_t4nltq.jpg';
-const P_finChantierCassis       = 'v1777394477/nettoyage-fin-de-chantier-cassie_s52bhb.jpg';
-const P_solsFinChantierBDR      = 'v1779356948/nettoyage-sols-fin-de-chantier-bouches-du-rhone_klne1a.jpg';
-const P_cuisineLivraisonValentine = 'v1779357057/nettoyage-cuisine-apres-travaux-marseille-livraison-Valentine_bnwohv.jpg';
-const P_remiseEtatCuisine       = 'v1779356948/remise-en-etat-apres-travaux-cuisine-marseille_ll3rfa.jpg';
-const P_salleBainDesinfection   = 'v1779356948/nettoyage-desinfection-salle-de-bain-marseille_zspo7m.jpg';
-const P_appartAvantChantier     = 'v1779356948/nettoyage-fin-de-chantier-appartement-marseille-avant_hrpwim.jpg';
-const P_cuisineApresTravaux     = 'v1779356948/nettoyage-cuisine-apres-travaux-marseille-livraison_mzec6t.jpg';
-const P_remiseEtatAppartMarseille = 'v1779383832/nettoyage-remise-en-etat-appartement-marseille_r4jo7o.jpg';
+// ── FIN DE CHANTIER (photos chantier 2026) ──
+const P_chantierNatureClean     = 'v1791196415/chaniter-nettoyage-nature-clean_axooeq.jpg';
+const P_remiseEtatAubagne       = 'v1791196415/remise-etat-appartement-aubagne_je48ok.jpg';
+const P_finChantierIntervention = 'v1791196415/nettoyage-fin_-chaniter_q0bmcu.jpg';
+
+const P_nettoyageFinChantier    = P_finChantierIntervention;
+const P_finChantierAppartement  = P_remiseEtatAubagne;
+const P_finChantierMaison       = P_chantierNatureClean;
+const P_finChantierEquipe       = P_chantierNatureClean;
+const P_finChantierMarseille    = P_finChantierIntervention;
+const P_finChantierMarseille13  = P_finChantierIntervention;
+const P_finChantierCassis       = P_remiseEtatAubagne;
+const P_solsFinChantierBDR      = P_finChantierIntervention;
+const P_cuisineLivraisonValentine = P_remiseEtatAubagne;
+const P_remiseEtatCuisine       = P_finChantierIntervention;
+const P_salleBainDesinfection   = P_remiseEtatAubagne;
+const P_appartAvantChantier     = P_finChantierIntervention;
+const P_cuisineApresTravaux     = P_remiseEtatAubagne;
+const P_remiseEtatAppartMarseille = P_remiseEtatAubagne;
 
 // ── COMMERCES ──
 const P_entretienMagasin        = 'v1777394245/entretien-magasin-marseille-centre-propre_ctv9gu.jpg';
@@ -109,7 +113,7 @@ const P_facadeVitreeImmeuble    = 'v1773950694/nettoyage-vitres-marseille-cannes
 const P_carnetBlog              = 'v1773950694/nettoyage-vitres-prope-marseille_-_01_jznc7i.jpg';
 const P_degatDesEaux            = 'v1773950693/menage-appartement-marseille-nice-cannes_-_01_x1nuoi.jpg';
 const P_appartClesComplete      = 'v1773950694/menage-immeuble-marseille_-_01_d9e5ch.jpg';
-const P_normesChantier2025      = 'v1773950699/nettoyage-sols-marseille-eco-responsable-nature_-_01_lnw8go.jpg';
+const P_normesChantier2025      = P_finChantierIntervention;
 
 // ── GRAFFITIS ──
 const P_nettoyageGraffitis          = 'v1775499955/nature-clean-nettoyage-professionnel-anti-graffiti_g8rivw.png';
@@ -219,7 +223,7 @@ export const IMAGES = {
   sprayMicrofibre:        O(P_boutiqueVide),
 
   // ── FIN DE CHANTIER (alias ex-Unsplash) ──
-  chantierBrut:           O(P_degatDesEaux),
+  chantierBrut:           O(P_finChantierIntervention),
   appartVidePropre:       O(P_appartClesComplete),
   appartCarrelageBlanc:   O(P_hallLuxeMarbre),
   appartVideLumineux:     O(P_residenceModerne),

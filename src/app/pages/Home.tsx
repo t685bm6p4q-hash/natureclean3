@@ -77,10 +77,16 @@ const realisationsPreview = [
     location: 'Marseille',
   },
   {
-    title: 'Programme neuf — 120 logements',
+    title: 'Remise en état appartement — Aubagne',
     category: 'Fin de chantier',
     image: IMAGES.finChantierAppartement,
-    location: 'Marseille 13010',
+    location: 'Aubagne',
+  },
+  {
+    title: 'Nettoyage fin de chantier — Intervention Nature Clean',
+    category: 'Fin de chantier',
+    image: IMAGES.nettoyageFinChantier,
+    location: 'Marseille & PACA',
   },
   {
     title: 'Mariage champetre — 200 convives',
@@ -118,7 +124,7 @@ export function Home() {
           src={getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')}
           srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
           sizes="100vw"
-          alt="Nettoyage professionnel industriel à Marseille - Machine industrielle de lavage de sols professionnelle Nature Clean"
+          alt="Nettoyage fin de chantier à Marseille — équipe Nature Clean sur intervention professionnelle"
           width="1920"
           height="1080"
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
