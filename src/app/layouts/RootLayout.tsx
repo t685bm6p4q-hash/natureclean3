@@ -61,15 +61,11 @@ export function RootLayout() {
             <Outlet />
           </Suspense>
         </main>
-        {!isDevis && (
-          <>
-            <Footer />
-            <Suspense fallback={null}>
-              <WhatsAppButton />
-              <MobileStickyBar />
-            </Suspense>
-          </>
-        )}
+        {!isDevis && <Footer />}
+        <Suspense fallback={null}>
+          {!isDevis && <MobileStickyBar />}
+          {isDevis && <WhatsAppButton />}
+        </Suspense>
         <Suspense fallback={null}>
           <CookieConsentBanner />
         </Suspense>

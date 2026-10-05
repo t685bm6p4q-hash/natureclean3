@@ -1,104 +1,111 @@
 /**
- * COUCHE 3 — VALIDATION PARANOIAQUE (Zod v4)
- *
- * Chaque caractere saisi est passe au scanner avant traitement.
- * Double validation : cote client (QuoteForm) + cote serveur (API).
- *
- * Protections :
- * - XSS : strip toutes les balises HTML
- * - SQL Injection : strip les patterns dangereux
- * - Longueur max : chaque champ est borne
- * - Format strict : email, telephone, code postal valides par regex
+ * Validation Zod — formulaire Lead Express (/devis)
  */
 
 import { z } from 'zod';
 
-// ===============================================
-// SANITIZERS (nettoyage avant validation)
-// ===============================================
-
-/** Supprime toutes les balises HTML et les entites dangereuses */
 function stripHtml(input: string): string {
   return input
-    .replace(/<[^>]*>/g, '')        // balises HTML
-    .replace(/&[#\w]+;/g, '')       // entites HTML
-    .replace(/javascript:/gi, '')    // liens JS
-    .replace(/on\w+\s*=/gi, '')     // event handlers inline
+    .replace(/<[^>]*>/g, '')
+    .replace(/&[#\w]+;/g, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+\s*=/gi, '')
     .trim();
 }
 
-/** Supprime les patterns d'injection SQL classiques */
 function stripSqlInjection(input: string): string {
   return input
-    .replace(/(['";\\])/g, '')           // quotes et backslash
-    .replace(/(--|\/\*|\*\/)/g, '')  // commentaires SQL
+    .replace(/(['";\\])/g, '')
+    .replace(/(--|\/\*|\*\/)/g, '')
     .replace(/\b(SELECT|INSERT|UPDATE|DELETE|DROP|UNION|ALTER|EXEC|EXECUTE)\b/gi, '')
     .trim();
 }
 
-/** Pipeline de sanitization complete */
 export function sanitize(input: string): string {
   return stripSqlInjection(stripHtml(input));
 }
 
-// ===============================================
-// SCHEMA ZOD - Formulaire de devis
-// (Zod v4 compatible — no .pipe(), no .email() method)
-// ===============================================
-
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-const PHONE_REGEX = /^[0-9\s.+()-]{10,20}$/;
+const PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
 const POSTAL_REGEX = /^[0-9]{5}$/;
 
-export const quoteFormSchema = z.object({
-  nom: z.string()
-    .min(1, { message: 'Le nom est obligatoire' })
-    .max(100, { message: 'Maximum 100 caracteres' })
-    .transform(sanitize),
+export const SURFACE_RANGE_OPTIONS = [
+  { id: 'moins-50', label: 'Moins de 50 m²' },
+  { id: '50-150', label: '50 – 150 m²' },
+  { id: '150-300', label: '150 – 300 m²' },
+  { id: 'plus-300', label: 'Plus de 300 m²' },
+  { id: 'inconnu', label: 'Je ne sais pas' },
+] as const;
 
-  prenom: z.string()
-    .min(1, { message: 'Le prenom est obligatoire' })
-    .max(100, { message: 'Maximum 100 caracteres' })
-    .transform(sanitize),
+export type SurfaceRangeId = (typeof SURFACE_RANGE_OPTIONS)[number]['id'];
 
-  email: z.string()
-    .min(1, { message: "L'email est obligatoire" })
-    .max(254, { message: 'Email trop long' })
-    .regex(EMAIL_REGEX, { message: 'Adresse email invalide' })
-    .transform((v: string) => v.toLowerCase().trim()),
+export const leadExpressSchema = z
+  .object({
+    secteur: z.string().min(1, { message: 'Choisissez un type de prestation.' }),
+    localisation: z
+      .string()
+      .min(2, { message: 'Indiquez une ville ou un code postal.' })
+      .max(120, { message: 'Maximum 120 caractères.' })
+      .transform(sanitize),
+    email: z.string().max(254).default(''),
+    telephone: z.string().max(30).default(''),
+    surface: z.string().default('inconnu'),
+    message: z
+      .string()
+      .min(3, { message: 'Décrivez votre besoin en quelques mots.' })
+      .max(2000, { message: 'Maximum 2000 caractères.' })
+      .transform(sanitize),
+    rgpd: z.literal(true, {
+      errorMap: () => ({ message: 'Vous devez accepter la politique de confidentialité.' }),
+    }),
+  })
+  .superRefine((data, ctx) => {
+    const email = data.email.trim();
+    const tel = data.telephone.trim();
 
-  telephone: z.string()
-    .min(1, { message: 'Le telephone est obligatoire' })
-    .max(20, { message: 'Numero trop long' })
-    .regex(PHONE_REGEX, { message: 'Numero de telephone invalide' })
-    .transform((v: string) => v.replace(/[^\d+]/g, '')),
+    if (!email && !tel) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Indiquez un téléphone ou un email pour que nous puissions vous rappeler.',
+        path: ['contact'],
+      });
+      return;
+    }
 
-  codePostal: z.string()
-    .regex(POSTAL_REGEX, { message: 'Code postal invalide (5 chiffres)' }),
+    if (email && !EMAIL_REGEX.test(email)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Format d'email invalide.",
+        path: ['email'],
+      });
+    }
 
-  message: z.string()
-    .max(2000, { message: 'Maximum 2000 caracteres' })
-    .default('')
-    .transform(sanitize),
+    if (tel && !PHONE_REGEX.test(tel)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Format invalide (ex. 06 12 34 56 78).',
+        path: ['telephone'],
+      });
+    }
 
-  rgpd: z.boolean()
-    .refine((v) => v === true, { message: 'Vous devez accepter la politique de confidentialité' }),
-});
+    const loc = data.localisation.trim();
+    if (!POSTAL_REGEX.test(loc) && loc.length < 2) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Ville ou code postal invalide.',
+        path: ['localisation'],
+      });
+    }
+  });
 
-/** Type infere depuis le schema Zod */
-export type ValidatedQuoteData = z.infer<typeof quoteFormSchema>;
+export type LeadExpressFormData = z.infer<typeof leadExpressSchema>;
 
-// ===============================================
-// HELPER pour integration react-hook-form
-// ===============================================
-
-/** Valide et sanitize les donnees du formulaire. Retourne les erreurs par champ. */
-export function validateQuoteForm(data: Record<string, unknown>): {
+export function validateLeadExpressForm(data: Record<string, unknown>): {
   success: boolean;
-  data?: ValidatedQuoteData;
+  data?: LeadExpressFormData;
   errors?: Record<string, string>;
 } {
-  const result = quoteFormSchema.safeParse(data);
+  const result = leadExpressSchema.safeParse(data);
 
   if (result.success) {
     return { success: true, data: result.data };
@@ -114,3 +121,10 @@ export function validateQuoteForm(data: Record<string, unknown>): {
 
   return { success: false, errors };
 }
+
+/** @deprecated Utiliser validateLeadExpressForm */
+export function validateQuoteForm(data: Record<string, unknown>) {
+  return validateLeadExpressForm(data);
+}
+
+export const quoteFormSchema = leadExpressSchema;

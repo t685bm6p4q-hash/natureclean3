@@ -14,7 +14,7 @@ import { useLocation } from 'react-router';
    
    Usage :
    - Appeler dans RootLayout (enregistrement automatique)
-   - Lire via getPageJourney() dans QuoteForm (envoi)
+   - Lire via getPageJourney() dans QuotePage (envoi)
    ────────────────────────────────────────────────────────── */
 
 const STORAGE_KEY = 'nc_page_journey';

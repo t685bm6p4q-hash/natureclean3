@@ -56,31 +56,61 @@ function checkRateLimit(ip: string, max: number, windowMs: number): { limited: b
 }
 
 // ═══════════════════════════════════════════════════════════════
-// SCHÉMA ZOD — accepte les deux formulaires (QuoteForm + QuotePage)
+// SCHÉMA ZOD — Lead Express (/devis) + formulaire contact
 // ═══════════════════════════════════════════════════════════════
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 // Permissif côté serveur : la validation stricte est déjà faite côté client
 const PHONE_REGEX = /^[\d\s().+\-/.]{7,30}$/;
 
-const quotePayloadSchema = z.object({
-  nom:                 z.string().min(1).max(200).transform(sanitize),
-  prenom:              z.string().max(100).default('').transform(sanitize),
-  email:               z.string().max(254).regex(EMAIL_REGEX).transform((v) => v.toLowerCase().trim()),
-  telephone:           z.string().max(30).regex(PHONE_REGEX),
-  codePostal:          z.string().max(10).default(''),
-  adresse:             z.string().max(500).default('').transform(sanitize),
-  typeNettoyage:       z.string().max(100).default('').transform(sanitize),
-  typeSurfaceGraffiti: z.string().max(100).default('').transform(sanitize),
-  surface:             z.string().max(20).default(''),
-  frequence:           z.string().max(100).default('').transform(sanitize),
-  message:             z.string().max(2000).default('').transform(sanitize),
-  source:              z.string().max(200).default('Site web Nature Clean'),
-  sourcePage:          z.string().max(200).default('/devis'),
-  referrer:            z.string().max(500).default(''),
-  journey:             z.string().max(2000).default(''),
-  timestamp:           z.string().max(50).default(''),
-});
+const quotePayloadSchema = z
+  .object({
+    nom: z.string().max(200).default('Lead Express').transform(sanitize),
+    prenom: z.string().max(100).default('').transform(sanitize),
+    email: z.string().max(254).default(''),
+    telephone: z.string().max(30).default(''),
+    codePostal: z.string().max(10).default(''),
+    adresse: z.string().max(500).default('').transform(sanitize),
+    typeNettoyage: z.string().max(100).default('').transform(sanitize),
+    typeSurfaceGraffiti: z.string().max(100).default('').transform(sanitize),
+    surface: z.string().max(30).default(''),
+    frequence: z.string().max(100).default('Intervention Unique').transform(sanitize),
+    message: z.string().max(2000).default('').transform(sanitize),
+    source: z.string().max(200).default('Site web Nature Clean'),
+    sourcePage: z.string().max(200).default('/devis'),
+    referrer: z.string().max(500).default(''),
+    journey: z.string().max(2000).default(''),
+    timestamp: z.string().max(50).default(''),
+  })
+  .superRefine((data, ctx) => {
+    const email = (data.email || '').trim();
+    const tel = (data.telephone || '').trim();
+
+    if (!email && !tel) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Téléphone ou email requis',
+        path: ['telephone'],
+      });
+      return;
+    }
+
+    if (email && !EMAIL_REGEX.test(email)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Email invalide',
+        path: ['email'],
+      });
+    }
+
+    if (tel && !PHONE_REGEX.test(tel)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Téléphone invalide',
+        path: ['telephone'],
+      });
+    }
+  });
 
 type ValidatedQuotePayload = z.infer<typeof quotePayloadSchema>;
 
@@ -89,8 +119,13 @@ type ValidatedQuotePayload = z.infer<typeof quotePayloadSchema>;
 // ═══════════════════════════════════════════════════════════════
 
 const SURFACE_LABELS: Record<string, string> = {
-  'moins-50': 'Moins de 50 m²', '50-100': '50 – 100 m²',
-  '100-300': '100 – 300 m²',    'plus-300': 'Plus de 300 m²',
+  'moins-50': 'Moins de 50 m²',
+  '50-100': '50 – 100 m²',
+  '50-150': '50 – 150 m²',
+  '100-300': '100 – 300 m²',
+  '150-300': '150 – 300 m²',
+  'plus-300': 'Plus de 300 m²',
+  inconnu: 'Non précisée',
 };
 const FREQUENCE_LABELS: Record<string, string> = {
   ponctuel: 'Ponctuel', hebdomadaire: 'Hebdomadaire', quotidien: 'Quotidien',
@@ -102,7 +137,10 @@ const TYPE_LABELS: Record<string, string> = {
   Bureaux: 'Bureaux', Particuliers: 'Particuliers', Copros: 'Copropriétés',
   Chantier: 'Fin de chantier', 'Festival/Événement': 'Festival / Événement',
   Graffitis: 'Dégraffitage', 'Centre commercial': 'Centre commercial',
-  Diogène: 'Syndrome de Diogène', Autres: 'Autres',
+  Diogène: 'Syndrome de Diogène',
+  Autres: 'Autres',
+  Vitres: 'Nettoyage de vitres',
+  'Remise en état sols': 'Remise en état sols',
 };
 
 const labelSurface   = (r: string) => SURFACE_LABELS[r]   || (r ? `${r} m²` : 'Non précisé');
@@ -146,8 +184,8 @@ function buildEmailHtml(data: ValidatedQuotePayload): string {
     <div style="padding:24px;background:#f9fafb;">
       ${sec('👤 Coordonnées du client')}
       ${row('Nom', clientName)}
-      ${row('Téléphone', data.telephone, 'tel')}
-      ${row('Email', data.email, 'mail')}
+      ${data.telephone ? row('Téléphone', data.telephone, 'tel') : ''}
+      ${data.email ? row('Email', data.email, 'mail') : ''}
       ${data.adresse ? row("Adresse d'intervention", data.adresse) : ''}
       ${data.codePostal && !data.adresse ? row('Code postal', data.codePostal) : ''}
       ${sec('🏢 Détails de la prestation')}
@@ -266,7 +304,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // ── Log pseudonymisé ──────────────────────────────────────
     console.log('[send-quote][OK]', JSON.stringify({
-      emailMasked: maskEmail(data.email), telMasked: maskPhone(data.telephone),
+      emailMasked: data.email ? maskEmail(data.email) : '—',
+      telMasked: data.telephone ? maskPhone(data.telephone) : '—',
       typeNettoyage: data.typeNettoyage, surface: data.surface,
       frequence: data.frequence, sourcePage: data.sourcePage,
     }));
