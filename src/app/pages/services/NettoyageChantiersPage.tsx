@@ -110,22 +110,22 @@ export function NettoyageChantiersPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               {([
-                { icon: Trash2, title: 'Évacuation', image: IMAGES.appartAvantChantier, items: [
+                { icon: Trash2, title: 'Évacuation', image: IMAGES.nettoyageFinChantier, items: [
                   { bold: 'Retrait', text: 'des menus gravats et résidus de matériaux' },
                   { bold: 'Élimination', text: 'de la sciure, colle et plâtre' },
                   { bold: 'Tri', text: 'et recyclage selon les normes en vigueur' },
                 ]},
-                { icon: Sparkles, title: 'Sols & Murs', image: IMAGES.cuisineApresTravaux, items: [
+                { icon: Sparkles, title: 'Sols & Murs', image: IMAGES.decapageSolEco, items: [
                   { bold: 'Élimination', text: 'du voile de ciment et laitance' },
                   { bold: 'Retrait', text: 'des traces de peinture et plâtre' },
                   { bold: 'Lessivage', text: 'avec produits adaptés à chaque surface' },
                 ]},
-                { icon: Droplets, title: 'Vitres', image: IMAGES.cuisineLivraisonValentine, items: [
+                { icon: Droplets, title: 'Vitres', image: IMAGES.lavageVitrine, items: [
                   { bold: 'Nettoyage complet', text: 'des vitrages et cadres' },
                   { bold: 'Retrait', text: 'des autocollants de protection' },
                   { bold: 'Nettoyage', text: 'des rails et joints encrassés' },
                 ]},
-                { icon: Package, title: 'Détails Techniques', image: IMAGES.remiseEtatAppartMarseille, items: [
+                { icon: Package, title: 'Détails Techniques', image: IMAGES.finChantierAppartement, items: [
                   { bold: 'Désinfection', text: 'des prises et interrupteurs' },
                   { bold: 'Nettoyage', text: 'des radiateurs et luminaires' },
                   { bold: 'Dépoussiérage', text: 'complet de tous les espaces' },
@@ -140,7 +140,7 @@ export function NettoyageChantiersPage() {
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="lazy" decoding="async" width={400} height={150}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/20 via-transparent to-white/80" />
+                      <div className="absolute inset-0 bg-gray-900/25" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
                           <card.icon className="w-6 h-6 text-green-600" aria-hidden="true" />
@@ -217,12 +217,9 @@ export function NettoyageChantiersPage() {
             {/* Grille 3 colonnes — photos authentiques, sans mise en scène */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
               {([
-                { src: IMAGES.nettoyageFinChantier, alt: 'Nettoyage fin de chantier Marseille — Nature Clean', label: 'Chantier Marseille' },
-                { src: IMAGES.finChantierAppartement, alt: 'Fin de chantier appartement — remise en état après travaux', label: 'Appartement neuf' },
-                { src: IMAGES.finChantierMaison, alt: 'Nettoyage fin de chantier maison individuelle PACA', label: 'Maison individuelle' },
-                { src: IMAGES.finChantierEquipe, alt: 'Équipe Nature Clean sur chantier de fin de travaux', label: 'Notre équipe en action' },
-                { src: IMAGES.finChantierMarseille, alt: 'Fin de chantier Marseille — livraison impeccable Nature Clean', label: 'Marseille 13' },
-                { src: IMAGES.finChantierCassis, alt: 'Nettoyage fin de chantier Cassis — Nature Clean', label: 'Cassis' },
+                { src: IMAGES.nettoyageFinChantier, alt: 'Nettoyage fin de chantier sur site — intervention Nature Clean Marseille', label: 'Fin de chantier sur site' },
+                { src: IMAGES.finChantierAppartement, alt: 'Remise en état appartement Aubagne après travaux — Nature Clean', label: 'Remise en état — Aubagne' },
+                { src: IMAGES.finChantierMaison, alt: 'Équipe Nature Clean en intervention fin de chantier Marseille PACA', label: 'Équipe sur chantier' },
               ] as const).map((photo, i) => (
                 <ScrollReveal key={photo.label} delay={i * 0.07}>
                   <div className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-[4/3]">
@@ -267,9 +264,9 @@ export function NettoyageChantiersPage() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               {([
-                { icon: HardHat, title: 'Entreprises BTP', image: IMAGES.appartAvantChantier, desc: 'Maçons, charpentiers, menuisiers et peintres qui souhaitent offrir une livraison propre' },
-                { icon: Package, title: 'Artisans', image: IMAGES.finChantierAppartement, desc: 'Professionnels du bâtiment ayant besoin d\'un partenaire fiable pour la phase finale' },
-                { icon: Sparkles, title: 'Particuliers', image: IMAGES.remiseEtatAppartMarseille, desc: 'Propriétaires gérant eux-mêmes leur rénovation et ayant besoin d\'un coup de pouce' },
+                { icon: HardHat, title: 'Entreprises BTP', image: IMAGES.nettoyageFinChantier, desc: 'Maçons, charpentiers, menuisiers et peintres qui souhaitent offrir une livraison propre' },
+                { icon: Package, title: 'Artisans', image: IMAGES.finChantierMaison, desc: 'Professionnels du bâtiment ayant besoin d\'un partenaire fiable pour la phase finale' },
+                { icon: Sparkles, title: 'Particuliers', image: IMAGES.finChantierAppartement, desc: 'Propriétaires gérant eux-mêmes leur rénovation et ayant besoin d\'un coup de pouce' },
               ] as const).map((card, i) => (
                 <ScrollReveal key={card.title} delay={i * 0.08}>
                   <div className="relative bg-gray-50 rounded-2xl overflow-hidden shadow-md h-full">
