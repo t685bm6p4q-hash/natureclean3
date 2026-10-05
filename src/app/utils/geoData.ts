@@ -167,8 +167,9 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     heroImage: IMAGES.cabinetMedical,
     heroAlt: 'Nettoyage désinfection cabinet médical Marseille — protocole sanitaire Nature Clean',
     seo: {
-      title: 'Nettoyage Médical Marseille | Nature Clean',
-      description: 'Nettoyage médical à Marseille — Désinfection normes sanitaires : cabinets, dentistes, labos. Devis sous 2 h. 50 % produits éco-certifiés.',
+      title: 'Nettoyage Cabinet Médical Marseille | Désinfection | Nature Clean',
+      description:
+        'Nettoyage cabinet médical à Marseille : dentistes, kinés, labos. Protocole désinfection & traçabilité. Devis 24 h · 04 84 89 68 75 · 50 % produits éco-certifiés.',
       keywords: 'nettoyage médical Marseille, désinfection cabinet médical Marseille, nettoyage clinique Marseille, entretien locaux santé 13, nettoyage pharmacie Marseille, protocole désinfection ARS Marseille',
     },
     intro: 'À Marseille, un cabinet médical ou paramédical ne peut pas se permettre l\'approximation. Nos clients dans le milieu de la santé nous le disent clairement : ils ont besoin d\'un prestataire qui connaît les protocoles, qui n\'arrive pas avec du produit multi-usage et une serpillière. Nature Clean intervient dans les cabinets de médecins généralistes, spécialistes, kinésithérapeutes, dentistes, infirmières libérales et laboratoires d\'analyses à Marseille. Produits virucides et bactéricides adaptés à chaque zone, traçabilité des interventions sur demande, et discrétion totale entre deux consultations.',
@@ -215,8 +216,9 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     heroImage: IMAGES.grandOpenSpaceModerne,
     heroAlt: 'Nettoyage de bureaux professionnels a Marseille — Nature Clean Marseille',
     seo: {
-      title: 'Nettoyage Bureaux Marseille | Nature Clean',
-      description: 'Nettoyage de bureaux à Marseille — Devis sous 2 h. Joliette, Vieux-Port, 13001-13016. 50 % éco-responsable. Nature Clean.',
+      title: 'Entreprise Nettoyage Bureaux Marseille | Devis 24h | Nature Clean',
+      description:
+        'Entreprise de nettoyage de bureaux à Marseille 8e. Joliette, Prado, 13001-13016. Devis gratuit 24 h · Note 4,7/5 · 04 84 89 68 75 · Éco-responsable.',
       keywords: 'nettoyage bureaux Marseille, entretien locaux Marseille, societe nettoyage Marseille, nettoyage professionnel Marseille 13, menage bureau Marseille, entreprise nettoyage 13008',
     },
     intro: 'Nature Clean est une entreprise de nettoyage professionnelle basee a Marseille 8e, et c\'est ici que nous intervenons au quotidien pour l\'entretien de vos bureaux et locaux professionnels. Du Vieux-Port a la Timone, du Prado aux Calanques, de la zone d\'activites de Vitrolles au technopole de Chateau-Gombert : nos equipes connaissent Marseille arrondissement par arrondissement, et nous assurons un nettoyage professionnel adapte a vos horaires, a votre surface et a votre secteur d\'activite.',
@@ -263,8 +265,9 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     heroImage: IMAGES.hallMarbreAscenseurs,
     heroAlt: 'Nettoyage coproprietes et parties communes a Aubagne — Nature Clean',
     seo: {
-      title: 'Nettoyage Coproprietes Aubagne (13400) | Nature Clean | Contrat Syndic',
-      description: 'Entretien de coproprietes a Aubagne : halls, escaliers, parkings, local poubelles. Contrat syndic sur mesure. Equipe de proximite. Devis gratuit 04 84 89 68 75',
+      title: 'Nettoyage Copropriété Aubagne (13400) | Syndic | Nature Clean',
+      description:
+        'Nettoyage copropriété à Aubagne : halls, escaliers, parkings, locaux poubelles. Contrat syndic sur mesure · 15 min de Marseille · Devis 24 h · 04 84 89 68 75',
       keywords: 'nettoyage copropriete Aubagne, entretien parties communes 13400, nettoyage syndic Aubagne, menage immeuble Aubagne, entretien residence Aubagne',
     },
     intro: 'Nature Clean accompagne les syndics, gestionnaires et coproprietes d\'Aubagne dans l\'entretien de leurs parties communes. Du centre-ville aux quartiers residentiels de la Tourtelle, du Pin Vert ou de Camp Major, nous assurons un nettoyage regulier et rigoureux de vos halls, escaliers, ascenseurs et espaces exterieurs.',

@@ -7,9 +7,9 @@ export interface SEOEntry {
 /** Registre central des meta title / description / keywords par section. */
 export const SEO_DATA: Record<string, SEOEntry> = {
   home: {
-    title: 'Nettoyage Professionnel Marseille | Nature Clean',
+    title: 'Entreprise de Nettoyage Marseille (13) | 4,7★ | Nature Clean',
     description:
-      'Nettoyage professionnel à Marseille et PACA. Devis gratuit sous 2 h, 7j/7. Bureaux, copropriétés, fin de chantier. Note 4,7/5 · Éco-responsable · 04 84 89 68 75',
+      'Entreprise de nettoyage à Marseille : bureaux, copropriétés, fin de chantier. Devis gratuit sous 24 h · 7j/7 · 500+ clients · Éco-responsable · 04 84 89 68 75',
     keywords:
       'entretien Marseille, nettoyage Marseille, ménage Marseille, entreprise nettoyage 13, entretien bureaux Marseille, ménage copropriété, propreté professionnelle Bouches-du-Rhône, Nature Clean',
   },
@@ -69,9 +69,9 @@ export const SEO_DATA: Record<string, SEOEntry> = {
       'ménage domicile Marseille, nettoyage particulier 13, femme ménage Marseille, nettoyage déménagement, ménage Airbnb Marseille, entretien maison Marseille, produits écologiques',
   },
   'entretien-bureaux': {
-    title: 'Entretien Bureaux Marseille | Nature Clean',
+    title: 'Nettoyage Bureaux Marseille | Entreprise pro 13 | Nature Clean',
     description:
-      'Nettoyage de bureaux à Marseille : open spaces, sanitaires, vitres. Intervention 6h-22h, 7j/7. Devis sous 2 h. Note 4,7/5 · RC Pro · Éco-responsable.',
+      'Entreprise de nettoyage de bureaux à Marseille (13001-13016). Open spaces, sanitaires, vitres. Devis 24 h · 6h-22h · Note 4,7/5 · RC Pro · 04 84 89 68 75',
     keywords:
       'entretien bureaux Marseille, nettoyage bureaux 13, nettoyage open space, société nettoyage bureaux, entretien locaux professionnels Marseille, ménage bureau quotidien',
   },
@@ -83,9 +83,9 @@ export const SEO_DATA: Record<string, SEOEntry> = {
       'nettoyage commerce Marseille, entretien boutique 13, nettoyage vitrine magasin, nettoyage restaurant Marseille, propreté commerce, nettoyage surface de vente',
   },
   'nettoyage-coproprietes': {
-    title: 'Nettoyage Copropriétés Marseille | Nature Clean',
+    title: 'Nettoyage Copropriété Marseille | Syndic & parties communes',
     description:
-      'Entretien parties communes à Marseille : halls, escaliers, parkings. Contrats syndic sur mesure. Devis sous 2 h. Note 4,7/5 · Éco-responsable.',
+      'Nettoyage copropriété à Marseille : halls, escaliers, parkings. Contrats syndic flexibles. Devis 24 h · Note 4,7/5 · Bouches-du-Rhône · 04 84 89 68 75',
     keywords:
       'nettoyage copropriété Marseille, entretien parties communes 13, ménage immeuble Marseille, nettoyage syndic, entretien hall escalier, nettoyage résidence Marseille',
   },

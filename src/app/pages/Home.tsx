@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import {
   Leaf, ArrowRight, Phone, Sparkles, CheckCircle2,
-  Star, MapPin, HardHat, Shield, Clock, Banknote,
+  Star, MapPin, HardHat, Shield, Clock, Banknote, Building, Building2,
   Recycle, Users, SprayCan, Cog, FileCheck, Eraser, Zap, Store,
 } from 'lucide-react';
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
@@ -62,6 +62,34 @@ const quartiersMarseille = [
   'La Timone', 'Saint-Loup', 'La Valentine', 'Les Cinq Avenues',
   'Le Panier', 'Saint-Charles', 'La Blancarde', 'Bonneveine', 'Mazargues',
 ];
+
+/** Maillage SEO — landings locales indexables (Bouches-du-Rhône). */
+const localExpertisePages = [
+  {
+    to: '/nettoyage-bureaux-marseille',
+    title: 'Entreprise nettoyage bureaux',
+    subtitle: 'Marseille & 13001-13016',
+    icon: Building,
+  },
+  {
+    to: '/nettoyage-fin-chantier-marseille',
+    title: 'Fin de chantier',
+    subtitle: 'Après travaux & promoteurs',
+    icon: HardHat,
+  },
+  {
+    to: '/nettoyage-medical-marseille',
+    title: 'Cabinets médicaux',
+    subtitle: 'Désinfection & protocoles',
+    icon: Shield,
+  },
+  {
+    to: '/nettoyage-coproprietes-aubagne',
+    title: 'Copropriétés syndic',
+    subtitle: 'Aubagne & Est marseillais',
+    icon: Building2,
+  },
+] as const;
 
 const realisationsPreview = [
   {
@@ -823,7 +851,53 @@ export function Home() {
                 Entretien professionnel dans tout le Sud
               </h2>
               <p className="text-lg text-gray-500">
-                Nous intervenons sur Marseille et l'ensemble de la région PACA pour le ménage, l'entretien et le nettoyage de vos locaux — Bouches-du-Rhône, Var, Alpes-Maritimes.
+                Basés à Marseille 8e, nous intervenons sur Marseille, Aubagne, Aix-en-Provence et La Ciotat (13) — devis gratuit sous 24 h pour bureaux, copropriétés et fin de chantier.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="max-w-4xl mx-auto mb-10">
+              <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4 text-center">
+                Nos expertises locales
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {localExpertisePages.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      className="group flex items-start gap-3 bg-white border border-gray-200 rounded-xl px-4 py-4 hover:border-green-400 hover:shadow-md transition-all"
+                    >
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50 text-green-700 group-hover:bg-green-100">
+                        <Icon className="w-5 h-5" aria-hidden="true" />
+                      </span>
+                      <span>
+                        <span className="block font-bold text-gray-900 group-hover:text-green-800">
+                          {item.title}
+                        </span>
+                        <span className="text-sm text-gray-500">{item.subtitle}</span>
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-green-600 ml-auto mt-1 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                    </Link>
+                  );
+                })}
+              </div>
+              <p className="text-center mt-4">
+                <Link
+                  to="/devis"
+                  className="text-sm font-semibold text-green-700 hover:text-green-800 underline underline-offset-4"
+                >
+                  Demander un devis express
+                </Link>
+                <span className="text-gray-400 mx-2">·</span>
+                <Link
+                  to="/zones-intervention"
+                  className="text-sm font-semibold text-gray-600 hover:text-green-700"
+                >
+                  Toutes nos zones
+                </Link>
               </p>
             </div>
           </ScrollReveal>

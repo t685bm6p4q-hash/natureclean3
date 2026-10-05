@@ -1,0 +1,32 @@
+# Google Search Console — actions manuelles (après déploiement)
+# https://search.google.com/search-console
+
+## 1. Sitemap
+# Indexation → Sitemaps → Resoumettre :
+https://natureclean.fr/sitemap.xml
+
+## 2. Inspection d’URL → « Demander une indexation » (une par une, pages cibles)
+https://natureclean.fr/
+https://natureclean.fr/nettoyage-bureaux-marseille
+https://natureclean.fr/nettoyage-medical-marseille
+https://natureclean.fr/nettoyage-fin-chantier-marseille
+https://natureclean.fr/nettoyage-coproprietes-aubagne
+https://natureclean.fr/services/entretien-bureaux
+https://natureclean.fr/services/nettoyage-coproprietes
+https://natureclean.fr/devis
+
+## 3. Anciennes URLs 06/Var (vérifier redirection 301 vers destination)
+# Dans Inspection : l’URL source doit afficher « Redirection » vers la bonne page.
+https://natureclean.fr/nettoyage-bureaux-cannes
+https://natureclean.fr/nettoyage-bureaux-sophia-antipolis
+https://natureclean.fr/nettoyage-fin-chantier-nice
+
+## 4. Fiche Google Business (hors GSC)
+# Catégorie : Entreprise de nettoyage
+# Site : https://natureclean.fr
+# Zone : Marseille + communes réellement couvertes (13)
+# 2 posts/mois + photos chantiers + demander des avis après mission
+
+## 5. Suivi KPI (filtre France, 28 jours)
+# Requêtes : entreprise de nettoyage marseille, nettoyage bureaux marseille,
+# nettoyage cabinet médical marseille, nature clean

@@ -20,7 +20,14 @@ function metaFor(path: string): { changefreq: string; priority: string } {
     return { changefreq: 'monthly', priority: '0.9' };
   }
   if (path.startsWith('/services/')) return { changefreq: 'monthly', priority: '0.9' };
-  if (path.startsWith('/nettoyage-bureaux-marseille') || path.startsWith('/nettoyage-fin-chantier')) {
+  if (
+    path.startsWith('/nettoyage-bureaux-marseille') ||
+    path.startsWith('/nettoyage-fin-chantier') ||
+    path.startsWith('/nettoyage-medical-marseille') ||
+    path.startsWith('/nettoyage-industriel-marseille') ||
+    path.startsWith('/nettoyage-coproprietes-') ||
+    path.startsWith('/nettoyage-bureaux-aix')
+  ) {
     return { changefreq: 'monthly', priority: '0.9' };
   }
   if (path.startsWith('/blog')) return { changefreq: 'weekly', priority: path === '/blog' ? '0.7' : '0.6' };

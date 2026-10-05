@@ -120,7 +120,15 @@
     { "source": "/nettoyage-coproprietes-plan-de-cuques", "destination": "/services/nettoyage-coproprietes", "permanent": true },
     { "source": "/nettoyage-particuliers-cassis", "destination": "/nettoyage-particuliers", "permanent": true },
     { "source": "/nettoyage-bureaux-cassis", "destination": "/services/entretien-bureaux", "permanent": true },
-    { "source": "/nettoyage-bureaux-vitrolles", "destination": "/services/entretien-bureaux", "permanent": true }
+    { "source": "/nettoyage-bureaux-vitrolles", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-bureaux-nice", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-bureaux-antibes", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-bureaux-grasse", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-open-space-nice", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-fin-chantier-marignane", "destination": "/nettoyage-fin-chantier-marseille", "permanent": true },
+    { "source": "/nettoyage-fin-chantier-aubagne", "destination": "/nettoyage-fin-chantier-marseille", "permanent": true },
+    { "source": "/nettoyage-coproprietes-marseille", "destination": "/services/nettoyage-coproprietes", "permanent": true },
+    { "source": "/nettoyage-medical-marseille.html", "destination": "/nettoyage-medical-marseille", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
