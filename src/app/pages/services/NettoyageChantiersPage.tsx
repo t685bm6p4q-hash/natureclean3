@@ -215,11 +215,12 @@ export function NettoyageChantiersPage() {
             </ScrollReveal>
 
             {/* Grille 3 colonnes — photos authentiques, sans mise en scène */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               {([
                 { src: IMAGES.nettoyageFinChantier, alt: 'Nettoyage fin de chantier sur site — intervention Nature Clean Marseille', label: 'Fin de chantier sur site' },
                 { src: IMAGES.finChantierAppartement, alt: 'Remise en état appartement Aubagne après travaux — Nature Clean', label: 'Remise en état — Aubagne' },
                 { src: IMAGES.finChantierMaison, alt: 'Équipe Nature Clean en intervention fin de chantier Marseille PACA', label: 'Équipe sur chantier' },
+                { src: IMAGES.decapageSolEco, alt: 'Décapage et lessivage des sols après travaux — fin de chantier Nature Clean', label: 'Sols & revêtements — chantier livré' },
               ] as const).map((photo, i) => (
                 <ScrollReveal key={photo.label} delay={i * 0.07}>
                   <div className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-[4/3]">
