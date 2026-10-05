@@ -5,14 +5,12 @@ import { Footer } from '@/app/components/Footer';
 import { SkipToContent } from '@/app/components/SkipToContent';
 import { AuthProvider } from '@/app/contexts/AuthContext';
 import { usePageJourney } from '@/app/hooks/usePageJourney';
+import { IMAGES } from '@/app/utils/images';
 
 // Lazy-load non-critical layout components — hors du bundle critique
 const WhatsAppButton  = lazy(() => import('@/app/components/WhatsAppButton').then(m => ({ default: m.WhatsAppButton })));
 const MobileStickyBar = lazy(() => import('@/app/components/MobileStickyBar').then(m => ({ default: m.MobileStickyBar })));
 const CookieConsentBanner = lazy(() => import('@/app/components/CookieConsentBanner').then(m => ({ default: m.CookieConsentBanner })));
-
-// Logo URL statique — pas besoin d'importer IMAGES + cloudinaryHelper dans le bundle principal
-const LOGO_URL = 'https://res.cloudinary.com/dq6pesttn/image/upload/f_auto,q_auto,w_144/v1742932740/logo-nature-clean-marseille_wu9ql5.png';
 
 function LoadingFallback() {
   return (
@@ -30,11 +28,11 @@ function DevisHeader() {
     <header className="h-[80px] border-b border-gray-100 bg-white flex items-center justify-center px-4">
       <Link to="/" aria-label="Nature Clean - Retour à l'accueil" className="flex items-center gap-3 group">
         <img
-          src={LOGO_URL}
+          src={IMAGES.logoNatureClean}
           alt=""
-          width="56"
-          height="56"
-          className="w-14 h-14 rounded-full shadow-sm object-contain bg-white ring-2 ring-gray-100 group-hover:shadow-md transition-shadow"
+          width="72"
+          height="72"
+          className="w-[72px] h-[72px] rounded-full shadow-md object-cover bg-white ring-2 ring-gray-100 group-hover:shadow-lg transition-shadow"
           aria-hidden="true"
         />
         <div>
