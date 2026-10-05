@@ -34,6 +34,12 @@ export const SEO_DATA: Record<string, SEOEntry> = {
     keywords:
       'devis entretien Marseille, tarif ménage 13, prix nettoyage bureaux, estimation propreté copropriété, devis gratuit nettoyage professionnel',
   },
+  merci: {
+    title: 'Demande bien reçue | Nature Clean',
+    description:
+      'Votre demande de devis a été enregistrée. Nature Clean vous contacte sous 24 h à Marseille et en PACA.',
+    keywords: 'confirmation devis nettoyage Marseille',
+  },
   contact: {
     title: 'Contact Nature Clean Marseille | Nature Clean',
     description:

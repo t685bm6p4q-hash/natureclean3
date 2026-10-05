@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
+import { storeDevisLeadForMerci } from '@/app/utils/devisLeadSession';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import {
   Building,
@@ -115,9 +116,9 @@ export function QuotePage() {
     setFormData((prev) => ({ ...prev, secteur: matchedSector || prev.secteur }));
   }, [serviceParam, matchedSector]);
 
+  const navigate = useNavigate();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -192,7 +193,6 @@ export function QuotePage() {
       }
 
       if (window.NatureCleanTracking) {
-        window.NatureCleanTracking.trackConversion('Lead', 1);
         window.NatureCleanTracking.trackEvent('form_submit', {
           form_name: 'devis_express',
           service: data.secteur,
@@ -200,17 +200,13 @@ export function QuotePage() {
         });
       }
 
-      setIsSuccess(true);
-      setFormData({
-        secteur: matchedSector,
-        localisation: '',
-        email: '',
-        telephone: '',
-        surface: 'inconnu',
-        message: '',
-        rgpd: false,
-      });
-      setUserExpandedSectors(false);
+      const serviceLabel =
+        SECTORS.find((s) => s.id === data.secteur)?.label ?? data.secteur;
+      storeDevisLeadForMerci(data.secteur);
+      const qs = serviceLabel
+        ? `?service=${encodeURIComponent(serviceLabel)}`
+        : '';
+      navigate(`/merci${qs}`, { replace: true });
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : '';
       if (msg.startsWith('RATE_LIMITED:')) {
@@ -326,30 +322,7 @@ export function QuotePage() {
 
           <div className="flex-1 px-5 sm:px-7 py-5 pb-28 lg:pb-8">
             <div className="max-w-xl w-full mx-auto">
-              {isSuccess ? (
-                <div className="flex flex-col items-center justify-center gap-4 text-center py-12">
-                  <div className="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center">
-                    <CheckCircle2 className="w-7 h-7 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">Demande envoyée !</h3>
-                    <p className="text-gray-500 text-sm mt-1 max-w-xs">
-                      Nous vous contactons sous 24h. Besoin urgent ?{' '}
-                      <a href={PHONE_HREF} className="text-emerald-600 font-semibold underline">
-                        {PHONE_DISPLAY}
-                      </a>
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setIsSuccess(false)}
-                    className="text-emerald-600 text-sm font-medium hover:text-emerald-700 underline underline-offset-4"
-                  >
-                    Envoyer une autre demande
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-4">
+              <form onSubmit={handleSubmit} noValidate className="space-y-4">
                   {/* Service */}
                   <div>
                     <label className="block text-xs font-semibold text-gray-600 mb-1.5">
@@ -556,7 +529,6 @@ export function QuotePage() {
                     </button>
                   </div>
                 </form>
-              )}
             </div>
           </div>
         </div>

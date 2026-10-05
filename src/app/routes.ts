@@ -38,6 +38,7 @@ export const router = createBrowserRouter([
       { path: 'realisations', lazy: () => import('@/app/pages/RealisationsPage').then(m => ({ Component: m.RealisationsPage })) },
       { path: 'actualites', lazy: () => import('@/app/pages/ActualitesPage').then(m => ({ Component: m.ActualitesPage })) },
       { path: 'devis', lazy: () => import('@/app/pages/QuotePage').then(m => ({ Component: m.QuotePage })) },
+      { path: 'merci', lazy: () => import('@/app/pages/MerciPage').then(m => ({ Component: m.MerciPage })) },
       { path: 'contact', lazy: () => import('@/app/pages/ContactPage').then(m => ({ Component: m.ContactPage })) },
       { path: 'zones-intervention', lazy: () => import('@/app/pages/ZonesInterventionPage').then(m => ({ Component: m.ZonesInterventionPage })) },
       { path: 'admin/login', lazy: () => import('@/app/pages/AdminLoginPage').then(m => ({ Component: m.AdminLoginPage })) },

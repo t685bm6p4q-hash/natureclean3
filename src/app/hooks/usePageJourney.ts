@@ -62,7 +62,7 @@ export function usePageJourney(): void {
 
 /**
  * Récupère le parcours complet du prospect.
- * À appeler dans QuoteForm au moment de la soumission.
+ * À appeler dans QuotePage au moment de la soumission.
  */
 export function getPageJourney(): JourneyStep[] {
   try {
