@@ -195,7 +195,6 @@ export function NettoyageCoproprietesPage() {
                         width={400}
                         height={150}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/20 via-transparent to-white/80" />
                       <div className="absolute bottom-0 left-0 right-0 flex items-end px-4 pb-3">
                         <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md border border-green-100">
                           <card.icon className="w-5 h-5 text-green-600" aria-hidden="true" />

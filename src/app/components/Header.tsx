@@ -286,8 +286,7 @@ export function Header() {
                   }`}
                   aria-hidden={!entrepriseOpen}
                 >
-                    {/* ── Zone GAUCHE : opaque + blur (couvre texte) ── */}
-                    <div className="absolute inset-y-0 left-0 w-[74%] bg-white/92 backdrop-blur-xl pointer-events-none" aria-hidden="true" />
+                    <div className="absolute inset-y-0 left-0 w-[74%] bg-white pointer-events-none" aria-hidden="true" />
                     {/* ── Zone DROITE : RIEN — 100% transparent, on voit la page ── */}
                     {/* ── Bordure vitre verticale — trait lumineux net ── */}
                     <div className="absolute inset-y-0 left-[74%] w-[3px] pointer-events-none z-10" aria-hidden="true">
@@ -296,7 +295,7 @@ export function Header() {
                     </div>
                     {/* ── Reflets vitre ultra-légers côté droit ── */}
                     <div className="absolute top-0 left-[75%] right-0 h-full pointer-events-none overflow-hidden" aria-hidden="true">
-                      <div className="absolute -top-1/2 -right-1/4 w-full h-[200%] rotate-[20deg] bg-gradient-to-b from-white/10 via-transparent to-white/8 blur-[1px]" />
+                      <div className="absolute -top-1/2 -right-1/4 w-full h-[200%] rotate-[20deg] bg-gradient-to-b from-white/10 via-transparent to-white/8" />
                     </div>
                     {/* ── Cadre extérieur ─ */}
                     <div className="absolute inset-0 rounded-xl border border-white/40 pointer-events-none" aria-hidden="true" />
@@ -398,8 +397,7 @@ export function Header() {
                   }`}
                   aria-hidden={!plusOpen}
                 >
-                    {/* ── Zone GAUCHE : opaque + blur (couvre texte) ── */}
-                    <div className="absolute inset-y-0 left-0 w-[74%] bg-white/92 backdrop-blur-xl pointer-events-none" aria-hidden="true" />
+                    <div className="absolute inset-y-0 left-0 w-[74%] bg-white pointer-events-none" aria-hidden="true" />
                     {/* ── Zone DROITE : RIEN — 100% transparent ── */}
                     {/* ── Bordure vitre verticale — trait lumineux net ── */}
                     <div className="absolute inset-y-0 left-[74%] w-[3px] pointer-events-none z-10" aria-hidden="true">
@@ -408,7 +406,7 @@ export function Header() {
                     </div>
                     {/* ── Reflets vitre ultra-légers côté droit ── */}
                     <div className="absolute top-0 left-[75%] right-0 h-full pointer-events-none overflow-hidden" aria-hidden="true">
-                      <div className="absolute -top-1/2 -right-1/4 w-full h-[200%] rotate-[20deg] bg-gradient-to-b from-white/10 via-transparent to-white/8 blur-[1px]" />
+                      <div className="absolute -top-1/2 -right-1/4 w-full h-[200%] rotate-[20deg] bg-gradient-to-b from-white/10 via-transparent to-white/8" />
                     </div>
                     {/* ── Cadre extérieur ── */}
                     <div className="absolute inset-0 rounded-xl border border-white/40 pointer-events-none" aria-hidden="true" />

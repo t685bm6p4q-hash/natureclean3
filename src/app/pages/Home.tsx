@@ -325,7 +325,6 @@ export function Home() {
                     loading="lazy"
                     className="hidden sm:block absolute inset-0 w-full h-full object-cover opacity-[0.055] pointer-events-none select-none scale-105 group-hover:opacity-[0.09] transition-opacity duration-500"
                   />
-                  <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-gray-50/80 via-gray-50/60 to-transparent pointer-events-none" />
                   <div className="relative z-10">
                     <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-green-700 transition-colors">
                       <item.icon className="w-6 h-6 text-green-600 group-hover:text-white transition-colors" aria-hidden="true" />
@@ -384,9 +383,8 @@ export function Home() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={320} loading="lazy" decoding="async"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                      <span className="bg-green-500/95 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                      <span className="bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                         Commerces & magasins · Marseille
                       </span>
                     </div>
@@ -402,9 +400,8 @@ export function Home() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={256} loading="lazy" decoding="async"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                     <div className="absolute bottom-3 left-3">
-                      <span className="bg-blue-500/95 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                      <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                         Cabinets médicaux · Normes sanitaires
                       </span>
                     </div>
@@ -531,9 +528,8 @@ export function Home() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={320} loading="lazy" decoding="async"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                     <div className="absolute bottom-4 left-4">
-                      <span className="bg-amber-500/95 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                      <span className="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                         Fin de chantier maison · Marseille
                       </span>
                     </div>
@@ -549,9 +545,8 @@ export function Home() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={256} loading="lazy" decoding="async"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                     <div className="absolute bottom-3 left-3">
-                      <span className="bg-orange-500/95 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                      <span className="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                         Terrasses & extérieurs pro
                       </span>
                     </div>
@@ -643,7 +638,7 @@ export function Home() {
                     ].map((stat) => (
                       <div
                         key={stat.label}
-                        className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-center"
+                        className="bg-white/15 border border-white/25 rounded-2xl p-5 text-center"
                       >
                         <div className="text-3xl font-black text-green-400 mb-1">{stat.value}</div>
                         <div className="text-xs text-gray-300 leading-tight">{stat.label}</div>

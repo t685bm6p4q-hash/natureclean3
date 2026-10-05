@@ -278,7 +278,6 @@ export function NettoyageChantiersPage() {
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="lazy" decoding="async" width={400} height={120}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/20 via-transparent to-gray-50/80" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-10 h-10 bg-white/90 rounded-lg flex items-center justify-center shadow-lg">
                           <card.icon className="w-5 h-5 text-green-600" aria-hidden="true" />

@@ -187,7 +187,6 @@ export function Services() {
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-4 left-4">
                       <IconComponent className="w-8 h-8 text-white" />
                     </div>

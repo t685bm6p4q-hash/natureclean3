@@ -145,18 +145,17 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
           width={400}
           height={176}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-14 h-14 bg-white/95 rounded-2xl flex items-center justify-center shadow-xl">
             <IconComponent className="w-7 h-7 text-green-600" aria-hidden="true" />
           </div>
         </div>
         <div className="absolute bottom-3 left-3 flex gap-2">
-          <span className="inline-flex items-center gap-1 text-[10px] text-white bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-full font-semibold">
+          <span className="inline-flex items-center gap-1 text-[10px] text-white bg-black/70 px-2 py-0.5 rounded-full font-semibold">
             <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" aria-hidden="true" />
             4.7
           </span>
-          <span className="inline-flex items-center gap-1 text-[10px] text-white bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-full font-semibold">
+          <span className="inline-flex items-center gap-1 text-[10px] text-white bg-black/70 px-2 py-0.5 rounded-full font-semibold">
             <Leaf className="w-2.5 h-2.5 text-green-400" aria-hidden="true" />
             Éco
           </span>

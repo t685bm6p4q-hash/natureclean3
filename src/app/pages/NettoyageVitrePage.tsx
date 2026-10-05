@@ -160,7 +160,6 @@ export function NettoyageVitrePage() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                   <h3 className="text-xl font-bold mb-1">Nettoyage en hauteur</h3>
                   <p className="text-sm opacity-90">Immeubles & façades vitrées</p>
@@ -177,7 +176,6 @@ export function NettoyageVitrePage() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                   <h3 className="text-xl font-bold mb-1">Bâtiments modernes</h3>
                   <p className="text-sm opacity-90">Bureaux & locaux professionnels</p>
@@ -196,7 +194,6 @@ export function NettoyageVitrePage() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                   <h3 className="text-xl font-bold mb-1">Vitrines commerciales</h3>
                   <p className="text-sm opacity-90">Commerces & boutiques</p>

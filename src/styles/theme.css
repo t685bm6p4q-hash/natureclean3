@@ -186,14 +186,6 @@
   font-size: 12px;
 }
 
-/* ── Image Crop Utility ──
-   Slight scale + overflow hidden on image containers
-   to clip corner watermarks and black/white bands.
-   Applied globally to all overflow-hidden containers with object-cover images. */
-img.object-cover {
-  scale: 1.08;
-}
-
 /* ── NCM Hero / Cookie animations — GPU-composited (transform + opacity uniquement)
    Remplace animate-in/slide-in-from-* de tw-animate-css qui peut déclencher
    des recalculs filter sur Chromium mobile (signalé par Lighthouse CLS audit) ── */

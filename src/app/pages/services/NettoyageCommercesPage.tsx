@@ -89,7 +89,6 @@ export function NettoyageCommercesPage() {
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="lazy" decoding="async" width={400} height={180}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/30 to-white" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
                           <card.icon className="w-6 h-6 text-green-600" aria-hidden="true" />
@@ -141,7 +140,6 @@ export function NettoyageCommercesPage() {
                     className="w-full h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy" decoding="async" width={400} height={350}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                     <h3 className="text-xl font-bold mb-1">Boutiques & Magasins</h3>
                     <p className="text-sm opacity-90">Retail, prêt-à-porter, électronique</p>
@@ -157,7 +155,6 @@ export function NettoyageCommercesPage() {
                     className="w-full h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy" decoding="async" width={400} height={350}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                     <h3 className="text-xl font-bold mb-1">Restaurants & Cafés</h3>
                     <p className="text-sm opacity-90">Cuisine, salle, terrasse</p>
@@ -173,7 +170,6 @@ export function NettoyageCommercesPage() {
                     className="w-full h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy" decoding="async" width={400} height={350}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                     <h3 className="text-xl font-bold mb-1">Centres Commerciaux</h3>
                     <p className="text-sm opacity-90">Galeries, espaces communs</p>

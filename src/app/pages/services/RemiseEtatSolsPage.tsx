@@ -132,7 +132,6 @@ export function RemiseEtatSolsPage() {
                       className="absolute inset-0 w-full h-full object-cover"
                       loading="lazy" decoding="async" width={400} height={180}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-gray-900/20 via-gray-900/10 to-white/80" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
                         <card.icon className="w-6 h-6 text-green-600" aria-hidden="true" />
@@ -246,7 +245,6 @@ export function RemiseEtatSolsPage() {
                       className="w-full h-[280px] object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy" decoding="async" width={400} height={300}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 text-white">
                       <p className="font-bold text-sm">{photo.title}</p>
                       <p className="text-xs text-white/80">{photo.sub}</p>

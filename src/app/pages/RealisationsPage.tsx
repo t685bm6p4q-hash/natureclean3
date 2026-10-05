@@ -516,15 +516,9 @@ export function RealisationsPage() {
                       height={400}
                     />
 
-                    {/* Gradient cinématique — renforce la lisibilité du badge */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-                    {/* Reflet lumineux au hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/0 group-hover:from-white/5 group-hover:via-white/0 group-hover:to-transparent transition-all duration-700" />
-
                     {/* Badge catégorie — haut gauche */}
                     <div className="absolute top-3 left-3">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm ring-1 ring-white/20 ${colorMap[real.color] || 'bg-gray-100/90 text-gray-700'}`}>
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-lg ring-1 ring-white/20 ${colorMap[real.color] || 'bg-gray-100 text-gray-700'}`}>
                         {real.category === 'Fin de chantier' && (
                           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
                         )}
@@ -546,7 +540,7 @@ export function RealisationsPage() {
 
                     {/* Badge "Photo réelle" — haut droit, visible au hover */}
                     <div className="absolute top-3 right-3 translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
-                      <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-sm text-gray-700 text-xs font-bold px-2.5 py-1 rounded-full shadow-md ring-1 ring-gray-200/50">
+                      <span className="inline-flex items-center gap-1 bg-white text-gray-700 text-xs font-bold px-2.5 py-1 rounded-full shadow-md ring-1 ring-gray-200/50">
                         <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                         Photo réelle
                       </span>
@@ -554,7 +548,7 @@ export function RealisationsPage() {
 
                     {/* Localisation en bas — visible au hover */}
                     <div className="absolute bottom-0 left-0 right-0 px-4 py-3 translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                      <p className="text-white text-xs font-semibold flex items-center gap-1 drop-shadow">
+                      <p className="text-gray-800 text-xs font-semibold flex items-center gap-1 bg-white/95 rounded-lg px-2 py-1 shadow-sm">
                         <svg className="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/></svg>
                         {real.location}
                       </p>
