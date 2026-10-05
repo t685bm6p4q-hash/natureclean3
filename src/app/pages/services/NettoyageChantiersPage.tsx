@@ -46,8 +46,8 @@ export function NettoyageChantiersPage() {
         subtitle="La touche finale indispensable avant la remise des cles"
         badge="Interventions ponctuelles"
         badgeIcon={<HardHat className="w-4 h-4" aria-hidden="true" />}
-        imageSrc="https://res.cloudinary.com/dc9xmxpvv/image/upload/v1777394479/nettoyage-fin-de-chantier-maison_zlarzz.jpg"
-        imageAlt="Nettoyage fin de chantier maison Marseille après travaux — remise en état Nature Clean"
+        imageSrc={IMAGES.nettoyageFinChantier}
+        imageAlt="Nettoyage fin de chantier Marseille — intervention Nature Clean sur chantier après travaux"
         breadcrumbs={[
           { label: 'Accueil', to: '/' },
           { label: 'Services', to: '/services' },

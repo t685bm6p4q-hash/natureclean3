@@ -202,9 +202,8 @@ function DesktopServiceCard({ service }: { service: ServiceCard }) {
               width={400}
               height={200}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-transparent to-white" />
           </div>
-          <div className="p-6 flex flex-col flex-grow">
+          <div className="p-6 flex flex-col flex-grow border-t border-gray-100">
             <h3 className="text-xl font-bold text-gray-900 mb-2 text-center flex-shrink-0">
               {service.title}
             </h3>
