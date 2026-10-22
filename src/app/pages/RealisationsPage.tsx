@@ -14,7 +14,19 @@ import { IMAGES } from '@/app/utils/images';
    Organisées en 5 catégories SEO
    ────────────────────────────────────────────── */
 const realisations = [
-  /* ── CAS CLIENTS (articles blog) ─── */
+  /* ── CAS CLIENTS ─── */
+  {
+    id: 'real-magasin-pret-a-porter-urgence',
+    title: 'Remise en état d\'urgence — boutique prêt-à-porter Marseille',
+    alt: 'Remise en état magasin prêt-à-porter Marseille après dégradations — intervention Nature Clean',
+    category: 'Cas clients',
+    location: 'Marseille',
+    date: 'Octobre 2026',
+    image: IMAGES.magasinPretAPorterUrgence,
+    desc: 'Week-end d\'intervention express après saccage : débarras de la réserve, nettoyage intensif des rayonnages, sols en résine et désinfection des comptoirs. Objectif atteint — espace de vente prêt à réaccueillir le public en un temps record. Protocole détaillé sur notre fiche nettoyage commerces.',
+    link: '/services/nettoyage-commerces#remise-etat-urgence-magasin',
+    color: 'cyan',
+  },
   {
     id: 'real-galerie-art-marseille',
     title: "Entretien galerie d'art et espace d'exposition — Marseille",

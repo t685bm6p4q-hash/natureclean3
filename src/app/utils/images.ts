@@ -90,6 +90,7 @@ const P_nettoyageMarseilleEco   = 'v1779380746/nettoyage-marseille-eco-nature-cl
 const P_whatsappImage20260429   = 'v1779387123/nettoyage-sol-menage-marseille_mnq6rk.jpg';
 const P_magasinBoutiquePACA     = 'v1779380746/nettoyage-magasin-boutique-marseille-paca_eviyct.jpg';
 const P_jdSportMarseilleFloor   = 'v1779962471/nettoyage-sol-magasin-marseille.jpg_m3lnyq.jpg';
+const P_magasinPretAPorterUrgence = 'v1792680440/93fa1c9f-d9ee-489c-b9a9-c0e71e3c4f44_mqmzqd.jpg';
 
 // ── BUREAUX SPÉCIALISÉS ──
 const P_cabinetMedical          = 'v1779962468/nettoyage-cabinet-medical-marseille.jpg_b9gt6a.jpg';
@@ -187,6 +188,7 @@ export const IMAGES = {
   whatsappCommerce:       O(P_whatsappImage20260429),
   magasinBoutiquePACA:    O(P_magasinBoutiquePACA),
   jdSportMarseilleFloor:  O(P_jdSportMarseilleFloor),
+  magasinPretAPorterUrgence: O(P_magasinPretAPorterUrgence),
 
   // ── BUREAUX SPÉCIALISÉS ──
   cabinetMedical:         O(P_cabinetMedical),

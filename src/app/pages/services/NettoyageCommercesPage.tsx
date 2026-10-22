@@ -1,16 +1,21 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
-import { Store, TrendingUp, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Store, TrendingUp, Users, ArrowRight, CheckCircle2, Package, Sparkles, Droplets, Shield, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { IMAGES } from '@/app/utils/images';
+import { ServiceFeatureCard, ServiceShowcaseCard } from '@/app/components/ServiceFeatureCard';
+import { IMAGES, getOptimizedCldUrl, cldSrcSet } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
-
 const FAQ_ITEMS: FAQItem[] = [
+  {
+    question: 'Intervenez-vous en urgence après dégradations ou saccage dans un magasin ?',
+    answer:
+      'Oui. Ce week-end (octobre 2026), nos équipes ont remis en état une boutique de prêt-à-porter à Marseille : débarras de la réserve, nettoyage intensif, sols en résine et désinfection des comptoirs pour permettre une réouverture rapide. On mobilise des effectifs le week-end et en dehors des heures d\'ouverture — devis gratuit en 2 min sur le site.',
+  },
   { question: 'Pouvez-vous nettoyer avant l\'ouverture du commerce ?', answer: 'Oui, et c\'est notre créneau de prédilection. On intervient dès 5h30 — ça dépend de votre quartier à Marseille et du type de commerce. Les sols sont lavés à l\'autolaveuse Kärcher, les vitrines dégraissées, les sanitaires désinfectés. Quand vos équipes arrivent à 9h, tout est déjà sec et impeccable.' },
   { question: 'Le nettoyage des vitrines est-il inclus dans le contrat ?', answer: 'Le lavage des vitrines peut être intégré au contrat récurrent ou réalisé en prestation ponctuelle. Sur les commerces du centre-ville de Marseille, entre le calcaire de l\'eau et les projections de rue, on recommande un lavage hebdomadaire à l\'eau déminéralisée. C\'est le seul moyen d\'éviter les traces persistantes.' },
   { question: 'Nettoyez-vous aussi les restaurants et espaces alimentaires ?', answer: 'Oui. Pour les espaces de restauration, on applique des protocoles conformes au règlement CE 852/2004 (HACCP). Les dégraissants qu\'on utilise — notamment la gamme Suma Nova L6 de Diversey — sont homologués pour les surfaces en contact alimentaire. La cuisine doit être aussi propre que votre salle, c\'est non-négociable.' },
@@ -37,6 +42,103 @@ export function NettoyageCommercesPage() {
         ]}
         devisLink="/devis?service=commerces"
       />
+
+      {/* Cas client — remise en état urgence (oct. 2026) */}
+      <section id="remise-etat-urgence-magasin" className="py-16 md:py-20 bg-gray-50 border-b border-gray-200">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <ScrollReveal>
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <span className="inline-flex items-center gap-1.5 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" />
+                Cas client — urgence
+              </span>
+              <span className="text-sm text-gray-500">Boutique prêt-à-porter · Marseille · week-end octobre 2026</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">
+              Remise en état d&apos;urgence d&apos;un magasin après saccage
+            </h2>
+            <p className="text-lg text-gray-600 mb-10 max-w-3xl">
+              Quand un commerce subit des dégradations ou un désordre important, chaque heure compte pour sécuriser les lieux et{' '}
+              <strong>réouvrir rapidement</strong>. Voici le protocole appliqué sur le terrain par Nature Clean.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            <div className="space-y-5">
+              {(
+                [
+                  {
+                    icon: Package,
+                    title: 'Tri & débarras',
+                    desc: 'Évacuation des cartons encombrants et tri du stock dans la réserve pour retrouver des circulations sûres.',
+                  },
+                  {
+                    icon: Sparkles,
+                    title: 'Nettoyage intensif',
+                    desc: 'Dépoussiérage des structures, tiroirs et étagères ; aspiration soignée autour des textiles.',
+                  },
+                  {
+                    icon: Droplets,
+                    title: 'Traitement des sols',
+                    desc: 'Nettoyage en profondeur des sols en résine, escaliers et tapis de circulation.',
+                  },
+                  {
+                    icon: Shield,
+                    title: 'Désinfection complète',
+                    desc: 'Traitement des faïences, comptoirs et zones de contact avant retour du public.',
+                  },
+                ] as const
+              ).map((step, i) => {
+                const Icon = step.icon;
+                return (
+                  <ScrollReveal key={step.title} delay={i * 0.06}>
+                    <div className="flex gap-4 bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                      <div className="w-11 h-11 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-green-700" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-900 mb-1">{step.title}</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
+              <ScrollReveal delay={0.3}>
+                <p className="text-gray-800 font-semibold border-l-4 border-green-600 pl-4 py-1">
+                  Résultat : un espace de vente immaculé, prêt à réaccueillir du public en un temps record.
+                </p>
+                <p className="text-gray-600 text-sm mt-4">
+                  Commerçant, gérant ou syndic dans le 13 ?{' '}
+                  <Link to="/devis?service=commerces" className="text-green-700 font-bold hover:underline">
+                    Devis gratuit en 2 min
+                  </Link>
+                  .
+                </p>
+              </ScrollReveal>
+            </div>
+
+            <ScrollReveal delay={0.1}>
+              <figure className="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+                <img
+                  src={getOptimizedCldUrl(IMAGES.magasinPretAPorterUrgence, 900)}
+                  srcSet={cldSrcSet(IMAGES.magasinPretAPorterUrgence, [500, 700, 900])}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  alt="Remise en état magasin prêt-à-porter Marseille après intervention urgence Nature Clean"
+                  width={900}
+                  height={600}
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-72 md:h-96 object-cover"
+                />
+                <figcaption className="bg-gray-900 text-gray-200 text-sm text-center px-4 py-3">
+                  Intervention réalisée à Marseille — nettoyage commerces Nature Clean
+                </figcaption>
+              </figure>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
 
       {/* Intro — ambient background */}
       <section className="relative py-16 bg-white overflow-hidden">
@@ -81,25 +183,13 @@ export function NettoyageCommercesPage() {
                 { icon: Users, title: 'Avantage concurrentiel', image: IMAGES.lavageVitrine, desc: 'Dans une galerie commerciale ou une rue commerçante à fort trafic, la propreté de votre devanture se compare en permanence à celle du voisin. C\'est un levier sous-estimé.' },
               ] as const).map((card, i) => (
                 <ScrollReveal key={card.title} delay={i * 0.08}>
-                  <div className="relative bg-white rounded-2xl shadow-md border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all h-full overflow-hidden">
-                    <div className="relative h-32 overflow-hidden">
-                      <ImageWithFallback
-                        src={card.image}
-                        alt="" aria-hidden="true"
-                        className="absolute inset-0 w-full h-full object-cover"
-                        loading="lazy" decoding="async" width={400} height={180}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
-                          <card.icon className="w-6 h-6 text-green-600" aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-5">
-                      <h3 className="font-black text-gray-900 mb-2">{card.title}</h3>
-                      <p className="text-sm text-gray-700 leading-relaxed">{card.desc}</p>
-                    </div>
-                  </div>
+                  <ServiceFeatureCard
+                    title={card.title}
+                    image={card.image}
+                    icon={card.icon}
+                    description={card.desc}
+                    imageHeightClass="h-32"
+                  />
                 </ScrollReveal>
               ))}
             </div>
@@ -133,48 +223,28 @@ export function NettoyageCommercesPage() {
 
             <div className="grid md:grid-cols-3 gap-6">
               <ScrollReveal delay={0.08}>
-                <div className="group relative rounded-2xl overflow-hidden shadow-xl">
-                  <ImageWithFallback
-                    src={IMAGES.entretienMagasin}
-                    alt="Nettoyage boutique magasin retail Marseille"
-                    className="w-full h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy" decoding="async" width={400} height={350}
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <h3 className="text-xl font-bold mb-1">Boutiques & Magasins</h3>
-                    <p className="text-sm opacity-90">Retail, prêt-à-porter, électronique</p>
-                  </div>
-                </div>
+                <ServiceShowcaseCard
+                  src={IMAGES.entretienMagasin}
+                  alt="Nettoyage boutique magasin retail Marseille"
+                  title="Boutiques & Magasins"
+                  subtitle="Retail, prêt-à-porter, électronique"
+                />
               </ScrollReveal>
-
               <ScrollReveal delay={0.16}>
-                <div className="group relative rounded-2xl overflow-hidden shadow-xl">
-                  <ImageWithFallback
-                    src={IMAGES.nettoyageVitresPro}
-                    alt="Nettoyage restaurant café bar Marseille"
-                    className="w-full h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy" decoding="async" width={400} height={350}
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <h3 className="text-xl font-bold mb-1">Restaurants & Cafés</h3>
-                    <p className="text-sm opacity-90">Cuisine, salle, terrasse</p>
-                  </div>
-                </div>
+                <ServiceShowcaseCard
+                  src={IMAGES.nettoyageVitresPro}
+                  alt="Nettoyage restaurant café bar Marseille"
+                  title="Restaurants & Cafés"
+                  subtitle="Cuisine, salle, terrasse"
+                />
               </ScrollReveal>
-
               <ScrollReveal delay={0.24}>
-                <div className="group relative rounded-2xl overflow-hidden shadow-xl">
-                  <ImageWithFallback
-                    src={IMAGES.lavageVitrine}
-                    alt="Nettoyage centre commercial galerie Marseille"
-                    className="w-full h-[350px] object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy" decoding="async" width={400} height={350}
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <h3 className="text-xl font-bold mb-1">Centres Commerciaux</h3>
-                    <p className="text-sm opacity-90">Galeries, espaces communs</p>
-                  </div>
-                </div>
+                <ServiceShowcaseCard
+                  src={IMAGES.lavageVitrine}
+                  alt="Nettoyage centre commercial galerie Marseille"
+                  title="Centres Commerciaux"
+                  subtitle="Galeries, espaces communs"
+                />
               </ScrollReveal>
             </div>
           </div>
@@ -236,15 +306,8 @@ export function NettoyageCommercesPage() {
       </section>
 
       {/* CTA Final avec vraie photo */}
-      <section className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
-        <ImageWithFallback
-          src={IMAGES.boutiqueVide}
-          alt="Commerce propre entretenu par Nature Clean Marseille"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          loading="lazy" decoding="async" width={1920} height={1080}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-gray-900/80" />
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="py-16 md:py-20 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
               Votre commerce mérite une hygiène et une propreté irréprochables

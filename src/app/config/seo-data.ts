@@ -78,9 +78,9 @@ export const SEO_DATA: Record<string, SEOEntry> = {
   'nettoyage-commerces': {
     title: 'Nettoyage Commerces Marseille | Nature Clean',
     description:
-      'Nettoyage de commerces et boutiques à Marseille : avant ouverture dès 6 h. Devis sous 2 h. Note 4,7/5 · Image de marque soignée · 7j/7.',
+      'Nettoyage de commerces à Marseille : entretien récurrent, remise en état urgence après saccage. Devis 2 min · Note 4,7/5 · 7j/7.',
     keywords:
-      'nettoyage commerce Marseille, entretien boutique 13, nettoyage vitrine magasin, nettoyage restaurant Marseille, propreté commerce, nettoyage surface de vente',
+      'nettoyage commerce Marseille, remise en état magasin urgence, entretien boutique 13, nettoyage vitrine magasin, nettoyage restaurant Marseille, propreté commerce',
   },
   'nettoyage-coproprietes': {
     title: 'Nettoyage Copropriété Marseille | Syndic & parties communes',

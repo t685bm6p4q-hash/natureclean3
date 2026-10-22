@@ -99,6 +99,12 @@ const localExpertisePages = [
 
 const realisationsPreview = [
   {
+    title: 'Remise en état urgence — boutique prêt-à-porter Marseille',
+    category: 'Cas clients',
+    image: IMAGES.magasinPretAPorterUrgence,
+    location: 'Marseille',
+  },
+  {
     title: 'Nettoyage magasin JD Sport Marseille',
     category: 'Commerces',
     image: IMAGES.jdSportMarseilleFloor,
@@ -167,10 +173,8 @@ export function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-900/60 to-green-900/40" />
-
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl ncm-hero-fade-in">
+          <div className="max-w-4xl ncm-hero-fade-in bg-gray-900/85 rounded-2xl p-6 md:p-10 border border-white/10">
             <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-400/30 text-green-200 px-4 py-1.5 rounded-full text-sm mb-6">
               <Leaf className="w-4 h-4" aria-hidden="true" />
               Entretien & nettoyage éco-responsable depuis 2021
@@ -565,26 +569,8 @@ export function Home() {
       <section className="py-16 md:py-20 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              {/* Photo graffitis en fond */}
-              <div className="absolute inset-0">
-                <ImageWithFallback
-                  src={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 1200)}
-                  srcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [600, 1200])}
-                  sizes="100vw"
-                  alt="Nettoyage graffiti Carrefour Marseille avant – Nature Clean"
-                  aria-hidden="true"
-                  className="w-full h-full object-cover"
-                  width={1200}
-                  height={500}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-gray-900/30" />
-              </div>
-
-              {/* Contenu */}
-              <div className="relative z-10 grid lg:grid-cols-2 gap-8 p-8 md:p-12 lg:p-16 items-center min-h-[420px]">
+            <div className="rounded-3xl overflow-hidden shadow-2xl grid lg:grid-cols-2">
+              <div className="bg-gray-900 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
                 <ScrollReveal direction="left">
                   <div>
                     <span className="inline-flex items-center gap-2 bg-red-500/20 border border-red-400/40 text-red-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
@@ -624,28 +610,37 @@ export function Home() {
                         <Link to="/devis" className="!border-white !bg-white/20 !text-white">Demander un devis</Link>
                       </Button>
                     </div>
+                    <div className="grid grid-cols-2 gap-4 mt-10">
+                      {[
+                        { value: '48h', label: "Délai d'intervention" },
+                        { value: '100%', label: 'Garantie effacement' },
+                        { value: '0', label: 'Trace résiduelle' },
+                        { value: '13', label: 'Dép. Bouches-du-Rhône' },
+                      ].map((stat) => (
+                        <div
+                          key={stat.label}
+                          className="bg-white/10 border border-white/20 rounded-2xl p-4 text-center"
+                        >
+                          <div className="text-2xl md:text-3xl font-black text-green-400 mb-1">{stat.value}</div>
+                          <div className="text-xs text-gray-300 leading-tight">{stat.label}</div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </ScrollReveal>
-
-                {/* Chiffres clés */}
-                <ScrollReveal direction="right" className="hidden lg:block">
-                  <div className="grid grid-cols-2 gap-4">
-                    {[
-                      { value: '48h', label: "Délai d'intervention" },
-                      { value: '100%', label: 'Garantie effacement' },
-                      { value: '0', label: 'Trace résiduelle' },
-                      { value: '13', label: 'Dép. Bouches-du-Rhône' },
-                    ].map((stat) => (
-                      <div
-                        key={stat.label}
-                        className="bg-white/15 border border-white/25 rounded-2xl p-5 text-center"
-                      >
-                        <div className="text-3xl font-black text-green-400 mb-1">{stat.value}</div>
-                        <div className="text-xs text-gray-300 leading-tight">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </ScrollReveal>
+              </div>
+              <div className="relative min-h-[280px] lg:min-h-[420px]">
+                <ImageWithFallback
+                  src={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 1200)}
+                  srcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [600, 1200])}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  alt="Nettoyage graffiti Carrefour Marseille avant – Nature Clean"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  width={1200}
+                  height={500}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>
@@ -934,22 +929,8 @@ export function Home() {
           11. CTA FINAL — Photo + conversion
           ══════════════════════════════════════════ */}
       {/* content-visibility: auto — dernier bloc, ~3600px sous le fold mobile */}
-      <section className="relative py-20 md:py-24 bg-gray-900 overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_380px]">
-        <ImageWithFallback
-          src={IMAGES.poigneeMainDevis}
-          srcSet={cldSrcSet(IMAGES.poigneeMainDevis, [400, 850, 1200, 1920])}
-          sizes="100vw"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          width={1920}
-          height={600}
-          loading="lazy"
-          decoding="async"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/85 to-gray-900/75" />
-
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-20 md:py-24 bg-gray-900 [content-visibility:auto] [contain-intrinsic-size:auto_380px]">
+        <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-black text-white mb-4">

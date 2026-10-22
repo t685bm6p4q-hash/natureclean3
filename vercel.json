@@ -82,6 +82,7 @@
     { "source": "/demande-de-devis", "destination": "/devis", "permanent": true },
     { "source": "/devis-gratuit", "destination": "/devis", "permanent": true },
     { "source": "/devis-nettoyage-marseille", "destination": "/blog/devis-nettoyage-marseille-guide", "permanent": true },
+    { "source": "/blog/nettoyage-magasin-apres-saccage-marseille", "destination": "/services/nettoyage-commerces#remise-etat-urgence-magasin", "permanent": true },
 
     { "source": "/nos-realisations.html", "destination": "/realisations", "permanent": true },
     { "source": "/nos-realisations", "destination": "/realisations", "permanent": true },
