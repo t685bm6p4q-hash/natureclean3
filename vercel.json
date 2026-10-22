@@ -135,7 +135,8 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/admin", "destination": "/index.html" },
-    { "source": "/admin/:path*", "destination": "/index.html" }
+    { "source": "/admin/:path*", "destination": "/index.html" },
+    { "source": "/((?!api/|assets/|admin).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
