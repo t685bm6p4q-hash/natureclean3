@@ -18,12 +18,41 @@ const PUPPETEER_LAUNCH_ARGS = [
   '--disable-gpu',
 ] as const;
 
+const PRERENDER_READY_TIMEOUT_MS = process.env.VERCEL === '1' ? 180_000 : 90_000;
+
+const BLOCKED_PRERENDER_URL_PARTS = [
+  'googletagmanager.com',
+  'google-analytics.com',
+  'googleadservices.com',
+  'doubleclick.net',
+  'facebook.net',
+  'connect.facebook.net',
+  'pagead2.googlesyndication.com',
+] as const;
+
+async function configurePrerenderPage(page: Page): Promise<void> {
+  await page.setRequestInterception(true);
+  page.on('request', (request) => {
+    const url = request.url();
+    const blocked = BLOCKED_PRERENDER_URL_PARTS.some((part) => url.includes(part));
+    if (blocked || request.resourceType() === 'media') {
+      request.abort();
+      return;
+    }
+    request.continue();
+  });
+}
+
 async function launchPrerenderBrowser(): Promise<Browser> {
   if (process.env.VERCEL === '1') {
     const [{ default: chromium }, { default: puppeteerCore }] = await Promise.all([
       import('@sparticuz/chromium'),
       import('puppeteer-core'),
     ]);
+
+    if ('setGraphicsMode' in chromium && typeof chromium.setGraphicsMode === 'function') {
+      chromium.setGraphicsMode(false);
+    }
 
     return puppeteerCore.launch({
       args: [...chromium.args, ...PUPPETEER_LAUNCH_ARGS],
@@ -148,7 +177,7 @@ async function waitForPrerenderReady(page: Page, route: string): Promise<void> {
 
       return Boolean(chromeOk && mainTextLength > 120 && canonicalOk);
     },
-    { timeout: 90_000 },
+    { timeout: PRERENDER_READY_TIMEOUT_MS },
     route,
   );
 }
@@ -161,10 +190,11 @@ async function prerenderRoute(
 ): Promise<void> {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 900 });
+  await configurePrerenderPage(page);
 
   try {
     await page.goto(`${previewUrl}${route}`, {
-      waitUntil: 'networkidle0',
+      waitUntil: 'domcontentloaded',
       timeout: 120_000,
     });
     await waitForPrerenderReady(page, route);
@@ -193,10 +223,11 @@ async function prerenderNotFoundPage(
 ): Promise<void> {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 900 });
+  await configurePrerenderPage(page);
 
   try {
     await page.goto(`${previewUrl}${NOT_FOUND_CAPTURE_PATH}`, {
-      waitUntil: 'networkidle0',
+      waitUntil: 'domcontentloaded',
       timeout: 120_000,
     });
     await page.waitForFunction(() => {
@@ -208,7 +239,7 @@ async function prerenderNotFoundPage(
         (canonical === 'https://natureclean.fr/' || canonical === 'https://natureclean.fr') &&
         h1.includes('404')
       );
-    }, { timeout: 90_000 });
+    }, { timeout: PRERENDER_READY_TIMEOUT_MS });
 
     const html = await page.content();
     const outFile = resolve(distDir, '404.html');
@@ -236,7 +267,14 @@ export async function runPrerender(options: PrerenderOptions): Promise<void> {
 
   try {
     for (const route of routes) {
-      await prerenderRoute(browser, distDir, previewUrl, route);
+      try {
+        await prerenderRoute(browser, distDir, previewUrl, route);
+      } catch (error) {
+        throw new Error(
+          `Prerender échoué sur ${route}: ${error instanceof Error ? error.message : String(error)}`,
+          { cause: error },
+        );
+      }
     }
     await prerenderNotFoundPage(browser, distDir, previewUrl);
   } finally {
