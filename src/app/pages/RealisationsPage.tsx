@@ -24,9 +24,6 @@ import { useState, useMemo } from 'react';
 import { IMAGES } from '@/app/utils/images';
 import {
   FOUNDING_YEAR,
-  GOOGLE_RATING,
-  GOOGLE_REVIEW_COUNT,
-  GOOGLE_PROFILE_URL,
   PHONE_DISPLAY,
   PHONE_HREF,
   ARIA_PHONE,
@@ -307,18 +304,8 @@ export function RealisationsPage() {
               <p className="text-gray-600 mt-1">Assurance responsabilité civile professionnelle</p>
             </div>
             <div className="bg-white rounded-xl p-4 border border-green-100">
-              <p className="text-2xl font-black text-green-700">{GOOGLE_RATING}/5</p>
-              <p className="text-gray-600 mt-1">
-                {GOOGLE_REVIEW_COUNT} avis Google ·{' '}
-                <a
-                  href={GOOGLE_PROFILE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-700 font-semibold underline underline-offset-2"
-                >
-                  Voir les avis
-                </a>
-              </p>
+              <p className="text-2xl font-black text-green-700">2 h / 24 h</p>
+              <p className="text-gray-600 mt-1">Réponse puis devis écrit gratuit</p>
             </div>
           </div>
         </div>

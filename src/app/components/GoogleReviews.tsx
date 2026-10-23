@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote, ExternalLink } from 'lucide-react';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
-import { GOOGLE_RATING, GOOGLE_REVIEW_COUNT, GOOGLE_PROFILE_URL } from '@/app/utils/constants';
+import { GOOGLE_PROFILE_URL } from '@/app/utils/constants';
 
 /* ──────────────────────────────────────────────
    TYPES
@@ -210,9 +210,8 @@ export function GoogleReviews() {
         {/* Header */}
         <ScrollReveal>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-              {GOOGLE_RATING}/5 sur Google · {GOOGLE_REVIEW_COUNT} avis
+            <div className="inline-flex items-center gap-2 bg-green-50 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              Témoignages clients
             </div>
             <h2 id="reviews-heading" className="text-3xl md:text-4xl font-black text-gray-900 mb-3">
               Nos clients témoignent

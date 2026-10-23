@@ -49,8 +49,6 @@ export const ZONE_LABEL = 'Marseille et Bouches-du-Rhône';
 export const OFFICE_ADDRESS_LINE = '22 Traverse Pupat, 13008 Marseille';
 
 // ─── Avis Google (chiffres de la fiche, pas de JSON-LD) ──
-export const GOOGLE_RATING = '4,6';
-export const GOOGLE_REVIEW_COUNT = 9;
 export const GOOGLE_PROFILE_URL = 'https://share.google/LGuTIovk5ovTXGzuc';
 
 // ─── WhatsApp ───────────────────────────────────────────

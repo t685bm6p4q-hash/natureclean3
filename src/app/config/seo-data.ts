@@ -106,13 +106,13 @@ export const SEO_DATA: Record<string, SEOEntry> = {
   'nettoyage-graffitis': {
     title: 'Nettoyage Graffitis Marseille | Nature Clean',
     description:
-      'Effacement de tags et graffitis à Marseille. Intervention rapide. Devis sous 2 h. Note 4,7/5 · Murs, vitrines, rideaux métalliques.',
+      'Effacement de tags et graffitis à Marseille. Intervention rapide. Devis sous 2 h. Murs, vitrines, rideaux métalliques.',
     keywords: 'enlèvement graffiti Marseille, effacer tag 13, aérogommage, nettoyage façade Bouches-du-Rhône',
   },
   'nettoyage-gros-chantiers': {
     title: 'Gros Chantiers Marseille | Nature Clean',
     description:
-      'Nettoyage après travaux, fin de bail et grands projets résidentiels à Marseille. Devis sous 2 h. Note 4,7/5 · Délai 48 h max · 04 84 89 68 75',
+      'Nettoyage après travaux, fin de bail et grands projets résidentiels à Marseille. Devis sous 2 h. Délai 48 h max · 04 84 89 68 75',
     keywords:
       'nettoyage gros chantier Marseille, remise en état fin de bail, nettoyage après rénovation, grand ménage particulier, état des lieux sortie Marseille',
   },

@@ -6,7 +6,7 @@ import {
   Star, MapPin, HardHat, Shield, Clock, Banknote, Building, Building2,
   Recycle, Users, SprayCan, Cog, FileCheck, Eraser, Zap, Store, Heart,
 } from 'lucide-react';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE, GOOGLE_RATING, GOOGLE_REVIEW_COUNT, GOOGLE_PROFILE_URL } from '@/app/utils/constants';
+import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
@@ -319,16 +319,6 @@ export function Home() {
       <section className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-4 md:py-5">
-            <a
-              href={GOOGLE_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-gray-600 hover:text-green-700"
-            >
-              <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-              <span>{GOOGLE_RATING}/5 sur Google · {GOOGLE_REVIEW_COUNT} avis</span>
-            </a>
-            <span className="hidden md:block w-px h-5 bg-gray-200" aria-hidden="true" />
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Shield className="w-4 h-4 text-green-500" aria-hidden="true" />
               <span>Assurance RC Pro</span>
