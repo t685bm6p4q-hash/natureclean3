@@ -10,7 +10,7 @@ import { Card, CardContent } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
 import {
   HardHat, Building2, Store, Briefcase, PartyPopper,
-  Home, CircleDot, Droplets, Star, Leaf, ArrowRight,
+  CircleDot, Droplets, Star, Leaf, ArrowRight,
   ChevronLeft, ChevronRight,
 } from 'lucide-react';
 import { Link } from 'react-router';
@@ -25,7 +25,6 @@ const SERVICE_IMAGES: Record<string, string> = {
   '/services/nettoyage-commerces':    IMAGES.jdSportMarseilleFloor,
   '/services/entretien-bureaux':      IMAGES.entrepriseBureauxMarseille,
   '/services/nettoyage-evenementiel': IMAGES.salleEvenementielle,
-  '/nettoyage-particuliers':          IMAGES.remiseEtatAppartMarseille,
   '/services/remise-etat-sols':       IMAGES.decapageSolEco,
   '/services/nettoyage-vitre':        IMAGES.lavageVitrine,
 };
@@ -86,17 +85,6 @@ const services: ServiceCard[] = [
       'Remise en état complète après l\'événement',
     ],
     link: '/services/nettoyage-evenementiel',
-  },
-  {
-    icon: Home,
-    title: 'Particuliers',
-    description: 'Ménage à domicile, grand entretien de printemps, remise en état après déménagement ou entre deux locataires.',
-    features: [
-      'Nettoyage complet de l\'habitation',
-      'Entretien régulier ou ponctuel',
-      'Rotation Airbnb et conciergerie',
-    ],
-    link: '/nettoyage-particuliers',
   },
   {
     icon: CircleDot,

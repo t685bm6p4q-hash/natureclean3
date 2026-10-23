@@ -31,7 +31,8 @@ export function EtatLieuxSortie() {
 
       {/* Hero Article */}
       <article className="bg-white">
-        <div className="relative h-96 overflow-hidden">
+        <div>
+          <div className="h-56 md:h-72 overflow-hidden">
           <img
             src={IMAGES.appartClesComplete}
             alt="Nettoyage appartement état des lieux sortie Marseille"
@@ -40,11 +41,10 @@ export function EtatLieuxSortie() {
             // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
             fetchpriority="high"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-          
-          <div className="absolute bottom-0 left-0 right-0 p-8">
+          </div>
+          <div className="bg-gray-900 text-white p-6 md:p-10">
             <div className="container mx-auto">
               <Link to="/blog" className="inline-flex items-center gap-2 text-white hover:text-green-300 mb-4 transition-colors">
                 <ArrowLeft className="w-4 h-4" />

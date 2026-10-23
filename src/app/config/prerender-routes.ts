@@ -22,7 +22,6 @@ export const PRERENDER_ROUTES: readonly string[] = [
   '/zones-intervention',
   '/politique-de-confidentialite',
   '/mentions-legales',
-  '/nettoyage-particuliers',
 
   // ── Toutes les pages services ──
   '/services/entretien-bureaux',

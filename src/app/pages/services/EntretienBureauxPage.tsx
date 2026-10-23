@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/app/components/ui/card';
 import { CheckCircle2, Briefcase, Trash2, Sparkles, Wind, Square, Droplets } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { ServiceFeatureCard } from '@/app/components/ServiceFeatureCard';
 import { IMAGES } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
@@ -208,33 +209,13 @@ export function EntretienBureauxPage() {
                 ]},
               ] as const).map((card, i) => (
                 <ScrollReveal key={card.title} delay={i * 0.08}>
-                  <div className="relative bg-white rounded-2xl shadow-md border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all h-full overflow-hidden">
-                    <div className="relative h-28 overflow-hidden">
-                      <ImageWithFallback
-                        src={card.image}
-                        alt="" aria-hidden="true"
-                        className="absolute inset-0 w-full h-full object-cover"
-                        style={{ objectPosition: card.imagePosition }}
-                        loading="lazy" decoding="async" width={400} height={150}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
-                          <card.icon className="w-6 h-6 text-green-600" aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-5">
-                      <h3 className="font-black text-gray-900 mb-3">{card.title}</h3>
-                      <ul className="space-y-2">
-                        {card.items.map((item) => (
-                          <li key={item.bold} className="flex items-start gap-2 text-sm text-gray-700">
-                            <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                            <span><strong>{item.bold}</strong> {item.text}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                  <ServiceFeatureCard
+                    title={card.title}
+                    image={card.image}
+                    imagePosition={card.imagePosition}
+                    icon={card.icon}
+                    items={card.items}
+                  />
                 </ScrollReveal>
               ))}
             </div>

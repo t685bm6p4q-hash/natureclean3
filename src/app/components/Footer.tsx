@@ -3,7 +3,7 @@ import { IMAGES, cldResize } from '@/app/utils/images';
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, FOUNDING_YEAR } from '@/app/utils/constants';
 import {
   MapPin, Phone, Mail, Clock, Leaf,
-  Building2, Store, HardHat, Layers, Droplet, User,
+  Building2, Store, HardHat, Layers, Droplet,
   ChevronRight, Shield, Star,
   Home as HomeIcon, PartyPopper, Eraser
 } from 'lucide-react';
@@ -118,7 +118,6 @@ export function Footer() {
                 { icon: PartyPopper, label: 'Événementiel', href: '/services/nettoyage-evenementiel' },
                 { icon: Droplet, label: 'Nettoyage Vitres', href: '/services/nettoyage-vitre' },
                 { icon: HardHat, label: 'Gros chantiers', href: '/services/nettoyage-gros-chantiers' },
-                { icon: User, label: 'Ménage Particuliers', href: '/nettoyage-particuliers' },
               ].map((item) => (
                 <li key={item.href}>
                   <Link

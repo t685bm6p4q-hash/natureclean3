@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter, Navigate } from 'react-router';
 
 // Layouts
 import { RootLayout } from '@/app/layouts/RootLayout';
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
       { path: 'services/nettoyage-vitre', lazy: () => import('@/app/pages/NettoyageVitrePage').then(m => ({ Component: m.NettoyageVitrePage })) },
       { path: 'services/nettoyage-diogene', lazy: () => import('@/app/pages/services/NettoyageDiogenePage').then(m => ({ Component: m.NettoyageDiogenePage })) },
       { path: 'services/nettoyage-gros-chantiers', lazy: () => import('@/app/pages/services/NettoyageGrosChantiersPage').then(m => ({ Component: m.NettoyageGrosChantiersPage })) },
-      { path: 'nettoyage-particuliers', lazy: () => import('@/app/pages/NettoyageParticuliersPage').then(m => ({ Component: m.NettoyageParticuliersPage })) },
+      { path: 'nettoyage-particuliers', Component: () => createElement(Navigate, { to: '/services', replace: true }) },
       { path: 'a-propos', lazy: () => import('@/app/pages/NatureCleanEcoPage').then(m => ({ Component: m.NatureCleanEcoPage })) },
       { path: 'realisations', lazy: () => import('@/app/pages/RealisationsPage').then(m => ({ Component: m.RealisationsPage })) },
       { path: 'actualites', lazy: () => import('@/app/pages/ActualitesPage').then(m => ({ Component: m.ActualitesPage })) },

@@ -59,7 +59,6 @@ export function NettoyageDiogenePage() {
         breadcrumbs={[
           { label: 'Accueil', to: '/' },
           { label: 'Services', to: '/services' },
-          { label: 'Nettoyage Particuliers', to: '/nettoyage-particuliers' },
           { label: 'Syndrome de Diogène' },
         ]}
         devisLink="/devis?service=diogene"
@@ -219,15 +218,8 @@ export function NettoyageDiogenePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 bg-gray-900 overflow-hidden">
-        <ImageWithFallback
-          src={IMAGES.appartVidePropre}
-          alt="" aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-25"
-          loading="lazy" decoding="async" width={1920} height={600}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/75 to-gray-900/80" />
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="py-20 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white">Besoin d'une intervention discrète ?</h2>
             <p className="text-xl mb-12 text-gray-300 max-w-2xl mx-auto">

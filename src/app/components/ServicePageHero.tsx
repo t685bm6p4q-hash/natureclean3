@@ -59,10 +59,8 @@ export function ServicePageHero({
         />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-gray-900/45 to-green-900/30" />
-
       <div className="container mx-auto px-4 relative z-10">
-        <div className="ncm-hero-fade-in">
+        <div className="ncm-hero-fade-in max-w-4xl bg-gray-900/85 rounded-2xl p-6 md:p-10 border border-white/10">
           {/* Breadcrumb */}
           {breadcrumbs?.length > 0 && (
             <nav className="text-sm mb-6 text-gray-300" aria-label="Fil d'ariane">

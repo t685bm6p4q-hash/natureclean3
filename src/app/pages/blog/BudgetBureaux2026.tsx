@@ -58,7 +58,8 @@ export function BudgetBureaux2026() {
 
       <article className="bg-white">
         {/* Hero */}
-        <div className="relative h-80 md:h-96 overflow-hidden">
+        <div>
+          <div className="h-56 md:h-72 overflow-hidden">
           <img
             src={IMAGES.grandOpenSpaceModerne}
             alt="Open space moderne — guide budget nettoyage bureaux Marseille"
@@ -69,8 +70,8 @@ export function BudgetBureaux2026() {
             fetchpriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+          </div>
+          <div className="bg-gray-900 text-white p-6 md:p-10">
             <div className="container mx-auto">
               <Link to="/blog" className="inline-flex items-center gap-2 text-green-300 hover:text-green-200 mb-4 transition-colors">
                 <ArrowLeft className="w-4 h-4" aria-hidden="true" />

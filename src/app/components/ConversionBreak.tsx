@@ -45,10 +45,8 @@ export function ConversionBreak({
         width={1920}
         height={600}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/80 to-gray-900/70" />
-
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl bg-gray-900/90 rounded-2xl p-6 md:p-10 border border-white/10">
           {/* Trust chips */}
           <div className="flex flex-wrap gap-3 mb-6">
             <span className="inline-flex items-center gap-1.5 bg-green-500/20 text-green-200 px-3 py-1 rounded-full text-xs font-bold border border-green-500/30">

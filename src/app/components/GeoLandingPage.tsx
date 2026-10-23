@@ -27,13 +27,9 @@ const SERVICE_SLUG_TO_PARAM: Record<string, string> = {
   '/services/nettoyage-graffitis':      'graffitis',
   '/services/remise-etat-sols':         'sols',
   '/services/nettoyage-vitre':          'vitres',
-  '/nettoyage-particuliers':            'particuliers',
 };
 
 // ─── Mapping serviceSlug → label breadcrumb parent ────────────────────────────
-const SERVICE_SLUG_TO_BREADCRUMB: Record<string, { label: string; to: string }> = {
-  '/nettoyage-particuliers': { label: 'Nettoyage Particuliers', to: '/nettoyage-particuliers' },
-};
 const DEFAULT_BREADCRUMB_PARENT = { label: 'Services', to: '/services' };
 
 interface GeoLandingPageProps {
@@ -43,7 +39,7 @@ interface GeoLandingPageProps {
 export function GeoLandingPage({ data }: GeoLandingPageProps) {
   const devisParam = SERVICE_SLUG_TO_PARAM[data.serviceSlug] ?? '';
   const devisLink = devisParam ? `/devis?service=${devisParam}` : '/devis';
-  const breadcrumbParent = SERVICE_SLUG_TO_BREADCRUMB[data.serviceSlug] ?? DEFAULT_BREADCRUMB_PARENT;
+  const breadcrumbParent = DEFAULT_BREADCRUMB_PARENT;
 
   return (
     <>

@@ -76,19 +76,18 @@ export function ContactPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         
-        {/* Overlay CLAIR */}
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/60 to-green-800/50"></div>
-        
         <div className="container mx-auto px-4 relative z-10">
-          <nav className="text-sm mb-6 opacity-90 drop-shadow-md">
+          <div className="max-w-4xl bg-green-900/85 rounded-2xl p-6 md:p-10 border border-white/10">
+          <nav className="text-sm mb-6 opacity-90">
             <Link to="/" className="hover:underline">Accueil</Link> &gt; <span>Contact</span>
           </nav>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
             Contactez-nous
           </h1>
-          <p className="text-xl md:text-2xl drop-shadow-md">
+          <p className="text-xl md:text-2xl">
             Nature Clean Marseille est à votre écoute pour tous vos besoins de nettoyage professionnel
           </p>
+          </div>
         </div>
       </section>
 

@@ -90,7 +90,6 @@ export function formatJourneyForWhatsApp(journey: JourneyStep[]): string {
     '/services/nettoyage-evenementiel': 'Event',
     '/services/remise-etat-sols': 'Sols',
     '/services/nettoyage-vitre': 'Vitres',
-    '/nettoyage-particuliers': 'Particuliers',
     '/devis': 'Devis',
     '/contact': 'Contact',
     '/realisations': 'Realisations',

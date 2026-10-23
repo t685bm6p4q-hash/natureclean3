@@ -1,7 +1,7 @@
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
-import { Building2, Home, HardHat, Users, Sparkles, Store, Droplets, Package, Eraser, Heart } from 'lucide-react';
+import { Building2, Home, HardHat, Sparkles, Store, Droplets, Package, Eraser, Heart } from 'lucide-react';
 import { Link } from 'react-router';
 import { IMAGES } from '@/app/utils/images';
 
@@ -50,21 +50,6 @@ const services = [
     image: IMAGES.finChantierMarseille,
     keywords: 'Nettoyage fin de chantier Marseille, remise en état après travaux 13',
     link: '/services/nettoyage-chantiers'
-  },
-  {
-    icon: Users,
-    title: 'Nettoyage pour Particuliers & Seniors',
-    description: 'Ménage à domicile et accompagnement personnalisé pour les particuliers',
-    details: [
-      'Ménage régulier ou ponctuel de résidences privées',
-      'Nettoyage complet après événements festifs',
-      'Accompagnement spécialisé pour personnes âgées',
-      'Garantie d\'un environnement sain et sécurisé',
-      'Prévention des risques sanitaires liés à l\'hygiène domestique'
-    ],
-    image: IMAGES.remiseEtatAppartMarseille,
-    keywords: 'Ménage particuliers Marseille, aide à domicile seniors 13',
-    link: '/nettoyage-particuliers'
   },
   {
     icon: Store,
@@ -167,7 +152,7 @@ export function Services() {
             Nos Services d'Entretien et de Nettoyage à Marseille
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Solutions complètes de ménage, d'entretien et de propreté pour professionnels et particuliers à Marseille et dans les Bouches-du-Rhône
+            Solutions complètes de ménage, d'entretien et de propreté pour les professionnels à Marseille et dans les Bouches-du-Rhône
           </p>
         </div>
 

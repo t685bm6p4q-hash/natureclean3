@@ -7,6 +7,7 @@ import { Phone, Layers, Grid3x3, Wind, ArrowRight, CheckCircle2, Leaf } from 'lu
 import { Link } from 'react-router';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { ServiceFeatureCard } from '@/app/components/ServiceFeatureCard';
 import { IMAGES } from '@/app/utils/images';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
@@ -124,33 +125,13 @@ export function RemiseEtatSolsPage() {
               ], desc: 'Les textiles ont des besoins différents du bois, des minéraux et des granulats.' },
             ] as const).map((card, i) => (
               <ScrollReveal key={card.title} delay={i * 0.1}>
-                <div className="relative bg-white rounded-2xl shadow-md border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all h-full overflow-hidden">
-                  <div className="relative h-32 overflow-hidden">
-                    <ImageWithFallback
-                      src={card.image}
-                      alt="" aria-hidden="true"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      loading="lazy" decoding="async" width={400} height={180}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
-                        <card.icon className="w-6 h-6 text-green-600" aria-hidden="true" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-black text-gray-900 mb-2">{card.title}</h3>
-                    <p className="text-sm text-gray-600 mb-3">{card.desc}</p>
-                    <ul className="space-y-2">
-                      {card.items.map((item) => (
-                        <li key={item.bold} className="flex items-start gap-2 text-sm text-gray-700">
-                          <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                          <span><strong>{item.bold}</strong> {item.text}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <ServiceFeatureCard
+                  title={card.title}
+                  image={card.image}
+                  icon={card.icon}
+                  items={card.items}
+                  description={card.desc}
+                />
               </ScrollReveal>
             ))}
           </div>
@@ -265,15 +246,8 @@ export function RemiseEtatSolsPage() {
       />
 
       {/* CTA Final avec vraie photo */}
-      <section className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
-        <ImageWithFallback
-          src={IMAGES.solMarbrePoli}
-          alt="Sol marbre poli par Nature Clean Marseille"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          loading="lazy" decoding="async" width={1920} height={1080}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-gray-900/80" />
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="py-16 md:py-20 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
               Des sols comme neufs avec un impact minimal sur l'environnement

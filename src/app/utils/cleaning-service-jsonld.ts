@@ -50,7 +50,7 @@ export function buildCleaningServiceJsonLd(): Record<string, unknown> {
     image: LOGO_URL,
     logo: LOGO_URL,
     description:
-      "Entreprise d'entretien et de nettoyage professionnel éco-responsable à Marseille. Ménage de bureaux, copropriétés, fin de chantier et particuliers. Propreté et hygiène garanties sur tous les arrondissements de Marseille (13001-13016), Aubagne, Aix-en-Provence et La Ciotat.",
+      "Entreprise d'entretien et de nettoyage professionnel éco-responsable à Marseille. Ménage de bureaux, copropriétés et fin de chantier. Propreté et hygiène garanties sur tous les arrondissements de Marseille (13001-13016), Aubagne, Aix-en-Provence et La Ciotat.",
     url: BASE_URL,
     telephone: '+33484896875',
     email: EMAIL,
@@ -88,7 +88,6 @@ export function buildCleaningServiceJsonLd(): Record<string, unknown> {
       'Entretien de bureaux',
       'Ménage de copropriétés',
       'Nettoyage fin de chantier',
-      'Ménage particuliers',
       'Nettoyage industriel',
       'Propreté commerciale',
       'Nettoyage événementiel',
@@ -128,16 +127,6 @@ export function buildCleaningServiceJsonLd(): Record<string, unknown> {
             description:
               'Intervention après construction, rénovation ou déménagement. Remise en état complète.',
             areaServed: 'Marseille, Aubagne, Aix-en-Provence',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Nettoyage pour Particuliers & Seniors',
-            description:
-              'Entretien de maisons particulières et accompagnement personnalisé pour seniors',
-            areaServed: 'Marseille, Bouches-du-Rhône',
           },
         },
       ],

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router';
 import {
   Phone, Menu, X, ChevronDown, ChevronRight,
-  Building2, Store, HardHat, Layers, Droplet, User,
+  Building2, Store, HardHat, Layers, Droplet,
   Clock, Mail, FileText, MapPin, Shield, Heart, Eraser,
   Home as HomeIcon, Zap, MoreHorizontal, ImageIcon, Info, BookOpen, Sparkles
 } from 'lucide-react';
@@ -27,7 +27,6 @@ const SERVICE_PAGE_DEVIS_MAP: Record<string, string> = {
   '/services/nettoyage-graffitis':       '/devis?service=graffitis',
   '/services/nettoyage-gros-chantiers':  '/devis?service=gros-chantier',
   '/services/remise-etat-sols':          '/devis?service=sols',
-  '/nettoyage-particuliers':             '/devis?service=particuliers',
   '/nettoyage-vitre':                    '/devis?service=vitres',
 };
 
@@ -49,7 +48,6 @@ const entrepriseServices = [
 /** Liens individuels directs dans la nav */
 const individualServices = [
   { icon: HomeIcon, label: 'Coproprietes', href: '/services/nettoyage-coproprietes' },
-  { icon: User, label: 'Particuliers', href: '/nettoyage-particuliers' },
   { icon: Heart, label: 'Diogene', href: '/services/nettoyage-diogene' },
   { icon: HardHat, label: 'Gros Chantiers', href: '/services/nettoyage-gros-chantiers' },
 ] as const;

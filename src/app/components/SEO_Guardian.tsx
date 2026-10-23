@@ -150,7 +150,6 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
       contact: 'Contact',
       realisations: 'Réalisations',
       actualites: 'Actualités',
-      'nettoyage-particuliers': 'Nettoyage Particuliers',
       'entretien-bureaux': 'Entretien Bureaux',
       'nettoyage-commerces': 'Nettoyage Commerces',
       'nettoyage-coproprietes': 'Nettoyage Copropriétés',
@@ -212,7 +211,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     }
 
     // Pages où la FAQ est pertinente (évite le spam structured data sur blog, contact, etc.)
-    const faqPages = ['home', 'services', 'entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'nettoyage-particuliers', 'quote'];
+    const faqPages = ['home', 'services', 'entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'quote'];
 
     if (faqPages.includes(currentSection) || currentSection.startsWith('geo-') || currentSection === 'zones-intervention' || (currentSection === 'blog' && faqItems)) {
       // Construire les questions FAQ — soit depuis le prop faqItems (contextuel), soit fallback générique

@@ -6,6 +6,7 @@ import { Button } from '@/app/components/ui/button';
 import { Phone, Calendar, Music, Users, ArrowRight, CheckCircle2, Sparkles, PartyPopper } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { ServiceFeatureCard } from '@/app/components/ServiceFeatureCard';
 import { IMAGES } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
@@ -98,32 +99,13 @@ export function NettoyageEvenementielPage() {
                 ]},
               ] as const).map((card, i) => (
                 <ScrollReveal key={card.title} delay={i * 0.1}>
-                  <div className="relative bg-white rounded-2xl shadow-md border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all h-full overflow-hidden">
-                    <div className="relative h-36 overflow-hidden">
-                      <ImageWithFallback
-                        src={card.image}
-                        alt="" aria-hidden="true"
-                        className="absolute inset-0 w-full h-full object-cover"
-                        loading="lazy" decoding="async" width={400} height={144}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-14 h-14 bg-white/90 rounded-xl flex items-center justify-center shadow-lg">
-                          <card.icon className="w-7 h-7 text-green-600" aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="font-black text-gray-900 mb-4 text-lg">{card.title}</h3>
-                      <ul className="space-y-2">
-                        {card.items.map((item) => (
-                          <li key={item.bold} className="flex items-start gap-2 text-sm text-gray-700">
-                            <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                            <span><strong>{item.bold}</strong> {item.text}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                  <ServiceFeatureCard
+                    title={card.title}
+                    image={card.image}
+                    icon={card.icon}
+                    items={card.items}
+                    imageHeightClass="h-36"
+                  />
                 </ScrollReveal>
               ))}
             </div>
@@ -266,15 +248,8 @@ export function NettoyageEvenementielPage() {
       </section>
 
       {/* CTA Final avec vraie photo */}
-      <section className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
-        <ImageWithFallback
-          src={IMAGES.salleEvenementielle}
-          alt="Salle événementielle Marseille entretenue par Nature Clean"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          loading="lazy" decoding="async" width={800} height={450}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-gray-900/40" />
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="py-16 md:py-20 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
               Événements réussis grâce à une propreté et une hygiène impeccables

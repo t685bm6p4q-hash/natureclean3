@@ -34,7 +34,8 @@ export function NettoyageGalerieArtMarseille() {
       <article className="bg-white">
 
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <div className="relative h-96 md:h-[500px] overflow-hidden">
+        <div>
+          <div className="h-56 md:h-72 overflow-hidden">
           <img
             src={heroImageUrl}
             srcSet={cldSrcSet(IMAGES.galerieArtMarseille, [600, 900, 1200])}
@@ -45,11 +46,10 @@ export function NettoyageGalerieArtMarseille() {
             // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
             fetchpriority="high"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-          <div className="absolute bottom-0 left-0 right-0 p-8">
+          </div>
+          <div className="bg-gray-900 text-white p-6 md:p-10">
             <div className="container mx-auto">
               <Link
                 to="/blog"

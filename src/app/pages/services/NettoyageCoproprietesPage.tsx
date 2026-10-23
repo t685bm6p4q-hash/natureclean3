@@ -4,6 +4,7 @@ import { Button } from '@/app/components/ui/button';
 import { Phone, Building2, DoorOpen, ArrowUpDown, Trash2, Shield, Leaf, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { ServiceFeatureCard } from '@/app/components/ServiceFeatureCard';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
@@ -140,6 +141,7 @@ export function NettoyageCoproprietesPage() {
                 {
                   icon: DoorOpen,
                   title: 'Halls & Escaliers',
+                  image: IMAGES.parkingSouterrain,
                   items: [
                     { bold: 'Aspiration', text: 'des sols et moquettes' },
                     { bold: 'Lessivage', text: 'des surfaces et carrelages' },
@@ -149,6 +151,7 @@ export function NettoyageCoproprietesPage() {
                 {
                   icon: ArrowUpDown,
                   title: 'Ascenseurs & Vitres',
+                  image: IMAGES.cageEscalier,
                   items: [
                     { bold: 'Nettoyage', text: 'des parois et miroirs' },
                     { bold: 'Vitrages d\'entree', text: 'haute brillance' },
@@ -158,6 +161,7 @@ export function NettoyageCoproprietesPage() {
                 {
                   icon: Building2,
                   title: 'Parkings & Abords',
+                  image: IMAGES.hallClassiqueAscenseurs,
                   items: [
                     { bold: 'Balayage', text: 'des zones de stationnement' },
                     { bold: 'Nettoyage', text: 'des exterieurs et jardins' },
@@ -167,6 +171,7 @@ export function NettoyageCoproprietesPage() {
                 {
                   icon: Trash2,
                   title: 'Gestion des Dechets',
+                  image: IMAGES.hallCoproBoites,
                   items: [
                     { bold: 'Sortie/entree', text: 'des containers' },
                     { bold: 'Desinfection', text: 'des locaux poubelles' },
@@ -175,46 +180,12 @@ export function NettoyageCoproprietesPage() {
                 },
               ].map((card, i) => (
                 <ScrollReveal key={card.title} delay={i * 0.08}>
-                  <div className="relative bg-white rounded-2xl shadow-md border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all h-full overflow-hidden">
-                    {/* Mini-hero image compressée avec forte opacité */}
-                    <div className="relative h-28 overflow-hidden">
-                      <ImageWithFallback
-                        src={
-                          ({
-                            'Halls & Escaliers': IMAGES.parkingSouterrain,
-                            'Ascenseurs & Vitres': IMAGES.cageEscalier,
-                            'Parkings & Abords': IMAGES.hallClassiqueAscenseurs,
-                            'Gestion des Dechets': IMAGES.cageEscalier,
-                          } as Record<string, string>)[card.title] || IMAGES.hallCoproBoites
-                        }
-                        alt=""
-                        aria-hidden="true"
-                        className="absolute inset-0 w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                        width={400}
-                        height={150}
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 flex items-end px-4 pb-3">
-                        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md border border-green-100">
-                          <card.icon className="w-5 h-5 text-green-600" aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Contenu texte */}
-                    <div className="p-5">
-                      <h3 className="font-black text-gray-900 mb-3">{card.title}</h3>
-                      <ul className="space-y-2">
-                        {card.items.map((item) => (
-                          <li key={item.bold} className="flex items-start gap-2 text-sm text-gray-700">
-                            <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                            <span><strong>{item.bold}</strong> {item.text}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                  <ServiceFeatureCard
+                    title={card.title}
+                    image={card.image}
+                    icon={card.icon}
+                    items={card.items}
+                  />
                 </ScrollReveal>
               ))}
             </div>
@@ -382,19 +353,8 @@ export function NettoyageCoproprietesPage() {
       </section>
 
       {/* ═══ PHOTO LARGE — en bas de page ═══ */}
-      <section className="relative py-16 md:py-20 bg-gray-900 overflow-hidden">
-        <ImageWithFallback
-          src={IMAGES.hallMarbreAscenseurs}
-          alt="Hall de copropriété entretenu par Nature Clean Marseille"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          loading="lazy"
-          decoding="async"
-          width={1920}
-          height={1080}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-gray-900/80" />
-
-        <div className="container mx-auto px-4 relative z-10 text-center">
+      <section className="py-16 md:py-20 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
               Hygiène et propreté irréprochables pour des residents satisfaits

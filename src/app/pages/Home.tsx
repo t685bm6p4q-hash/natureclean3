@@ -164,7 +164,7 @@ export function Home() {
           src={getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')}
           srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
           sizes="100vw"
-          alt="Nettoyage fin de chantier à Marseille — équipe Nature Clean sur intervention professionnelle"
+          alt="Vue de Marseille et Notre-Dame de la Garde depuis une baie vitrée — Nature Clean"
           width="1920"
           height="1080"
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
@@ -673,7 +673,7 @@ export function Home() {
                 Nos dernières réalisations
               </h2>
               <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-                Découvrez nos interventions récentes auprès de professionnels et particuliers sur Marseille et en région PACA.
+                Découvrez nos interventions récentes auprès de professionnels sur Marseille et en région PACA.
               </p>
             </div>
           </ScrollReveal>

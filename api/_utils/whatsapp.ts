@@ -23,7 +23,6 @@ export const PAGE_LABELS: Record<string, string> = {
   '/services/nettoyage-evenementiel': 'Nettoyage EVENEMENTIEL',
   '/services/remise-etat-sols': 'Remise en etat SOLS',
   '/services/nettoyage-vitre': 'Nettoyage VITRES',
-  '/nettoyage-particuliers': 'Menage PARTICULIERS',
   '/devis': 'Page devis directe',
   '/contact': 'Page contact',
   '/realisations': 'Page realisations',

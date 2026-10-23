@@ -15,7 +15,7 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { Link } from 'react-router';
 import {
   MapPin, ArrowRight, Phone, Building2, Home as HomeIcon,
-  HardHat, Store, PartyPopper, Droplet, CheckCircle2, Leaf, Shield, Clock
+  HardHat, Store, PartyPopper, Droplet, CheckCircle2, Leaf, Shield, Clock, Eraser
 } from 'lucide-react';
 import { IMAGES } from '@/app/utils/images';
 import { GEO_PAGES } from '@/app/utils/geoData';
@@ -27,7 +27,7 @@ const FAQ_ITEMS: FAQItem[] = [
   { question: 'Dans quelles villes intervenez-vous ?', answer: 'Nature Clean intervient dans tous les arrondissements de Marseille (13001 a 13016), ainsi qu\'a Aix-en-Provence, Aubagne et La Ciotat dans les Bouches-du-Rhone.' },
   { question: 'Facturez-vous un supplement pour les interventions hors Marseille ?', answer: 'Non, nos tarifs sont identiques sur toute notre zone d\'intervention. Le deplacement est inclus dans le prix de la prestation, quel que soit le secteur geographique.' },
   { question: 'Quel est votre delai d\'intervention ?', answer: 'Nous garantissons des interventions sous 48h sur Marseille, Aix-en-Provence, Aubagne et La Ciotat. Pour les urgences, un delai de 24h est possible sur devis express.' },
-  { question: 'Proposez-vous les memes services dans toutes les villes ?', answer: 'Oui, l\'integralite de notre catalogue (bureaux, coproprietes, chantiers, commerces, vitres, evenementiel, sols, particuliers) est disponible sur tous nos secteurs d\'intervention.' },
+  { question: 'Proposez-vous les memes services dans toutes les villes ?', answer: 'Oui, l\'integralite de notre catalogue (bureaux, coproprietes, chantiers, commerces, vitres, evenementiel, sols) est disponible sur tous nos secteurs d\'intervention.' },
   { question: 'Comment demander un devis pour ma ville ?', answer: 'Appelez-nous au 04 84 89 68 75 ou utilisez notre formulaire de devis en ligne. Precisez votre adresse et le type de prestation souhaitee, nous vous repondrons sous 24h avec une proposition personnalisee.' },
 ];
 
@@ -59,7 +59,6 @@ const ZONE_GROUPS = [
 const SERVICE_ICONS: Record<string, typeof Building2> = {
   'Bureaux': Building2,
   'Coproprietes': HomeIcon,
-  'Particuliers': HomeIcon,
   'Fin de chantier': HardHat,
   'Commerces': Store,
   'Evenementiel': PartyPopper,
@@ -231,7 +230,7 @@ export function ZonesInterventionPage() {
               { icon: PartyPopper, label: 'Evenementiel', href: '/services/nettoyage-evenementiel', desc: 'Avant, pendant, apres' },
               { icon: Droplet, label: 'Nettoyage Vitres', href: '/services/nettoyage-vitre', desc: 'Interieur, exterieur, nacelle' },
               { icon: MapPin, label: 'Remise en Etat Sols', href: '/services/remise-etat-sols', desc: 'Poncage, cristallisation' },
-              { icon: Leaf, label: 'Menage Particuliers', href: '/nettoyage-particuliers', desc: 'Domicile, Airbnb, seniors' },
+              { icon: Eraser, label: 'Graffitis', href: '/services/nettoyage-graffitis', desc: 'Tags, facades, vitrines' },
             ].map((service, i) => (
               <ScrollReveal key={service.label} delay={i * 0.05}>
                 <Link
@@ -289,15 +288,14 @@ export function ZonesInterventionPage() {
                       width={400}
                       height={200}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent" />
-                    <div className="absolute bottom-3 left-4 right-4">
-                      <span className="inline-flex items-center gap-1 bg-green-500/90 text-white px-2 py-0.5 rounded-full text-[10px] font-bold">
-                        <MapPin className="w-2.5 h-2.5" aria-hidden="true" />
-                        {page.city} — {page.postalCode}
-                      </span>
-                    </div>
                   </div>
-                  <div className="p-4">
+                  <div className="px-4 pt-3">
+                    <span className="inline-flex items-center gap-1 bg-green-600 text-white px-2 py-0.5 rounded-full text-[10px] font-bold">
+                      <MapPin className="w-2.5 h-2.5" aria-hidden="true" />
+                      {page.city} — {page.postalCode}
+                    </span>
+                  </div>
+                  <div className="p-4 pt-2">
                     <h3 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-green-700 transition-colors">
                       {page.service} a {page.city}
                     </h3>

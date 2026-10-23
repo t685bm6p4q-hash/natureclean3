@@ -219,15 +219,6 @@ export function GoogleReviews() {
             <p className="text-gray-600 max-w-xl mx-auto">
               Syndics, gestionnaires et professionnels de Marseille nous font confiance au quotidien
             </p>
-            <div className="flex items-center justify-center gap-3 mt-5">
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <span className="font-black text-2xl text-gray-900">4.7</span>
-              <span className="text-sm text-gray-500">(12 avis)</span>
-            </div>
           </div>
         </ScrollReveal>
 

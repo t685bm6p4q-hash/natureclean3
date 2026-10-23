@@ -42,7 +42,7 @@ export type { CldPreset, CldImgAttrs } from '@/app/utils/cloudinaryHelper';
 const P_logoNatureClean         = 'v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png';
 
 // ── HERO ──
-const P_heroHome                = 'v1791196415/chaniter-nettoyage-nature-clean_axooeq.jpg';
+const P_heroHome                = 'v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg';
 
 // ── AMBIANCE ──
 const P_vueMarseilleBasin       = 'v1773950699/nettoyage-sols-marseille-eco-responsable-nature_-_01_lnw8go.jpg';

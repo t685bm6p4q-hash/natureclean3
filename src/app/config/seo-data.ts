@@ -7,16 +7,16 @@ export interface SEOEntry {
 /** Registre central des meta title / description / keywords par section. */
 export const SEO_DATA: Record<string, SEOEntry> = {
   home: {
-    title: 'Entreprise de Nettoyage Marseille (13) | 4,7★ | Nature Clean',
+    title: 'Entreprise de Nettoyage Marseille | Devis Gratuit',
     description:
-      'Entreprise de nettoyage à Marseille : bureaux, copropriétés, fin de chantier. Devis gratuit sous 24 h · 7j/7 · 500+ clients · Éco-responsable · 04 84 89 68 75',
+      'Vous cherchez une entreprise de nettoyage à Marseille ? Bureaux, copropriétés, fin de chantier. Devis gratuit 24 h. Intervention rapide.',
     keywords:
       'entretien Marseille, nettoyage Marseille, ménage Marseille, entreprise nettoyage 13, entretien bureaux Marseille, ménage copropriété, propreté professionnelle Bouches-du-Rhône, Nature Clean',
   },
   services: {
     title: 'Services de Nettoyage Marseille | Nature Clean',
     description:
-      'Tous nos services d\'entretien à Marseille : bureaux, copropriétés, fin de chantier, particuliers. Devis gratuit sous 2 h, 7j/7. Note 4,7/5 · Éco-responsable · 04 84 89 68 75',
+      'Tous nos services d\'entretien à Marseille : bureaux, copropriétés, fin de chantier. Devis gratuit sous 2 h, 7j/7. Note 4,7/5 · Éco-responsable · 04 84 89 68 75',
     keywords:
       'services entretien Marseille, ménage professionnel 13, nettoyage bureaux, propreté copropriété, remise en état chantier, hygiène locaux Marseille',
   },
@@ -60,13 +60,6 @@ export const SEO_DATA: Record<string, SEOEntry> = {
       'Conseils et actualités du nettoyage écologique à Marseille. Méthodes éco-responsables, produits Ecolabel, guides pratiques pour entreprises.',
     keywords:
       'blog nettoyage écologique, conseils nettoyage Marseille, astuces propreté, actualités Nature Clean',
-  },
-  'nettoyage-particuliers': {
-    title: 'Ménage Particuliers Marseille | Nature Clean',
-    description:
-      'Ménage à domicile, grand nettoyage, Airbnb à Marseille. Devis sous 2 h. Note 4,7/5 · Produits éco-responsables · 7j/7 · 04 84 89 68 75',
-    keywords:
-      'ménage domicile Marseille, nettoyage particulier 13, femme ménage Marseille, nettoyage déménagement, ménage Airbnb Marseille, entretien maison Marseille, produits écologiques',
   },
   'entretien-bureaux': {
     title: 'Nettoyage Bureaux Marseille | Entreprise pro 13 | Nature Clean',
