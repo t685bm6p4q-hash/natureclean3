@@ -152,13 +152,14 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
       actualites: 'Actualités',
       'entretien-bureaux': 'Entretien Bureaux',
       'nettoyage-commerces': 'Nettoyage Commerces',
+      'remise-etat-urgence-commerce': 'Urgence commerce',
       'nettoyage-coproprietes': 'Nettoyage Copropriétés',
       'nettoyage-chantiers': 'Nettoyage Fin de Chantier',
       'nettoyage-evenementiel': 'Nettoyage Événementiel',
       'nettoyage-graffitis': 'Enlèvement de Graffitis',
       'nettoyage-diogene': 'Nettoyage Syndrome de Diogène',
       'remise-etat-sols': 'Remise en État Sols',
-      'nettoyage-vitre': 'Nettoyage Vitres',
+      'nettoyage-vitre': 'Nettoyage de vitres',
       'zones-intervention': 'Zones d\'intervention',
     };
 
@@ -167,7 +168,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     ];
 
     // Ajouter la section parente si c'est un sous-service
-    const isSubService = ['entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre'].includes(currentSection);
+    const isSubService = ['entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'remise-etat-urgence-commerce'].includes(currentSection);
     const isGeoPage = currentSection.startsWith('geo-');
     if (isSubService) {
       breadcrumbItems.push({ name: 'Services', url: `${BASE_URL}/services` });
@@ -211,7 +212,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     }
 
     // Pages où la FAQ est pertinente (évite le spam structured data sur blog, contact, etc.)
-    const faqPages = ['home', 'services', 'entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'quote'];
+    const faqPages = ['home', 'services', 'entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'remise-etat-urgence-commerce', 'quote'];
 
     if (faqPages.includes(currentSection) || currentSection.startsWith('geo-') || currentSection === 'zones-intervention' || (currentSection === 'blog' && faqItems)) {
       // Construire les questions FAQ — soit depuis le prop faqItems (contextuel), soit fallback générique
@@ -238,7 +239,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
             'name': 'Intervenez-vous dans tous les arrondissements de Marseille ?',
             'acceptedAnswer': {
               '@type': 'Answer' as const,
-              'text': 'Oui, Nature Clean intervient dans tous les arrondissements de Marseille (13001 à 13016), ainsi qu\'à Aubagne, Aix-en-Provence et dans les Alpes-Maritimes.'
+              'text': 'Oui, Nature Clean intervient dans tous les arrondissements de Marseille (13001 à 13016), ainsi qu\'à Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Istres, Martigues et Salon-de-Provence.'
             }
           },
           {

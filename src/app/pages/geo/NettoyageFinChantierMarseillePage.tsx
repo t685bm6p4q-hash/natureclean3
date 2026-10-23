@@ -1,6 +1,6 @@
-import { GeoLandingPage } from '@/app/components/GeoLandingPage';
-import { GEO_PAGES } from '@/app/utils/geoData';
+import { Navigate } from 'react-router';
 
+/** Ancienne landing geo — fusionnée dans la fiche service. 301 Vercel + redirect SPA. */
 export function NettoyageFinChantierMarseillePage() {
-  return <GeoLandingPage data={GEO_PAGES['nettoyage-fin-chantier-marseille']} />;
+  return <Navigate to="/services/nettoyage-chantiers" replace />;
 }

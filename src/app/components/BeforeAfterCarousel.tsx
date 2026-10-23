@@ -19,13 +19,31 @@ interface BeforeAfterItem {
 
 const items: BeforeAfterItem[] = [
   {
-    id: 'ba-1',
-    title: 'Remise a neuf boutique — Commerce Marseille',
+    id: 'ba-appart',
+    title: 'Appartement après travaux',
     location: 'Marseille',
-    beforeImage: IMAGES.nettoyageMarseilleEco,
-    afterImage: IMAGES.magasinBoutiquePACA,
-    beforeAlt: 'Commerce marseillais avant intervention Nature Clean',
-    afterAlt: 'Commerce impeccable apres nettoyage professionnel Nature Clean',
+    beforeImage: IMAGES.appartAvantChantier,
+    afterImage: IMAGES.appartClesComplete,
+    beforeAlt: 'Appartement après travaux, poussière sur sols et vitres',
+    afterAlt: 'Même appartement après nettoyage fin de chantier',
+  },
+  {
+    id: 'ba-graffiti',
+    title: 'Façade commerciale taguée',
+    location: 'Marseille',
+    beforeImage: IMAGES.graffitiCarrefourAvant,
+    afterImage: IMAGES.effacementTagVitrine,
+    beforeAlt: 'Façade avec tags et graffitis',
+    afterAlt: 'Façade après effacement des tags',
+  },
+  {
+    id: 'ba-boutique',
+    title: 'Boutique prêt-à-porter',
+    location: 'Marseille',
+    beforeImage: IMAGES.whatsappCommerce,
+    afterImage: IMAGES.magasinPretAPorterUrgence,
+    beforeAlt: 'Espace de vente avant remise en état complète',
+    afterAlt: 'Boutique après nettoyage et remise en ordre',
   },
 ];
 
@@ -147,13 +165,12 @@ export function BeforeAfterCarousel() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold mb-4">
-            Avant / Apres
+            Avant / après
           </span>
-          <h2 className="text-3xl md:text-4xl font-black text-gray-900">
-            La transformation Nature Clean
-          </h2>
-          <p className="text-gray-500 mt-2">
-            Faites glisser le curseur pour voir le resultat
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900">Comparer avant et après</h2>
+          <p className="text-gray-500 mt-2 max-w-lg mx-auto">
+            Faites glisser le curseur. Photos d&apos;interventions Nature Clean — vérifiez la paire
+            avant publication si le lieu est identifiable.
           </p>
         </div>
 

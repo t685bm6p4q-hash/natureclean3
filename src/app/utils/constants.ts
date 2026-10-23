@@ -41,8 +41,17 @@ export const SIRET = '89020726900022';
 
 // ─── Geographie ─────────────────────────────────────────
 export const PRIMARY_CITY = 'Marseille';
-export const REGION = 'PACA';
-export const DEPARTMENTS = ['13', '83', '06'] as const;
+export const REGION = 'Bouches-du-Rhône';
+export const DEPARTMENTS = ['13'] as const;
+export const ZONE_LABEL = 'Marseille et Bouches-du-Rhône';
+
+/** Adresse unique — site, JSON-LD, GBP, mentions légales */
+export const OFFICE_ADDRESS_LINE = '22 Traverse Pupat, 13008 Marseille';
+
+// ─── Avis Google (chiffres de la fiche, pas de JSON-LD) ──
+export const GOOGLE_RATING = '4,6';
+export const GOOGLE_REVIEW_COUNT = 9;
+export const GOOGLE_PROFILE_URL = 'https://share.google/LGuTIovk5ovTXGzuc';
 
 // ─── WhatsApp ───────────────────────────────────────────
 export const WHATSAPP_DEFAULT_MESSAGE = 'Bonjour, je souhaite obtenir un devis pour vos services de nettoyage a Marseille.';

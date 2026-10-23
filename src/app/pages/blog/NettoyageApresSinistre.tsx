@@ -5,14 +5,15 @@ import { Phone, AlertTriangle, ArrowLeft, Clock, Droplets, Flame, Wind } from 'l
 import { IMAGES } from '@/app/utils/images';
 import { useArticleJsonLd } from '@/app/hooks/useArticleJsonLd';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
+import { BlogArticleByline } from '@/app/components/BlogArticleByline';
 
 export function NettoyageApresSinistre() {
   useArticleJsonLd({
-    headline: 'Protocole de nettoyage après sinistre : dégât des eaux et incendie',
-    description: 'Guide professionnel pour le nettoyage après sinistre à Marseille. Intervention rapide dégât des eaux, incendie, moisissures. Protocole certifié.',
+    headline: 'Nettoyage après dégât des eaux : périmètre d\'intervention à Marseille',
+    description: 'Remise en propreté après fuite ou humidité à Marseille. Périmètre Nature Clean et limites pour incendie ou suies.',
     image: IMAGES.degatDesEaux,
     datePublished: '2025-01-27',
-    dateModified: '2025-01-27',
+    dateModified: '2026-10-24',
     slug: 'nettoyage-apres-sinistre',
     keywords: 'nettoyage après sinistre marseille, dégât des eaux 13, nettoyage après incendie, remise en état post-sinistre, intervention urgence marseille',
   });
@@ -20,8 +21,8 @@ export function NettoyageApresSinistre() {
   return (
     <>
       <SEO_Guardian 
-        title="Nettoyage Après Sinistre Marseille | Dégât des Eaux & Incendie | Nature Clean"
-        description="Intervention rapide pour nettoyage après sinistre à Marseille : dégât des eaux, incendie, moisissures. Protocole professionnel certifié. Devis gratuit 04 84 89 68 75"
+        title="Nettoyage Après Dégât des Eaux Marseille | Nature Clean"
+        description="Remise en propreté après fuite ou humidité à Marseille et dans le 13. Périmètre d'intervention et devis sous 24 h. Incendie : prestations spécialisées à part."
         keywords="nettoyage après sinistre marseille, dégât des eaux 13, nettoyage après incendie marseille, remise en état post-sinistre, intervention urgence 13001"
         currentSection="blog"
 
@@ -52,7 +53,7 @@ export function NettoyageApresSinistre() {
                 <span className="text-sm">6 min de lecture • 27 janvier 2025</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-white max-w-4xl">
-                Protocole de nettoyage après sinistre : dégât des eaux et incendie
+                Nettoyage après dégât des eaux : ce que nous prenons en charge
               </h1>
             </div>
           </div>
@@ -60,23 +61,31 @@ export function NettoyageApresSinistre() {
 
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
-            
+            <BlogArticleByline publishedLabel="27 janvier 2025" updatedLabel="24 octobre 2026" />
+
             <div className="prose prose-lg max-w-none mb-12">
               <p className="text-xl text-gray-700 leading-relaxed">
-                Un <strong>sinistre</strong> (dégât des eaux, incendie, inondation) nécessite une <strong>intervention rapide et professionnelle</strong> 
-                pour éviter l'aggravation des dommages. À <strong>Marseille et dans toute la région PACA</strong>, Nature Clean intervient en urgence 
-                avec un protocole certifié pour la remise en état de vos locaux.
+                Après une <strong>fuite ou un dégât des eaux</strong>, la remise en propreté limite les odeurs et prépare la suite des travaux.
+                À <strong>Marseille et dans les Bouches-du-Rhône</strong>, Nature Clean intervient sur le{' '}
+                <strong>nettoyage et la remise en état des surfaces</strong> — pas sur la expertise assurance ni sur le traitement de suies
+                après incendie (prestataires spécialisés).
               </p>
             </div>
 
-            <div className="bg-red-50 border-l-4 border-red-600 p-6 mb-12">
+            <div className="bg-amber-50 border-l-4 border-amber-600 p-6 mb-12">
               <div className="flex items-start gap-3">
-                <AlertTriangle className="w-6 h-6 text-red-600 mt-1 shrink-0" />
+                <AlertTriangle className="w-6 h-6 text-amber-700 mt-1 shrink-0" aria-hidden="true" />
                 <div>
-                  <h3 className="font-bold text-red-900 mb-2">⚠️ URGENCE SINISTRE</h3>
-                  <p className="text-red-800">
-                    <strong>Les 48 premières heures sont critiques.</strong> Chaque heure perdue augmente le risque de moisissures, 
-                    d'odeurs persistantes et de dégradations irréversibles. Contactez-nous immédiatement au <strong>{PHONE_DISPLAY}</strong>.
+                  <h3 className="font-bold text-amber-900 mb-2">Périmètre de l&apos;article</h3>
+                  <p className="text-amber-950 text-sm leading-relaxed">
+                    Ce guide décrit surtout les <strong>dégâts des eaux</strong> et la remise en propreté. En cas
+                    d&apos;<strong>incendie</strong>, les suies et la contamination demandent un protocole dédié : dites-nous
+                    votre situation au <strong>{PHONE_DISPLAY}</strong> — nous vous orientons ou chiffrons ce que nous pouvons
+                    réellement prendre en charge. Voir aussi{' '}
+                    <Link to="/services/nettoyage-chantiers" className="text-green-800 font-semibold underline">
+                      nettoyage fin de chantier à Marseille
+                    </Link>
+                    .
                   </p>
                 </div>
               </div>
@@ -272,8 +281,8 @@ export function NettoyageApresSinistre() {
                   <ul className="space-y-1">
                     <li>✓ Arles</li>
                     <li>✓ Istres</li>
-                    <li>✓ Alpes-Maritimes (Cannes)</li>
-                    <li>✓ Toute la région PACA</li>
+                    <li>✓ Marignane</li>
+                    <li>✓ Bouches-du-Rhône (13)</li>
                   </ul>
                 </div>
               </div>
@@ -316,7 +325,7 @@ export function NettoyageApresSinistre() {
                 </Link>
                 <Link to="/blog/normes-nettoyage-chantier-2025" className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
                   <h3 className="text-lg font-semibold text-green-700 mb-2">
-                    Normes nettoyage chantier 2025 →
+                    Nettoyage fin de chantier →
                   </h3>
                   <p className="text-gray-600">
                     Obligations légales pour promoteurs et artisans

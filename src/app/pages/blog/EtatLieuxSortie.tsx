@@ -21,12 +21,12 @@ export function EtatLieuxSortie() {
 
   return (
     <>
-      <SEO_Guardian 
-        title="État des Lieux Sortie Marseille : Guide Complet 2025 | Nature Clean"
-        description="Comment préparer un état des lieux de sortie à Marseille et récupérer votre caution ? Guide expert avec checklist complète et conseils de nettoyage professionnel."
-        keywords="état des lieux sortie marseille, nettoyage fin de bail 13, récupérer caution locative, nettoyage appartement marseille, état des lieux 13001, 13002, 13003"
+      <SEO_Guardian
+        title="État des Lieux Sortie Marseille | Nature Clean"
+        description="Guide particuliers : préparer un état des lieux de sortie à Marseille. Nature Clean intervient aussi pour les professionnels — voir nettoyage fin de chantier et particuliers."
+        keywords="état des lieux sortie marseille, nettoyage fin de bail 13"
         currentSection="blog"
-
+        noindex
       />
 
       {/* Hero Article */}
@@ -251,7 +251,7 @@ export function EtatLieuxSortie() {
                   🎯 Offre Spéciale "État des Lieux Sortie"
                 </h3>
                 <p className="text-lg mb-6 opacity-90">
-                  Devis gratuit sous 24h + intervention express sur Marseille et région PACA
+                  Devis gratuit sous 24h + intervention express sur Marseille et les Bouches-du-Rhône
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-white text-green-700 hover:bg-gray-100">
@@ -300,7 +300,7 @@ export function EtatLieuxSortie() {
                 </Link>
                 <Link to="/blog/normes-nettoyage-chantier-2025" className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
                   <h3 className="text-lg font-semibold text-green-700 mb-2">
-                    Normes nettoyage chantier 2025 →
+                    Nettoyage fin de chantier →
                   </h3>
                   <p className="text-gray-600">
                     Obligations légales pour promoteurs et artisans

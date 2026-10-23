@@ -12,7 +12,7 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
 const FAQ_CHANTIERS: FAQItem[] = [
-  { question: 'Qu\'est-ce qu\'un nettoyage "gros chantier" pour un particulier ?', answer: 'C\'est une intervention lourde qui va au-delà du ménage classique. Elle concerne le nettoyage après des travaux de rénovation (élimination du voile de ciment, poussière fine), une remise en état complète avant une vente immobilière, ou un nettoyage de printemps extrême (incluant intérieur de placards, vitrerie complète, lessivage murs).' },
+  { question: 'Qu\'est-ce qu\'un nettoyage "gros chantier" pour un particulier ?', answer: 'C\'est une intervention lourde qui va au-delà du ménage classique. Elle concerne le nettoyage après des travaux de rénovation (élimination du voile de ciment, poussière fine), une remise en état complète avant une vente immobilière, ou un nettoyage de printemps extrême (incluant intérieur de placards, lavage de vitres, lessivage murs).' },
   { question: 'Intervenez-vous pour les états des lieux de sortie ?', answer: 'Oui, nous proposons une formule "Garantie Caution" pour les locataires sortants. Nous effectuons une remise au propre intégrale du logement pour vous assurer de récupérer l\'intégralité de votre dépôt de garantie.' },
   { question: 'Fournissez-vous le matériel et les produits ?', answer: 'Absolument. Nos équipes arrivent avec tout le matériel nécessaire : aspirateurs industriels HEPA, monobrosses pour sols, nettoyeurs vapeur haute pression et l\'intégralité des produits professionnels éco-responsables.' },
   { question: 'Comment obtenir un devis pour un grand nettoyage ?', answer: 'Vous pouvez nous appeler directement ou remplir notre formulaire en ligne. Pour les gros volumes, nous pouvons nous déplacer gratuitement pour évaluer précisément le travail à effectuer et vous remettre un devis ferme sous 24h.' },
@@ -34,7 +34,7 @@ const features = [
   {
     icon: Calendar,
     title: 'Printemps Extrême',
-    description: 'Le grand ménage annuel poussé à son maximum : intérieur de meubles, radiateurs, luminaires et vitrerie.',
+    description: 'Le grand ménage annuel poussé à son maximum : intérieur de meubles, radiateurs, luminaires et lavage de vitres.',
     color: 'bg-green-50 text-green-600'
   }
 ];

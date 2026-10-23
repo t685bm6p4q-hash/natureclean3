@@ -12,4 +12,5 @@ export interface ServiceCard {
   description: string;
   features: string[];
   link: string;
+  cta: string;
 }

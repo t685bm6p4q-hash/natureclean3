@@ -9,6 +9,7 @@ import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { useArticleJsonLd } from '@/app/hooks/useArticleJsonLd';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
+import { BlogArticleByline } from '@/app/components/BlogArticleByline';
 
 const FAQ_ITEMS: FAQItem[] = [
   { question: 'A quelle frequence faut-il nettoyer les parties communes d\'une copropriete ?', answer: 'Pour une copropriete de taille moyenne (30 a 60 lots), un minimum de 2 passages hebdomadaires est recommande pour les halls et escaliers, avec un nettoyage approfondi mensuel des parkings et locaux techniques.' },
@@ -44,7 +45,7 @@ export function ChecklistCoproSyndic() {
     <>
       <SEO_Guardian
         title="Checklist Nettoyage Copropriete : Guide Complet Syndics Marseille | Nature Clean"
-        description="Checklist complete pour les syndics : zones a nettoyer, frequences recommandees, criteres de choix du prestataire. Guide pratique pour les coproprietes a Marseille et PACA."
+        description="Checklist complete pour les syndics : zones a nettoyer, frequences recommandees, criteres de choix du prestataire. Guide pratique pour les coproprietes a Marseille et dans les Bouches-du-Rhône."
         keywords="checklist nettoyage copropriete, guide syndic nettoyage, entretien parties communes marseille, cahier charges nettoyage immeuble, frequence nettoyage copro"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
@@ -87,9 +88,14 @@ export function ChecklistCoproSyndic() {
         {/* Contenu */}
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
+            <BlogArticleByline publishedLabel="10 février 2026" />
             <ScrollReveal>
               <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                En tant que syndic ou gestionnaire de copropriete a Marseille, vous etes garant de la proprete des parties communes. Une bonne checklist de nettoyage permet de <strong>structurer les interventions</strong>, d'<strong>evaluer objectivement la qualite du prestataire</strong> et de <strong>repondre aux attentes des coproprietaires</strong>. Voici notre guide complet.
+                En tant que syndic ou gestionnaire de copropriete a Marseille, vous etes garant de la proprete des parties communes. Une bonne checklist de nettoyage permet de <strong>structurer les interventions</strong>, d'<strong>evaluer objectivement la qualite du prestataire</strong> et de <strong>repondre aux attentes des coproprietaires</strong>. Pour la prestation elle-meme, voir{' '}
+                <Link to="/services/nettoyage-coproprietes" className="text-green-800 font-semibold underline">
+                  nettoyage de copropriétés à Marseille
+                </Link>
+                .
               </p>
             </ScrollReveal>
 
@@ -193,7 +199,7 @@ export function ChecklistCoproSyndic() {
                   Nature Clean : votre partenaire coproprietes a Marseille
                 </h2>
                 <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-                  Audit gratuit, cahier des charges sur mesure et suivi qualite mensuel. 500+ clients satisfaits depuis 2021.
+                  Audit gratuit, cahier des charges sur mesure et suivi au contrat. Depuis 2021 à Marseille et dans le 13.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">

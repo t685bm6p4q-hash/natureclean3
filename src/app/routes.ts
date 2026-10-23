@@ -25,6 +25,7 @@ export const router = createBrowserRouter([
       { path: 'services', lazy: () => import('@/app/pages/ServicesPage').then(m => ({ Component: m.ServicesPage })) },
       { path: 'services/entretien-bureaux', lazy: () => import('@/app/pages/services/EntretienBureauxPage').then(m => ({ Component: m.EntretienBureauxPage })) },
       { path: 'services/nettoyage-commerces', lazy: () => import('@/app/pages/services/NettoyageCommercesPage').then(m => ({ Component: m.NettoyageCommercesPage })) },
+      { path: 'services/remise-etat-urgence-commerce', lazy: () => import('@/app/pages/services/RemiseEtatUrgenceCommercePage').then(m => ({ Component: m.RemiseEtatUrgenceCommercePage })) },
       { path: 'services/nettoyage-coproprietes', lazy: () => import('@/app/pages/services/NettoyageCoproprietesPage').then(m => ({ Component: m.NettoyageCoproprietesPage })) },
       { path: 'services/nettoyage-chantiers', lazy: () => import('@/app/pages/services/NettoyageChantiersPage').then(m => ({ Component: m.NettoyageChantiersPage })) },
       { path: 'services/nettoyage-evenementiel', lazy: () => import('@/app/pages/services/NettoyageEvenementielPage').then(m => ({ Component: m.NettoyageEvenementielPage })) },
@@ -36,6 +37,8 @@ export const router = createBrowserRouter([
       { path: 'nettoyage-particuliers', Component: () => createElement(Navigate, { to: '/services', replace: true }) },
       { path: 'a-propos', lazy: () => import('@/app/pages/NatureCleanEcoPage').then(m => ({ Component: m.NatureCleanEcoPage })) },
       { path: 'realisations', lazy: () => import('@/app/pages/RealisationsPage').then(m => ({ Component: m.RealisationsPage })) },
+      { path: 'realisations/cas/magasin-centre-ville', lazy: () => import('@/app/pages/realisations/CasMagasinCentreVillePage').then(m => ({ Component: m.CasMagasinCentreVillePage })) },
+      { path: 'realisations/cas/cabinet-medical-marseille', lazy: () => import('@/app/pages/realisations/CasCabinetMedicalMarseillePage').then(m => ({ Component: m.CasCabinetMedicalMarseillePage })) },
       { path: 'actualites', lazy: () => import('@/app/pages/ActualitesPage').then(m => ({ Component: m.ActualitesPage })) },
       { path: 'devis', lazy: () => import('@/app/pages/QuotePage').then(m => ({ Component: m.QuotePage })) },
       { path: 'merci', lazy: () => import('@/app/pages/MerciPage').then(m => ({ Component: m.MerciPage })) },
@@ -57,7 +60,7 @@ export const router = createBrowserRouter([
       { path: 'blog/devis-nettoyage-marseille-guide', lazy: () => import('@/app/pages/blog/DevisNettoyageMarseille').then(m => ({ Component: m.DevisNettoyageMarseille })) },
       { path: 'blog/nettoyage-ecologique-produits-bio-entreprise', lazy: () => import('@/app/pages/blog/NettoyageEcologiqueEntreprise').then(m => ({ Component: m.NettoyageEcologiqueEntreprise })) },
       { path: 'blog/faq-nettoyage-terrasse-marseille', lazy: () => import('@/app/pages/blog/NettoyageTerrasseMarseille').then(m => ({ Component: m.NettoyageTerrasseMarseille })) },
-      { path: 'blog/nettoyage-graffitis-carrefour-marseille', lazy: () => import('@/app/pages/blog/NettoyageGraffitisCarrefour').then(m => ({ Component: m.NettoyageGraffitisCarrefour })) },
+      { path: 'blog/nettoyage-graffitis-grande-surface-marseille', lazy: () => import('@/app/pages/blog/NettoyageGraffitisCarrefour').then(m => ({ Component: m.NettoyageGraffitisCarrefour })) },
       { path: 'blog/nettoyage-galerie-art-marseille', lazy: () => import('@/app/pages/blog/NettoyageGalerieArtMarseille').then(m => ({ Component: m.NettoyageGalerieArtMarseille })) },
       // Geo landing pages
       // ⚠️ MARSEILLE — mot-clé principal

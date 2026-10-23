@@ -27,7 +27,7 @@ export function ConversionBreak({
   imageAlt,
   title,
   subtitle,
-  urgencyText = 'Réponse garantie sous 2h',
+  urgencyText = 'Réponse sous 2 h, devis sous 24 h',
   objectPosition,
   devisLink = '/devis',
 }: ConversionBreakProps) {
@@ -55,7 +55,7 @@ export function ConversionBreak({
             </span>
             <span className="inline-flex items-center gap-1.5 bg-white/10 text-white/90 px-3 py-1 rounded-full text-xs font-bold border border-white/20">
               <Shield className="w-3 h-3" aria-hidden="true" />
-              Sans engagement
+              Assurance RC Pro
             </span>
           </div>
 

@@ -1,40 +1,80 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
-import { Store, TrendingUp, Users, ArrowRight, CheckCircle2, Package, Sparkles, Droplets, Shield, AlertTriangle } from 'lucide-react';
+import { Store, ArrowRight, CheckCircle2, Clock, Sparkles, Square } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { ServiceFeatureCard, ServiceShowcaseCard } from '@/app/components/ServiceFeatureCard';
-import { IMAGES, getOptimizedCldUrl, cldSrcSet } from '@/app/utils/images';
+import { IMAGES } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
+import { GoogleReviews } from '@/app/components/GoogleReviews';
+import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
+import { FOUNDING_YEAR } from '@/app/utils/constants';
+
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: 'Intervenez-vous en urgence après dégradations ou saccage dans un magasin ?',
+    question: 'Pouvez-vous nettoyer avant l\'ouverture du commerce ?',
     answer:
-      'Oui. Ce week-end (octobre 2026), nos équipes ont remis en état une boutique de prêt-à-porter à Marseille : débarras de la réserve, nettoyage intensif, sols en résine et désinfection des comptoirs pour permettre une réouverture rapide. On mobilise des effectifs le week-end et en dehors des heures d\'ouverture — devis gratuit en 2 min sur le site.',
+      'Oui. C\'est le créneau le plus demandé à Marseille : avant l\'ouverture ou après la fermeture, dans une plage 6 h–22 h. Sols, vitrines, sanitaires : vos équipes retrouvent le magasin propre. Le standard, lui, répond du lundi au samedi, 8 h–18 h.',
   },
-  { question: 'Pouvez-vous nettoyer avant l\'ouverture du commerce ?', answer: 'Oui, et c\'est notre créneau de prédilection. On intervient dès 5h30 — ça dépend de votre quartier à Marseille et du type de commerce. Les sols sont lavés à l\'autolaveuse Kärcher, les vitrines dégraissées, les sanitaires désinfectés. Quand vos équipes arrivent à 9h, tout est déjà sec et impeccable.' },
-  { question: 'Le nettoyage des vitrines est-il inclus dans le contrat ?', answer: 'Le lavage des vitrines peut être intégré au contrat récurrent ou réalisé en prestation ponctuelle. Sur les commerces du centre-ville de Marseille, entre le calcaire de l\'eau et les projections de rue, on recommande un lavage hebdomadaire à l\'eau déminéralisée. C\'est le seul moyen d\'éviter les traces persistantes.' },
-  { question: 'Nettoyez-vous aussi les restaurants et espaces alimentaires ?', answer: 'Oui. Pour les espaces de restauration, on applique des protocoles conformes au règlement CE 852/2004 (HACCP). Les dégraissants qu\'on utilise — notamment la gamme Suma Nova L6 de Diversey — sont homologués pour les surfaces en contact alimentaire. La cuisine doit être aussi propre que votre salle, c\'est non-négociable.' },
-  { question: 'Quel est le tarif pour l\'entretien d\'un commerce de 100 m² ?', answer: 'Le tarif dépend de la fréquence d\'intervention, du type de commerce et des prestations souhaitées. Pour une boutique de 100 m², comptez une prestation quotidienne avant ouverture ou une intervention hebdomadaire approfondie — on établit le devis en 24h après votre contact.' },
-  { question: 'Intervenez-vous aussi pour les rideaux métalliques et façades ?', answer: 'Oui. Les rideaux métalliques encrassés et les façades taguées ou simplement grises sont traités avec notre matériel haute pression Kärcher HD. La façade propre, c\'est la première impression que vous donnez à un client qui passe sur votre rue — dans un marché concurrentiel, c\'est un investissement.' },
+  {
+    question: 'Le nettoyage des vitrines est-il inclus dans le contrat ?',
+    answer:
+      'Oui, si on le met dans le cahier des charges — en récurrent ou en prestation à part. En centre-ville, calcaire et projections de rue marquent vite les vitrages : on lave à l\'eau déminéralisée. Hauteur, voirie et façades : voir le nettoyage de vitres à Marseille. La fréquence se décide à la visite.',
+  },
+  {
+    question: 'Nettoyez-vous aussi les restaurants et espaces alimentaires ?',
+    answer:
+      'On entretient la salle, les sanitaires, les vitrines et la terrasse. On ne promet pas le dégraissage de hottes ni le nettoyage technique d\'une cuisine professionnelle : ce n\'est pas le même métier.',
+  },
+  {
+    question: 'Quel est le tarif pour l\'entretien d\'un commerce de 100 m² ?',
+    answer:
+      'Le prix dépend de la fréquence, de la surface et des surfaces à traiter (sols, vitrines, sanitaires, réserve). Pas de grille affichée : devis gratuit sous 24 h après votre demande.',
+  },
+  {
+    question: 'Intervenez-vous aussi pour les rideaux métalliques et façades ?',
+    answer:
+      'Oui, lavage des rideaux et des façades accessibles, en prestation ponctuelle ou dans le contrat. Un tag relève plutôt de la fiche graffitis.',
+  },
+  {
+    question: 'Et après un saccage ou une dégradation ?',
+    answer:
+      'Oui, c\'est un autre rythme : débarras, nettoyage intensif, réouverture. Le détail est sur la page dédiée, pas ici — cette fiche reste l\'entretien régulier.',
+  },
 ];
 
 export function NettoyageCommercesPage() {
   return (
     <>
       <SEO_Guardian currentSection="nettoyage-commerces" faqItems={FAQ_ITEMS} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Nettoyage de commerces à Marseille',
+            description:
+              'Entretien régulier de commerces à Marseille depuis 2021 : avant ouverture, vitrines, sols, sanitaires. Réponse sous 2 h, devis sous 24 h.',
+            provider: NATURE_CLEAN_PROVIDER,
+            areaServed: { '@type': 'City', name: 'Marseille' },
+            serviceType: 'Entretien de commerces et magasins',
+            url: 'https://natureclean.fr/services/nettoyage-commerces',
+          }),
+        }}
+      />
 
       <ServicePageHero
-        title="Nettoyage de commerces et magasins à Marseille"
-        subtitle="Egalement présent dans les Alpes-Maritimes"
-        badge="Image de marque"
+        title="Nettoyage de commerces à Marseille"
+        subtitle="Entretien régulier, avant ouverture, sans fermer la boutique"
+        badge="Contrats récurrents"
         badgeIcon={<Store className="w-4 h-4" />}
         imageSrc={IMAGES.jdSportMarseilleFloor}
-        imageAlt="Nettoyage commerces et magasins Marseille - JD Sport Marseille entretenu par Nature Clean"
+        imageAlt="Sols d'un magasin de sport à Marseille, lavés avant l'ouverture"
         breadcrumbs={[
           { label: 'Accueil', to: '/' },
           { label: 'Services', to: '/services' },
@@ -43,145 +83,71 @@ export function NettoyageCommercesPage() {
         devisLink="/devis?service=commerces"
       />
 
-      {/* Cas client — remise en état urgence (oct. 2026) */}
-      <section id="remise-etat-urgence-magasin" className="py-16 md:py-20 bg-gray-50 border-b border-gray-200">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <ScrollReveal>
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="inline-flex items-center gap-1.5 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" />
-                Cas client — urgence
-              </span>
-              <span className="text-sm text-gray-500">Boutique prêt-à-porter · Marseille · week-end octobre 2026</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">
-              Remise en état d&apos;urgence d&apos;un magasin après saccage
-            </h2>
-            <p className="text-lg text-gray-600 mb-10 max-w-3xl">
-              Quand un commerce subit des dégradations ou un désordre important, chaque heure compte pour sécuriser les lieux et{' '}
-              <strong>réouvrir rapidement</strong>. Voici le protocole appliqué sur le terrain par Nature Clean.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid lg:grid-cols-2 gap-10 items-start">
-            <div className="space-y-5">
-              {(
-                [
-                  {
-                    icon: Package,
-                    title: 'Tri & débarras',
-                    desc: 'Évacuation des cartons encombrants et tri du stock dans la réserve pour retrouver des circulations sûres.',
-                  },
-                  {
-                    icon: Sparkles,
-                    title: 'Nettoyage intensif',
-                    desc: 'Dépoussiérage des structures, tiroirs et étagères ; aspiration soignée autour des textiles.',
-                  },
-                  {
-                    icon: Droplets,
-                    title: 'Traitement des sols',
-                    desc: 'Nettoyage en profondeur des sols en résine, escaliers et tapis de circulation.',
-                  },
-                  {
-                    icon: Shield,
-                    title: 'Désinfection complète',
-                    desc: 'Traitement des faïences, comptoirs et zones de contact avant retour du public.',
-                  },
-                ] as const
-              ).map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <ScrollReveal key={step.title} delay={i * 0.06}>
-                    <div className="flex gap-4 bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-                      <div className="w-11 h-11 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
-                        <Icon className="w-5 h-5 text-green-700" aria-hidden="true" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-gray-900 mb-1">{step.title}</h3>
-                        <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                );
-              })}
-              <ScrollReveal delay={0.3}>
-                <p className="text-gray-800 font-semibold border-l-4 border-green-600 pl-4 py-1">
-                  Résultat : un espace de vente immaculé, prêt à réaccueillir du public en un temps record.
-                </p>
-                <p className="text-gray-600 text-sm mt-4">
-                  Commerçant, gérant ou syndic dans le 13 ?{' '}
-                  <Link to="/devis?service=commerces" className="text-green-700 font-bold hover:underline">
-                    Devis gratuit en 2 min
-                  </Link>
-                  .
-                </p>
-              </ScrollReveal>
-            </div>
-
-            <ScrollReveal delay={0.1}>
-              <figure className="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
-                <img
-                  src={getOptimizedCldUrl(IMAGES.magasinPretAPorterUrgence, 900)}
-                  srcSet={cldSrcSet(IMAGES.magasinPretAPorterUrgence, [500, 700, 900])}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  alt="Remise en état magasin prêt-à-porter Marseille après intervention urgence Nature Clean"
-                  width={900}
-                  height={600}
-                  loading="eager"
-                  decoding="async"
-                  className="w-full h-72 md:h-96 object-cover"
-                />
-                <figcaption className="bg-gray-900 text-gray-200 text-sm text-center px-4 py-3">
-                  Intervention réalisée à Marseille — nettoyage commerces Nature Clean
-                </figcaption>
-              </figure>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro — ambient background */}
       <section className="relative py-16 bg-white overflow-hidden">
         <ImageWithFallback
           src={IMAGES.boutiqueVide}
-          alt="" aria-hidden="true"
+          alt=""
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover opacity-[0.04] hidden md:block"
-          loading="lazy" decoding="async" width={800} height={450}
+          loading="lazy"
+          decoding="async"
+          width={800}
+          height={450}
         />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
-            <p>
-              Un magasin propre ne se contente pas de rassurer — il vend. Sur le terrain, on le voit à chaque fois : un sol brillant, des rayonnages époussetés et des vitrines sans traces font partie de l'expérience d'achat au même titre que votre marchandise.
+            <p className="text-lg">
+              Un sol propre, des rayons tenus et une vitrine sans traces : c&apos;est ce que voit un
+              client avant de pousser la porte. Nature Clean entretient des commerces à Marseille
+              depuis {FOUNDING_YEAR}, depuis le 8e.
             </p>
             <p>
-              Depuis 15 ans, on entretient des commerces de toutes tailles à <strong>Marseille</strong> et dans les <strong>Alpes-Maritimes</strong>. On intervient tôt le matin avant ouverture avec des autolaveuses <strong>Kärcher BR 45/22 C</strong> sur les sols durs, et des produits <strong>Suma Nova L6</strong> (Diversey, homologués contact alimentaire) pour les espaces de restauration conformes au règlement <strong>CE 852/2004 HACCP</strong>.
+              On intervient avant l&apos;ouverture ou après la fermeture — Vieux-Port, Canebière, La
+              Valentine (11e), Plan-de-Campagne, Aubagne. Produits et matériel fournis, environ 50 %
+              éco-labellisés. Zone : Marseille et les Bouches-du-Rhône.
             </p>
-            <p className="text-xl font-semibold text-green-700 text-center py-4">
-              Votre commerce mérite d'être aussi soigné que vos produits. On s'en occupe.
+            <p className="font-semibold text-green-700 text-center py-2">
+              Réponse sous 2 h, devis sous 24 h — horaires décalés 6 h–22 h
             </p>
           </div>
         </div>
       </section>
 
-      {/* Atout vente — cartes avec mini-hero images */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
-                L'hygiène : un atout vente pour votre commerce
+                Ce qu&apos;on fait dans un commerce
               </h2>
               <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
-                Un ménage régulier et un entretien soigné inspirent confiance et fidélisent votre clientèle
+                Surface de vente, vitrines, sanitaires. Sans chiffres inventés.
               </p>
             </ScrollReveal>
 
             <div className="grid md:grid-cols-3 gap-6 mb-10">
-              {([
-                { icon: Store, title: 'Image de marque', image: IMAGES.vitrineBoutiqueLuxe, desc: 'Ce qu\'on voit souvent : un client qui hésite à entrer dans un commerce mal éclairé avec une vitrine grasse ne donnera jamais une seconde chance. La propreté de façade, c\'est votre première prise de parole.' },
-                { icon: TrendingUp, title: 'Expérience client', image: IMAGES.boutiqueVide, desc: 'Un sol propre, des rayons bien tenus et des sanitaires corrects — des études Nielsen (2022) montrent qu\'un environnement soigné augmente le temps de séjour en magasin de 18% en moyenne.' },
-                { icon: Users, title: 'Avantage concurrentiel', image: IMAGES.lavageVitrine, desc: 'Dans une galerie commerciale ou une rue commerçante à fort trafic, la propreté de votre devanture se compare en permanence à celle du voisin. C\'est un levier sous-estimé.' },
-              ] as const).map((card, i) => (
+              {(
+                [
+                  {
+                    icon: Store,
+                    title: 'Surface de vente',
+                    image: IMAGES.vitrineBoutiqueLuxe,
+                    desc: 'Sols, rayonnages, comptoirs. Un client qui hésite devant une vitrine grasse ne revient pas. La façade, c\'est la première prise de parole.',
+                  },
+                  {
+                    icon: Clock,
+                    title: 'Avant ouverture',
+                    image: IMAGES.boutiqueVide,
+                    desc: 'Passage calé sur vos horaires : le sol est praticable quand les équipes arrivent. Pas besoin de fermer pour un entretien courant.',
+                  },
+                  {
+                    icon: Square,
+                    title: 'Vitrines',
+                    image: IMAGES.lavageVitrine,
+                    desc: 'Eau déminéralisée contre le calcaire marseillais. En rue passante, la fréquence se décide à la visite, pas sur une grille nationale.',
+                  },
+                ] as const
+              ).map((card, i) => (
                 <ScrollReveal key={card.title} delay={i * 0.08}>
                   <ServiceFeatureCard
                     title={card.title}
@@ -197,27 +163,24 @@ export function NettoyageCommercesPage() {
         </div>
       </section>
 
-      {/* ═══ MID-PAGE CONVERSION BREAK ═══ */}
       <ConversionBreak
         image={IMAGES.whatsappCommerce}
-        imageAlt="Commerce professionnel nettoyé par Nature Clean Marseille"
-        title="Boostez votre chiffre d'affaires par la propreté"
-        subtitle="Un commerce propre = +23% de confiance client. Intervention tôt le matin ou tard le soir, zéro perturbation."
-        urgencyText="Devis en 2h"
+        imageAlt="Intérieur d'un commerce marseillais après un passage d'entretien"
+        title="Un contrat calé sur vos horaires d'ouverture"
+        subtitle="Avant 8 h ou après la fermeture. Produits fournis, interlocuteur dédié."
         devisLink="/devis?service=commerces"
         objectPosition="object-center"
       />
 
-      {/* Section images commerces */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
-                Entretien professionnel pour tous types de commerces
+                Boutiques, cafés, galeries
               </h2>
               <p className="text-center text-gray-500 mb-12 text-lg">
-                Boutiques, restaurants, centres commerciaux : ménage et propreté sur mesure
+                L&apos;entretien suit le type de commerce, pas un protocole unique.
               </p>
             </ScrollReveal>
 
@@ -225,25 +188,25 @@ export function NettoyageCommercesPage() {
               <ScrollReveal delay={0.08}>
                 <ServiceShowcaseCard
                   src={IMAGES.entretienMagasin}
-                  alt="Nettoyage boutique magasin retail Marseille"
-                  title="Boutiques & Magasins"
-                  subtitle="Retail, prêt-à-porter, électronique"
+                  alt="Rayonnages et allée d'une boutique après entretien"
+                  title="Boutiques & magasins"
+                  subtitle="Prêt-à-porter, retail, électronique"
                 />
               </ScrollReveal>
               <ScrollReveal delay={0.16}>
                 <ServiceShowcaseCard
                   src={IMAGES.nettoyageVitresPro}
-                  alt="Nettoyage restaurant café bar Marseille"
-                  title="Restaurants & Cafés"
-                  subtitle="Cuisine, salle, terrasse"
+                  alt="Salle et vitrage d'un café, côté rue"
+                  title="Cafés & salles"
+                  subtitle="Salle, sanitaires, terrasse — pas les hottes"
                 />
               </ScrollReveal>
               <ScrollReveal delay={0.24}>
                 <ServiceShowcaseCard
                   src={IMAGES.lavageVitrine}
-                  alt="Nettoyage centre commercial galerie Marseille"
-                  title="Centres Commerciaux"
-                  subtitle="Galeries, espaces communs"
+                  alt="Vitrine de galerie commerciale lavée à l'eau déminéralisée"
+                  title="Galeries commerciales"
+                  subtitle="Devantures et espaces communs accessibles"
                 />
               </ScrollReveal>
             </div>
@@ -251,37 +214,40 @@ export function NettoyageCommercesPage() {
         </div>
       </section>
 
-      {/* Service adapté — ambient background */}
       <section className="relative py-16 bg-white overflow-hidden">
         <ImageWithFallback
           src={IMAGES.lavageVitrine}
-          alt="" aria-hidden="true"
+          alt=""
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover opacity-[0.04] hidden md:block"
-          loading="lazy" decoding="async" width={800} height={450}
+          loading="lazy"
+          decoding="async"
+          width={800}
+          height={450}
         />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal>
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-8">
-                Un ménage adapté aux exigences des professionnels
+                Un ménage calé sur l&apos;ouverture, pas sur nos habitudes
               </h2>
             </ScrollReveal>
 
-            <div className="space-y-6 text-gray-700 leading-relaxed">
+            <div className="space-y-6 text-gray-700 leading-relaxed text-left">
               <p>
-                Que vous exerciez votre métier dans une petite boutique ou dans un grand espace commercial, avec 
-                <strong> Nature Clean</strong>, vous trouverez toujours des prestations adaptées à la nature de votre 
-                activité. Et, si jamais ce n'est pas le cas, pas de panique. Notre équipe est en mesure de s'adapter à 
-                vos besoins.
+                Petite boutique ou grand plateau : on écrit le cahier des charges après la visite.
+                Horaires, accès rideau, local poubelles, vitrines — rien n&apos;est improvisé le premier
+                lundi.
               </p>
 
               <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Notre flexibilité d'horaires</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Horaires décalés</h3>
                 <p className="mb-4">
-                  On comprend qu'un commerce ne s'arrête pas d'être vivant pour laisser place à nos équipes. C'est pour ça qu'on intervient avant l'ouverture, après la fermeture, ou la nuit si besoin. À Marseille, on a des clients dans le <strong>Vieux-Port</strong>, sur la <strong>Canebière</strong> et dans les zones commerciales de <strong>La Valentine</strong> et <strong>Plan-de-Campagne</strong> — chaque site a ses contraintes horaires, et on s'y adapte.
+                  Avant l&apos;ouverture, après la fermeture, parfois la nuit. Vieux-Port, Canebière,
+                  La Valentine, Plan-de-Campagne : chaque site a son créneau.
                 </p>
                 <p className="font-semibold text-green-700">
-                  Lève-tôt ou couche-tard : on est là quand votre commerce ne l'est pas.
+                  On est là quand le rideau est baissé.
                 </p>
               </div>
 
@@ -289,10 +255,10 @@ export function NettoyageCommercesPage() {
                 {[
                   'Entretien courant avant ouverture',
                   'Ménage des espaces administratifs',
-                  'Lavage des vitrines et façades',
+                  'Lavage des vitrines et façades accessibles',
                   'Hygiène des sols et sanitaires',
-                  'Plan de propreté personnalisé',
-                  'Produits 50% écologiques Bio',
+                  'Plan de propreté après visite',
+                  '50 % de produits éco-labellisés',
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
@@ -305,15 +271,47 @@ export function NettoyageCommercesPage() {
         </div>
       </section>
 
-      {/* CTA Final avec vraie photo */}
+      <section className="py-12 bg-green-50 border-y border-green-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="flex items-start gap-3">
+            <Sparkles className="w-6 h-6 text-green-700 flex-shrink-0 mt-1" aria-hidden="true" />
+            <div>
+              <h2 className="text-2xl font-black text-gray-900 mb-2">
+                Magasin dégradé, besoin de réouvrir ?
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                L&apos;entretien régulier, c&apos;est cette page. La remise en état après saccage ou
+                dégradation — débarras, sols, désinfection — a sa propre fiche, avec le cas d&apos;octobre
+                2026.{' '}
+                <Link
+                  to="/services/remise-etat-urgence-commerce"
+                  className="text-green-800 font-semibold underline underline-offset-2 hover:text-green-900"
+                >
+                  Remise en état d&apos;urgence après dégradation à Marseille
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <GoogleReviews />
+
+      <FAQSection
+        items={FAQ_ITEMS}
+        title="Questions fréquentes — Nettoyage de commerces"
+        subtitle="Horaires, vitrines, tarif et ce qu'on ne fait pas"
+      />
+
       <section className="py-16 md:py-20 bg-gray-900">
         <div className="container mx-auto px-4 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              Votre commerce mérite une hygiène et une propreté irréprochables
+              Votre commerce mérite un entretien régulier
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Intervention à Marseille et dans les Alpes-Maritimes — Horaires flexibles 7j/7
+              Marseille et Bouches-du-Rhône — réponse sous 2 h, devis sous 24 h
             </p>
             <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black shadow-lg shadow-green-500/20">
               <Link to="/devis?service=commerces">
@@ -325,25 +323,24 @@ export function NettoyageCommercesPage() {
         </div>
       </section>
 
-      {/* ═══ FAQ CONTEXTUELLE ═══ */}
-      <FAQSection
-        items={FAQ_ITEMS}
-        title="Questions fréquentes — Nettoyage de commerces"
-        subtitle="Tout savoir sur l'entretien de votre commerce à Marseille"
-      />
-
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Consultez également :</h3>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Consultez également :</h2>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 font-bold">
-              <Link to="/services/remise-etat-sols">Remise en état des sols</Link>
+              <Link to="/services/remise-etat-urgence-commerce">Urgence après dégradation</Link>
             </Button>
             <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 font-bold">
-              <Link to="/services/nettoyage-evenementiel">Nettoyage événementiel</Link>
+              <Link to="/services/nettoyage-vitre">Nettoyage de vitres à Marseille</Link>
             </Button>
             <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 font-bold">
-              <Link to="/services/nettoyage-coproprietes">Nettoyage de copropriétés</Link>
+              <Link to="/services/entretien-bureaux">Entretien de bureaux</Link>
+            </Button>
+            <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 font-bold">
+              <Link to="/services/nettoyage-graffitis">Nettoyage de graffitis</Link>
+            </Button>
+            <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 font-bold">
+              <Link to="/realisations">Réalisations</Link>
             </Button>
           </div>
         </div>

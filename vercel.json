@@ -84,6 +84,7 @@
     { "source": "/devis-gratuit", "destination": "/devis", "permanent": true },
     { "source": "/devis-nettoyage-marseille", "destination": "/blog/devis-nettoyage-marseille-guide", "permanent": true },
     { "source": "/blog/nettoyage-magasin-apres-saccage-marseille", "destination": "/services/nettoyage-commerces#remise-etat-urgence-magasin", "permanent": true },
+    { "source": "/blog/nettoyage-graffitis-carrefour-marseille", "destination": "/blog/nettoyage-graffitis-grande-surface-marseille", "permanent": true },
 
     { "source": "/nos-realisations.html", "destination": "/realisations", "permanent": true },
     { "source": "/nos-realisations", "destination": "/realisations", "permanent": true },
@@ -128,8 +129,9 @@
     { "source": "/nettoyage-bureaux-antibes", "destination": "/services/entretien-bureaux", "permanent": true },
     { "source": "/nettoyage-bureaux-grasse", "destination": "/services/entretien-bureaux", "permanent": true },
     { "source": "/nettoyage-open-space-nice", "destination": "/services/entretien-bureaux", "permanent": true },
-    { "source": "/nettoyage-fin-chantier-marignane", "destination": "/nettoyage-fin-chantier-marseille", "permanent": true },
-    { "source": "/nettoyage-fin-chantier-aubagne", "destination": "/nettoyage-fin-chantier-marseille", "permanent": true },
+    { "source": "/nettoyage-fin-chantier-marseille", "destination": "/services/nettoyage-chantiers", "permanent": true },
+    { "source": "/nettoyage-fin-chantier-marignane", "destination": "/services/nettoyage-chantiers", "permanent": true },
+    { "source": "/nettoyage-fin-chantier-aubagne", "destination": "/services/nettoyage-chantiers", "permanent": true },
     { "source": "/nettoyage-coproprietes-marseille", "destination": "/services/nettoyage-coproprietes", "permanent": true },
     { "source": "/nettoyage-medical-marseille.html", "destination": "/nettoyage-medical-marseille", "permanent": true }
   ],

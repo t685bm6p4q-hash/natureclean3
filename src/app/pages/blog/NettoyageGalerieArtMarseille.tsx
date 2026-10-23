@@ -184,7 +184,7 @@ export function NettoyageGalerieArtMarseille() {
 
               <div className="bg-amber-50 border-l-4 border-amber-400 rounded-r-xl p-6">
                 <p className="text-gray-700 leading-relaxed">
-                  Pour assurer la continuité de vos événements à Marseille et dans toute la région PACA, nos interventions s'adaptent à vos <strong>horaires d'ouverture</strong> et à vos <strong>plannings de montage</strong>.
+                  Pour assurer la continuité de vos événements à Marseille et dans les Bouches-du-Rhône, nos interventions s'adaptent à vos <strong>horaires d'ouverture</strong> et à vos <strong>plannings de montage</strong>.
                 </p>
               </div>
             </section>
@@ -217,11 +217,11 @@ export function NettoyageGalerieArtMarseille() {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <Link
-                  to="/blog/nettoyage-graffitis-carrefour-marseille"
+                  to="/blog/nettoyage-graffitis-grande-surface-marseille"
                   className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
                 >
                   <h3 className="text-lg font-semibold text-green-700 mb-2">
-                    Nettoyage graffitis chez Carrefour →
+                    Graffitis sur façade commerciale →
                   </h3>
                   <p className="text-gray-600 text-sm">
                     Retour sur notre intervention d'urgence sur une façade commerciale à fort trafic.
@@ -235,7 +235,7 @@ export function NettoyageGalerieArtMarseille() {
                     Nettoyage écologique en entreprise →
                   </h3>
                   <p className="text-gray-600 text-sm">
-                    Pourquoi passer aux produits bio ? Labels fiables et impact RSE.
+                    Produits eco-labellises : labels et démarche RSE.
                   </p>
                 </Link>
               </div>

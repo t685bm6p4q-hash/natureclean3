@@ -4,9 +4,9 @@ import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import {
   Leaf, ArrowRight, Phone, Sparkles, CheckCircle2,
   Star, MapPin, HardHat, Shield, Clock, Banknote, Building, Building2,
-  Recycle, Users, SprayCan, Cog, FileCheck, Eraser, Zap, Store,
+  Recycle, Users, SprayCan, Cog, FileCheck, Eraser, Zap, Store, Heart,
 } from 'lucide-react';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
+import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE, GOOGLE_RATING, GOOGLE_REVIEW_COUNT, GOOGLE_PROFILE_URL } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
@@ -28,6 +28,9 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 //   → Mobile SI : 4.5s → ~2.0s → score mobile 90 → ~94.
 import { ServiceCarousel } from '@/app/components/ServiceCarousel';
 import { RealisationsSlider } from '@/app/components/RealisationsSlider';
+import { FAQSection } from '@/app/components/FAQSection';
+import type { FAQItem } from '@/app/components/FAQSection';
+import { SERVED_CITIES_SHORT, MARSEILLE_QUARTIERS } from '@/app/config/zone-data';
 
 // GoogleReviews reste lazy : vrai below-fold sur tous les viewports.
 const GoogleReviews = lazy(() => import('@/app/components/GoogleReviews').then(m => ({ default: m.GoogleReviews })));
@@ -37,65 +40,148 @@ const GoogleReviews = lazy(() => import('@/app/components/GoogleReviews').then(m
    ───────────────────────────────────────────── */
 
 const stats = [
-  { icon: Users, value: '500+', label: 'Clients satisfaits' },
-  { icon: Shield, value: '100%', label: 'Assuré & certifié' },
-  { icon: Clock, value: '24h', label: 'Devis gratuit' },
-  { icon: Recycle, value: '50%', label: 'Produits éco-labellisés' },
+  { icon: Clock, value: '2021', label: 'Année de création' },
+  { icon: Shield, value: 'RC Pro', label: 'Assurance professionnelle' },
+  { icon: Clock, value: '24 h', label: 'Devis gratuit' },
+  { icon: Recycle, value: '50 %', label: 'Produits éco-labellisés' },
 ];
 
 const whyUs = [
-  { icon: SprayCan, title: 'Produits d\'entretien fournis', desc: 'Produits professionnels éco-responsables inclus dans chaque prestation — vous ne fournissez rien.' },
+  { icon: SprayCan, title: 'Produits d\'entretien fournis', desc: 'Produits professionnels inclus dans chaque prestation — 50 % sont éco-labellisés. Vous ne fournissez rien.' },
   { icon: Cog, title: 'Machinerie professionnelle', desc: 'Autolaveuses, monobrosses, aspirateurs industriels — matériel de pointe pour un résultat impeccable.' },
   { icon: Users, title: 'Personnel formé & déclaré', desc: 'Équipes qualifiées, formées aux normes d\'hygiène et de sécurité, déclarées et en conformité.' },
-  { icon: Banknote, title: 'Tarifs transparents', desc: 'Prix justes sans frais cachés, devis détaillé gratuit sous 24h et sans engagement.' },
+  { icon: Banknote, title: 'Tarifs transparents', desc: 'Devis détaillé, gratuit et sans engagement. Réponse sous 2 h, devis sous 24 h — sans frais cachés.' },
   { icon: Shield, title: 'Assurance RC Pro', desc: 'Responsabilité civile professionnelle et garantie de résultat sur chaque intervention.' },
   { icon: FileCheck, title: 'Contrats sur mesure', desc: 'Ponctuel ou récurrent, horaires flexibles 6h-22h, 7j/7 — on s\'adapte à vos contraintes.' },
 ];
 
-const zones = [
-  'Marseille', 'Aix-en-Provence', 'Aubagne', 'La Ciotat',
-  'Marignane', 'Vitrolles', 'Salon-de-Provence', 'Istres', 'Martigues',
-];
-
-const quartiersMarseille = [
-  'Vieux-Port', 'La Joliette', 'Castellane', 'Endoume', 'Le Prado',
-  'La Timone', 'Saint-Loup', 'La Valentine', 'Les Cinq Avenues',
-  'Le Panier', 'Saint-Charles', 'La Blancarde', 'Bonneveine', 'Mazargues',
-];
+const zones = [...SERVED_CITIES_SHORT];
+const quartiersMarseille = [...MARSEILLE_QUARTIERS];
 
 /** Maillage SEO — landings locales indexables (Bouches-du-Rhône). */
 const localExpertisePages = [
   {
     to: '/nettoyage-bureaux-marseille',
-    title: 'Entreprise nettoyage bureaux',
-    subtitle: 'Marseille & 13001-13016',
+    title: 'Nettoyage de bureaux à Marseille',
+    subtitle: '13001 à 13016',
     icon: Building,
   },
   {
-    to: '/nettoyage-fin-chantier-marseille',
-    title: 'Fin de chantier',
-    subtitle: 'Après travaux & promoteurs',
-    icon: HardHat,
-  },
-  {
-    to: '/nettoyage-medical-marseille',
-    title: 'Cabinets médicaux',
-    subtitle: 'Désinfection & protocoles',
-    icon: Shield,
+    to: '/nettoyage-bureaux-aix-en-provence',
+    title: 'Nettoyage de bureaux à Aix',
+    subtitle: 'Accès, Milles, Duranne',
+    icon: Building,
   },
   {
     to: '/nettoyage-coproprietes-aubagne',
-    title: 'Copropriétés syndic',
-    subtitle: 'Aubagne & Est marseillais',
+    title: 'Copropriétés à Aubagne',
+    subtitle: 'Syndics — Est 13',
     icon: Building2,
   },
   {
-    to: '/nettoyage-industriel-marseille',
-    title: 'Nettoyage industriel',
-    subtitle: 'Entrepôts, ateliers, logistique',
-    icon: Cog,
+    to: '/nettoyage-coproprietes-la-ciotat',
+    title: 'Copropriétés à La Ciotat',
+    subtitle: 'Parties communes',
+    icon: Building2,
+  },
+  {
+    to: '/services/nettoyage-chantiers',
+    title: 'Fin de chantier',
+    subtitle: 'Après travaux',
+    icon: HardHat,
+  },
+  {
+    to: '/services/nettoyage-diogene',
+    title: 'Nettoyage Diogène à Marseille',
+    subtitle: 'Discrétion, familles et mandataires',
+    icon: Heart,
   },
 ] as const;
+
+const HOME_FAQ: FAQItem[] = [
+  {
+    question: 'Comment sont calculés vos tarifs ?',
+    answer: 'Chaque prestation est chiffrée sur mesure selon la surface, la fréquence d’intervention et l’état des locaux. Le devis est gratuit, détaillé et sans frais cachés, et il vous est remis avant le début de la prestation.',
+  },
+  {
+    question: 'Pourquoi ne pas afficher vos prix en ligne ?',
+    answer: 'Un nettoyage de bureaux, une fin de chantier et un logement très encombré n’ont rien en commun. Un prix affiché serait faux dans la plupart des cas, alors nous préférons un devis précis, gratuit et sous 24 h.',
+  },
+  {
+    question: 'En combien de temps recevrai-je mon devis ?',
+    answer: 'Nous répondons à votre demande sous 2 h en horaires d’ouverture (lun–sam 8h–18h), et vous remettons un devis détaillé sous 24 h.',
+  },
+  {
+    question: 'Qui fournit les produits et le matériel ?',
+    answer: 'Nous. Produits professionnels, autolaveuses, monobrosses et aspirateurs industriels sont inclus dans chaque prestation. Vous ne fournissez rien.',
+  },
+  {
+    question: 'Vos produits sont-ils écologiques ?',
+    answer: 'Environ 50 % de nos produits d’entretien courant sont éco-labellisés. Pour la désinfection (cabinets médicaux notamment), nous utilisons des produits conformes aux normes sanitaires quand la réglementation l’exige.',
+  },
+  {
+    question: 'Intervenez-vous en dehors des horaires de bureau, le week-end ?',
+    answer: 'Oui, dans le cadre de contrats sur mesure : horaires flexibles de 6 h à 22 h, 7 j/7, sans perturber votre activité. Notre standard est ouvert du lundi au samedi, de 8 h à 18 h.',
+  },
+  {
+    question: 'Dans quelles zones intervenez-vous ?',
+    answer: 'Marseille (13001 à 13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres et Martigues. Nous sommes basés dans le 8e arrondissement.',
+  },
+  {
+    question: 'Êtes-vous assurés ?',
+    answer: 'Oui. Nature Clean est couverte par une assurance responsabilité civile professionnelle (RC Pro) sur chaque intervention.',
+  },
+  {
+    question: 'Comment se passe un nettoyage de fin de chantier ?',
+    answer: 'Après la visite, nous retirons poussières, résidus de plâtre et de béton, nettoyons sols, murs, vitres et sanitaires, et évacuons les menus gravats. Le logement ou le local est remis propre et conforme, dans les délais convenus.',
+  },
+  {
+    question: 'Proposez-vous des contrats récurrents ?',
+    answer: 'Oui : ponctuel ou récurrent (quotidien, hebdomadaire, mensuel), avec un contrat sur mesure et un interlocuteur dédié.',
+  },
+  {
+    question: 'Faites-vous le nettoyage de copropriétés et d’immeubles ?',
+    answer: 'Oui : halls, escaliers, parties communes, vitres, sols. Nous travaillons avec des syndics de Marseille, Aubagne et La Ciotat.',
+  },
+];
+
+const DIOGENE_HOME_FAQ: FAQItem[] = [
+  {
+    question: 'Peut-on intervenir si la personne n’est pas d’accord ?',
+    answer: 'Nous intervenons avec l’accord de l’occupant ou de son représentant légal (tuteur, curateur, mandataire). Si la situation est complexe, nous pouvons vous orienter vers les interlocuteurs adaptés : médecin, assistante sociale, mairie.',
+  },
+  {
+    question: 'Combien de temps dure une intervention ?',
+    answer: 'De quelques heures à plusieurs jours selon le logement. Nous vous donnons une estimation précise lors de la visite.',
+  },
+  {
+    question: 'Les voisins ou le syndic seront-ils informés ?',
+    answer: 'Non, pas par nous. Nous restons discrets sur les lieux et sur la nature de l’intervention.',
+  },
+];
+
+const DIOGENE_STEPS = [
+  {
+    title: 'Appel et échange confidentiel',
+    desc: 'Vous nous décrivez la situation, sans filtre. Réponse sous 2 h en horaires d’ouverture.',
+  },
+  {
+    title: 'Visite et devis gratuit',
+    desc: 'Nous évaluons le volume, l’état du logement et les accès, puis vous remettons un devis détaillé sous 24 h.',
+  },
+  {
+    title: 'Tri et évacuation',
+    desc: 'Débarras des encombrants et déchets, avec mise de côté des objets de valeur ou à caractère personnel, selon vos consignes.',
+  },
+  {
+    title: 'Nettoyage et désinfection',
+    desc: 'Sols, murs, sanitaires, cuisine, avec du matériel professionnel et des produits fournis.',
+  },
+  {
+    title: 'Remise du logement',
+    desc: 'Un état des lieux final, avec photos si vous le souhaitez.',
+  },
+];
 
 const realisationsPreview = [
   {
@@ -126,11 +212,11 @@ const realisationsPreview = [
     title: 'Nettoyage fin de chantier — Intervention Nature Clean',
     category: 'Fin de chantier',
     image: IMAGES.nettoyageFinChantier,
-    location: 'Marseille & PACA',
+    location: 'Marseille',
   },
   {
-    title: 'Mariage champetre — 200 convives',
-    category: 'Evenementiel',
+    title: 'Mariage champêtre — 200 convives',
+    category: 'Événementiel',
     image: IMAGES.salleEvenementielle,
     location: 'Cassis',
   },
@@ -154,7 +240,7 @@ const cardBgs = [
 export function Home() {
   return (
     <>
-      <SEO_Guardian currentSection="home" />
+      <SEO_Guardian currentSection="home" faqItems={[...HOME_FAQ, ...DIOGENE_HOME_FAQ]} />
 
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
@@ -177,22 +263,22 @@ export function Home() {
           <div className="max-w-4xl ncm-hero-fade-in bg-gray-900/85 rounded-2xl p-6 md:p-10 border border-white/10">
             <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-400/30 text-green-200 px-4 py-1.5 rounded-full text-sm mb-6">
               <Leaf className="w-4 h-4" aria-hidden="true" />
-              Entretien & nettoyage éco-responsable depuis 2021
+              Entreprise de nettoyage à Marseille depuis 2021
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.1]">
-              Nettoyage Professionnel
-              <span className="block text-green-400">à Marseille & PACA</span>
+              Entreprise de nettoyage
+              <span className="block text-green-400">professionnel à Marseille</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
-              Bureaux, copropriétés, fin de chantier, événementiel — Nature Clean garantit propreté,
-              hygiène et éclat pour vos locaux au meilleur rapport qualité-prix sur tout le Sud de la France.
+              Bureaux, copropriétés, fin de chantier — Nature Clean intervient à Marseille
+              et dans les Bouches-du-Rhône. Réponse sous 2 h, devis gratuit sous 24 h.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-base px-8 shadow-lg shadow-green-500/25">
                 <Link to="/devis">
-                  Obtenir mon devis gratuit en 2 min
+                  Obtenir mon devis gratuit
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
@@ -233,7 +319,15 @@ export function Home() {
       <section className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-4 md:py-5">
-            
+            <a
+              href={GOOGLE_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-gray-600 hover:text-green-700"
+            >
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
+              <span>{GOOGLE_RATING}/5 sur Google · {GOOGLE_REVIEW_COUNT} avis</span>
+            </a>
             <span className="hidden md:block w-px h-5 bg-gray-200" aria-hidden="true" />
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Shield className="w-4 h-4 text-green-500" aria-hidden="true" />
@@ -242,13 +336,13 @@ export function Home() {
             <span className="hidden md:block w-px h-5 bg-gray-200" aria-hidden="true" />
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Leaf className="w-4 h-4 text-green-500" aria-hidden="true" />
-              <span>Eco-responsable</span>
+              <span>50 % produits éco-labellisés</span>
             </div>
             <span className="hidden md:block w-px h-5 bg-gray-200" aria-hidden="true" />
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <MapPin className="w-4 h-4 text-green-500" aria-hidden="true" />
               <Link to="/zones-intervention" className="hover:text-green-700 hover:underline">
-                Marseille & PACA
+                Marseille et Bouches-du-Rhône
               </Link>
             </div>
           </div>
@@ -256,7 +350,7 @@ export function Home() {
       </section>
 
       {/* ══════════════════════════════════════════
-          2. CARROUSEL DES 8 SERVICES
+          2. CARROUSEL DES 9 SERVICES
           ══════════════════════════════════════════ */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -264,13 +358,13 @@ export function Home() {
             <div className="text-center mb-12">
               <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 <Sparkles className="w-4 h-4" aria-hidden="true" />
-                8 specialites
+                9 spécialités
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
                 Nos services d'entretien et de nettoyage
               </h2>
               <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-                Des solutions professionnelles adaptees a chaque besoin — du menage quotidien aux interventions ponctuelles.
+                Des solutions professionnelles adaptées à chaque besoin — de l'entretien courant aux interventions ponctuelles, y compris le nettoyage Diogène.
               </p>
             </div>
           </ScrollReveal>
@@ -283,7 +377,7 @@ export function Home() {
             <div className="text-center mt-12">
               <Button asChild size="lg" className="bg-gray-900 hover:bg-gray-800 text-white font-bold">
                 <Link to="/services">
-                  Decouvrir tous nos services
+                  Découvrir tous nos services
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
@@ -383,7 +477,7 @@ export function Home() {
                       src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
                       srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Entreprise nettoyage bureaux locaux professionnels Marseille — Nature Clean"
+                      alt="Open space de bureaux nettoyé à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={320} loading="lazy" decoding="async"
                     />
@@ -400,7 +494,7 @@ export function Home() {
                       src={getOptimizedCldUrl(IMAGES.cabinetMedical, 600)}
                       srcSet={cldSrcSet(IMAGES.cabinetMedical, [300, 500, 700])}
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Nettoyage désinfection cabinet médical Marseille — hygiène locaux santé normes sanitaires"
+                      alt="Agent désinfectant un cabinet médical à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={256} loading="lazy" decoding="async"
                     />
@@ -443,11 +537,11 @@ export function Home() {
                 <div className="flex flex-wrap gap-3">
                   <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
                     <Link to="/services/nettoyage-commerces">
-                      Commerces <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                      Nettoyage de commerces à Marseille <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                     </Link>
                   </Button>
                   <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
-                    <Link to="/services/entretien-bureaux">Bureaux & santé</Link>
+                    <Link to="/services/entretien-bureaux">Nettoyage de bureaux à Marseille</Link>
                   </Button>
                 </div>
               </ScrollReveal>
@@ -468,7 +562,7 @@ export function Home() {
                     le résultat est toujours Nature Clean."
                   </p>
                   <p className="text-gray-400 text-sm tracking-wide">
-                    Marseille & PACA · Propreté garantie · Devis gratuit sous 24h
+                    Marseille et Bouches-du-Rhône · RC Pro · Réponse sous 2 h, devis sous 24 h
                   </p>
                 </div>
               </div>
@@ -489,7 +583,7 @@ export function Home() {
                 <p className="text-gray-500 mb-6 leading-relaxed">
                   Poussière de béton, résidus de plâtre, terrasses encrassées — la fin de chantier
                   laisse des traces que seule une équipe spécialisée peut effacer. Nature Clean
-                  intervient sur <strong>Marseille et en PACA</strong> pour une livraison propre,
+                  intervient sur <strong>Marseille et les Bouches-du-Rhône</strong> pour une livraison propre,
                   conforme et dans les délais impartis.
                 </p>
                 <ul className="space-y-2.5 mb-8">
@@ -508,7 +602,7 @@ export function Home() {
                 <div className="flex flex-wrap gap-3">
                   <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white font-bold shadow-md">
                     <Link to="/services/nettoyage-chantiers">
-                      Fin de chantier <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                      Nettoyage de fin de chantier à Marseille <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                     </Link>
                   </Button>
                   <Button asChild variant="outline" className="border-gray-300 hover:border-amber-300 hover:bg-amber-50 font-bold">
@@ -528,7 +622,7 @@ export function Home() {
                       src={IMAGES.finChantierMaison}
                       srcSet={cldSrcSet(IMAGES.finChantierMaison, [350, 600, 900])}
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Nettoyage fin de chantier maison Marseille après travaux — remise en état Nature Clean"
+                      alt="Équipe Nature Clean en remise en état après travaux à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={320} loading="lazy" decoding="async"
                     />
@@ -545,7 +639,7 @@ export function Home() {
                       src={IMAGES.nettoyageTerrassePro}
                       srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [350, 600, 900])}
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Nettoyage terrasse professionnel Marseille haute pression — extérieurs après travaux Nature Clean"
+                      alt="Terrasse professionnelle nettoyée à haute pression à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={256} loading="lazy" decoding="async"
                     />
@@ -634,7 +728,7 @@ export function Home() {
                   src={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 1200)}
                   srcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [600, 1200])}
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  alt="Nettoyage graffiti Carrefour Marseille avant – Nature Clean"
+                  alt="Façade d'un Carrefour à Marseille recouverte de graffitis, avant intervention"
                   className="absolute inset-0 w-full h-full object-cover"
                   width={1200}
                   height={500}
@@ -648,14 +742,145 @@ export function Home() {
       </section>
 
       {/* ══════════════════════════════════════════
+          4c. DIOGÈNE — Section dédiée accueil
+          ═══════════════════════════════════════════ */}
+      <section className="py-16 md:py-20 bg-gray-50 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-12 max-w-3xl mx-auto">
+                <span className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+                  <Heart className="w-4 h-4" aria-hidden="true" />
+                  Discrétion & accompagnement
+                </span>
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                  Nettoyage syndrome de Diogène à Marseille
+                </h2>
+                <p className="text-lg text-gray-500">
+                  Une intervention discrète et encadrée, pour remettre le logement en propreté et en hygiène.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-12">
+              <ScrollReveal direction="left">
+                <div className="rounded-2xl overflow-hidden shadow-xl">
+                  <ImageWithFallback
+                    src={getOptimizedCldUrl(IMAGES.appartVideLumineux, 800)}
+                    srcSet={cldSrcSet(IMAGES.appartVideLumineux, [400, 700, 1000])}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    alt="Intérieur de logement lumineux après remise en propreté"
+                    className="w-full h-[280px] lg:h-[420px] object-cover"
+                    width={800}
+                    height={420}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal direction="right">
+                <div className="space-y-5 text-gray-600 leading-relaxed">
+                  <p>
+                    Un logement encombré à l’extrême, des accumulations qui s’étendent depuis des mois ou des années : le syndrome de Diogène touche des personnes de tous profils, et leurs proches se sentent souvent démunis. Chez Nature Clean, nous intervenons à Marseille et dans les Bouches-du-Rhône avec une règle simple :{' '}
+                    <strong className="text-gray-800">faire le travail sans jugement, avec discrétion et dans le respect de la personne</strong>.
+                  </p>
+                  <p>
+                    Notre équipe déclarée s’occupe du tri, de l’évacuation, du nettoyage en profondeur et de la remise en état de propreté du logement. Nous travaillons avec les familles, les syndics, les bailleurs, les mandataires judiciaires et les services sociaux — avec l’accord de l’occupant ou de son représentant légal.
+                  </p>
+                  <ul className="space-y-2.5">
+                    {[
+                      'Discrétion : véhicule banalisé sur demande, horaires adaptés',
+                      'Personnel déclaré, assurance RC Pro',
+                      'Visite et devis gratuits sous 24 h — sans engagement',
+                      'Évacuation vers filières adaptées (benne ou déchetterie)',
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-gray-700">
+                        <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            <ScrollReveal>
+              <h3 className="text-2xl font-black text-gray-900 mb-6">
+                Comment se déroule une intervention
+              </h3>
+              <ol className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
+                {DIOGENE_STEPS.map((step, index) => (
+                  <li key={step.title} className="bg-white rounded-2xl border border-gray-200 p-5">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-700 font-black text-sm mb-3">
+                      {index + 1}
+                    </span>
+                    <p className="font-bold text-gray-900 mb-1.5">{step.title}</p>
+                    <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+                  </li>
+                ))}
+              </ol>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 mb-10">
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  <strong className="text-gray-900">Un devis adapté à chaque situation</strong> : chaque logement est différent, donc nous ne proposons pas de tarif standard. Après une visite gratuite, nous vous remettons un devis détaillé, clair et sans engagement, avant toute intervention.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
+                    <Link to="/devis?service=diogene">
+                      Demander un devis confidentiel
+                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
+                    <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
+                      <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
+                      {PHONE_DISPLAY}
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <div className="space-y-3">
+                {DIOGENE_HOME_FAQ.map((item) => (
+                  <details
+                    key={item.question}
+                    className="group bg-white rounded-xl border border-gray-200 px-6 py-2"
+                  >
+                    <summary className="cursor-pointer list-none flex items-center justify-between gap-4 py-3 font-bold text-gray-900">
+                      {item.question}
+                      <span className="text-green-600 text-xl leading-none group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+                    </summary>
+                    <p className="pb-4 text-gray-600 leading-relaxed">{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+              <p className="text-center mt-6">
+                <Link
+                  to="/services/nettoyage-diogene"
+                  className="text-sm font-semibold text-green-700 hover:text-green-800 underline underline-offset-4"
+                >
+                  Voir la page dédiée au nettoyage Diogène à Marseille
+                </Link>
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           5. CONVERSION BREAK — Photo immersive mid-page
           ═══════════════════════════════════════════ */}
       <ConversionBreak
         image={IMAGES.equipeCamionnette}
-        imageAlt="Equipe Nature Clean devant camionnette — intervention rapide Marseille PACA"
-        title="Devis gratuit en moins de 24h"
-        subtitle="Intervention rapide sur Marseille (13001 a 13016), Aix-en-Provence, Aubagne et toute la region PACA."
-        urgencyText="Reponse garantie sous 2h"
+        imageAlt="Équipe Nature Clean prête à intervenir à Marseille"
+        title="Devis gratuit sous 24 h"
+        subtitle="Intervention à Marseille (13001 à 13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Istres, Martigues et Salon-de-Provence."
+        urgencyText="Réponse sous 2 h, devis sous 24 h"
       />
 
       {/* ═══════════════════════════════════════════
@@ -673,7 +898,7 @@ export function Home() {
                 Nos dernières réalisations
               </h2>
               <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-                Découvrez nos interventions récentes auprès de professionnels sur Marseille et en région PACA.
+                Découvrez nos interventions récentes auprès de professionnels à Marseille et dans les Bouches-du-Rhône.
               </p>
             </div>
           </ScrollReveal>
@@ -708,7 +933,7 @@ export function Home() {
                     src={getOptimizedCldUrl('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', 600)}
                     srcSet={cldSrcSet('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', [350, 600, 900])}
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    alt="Equipe Nature Clean en intervention nettoyage professionnel"
+                    alt="Équipe Nature Clean en intervention de nettoyage professionnel"
                     className="w-full h-[380px] lg:h-[460px] object-cover"
                     width={600}
                     height={460}
@@ -736,12 +961,12 @@ export function Home() {
                     <div className="text-xs text-gray-500 mt-1">Années d'exp.</div>
                   </div>
                   <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-600">100%</div>
-                    <div className="text-xs text-gray-500 mt-1">Clients fidèles</div>
+                    <div className="text-2xl md:text-3xl font-black text-green-600">RC Pro</div>
+                    <div className="text-xs text-gray-500 mt-1">Assurance</div>
                   </div>
                   <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-600">3</div>
-                    <div className="text-xs text-gray-500 mt-1">Départements</div>
+                    <div className="text-2xl md:text-3xl font-black text-green-600">13</div>
+                    <div className="text-xs text-gray-500 mt-1">Bouches-du-Rhône</div>
                   </div>
                 </div>
 
@@ -796,20 +1021,20 @@ export function Home() {
               <ScrollReveal direction="right">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">50%</div>
+                    <div className="text-3xl font-black">50 %</div>
                     <div className="text-sm text-white/80 mt-1">Éco-labellisés</div>
                   </div>
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">0</div>
-                    <div className="text-sm text-white/80 mt-1">Produit toxique</div>
+                    <div className="text-3xl font-black">Ecolabel</div>
+                    <div className="text-sm text-white/80 mt-1">Ecover Pro</div>
                   </div>
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">100%</div>
-                    <div className="text-sm text-white/80 mt-1">Tri sélectif</div>
+                    <div className="text-3xl font-black">Inclus</div>
+                    <div className="text-sm text-white/80 mt-1">Produits fournis</div>
                   </div>
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">-30%</div>
-                    <div className="text-sm text-white/80 mt-1">Conso. d'eau</div>
+                    <div className="text-3xl font-black">RC Pro</div>
+                    <div className="text-sm text-white/80 mt-1">Assurance</div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -844,10 +1069,10 @@ export function Home() {
                 Zone d'intervention
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                Entretien professionnel dans tout le Sud
+                Entretien professionnel à Marseille et dans le 13
               </h2>
               <p className="text-lg text-gray-500">
-                Basés à Marseille 8e, nous intervenons sur Marseille, Aubagne, Aix-en-Provence et La Ciotat (13) — devis gratuit sous 24 h pour bureaux, copropriétés et fin de chantier.
+                Basés à Marseille 8e, nous intervenons à Marseille, Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres et Martigues — réponse sous 2 h, devis gratuit sous 24 h.
               </p>
             </div>
           </ScrollReveal>
@@ -925,6 +1150,12 @@ export function Home() {
         </div>
       </section>
 
+      <FAQSection
+        items={HOME_FAQ}
+        title="Questions fréquentes sur nos services de nettoyage à Marseille"
+        subtitle="Tarifs, délais, produits fournis, horaires et zones d’intervention"
+      />
+
       {/* ═══════════════════════════════════════════
           11. CTA FINAL — Photo + conversion
           ══════════════════════════════════════════ */}
@@ -938,12 +1169,12 @@ export function Home() {
               </h2>
               <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                 Contactez-nous pour un devis gratuit et personnalisé.
-                Intervention rapide sur tout le Sud de la France.
+                Réponse sous 2 h, devis sous 24 h — Marseille et Bouches-du-Rhône.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-lg px-10 shadow-xl shadow-green-500/20">
                   <Link to="/devis">
-                    Obtenir mon devis en 2 min
+                    Obtenir mon devis gratuit
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>

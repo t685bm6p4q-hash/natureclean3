@@ -75,7 +75,7 @@ export function MerciPage() {
 
           <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
             <Clock className="w-4 h-4 text-emerald-600" aria-hidden="true" />
-            Lun–Sam · 8h–18h · Marseille &amp; PACA
+            Lun–Sam · 8h–18h · Marseille et Bouches-du-Rhône
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">

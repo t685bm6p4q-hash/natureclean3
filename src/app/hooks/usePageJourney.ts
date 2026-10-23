@@ -85,6 +85,7 @@ export function formatJourneyForWhatsApp(journey: JourneyStep[]): string {
     '/services': 'Services',
     '/services/entretien-bureaux': 'Bureaux',
     '/services/nettoyage-commerces': 'Commerces',
+    '/services/remise-etat-urgence-commerce': 'Urgence magasin',
     '/services/nettoyage-coproprietes': 'Copros',
     '/services/nettoyage-chantiers': 'Chantier',
     '/services/nettoyage-evenementiel': 'Event',

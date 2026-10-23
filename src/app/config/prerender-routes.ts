@@ -19,6 +19,8 @@ export const PRERENDER_ROUTES: readonly string[] = [
   '/contact',
   '/a-propos',
   '/realisations',
+  '/realisations/cas/magasin-centre-ville',
+  '/realisations/cas/cabinet-medical-marseille',
   '/zones-intervention',
   '/politique-de-confidentialite',
   '/mentions-legales',
@@ -26,6 +28,7 @@ export const PRERENDER_ROUTES: readonly string[] = [
   // ── Toutes les pages services ──
   '/services/entretien-bureaux',
   '/services/nettoyage-commerces',
+  '/services/remise-etat-urgence-commerce',
   '/services/nettoyage-coproprietes',
   '/services/nettoyage-chantiers',
   '/services/nettoyage-evenementiel',
@@ -45,12 +48,11 @@ export const PRERENDER_ROUTES: readonly string[] = [
   '/blog/checklist-nettoyage-copropriete-syndic',
   '/blog/budget-nettoyage-bureaux-marseille-2026',
   '/blog/devis-nettoyage-marseille-guide',
-  '/blog/nettoyage-graffitis-carrefour-marseille',
+  '/blog/nettoyage-graffitis-grande-surface-marseille',
   '/blog/nettoyage-galerie-art-marseille',
 
   // ── 7 landing pages geo (Bouches-du-Rhône) ──
   '/nettoyage-bureaux-marseille',
-  '/nettoyage-fin-chantier-marseille',
   '/nettoyage-industriel-marseille',
   '/nettoyage-medical-marseille',
   '/nettoyage-bureaux-aix-en-provence',

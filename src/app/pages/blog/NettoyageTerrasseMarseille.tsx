@@ -15,7 +15,7 @@ export function NettoyageTerrasseMarseille() {
     datePublished: '2026-05-05',
     dateModified: '2026-05-05',
     slug: 'faq-nettoyage-terrasse-marseille',
-    keywords: 'nettoyage terrasse marseille, entretien terrasse bois, nettoyage extérieur PACA, nettoyage haute pression terrasse',
+    keywords: 'nettoyage terrasse marseille, entretien terrasse bois, nettoyage extérieur 13, nettoyage haute pression terrasse',
     articleSection: 'Conseils pratiques',
     wordCount: 600,
   });
@@ -25,7 +25,7 @@ export function NettoyageTerrasseMarseille() {
       <SEO_Guardian 
         title="FAQ : Tout savoir sur le nettoyage de votre terrasse à Marseille | Nature Clean"
         description="Découvrez nos conseils et réponses d'experts pour le nettoyage et l'entretien de votre terrasse à Marseille avant l'été : techniques, écologie, professionnels."
-        keywords="nettoyage terrasse marseille, entretien terrasse, nettoyage extérieur PACA, Nature Clean"
+        keywords="nettoyage terrasse marseille, entretien terrasse, nettoyage extérieur Bouches-du-Rhône, Nature Clean"
         currentSection="blog"
 
       />
@@ -69,7 +69,7 @@ export function NettoyageTerrasseMarseille() {
             {/* Introduction */}
             <div className="prose prose-lg max-w-none mb-12">
               <p className="text-xl text-gray-700 leading-relaxed">
-                Avec le retour des beaux jours en région PACA, les terrasses de restaurants, de bureaux ou de copropriétés reprennent vie. Mais après l'hiver, elles ont souvent besoin d'un bon rafraîchissement ! Chez <strong>Nature Clean</strong>, nous recevons de nombreuses interrogations sur la meilleure façon d'entretenir ces espaces extérieurs.
+                Avec le retour des beaux jours à Marseille, les terrasses de restaurants, de bureaux ou de copropriétés reprennent vie. Mais après l'hiver, elles ont souvent besoin d'un bon rafraîchissement ! Chez <strong>Nature Clean</strong>, nous recevons de nombreuses interrogations sur la meilleure façon d'entretenir ces espaces extérieurs.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 Voici nos réponses à vos questions les plus fréquentes sur le nettoyage de terrasse.
@@ -113,7 +113,7 @@ export function NettoyageTerrasseMarseille() {
                 </h3>
                 <div className="bg-green-50 rounded-lg p-5">
                   <p className="text-gray-700 leading-relaxed">
-                    <strong>Réponse de l'expert :</strong> Confier cette tâche à un professionnel vous garantit trois choses : un gain de temps, la sécurité, et un résultat durable. En tant que gérant de restaurant, syndic ou chef d'entreprise en PACA, vous devez vous concentrer sur votre cœur de métier. Nature Clean intervient avec le matériel adéquat (même pour les terrasses d'immeubles difficiles d'accès) pour un nettoyage en profondeur qui retarde l'apparition de nouvelles salissures.
+                    <strong>Réponse de l'expert :</strong> Confier cette tâche à un professionnel vous garantit trois choses : un gain de temps, la sécurité, et un résultat durable. En tant que gérant de restaurant, syndic ou chef d'entreprise à Marseille, vous devez vous concentrer sur votre cœur de métier. Nature Clean intervient avec le matériel adéquat (même pour les terrasses d'immeubles difficiles d'accès) pour un nettoyage en profondeur qui retarde l'apparition de nouvelles salissures.
                   </p>
                 </div>
               </div>
@@ -122,7 +122,7 @@ export function NettoyageTerrasseMarseille() {
               <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-start gap-3">
                   <HelpCircle className="w-6 h-6 text-green-600 mt-1 shrink-0" />
-                  Question 4 : Dans quelles zones de la région PACA intervenez-vous pour les extérieurs ?
+                  Question 4 : Dans quelles zones intervenez-vous pour les extérieurs ?
                 </h3>
                 <div className="bg-green-50 rounded-lg p-5">
                   <p className="text-gray-700 leading-relaxed">
@@ -165,7 +165,7 @@ export function NettoyageTerrasseMarseille() {
                     Nettoyage écologique en entreprise →
                   </h3>
                   <p className="text-gray-600">
-                    Pourquoi passer aux produits bio ? Avantages santé, labels fiables...
+                    Produits eco-labellises en entreprise : labels et démarche Nature Clean...
                   </p>
                 </Link>
                 <Link to="/blog/checklist-nettoyage-copropriete-syndic" className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">

@@ -7,50 +7,50 @@ export interface SEOEntry {
 /** Registre central des meta title / description / keywords par section. */
 export const SEO_DATA: Record<string, SEOEntry> = {
   home: {
-    title: 'Entreprise de Nettoyage Marseille | Devis Gratuit',
+    title: 'Entreprise de Nettoyage Marseille | Nature Clean – Devis 24h',
     description:
-      'Vous cherchez une entreprise de nettoyage à Marseille ? Bureaux, copropriétés, fin de chantier. Devis gratuit 24 h. Intervention rapide.',
+      'Entreprise de nettoyage à Marseille depuis 2021 : bureaux, copropriétés, fin de chantier. ✓ RC Pro ✓ Produits fournis ✓ Devis gratuit sous 24 h',
     keywords:
       'entretien Marseille, nettoyage Marseille, ménage Marseille, entreprise nettoyage 13, entretien bureaux Marseille, ménage copropriété, propreté professionnelle Bouches-du-Rhône, Nature Clean',
   },
   services: {
-    title: 'Services de Nettoyage Marseille | Nature Clean',
+    title: 'Services de Nettoyage Professionnel à Marseille | Nature Clean',
     description:
-      'Tous nos services d\'entretien à Marseille : bureaux, copropriétés, fin de chantier. Devis gratuit sous 2 h, 7j/7. Note 4,7/5 · Éco-responsable · 04 84 89 68 75',
+      'Bureaux, copropriétés, fin de chantier, commerces, vitres, sols, graffitis et nettoyage Diogène à Marseille et dans le 13. RC Pro, devis gratuit sous 24 h.',
     keywords:
       'services entretien Marseille, ménage professionnel 13, nettoyage bureaux, propreté copropriété, remise en état chantier, hygiène locaux Marseille',
   },
   about: {
-    title: 'À Propos Nature Clean Marseille | Nature Clean',
+    title: 'Notre démarche éco-responsable | Nettoyage Marseille – Nature Clean',
     description:
-      'Nature Clean, expert nettoyage éco-responsable à Marseille depuis 2021. Note 4,7/5 · 50 % produits bio · Personnel déclaré · SIRET 89020726900022.',
+      'Produits d\'entretien éco-labellisés, matériel professionnel et pratiques de nettoyage de Nature Clean à Marseille depuis 2021. Devis gratuit sous 24 h.',
     keywords:
-      'Nature Clean Marseille, entreprise entretien écologique 13, ménage éco-responsable, société propreté Bouches-du-Rhône, nettoyage professionnel Marseille',
+      'nettoyage écologique Marseille, entreprise nettoyage éco-responsable 13, produits entretien éco-labellisés, Nature Clean Marseille',
   },
   quote: {
     title: 'Devis Gratuit Nettoyage Marseille | Nature Clean',
     description:
-      'Devis gratuit sous 2 h pour votre nettoyage à Marseille. Sans engagement. Note 4,7/5 (12 avis Google) · 500+ clients · Arrondissements 13001-13016.',
+      'Demandez un devis de nettoyage à Marseille. Réponse sous 2 h, devis gratuit sous 24 h. Bureaux, copropriétés, fin de chantier.',
     keywords:
       'devis entretien Marseille, tarif ménage 13, prix nettoyage bureaux, estimation propreté copropriété, devis gratuit nettoyage professionnel',
   },
   merci: {
     title: 'Demande bien reçue | Nature Clean',
     description:
-      'Votre demande de devis a été enregistrée. Nature Clean vous contacte sous 24 h à Marseille et en PACA.',
+      'Votre demande de devis a été enregistrée. Nature Clean vous contacte sous 24 h à Marseille et dans les Bouches-du-Rhône.',
     keywords: 'confirmation devis nettoyage Marseille',
   },
   contact: {
     title: 'Contact Nature Clean Marseille | Nature Clean',
     description:
-      'Contactez Nature Clean pour vos besoins de nettoyage à Marseille. Réponse sous 2 h, 7j/7. Note 4,7/5 · 13001-13016, Aubagne, Aix-en-Provence.',
+      'Contactez Nature Clean pour un nettoyage à Marseille. Réponse sous 2 h, devis sous 24 h. Lun–sam 8 h–18 h · 13001-13016, Aubagne, Aix.',
     keywords:
       'contact entretien Marseille, téléphone entreprise ménage 13, contacter Nature Clean, société propreté Bouches-du-Rhône, nettoyage Marseille contact',
   },
   realisations: {
-    title: 'Réalisations Nettoyage Marseille | Nature Clean',
+    title: 'Réalisations de Nettoyage à Marseille | Avant / Après – Nature Clean',
     description:
-      'Réalisations de nettoyage professionnel à Marseille : bureaux, copropriétés, chantiers, commerces. Note 4,7/5 · Depuis 2021.',
+      'Nos interventions récentes à Marseille et dans les Bouches-du-Rhône : fin de chantier, commerces, bureaux, locaux de santé. Photos avant/après et cas clients.',
     keywords:
       'réalisations entretien Marseille, portfolio ménage professionnel, références Nature Clean, projets nettoyage 13',
   },
@@ -62,39 +62,46 @@ export const SEO_DATA: Record<string, SEOEntry> = {
       'blog nettoyage écologique, conseils nettoyage Marseille, astuces propreté, actualités Nature Clean',
   },
   'entretien-bureaux': {
-    title: 'Nettoyage Bureaux Marseille | Entreprise pro 13 | Nature Clean',
+    title: 'Nettoyage de Bureaux à Marseille | Nature Clean',
     description:
-      'Entreprise de nettoyage de bureaux à Marseille (13001-13016). Open spaces, sanitaires, vitres. Devis 24 h · 6h-22h · Note 4,7/5 · RC Pro · 04 84 89 68 75',
+      'Entretien de bureaux à Marseille depuis 2021 : horaires décalés 6h-22h, produits et matériel fournis, RC Pro. Réponse sous 2 h, devis gratuit sous 24 h.',
     keywords:
       'entretien bureaux Marseille, nettoyage bureaux 13, nettoyage open space, société nettoyage bureaux, entretien locaux professionnels Marseille, ménage bureau quotidien',
   },
   'nettoyage-commerces': {
-    title: 'Nettoyage Commerces Marseille | Nature Clean',
+    title: 'Nettoyage de Commerces à Marseille | Nature Clean',
     description:
-      'Nettoyage de commerces à Marseille : entretien récurrent, remise en état urgence après saccage. Devis 2 min · Note 4,7/5 · 7j/7.',
+      'Entretien de commerces à Marseille depuis 2021 : avant ouverture, vitrines, sols, sanitaires. RC Pro. Réponse sous 2 h, devis gratuit sous 24 h.',
     keywords:
-      'nettoyage commerce Marseille, remise en état magasin urgence, entretien boutique 13, nettoyage vitrine magasin, nettoyage restaurant Marseille, propreté commerce',
+      'nettoyage commerce Marseille, entretien boutique 13, nettoyage vitrine magasin, ménage magasin Marseille, propreté commerce Bouches-du-Rhône',
+  },
+  'remise-etat-urgence-commerce': {
+    title: 'Remise en état Magasin Marseille | Nature Clean',
+    description:
+      'Remise en état d\'urgence après dégradation à Marseille : débarras, sols, désinfection. Cas octobre 2026. Réponse sous 2 h, devis sous 24 h.',
+    keywords:
+      'remise en état magasin Marseille, nettoyage après saccage, urgence commerce 13, réouverture boutique, dégradation magasin Marseille',
   },
   'nettoyage-coproprietes': {
-    title: 'Nettoyage Copropriété Marseille | Syndic & parties communes',
+    title: 'Nettoyage de Copropriétés à Marseille | Syndics – Nature Clean',
     description:
-      'Nettoyage copropriété à Marseille : halls, escaliers, parkings. Contrats syndic flexibles. Devis 24 h · Note 4,7/5 · Bouches-du-Rhône · 04 84 89 68 75',
+      'Entretien de parties communes à Marseille : halls, escaliers, ascenseurs, parkings, locaux poubelles. Contrat sur mesure, RC Pro, devis gratuit sous 24 h.',
     keywords:
       'nettoyage copropriété Marseille, entretien parties communes 13, ménage immeuble Marseille, nettoyage syndic, entretien hall escalier, nettoyage résidence Marseille',
   },
   'nettoyage-chantiers': {
-    title: 'Nettoyage Chantiers Marseille | Nature Clean',
+    title: 'Nettoyage Fin de Chantier Marseille | Nature Clean',
     description:
-      'Nettoyage après travaux à Marseille. Gravats, lessivage, vitres. Devis sous 2 h, intervention rapide. Note 4,7/5 · Bouches-du-Rhône · 04 84 89 68 75',
+      'Nettoyage de fin de chantier à Marseille pour promoteurs, artisans et particuliers : voile de ciment, plâtre, vitres. Matériel fourni, RC Pro, devis sous 24 h.',
     keywords:
       'nettoyage fin chantier Marseille, nettoyage après travaux 13, remise en état chantier, nettoyage livraison promoteur, nettoyage construction Marseille, débarras gravats',
   },
   'nettoyage-evenementiel': {
-    title: 'Nettoyage Événementiel Marseille | Nature Clean',
+    title: 'Nettoyage Événementiel Marseille – Nature Clean',
     description:
-      'Nettoyage avant, pendant et après événements à Marseille. Mariages, séminaires, salons pro. Devis sous 2 h. Note 4,7/5 · Intervention 7j/7 · PACA.',
+      'Nettoyage événementiel à Marseille : avant, pendant et après séminaires, salons et concerts. Bouches-du-Rhône, RC Pro, devis gratuit sous 24 h.',
     keywords:
-      'nettoyage événementiel Marseille, nettoyage après mariage, nettoyage salon professionnel, entretien séminaire, remise en état événement PACA',
+      'nettoyage événementiel Marseille, nettoyage après mariage, nettoyage salon professionnel, entretien séminaire, remise en état événement Bouches-du-Rhône',
   },
   'nettoyage-graffitis': {
     title: 'Nettoyage Graffitis Marseille | Nature Clean',
@@ -110,30 +117,30 @@ export const SEO_DATA: Record<string, SEOEntry> = {
       'nettoyage gros chantier Marseille, remise en état fin de bail, nettoyage après rénovation, grand ménage particulier, état des lieux sortie Marseille',
   },
   'remise-etat-sols': {
-    title: 'Remise en état sols Marseille | Nature Clean',
+    title: 'Rénovation de Sols Marseille | Marbre – Nature Clean',
     description:
-      'Ponçage, cristallisation et lustrage de sols à Marseille. Marbre, granit, parquet, béton ciré. Devis sous 2 h. Note 4,7/5 · Éco-responsable.',
+      'Polissage, cristallisation, décapage et lustrage de sols à Marseille : marbre, béton ciré, parquet. Réponse sous 2 h, devis sous 24 h, RC Pro.',
     keywords:
-      'remise état sols Marseille, ponçage marbre 13, cristallisation sol, lustrage parquet Marseille, nettoyage béton ciré, polissage granit Bouches-du-Rhône',
+      'cristallisation marbre Marseille, polissage marbre 13, décapage sol commerce, béton ciré Marseille, remise en état sols Bouches-du-Rhône',
   },
   'nettoyage-vitre': {
-    title: 'Nettoyage Vitres Marseille | Nature Clean',
+    title: 'Nettoyage de Vitres Marseille | Façades – Nature Clean',
     description:
-      'Lavage de vitres à Marseille : intérieur, extérieur, baies vitrées, façades en hauteur. Devis sous 2 h. Note 4,7/5 · Nacelle et perche · 04 84 89 68 75',
+      'Nettoyage de vitres à Marseille : vitrines, bureaux, façades vitrées et hauteur accessible. RC Pro, matériel fourni, devis gratuit sous 24 h.',
     keywords:
       'nettoyage vitres Marseille, laveur vitres 13, nettoyage baie vitrée, nettoyage façade vitrée, lavage vitres hauteur, nettoyage véranda Marseille',
   },
   'nettoyage-diogene': {
-    title: 'Nettoyage Diogène Marseille | Nature Clean',
+    title: 'Nettoyage Syndrome de Diogène Marseille | Discret – Nature Clean',
     description:
-      'Nettoyage syndrome de Diogène à Marseille : désencombrement, désinfection, accompagnement humain. Intervention discrète. Devis sous 2 h · 04 84 89 68 75',
+      'Désencombrement, tri, nettoyage et désinfection d\'un logement en situation d\'accumulation à Marseille. Intervention discrète, devis gratuit et confidentiel.',
     keywords:
       'nettoyage Diogène Marseille, désencombrement logement 13, syndrome Diogène, nettoyage insalubre Marseille, remise en état logement',
   },
   'zones-intervention': {
-    title: 'Zones d\'Intervention Marseille | Nature Clean',
+    title: 'Zones d\'Intervention Nettoyage | Marseille et Bouches-du-Rhône',
     description:
-      'Nature Clean intervient à Marseille (13001-13016), Aix-en-Provence, Aubagne et La Ciotat. Devis gratuit sous 2 h.',
+      'Nature Clean intervient à Marseille (13001-13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres et Martigues. Devis sous 24 h.',
     keywords:
       'zones intervention Marseille, arrondissements Marseille, Aubagne, Aix-en-Provence, La Ciotat, devis gratuit nettoyage',
   },

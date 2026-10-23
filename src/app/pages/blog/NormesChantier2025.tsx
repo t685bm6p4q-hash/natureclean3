@@ -5,26 +5,27 @@ import { Phone, HardHat, ArrowLeft, Clock, FileText, Scale, CheckCircle2 } from 
 import { IMAGES } from '@/app/utils/images';
 import { useArticleJsonLd } from '@/app/hooks/useArticleJsonLd';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
+import { BlogArticleByline } from '@/app/components/BlogArticleByline';
 
 export function NormesChantier2025() {
   useArticleJsonLd({
-    headline: 'Nettoyage de chantier : obligations légales et normes 2025',
-    description: 'Guide complet des normes de nettoyage fin de chantier 2025. Obligations légales BTP, réglementation, protocole pour promoteurs et artisans à Marseille.',
+    headline: 'Nettoyage de fin de chantier : obligations et bonnes pratiques',
+    description:
+      'Points de contrôle propreté avant livraison, bonnes pratiques BTP et protocole Nature Clean pour promoteurs et artisans à Marseille. Informations générales, sans conseil juridique.',
     image: IMAGES.chantierBrut,
     datePublished: '2025-01-27',
-    dateModified: '2025-01-27',
+    dateModified: '2026-10-24',
     slug: 'normes-nettoyage-chantier-2025',
-    keywords: 'nettoyage fin de chantier marseille, normes BTP 2025, obligations légales chantier, réglementation nettoyage 13, protocole fin de travaux',
+    keywords: 'nettoyage fin de chantier marseille, réception travaux propreté, protocole fin de travaux 13, livraison chantier propre',
   });
 
   return (
     <>
-      <SEO_Guardian 
-        title="Nettoyage Chantier Marseille : Normes & Obligations 2025 | Nature Clean"
-        description="Obligations légales nettoyage fin de chantier 2025. Normes BTP, réglementation, protocole certifié pour promoteurs et artisans à Marseille. Devis gratuit."
-        keywords="nettoyage fin de chantier marseille, normes BTP 2025, obligations légales chantier 13, réglementation nettoyage PACA, livraison chantier propre"
+      <SEO_Guardian
+        title="Nettoyage Fin de Chantier Marseille | Obligations & Bonnes Pratiques"
+        description="Propreté avant réception de travaux à Marseille : points de contrôle, bonnes pratiques et protocole Nature Clean. Devis gratuit sous 24 h."
+        keywords="nettoyage fin de chantier marseille, réception travaux propreté, livraison chantier propre 13"
         currentSection="blog"
-
       />
 
       <article className="bg-white">
@@ -32,7 +33,7 @@ export function NormesChantier2025() {
           <div className="h-56 md:h-72 overflow-hidden">
           <img
             src={IMAGES.chantierBrut}
-            alt="Nettoyage professionnel fin de chantier BTP Marseille normes 2025"
+            alt="Nettoyage professionnel fin de chantier BTP à Marseille"
             width="1920"
             height="1080"
             // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
@@ -52,7 +53,7 @@ export function NormesChantier2025() {
                 <span className="text-sm">7 min de lecture • 27 janvier 2025</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-white max-w-4xl">
-                Nettoyage de chantier : obligations légales et normes 2025
+                Nettoyage de fin de chantier : obligations et bonnes pratiques
               </h1>
             </div>
           </div>
@@ -60,23 +61,30 @@ export function NormesChantier2025() {
 
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
-            
+            <BlogArticleByline publishedLabel="27 janvier 2025" updatedLabel="24 octobre 2026" />
+
             <div className="prose prose-lg max-w-none mb-12">
               <p className="text-xl text-gray-700 leading-relaxed">
-                Le <strong>nettoyage de fin de chantier</strong> n'est pas une option, c'est une <strong>obligation légale</strong>. 
-                En 2025, la réglementation BTP impose aux promoteurs, maîtres d'œuvre et artisans de livrer un chantier <strong>propre et conforme</strong>. 
-                À <strong>Marseille et dans les Bouches-du-Rhône (13)</strong>, Nature Clean vous accompagne pour respecter ces normes et éviter les pénalités.
+                Avant une <strong>réception de travaux</strong>, la propreté des locaux est un critère concret pour le maître d&apos;ouvrage,
+                le promoteur et les futurs occupants. À <strong>Marseille et dans les Bouches-du-Rhône</strong>, Nature Clean intervient sur le{' '}
+                <Link to="/services/nettoyage-chantiers" className="text-green-800 font-semibold underline">
+                  nettoyage de fin de chantier
+                </Link>{' '}
+                — déblaiement, dépoussiérage, sols et vitres — selon votre cahier des charges.
               </p>
             </div>
 
             <div className="bg-blue-50 border-l-4 border-blue-600 p-6 mb-12">
               <div className="flex items-start gap-3">
-                <Scale className="w-6 h-6 text-blue-600 mt-1 shrink-0" />
+                <Scale className="w-6 h-6 text-blue-600 mt-1 shrink-0" aria-hidden="true" />
                 <div>
-                  <h3 className="font-bold text-blue-900 mb-2">📜 Cadre légal 2025</h3>
-                  <p className="text-blue-800">
-                    <strong>Article R4228-1 du Code du Travail</strong> : "Les locaux doivent être tenus dans un état constant de propreté." 
-                    + <strong>Norme NF DTU 42.1</strong> pour le nettoyage des façades et vitrages après travaux.
+                  <h3 className="font-bold text-blue-900 mb-2">Information générale</h3>
+                  <p className="text-blue-800 text-sm leading-relaxed">
+                    Les obligations exactes (hygiène sur chantier, déchets, voirie, contrat de marché) dépendent de votre
+                    situation et de vos documents contractuels. Cet article résume des <strong>bonnes pratiques terrain</strong> ;
+                    pour une question juridique, consultez votre maître d&apos;œuvre ou un conseil habituel. Références souvent
+                    citées en entreprise : exigences de propreté des locaux (Code du travail) et cahiers des charges DTU pour
+                    certains ouvrages — à vérifier au cas par cas.
                   </p>
                 </div>
               </div>
@@ -163,12 +171,12 @@ export function NormesChantier2025() {
             <section className="mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                 <HardHat className="w-8 h-8 text-green-600" />
-                Protocole de nettoyage fin de chantier conforme 2025
+                Protocole de nettoyage fin de chantier (4 phases)
               </h2>
 
               <p className="text-gray-700 mb-6">
-                Pour être en conformité avec les normes BTP et réussir la réception des travaux, voici le protocole en <strong>4 phases</strong> 
-                que nous appliquons chez <strong>Nature Clean Marseille</strong> :
+                Pour préparer une réception dans de bonnes conditions, voici le protocole en <strong>4 phases</strong>{' '}
+                que nous appliquons chez <strong>Nature Clean</strong> :
               </p>
 
               <div className="space-y-4">
@@ -277,10 +285,10 @@ export function NormesChantier2025() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-green-900 mb-3">💰 Économie garantie</h3>
+                  <h3 className="text-lg font-semibold text-green-900 mb-3">Éviter les reprises</h3>
                   <p className="text-gray-700">
-                    Coût d'un nettoyage pro : <strong>2-5€/m²</strong><br />
-                    Coût d'un refus de réception : <strong>Pénalités de retard + reprise = 10-50x plus cher</strong>
+                    Un chantier mal nettoyé retarde la réception et mobilise à nouveau artisans et équipes. Externaliser
+                    la fin de chantier sécurise le planning de livraison.
                   </p>
                 </div>
 
@@ -309,45 +317,19 @@ export function NormesChantier2025() {
             </section>
 
             <section className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Tarifs nettoyage fin de chantier Marseille 2025
-              </h2>
-
-              <div className="bg-white border-2 border-gray-200 rounded-xl overflow-hidden">
-                <table className="w-full">
-                  <thead className="bg-green-700 text-white">
-                    <tr>
-                      <th className="p-4 text-left">Type de chantier</th>
-                      <th className="p-4 text-left">Surface</th>
-                      <th className="p-4 text-left">Tarif indicatif</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    <tr>
-                      <td className="p-4">Appartement T2/T3</td>
-                      <td className="p-4">50-80 m²</td>
-                      <td className="p-4 font-semibold text-green-700">200-350€</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="p-4">Maison individuelle</td>
-                      <td className="p-4">100-150 m²</td>
-                      <td className="p-4 font-semibold text-green-700">400-600€</td>
-                    </tr>
-                    <tr>
-                      <td className="p-4">Local commercial</td>
-                      <td className="p-4">200-500 m²</td>
-                      <td className="p-4 font-semibold text-green-700">800-2000€</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="p-4">Immeuble résidentiel</td>
-                      <td className="p-4">1000+ m²</td>
-                      <td className="p-4 font-semibold text-green-700">Sur devis</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-sm text-gray-600 mt-4">
-                * Tarifs indicatifs TTC. Devis personnalisé gratuit sous 24h. Inclut : main d'œuvre, produits, matériel, évacuation déchets + BSD.
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Ce qui influence le devis fin de chantier</h2>
+              <ul className="space-y-3 text-gray-700 mb-6">
+                <li>• Surface, état des sols (laitance, colles) et nombre de vitrages</li>
+                <li>• Volume de gravats et filière d&apos;évacuation (BSD le cas échéant)</li>
+                <li>• Délai et créneaux (nuit, week-end, livraison imminente)</li>
+                <li>• Niveau de finition exigé par le maître d&apos;ouvrage ou le promoteur</li>
+              </ul>
+              <p className="text-gray-600">
+                Nous ne publions pas de grille €/m² : chaque chantier est chiffré après visite ou échange détaillé.{' '}
+                <Link to="/devis?service=fin-chantier" className="text-green-700 font-semibold underline">
+                  Demander un devis fin de chantier
+                </Link>
+                .
               </p>
             </section>
 
@@ -357,7 +339,7 @@ export function NormesChantier2025() {
                 🏗️ Devis Nettoyage Chantier Express
               </h3>
               <p className="text-xl mb-6 opacity-90">
-                Réponse sous 4h • Intervention sous 48h • Marseille et région PACA
+                Réponse sous 2 h • Devis sous 24 h • Marseille et Bouches-du-Rhône
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-white text-green-700 hover:bg-gray-100 font-bold">

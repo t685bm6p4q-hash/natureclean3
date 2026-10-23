@@ -1,9 +1,24 @@
 import { IMAGES } from '@/app/utils/images';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
+import {
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  ARIA_PHONE,
+  ZONE_LABEL,
+} from '@/app/utils/constants';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
-import { Card, CardContent } from '@/app/components/ui/card';
-import { Heart, ShieldCheck, Clock, Trash2, Sparkles, Phone, Mail, CheckCircle2, Home } from 'lucide-react';
+import {
+  Heart,
+  ShieldCheck,
+  Trash2,
+  Sparkles,
+  Phone,
+  CheckCircle2,
+  ArrowRight,
+  ClipboardList,
+  Users,
+  AlertCircle,
+} from 'lucide-react';
 import { Link } from 'react-router';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { FAQSection } from '@/app/components/FAQSection';
@@ -11,242 +26,419 @@ import type { FAQItem } from '@/app/components/FAQSection';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
+
+const PROCESS_STEPS = [
+  {
+    title: '1. Appel confidentiel',
+    text: 'Vous décrivez la situation. Réponse sous 2 h aux heures d’ouverture (lundi–samedi, 8 h–18 h).',
+  },
+  {
+    title: '2. Visite et devis gratuits',
+    text: 'Volume, état du logement, accès (étage, ascenseur, couloirs). Devis détaillé sous 24 h, sans engagement.',
+  },
+  {
+    title: '3. Tri et mise de côté',
+    text: 'Documents, papiers d’identité, argent, souvenirs et objets de valeur repérés avant tout déplacement. Liste ou photos sur demande, remise à l’occupant ou à la personne désignée.',
+  },
+  {
+    title: '4. Évacuation',
+    text: 'Déchets et encombrants vers une filière adaptée (benne ou déchetterie). Bordereau de suivi remis si votre dossier l’exige.',
+  },
+  {
+    title: '5. Nettoyage et désinfection',
+    text: 'Lessivage des murs, sols et sanitaires, dégraissage cuisine, désinfection des surfaces avec produits professionnels adaptés au support.',
+  },
+  {
+    title: '6. Contrôle final',
+    text: 'Vérification avec vous, retouches si nécessaire, compte rendu avec photos si vous le souhaitez.',
+  },
+] as const;
+
+const WHO_CAN_REQUEST = [
+  'L’occupant lui-même',
+  'Un proche (enfant, conjoint, famille), avec l’accord de la personne ou de son représentant légal',
+  'Un tuteur, un curateur ou un mandataire judiciaire',
+  'Un bailleur ou un syndic, dans le cadre de ses démarches',
+  'Un service social ou un organisme d’aide',
+] as const;
 
 const FAQ_DIOGENE: FAQItem[] = [
-  { question: 'Qu\'est-ce que le syndrome de Diogène ?', answer: 'Le syndrome de Diogène est un trouble du comportement se manifestant par une accumulation compulsive d\'objets (syllogomanie), une négligence de l\'hygiène corporelle et domestique, et souvent un isolement social sévère. Notre rôle n\'est pas de juger — c\'est de restaurer la salubrité du logement de façon professionnelle, discrète et humaine.' },
-  { question: 'Comment se déroule une intervention ?', answer: 'On procède en 4 étapes : diagnostic gratuit et confidentiel, tri sélectif des objets de valeur et documents importants, évacuation des encombrants vers des centres de tri agréés (conformément au décret 2016-288), et nettoyage approfondi avec désinfection totale — désinfectant virucide conforme EN 14476, bactéricide EN 1276, fongicide EN 1650.' },
-  { question: 'Garantissez-vous la discrétion de l\'intervention ?', answer: 'Absolument. Nos équipes arrivent en véhicules banalisés si vous le souhaitez. On travaille sans bruit inutile, et on ne communique sur aucun dossier. Sur les interventions en copropriété à Marseille, on coordonne avec le gardien ou le syndic pour minimiser la visibilité. La discrétion n\'est pas une option chez nous — c\'est une exigence professionnelle.' },
-  { question: 'Combien de temps dure un nettoyage Diogène ?', answer: 'Ça dépend du volume d\'encombrement et de la surface. Un logement modérément encombré (T3, degré modéré) prend généralement 2 à 3 jours. Les cas sévères ou très sévères peuvent nécessiter une semaine complète. On s\'engage sur un délai précis lors du devis — c\'est contractuel.' },
+  {
+    question: 'Qu’est-ce que le syndrome de Diogène ?',
+    answer:
+      'C’est un trouble du comportement qui se traduit par une accumulation d’objets ou de déchets (syllogomanie), une négligence de l’hygiène du logement et souvent un isolement social. Notre rôle n’est pas de juger, mais de remettre le logement en état de propreté et d’hygiène, de façon discrète et respectueuse.',
+  },
+  {
+    question: 'Comment se déroule une intervention ?',
+    answer:
+      'Après un appel confidentiel, visite et devis gratuits, puis tri, évacuation, nettoyage et désinfection. Une vérification finale est faite avec vous. Le détail des six étapes est présenté sur cette page.',
+  },
+  {
+    question: 'Intervenez-vous si la personne refuse ou n’est pas consciente du problème ?',
+    answer:
+      'Non, pas sans l’accord de l’occupant ou de son représentant légal. Mieux vaut d’abord passer par le médecin traitant, un service social ou la mairie (service d’hygiène). Nous pouvons vous aider à identifier le bon interlocuteur.',
+  },
+  {
+    question: 'Mes affaires personnelles seront-elles conservées ?',
+    answer:
+      'Les documents, papiers d’identité, argent, souvenirs et objets de valeur sont repérés et mis de côté avant tout déplacement. Sur demande : liste ou photos ; remise à l’occupant ou à la personne que vous désignez.',
+  },
+  {
+    question: 'Comment assurez-vous la discrétion ?',
+    answer:
+      'Véhicule banalisé sur demande, horaires adaptés, tenue neutre. Nous ne communiquons sur la nature de l’intervention ni au voisinage ni à des tiers, sauf personnes que vous indiquez (syndic, gardien) si c’est nécessaire à l’accès.',
+  },
+  {
+    question: 'Combien de temps dure une intervention ?',
+    answer:
+      'De quelques heures à plusieurs jours selon le volume et l’état du logement. Estimation précise lors de la visite.',
+  },
+  {
+    question: 'Intervenez-vous vite ?',
+    answer:
+      'Réponse sous 2 h en horaires d’ouverture, devis sous 24 h après la visite, intervention en général sous 48 h selon disponibilité. Situation urgente (signalement, délai bailleur) : appelez-nous directement.',
+  },
+  {
+    question: 'Le logement sera-t-il propre à la fin ?',
+    answer:
+      'Notre objectif est un logement nettoyé et désinfecté — remise en état de propreté et d’hygiène. Si des travaux sont nécessaires (peinture, revêtements, humidité structurelle), nous vous le disons après la visite.',
+  },
+  {
+    question: 'Que se passe-t-il après l’intervention ?',
+    answer:
+      'Le nettoyage ne traite pas la cause du problème. Nous vous conseillons un suivi avec un médecin ou un service social pour limiter une rechute. Un passage d’entretien ponctuel peut être chiffré au devis si vous le souhaitez.',
+  },
 ];
 
-const steps = [
-  {
-    icon: Trash2,
-    title: 'Désencombrement & Tri',
-    description: 'Évacuation des déchets et encombrants vers des centres de tri agréés (conformément au décret 2016-288 sur les déchets ménagers). Chaque objet est trié avec soin — documents importants, souvenirs, objets de valeur sont mis de côté avant tout déplacement.',
-    color: 'bg-amber-50 text-amber-600'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Désinfection & Traitement',
-    description: 'Application de désinfectants virucides conformes EN 14476, bactéricides EN 1276 et fongicides EN 1650. Traitement anti-nuisibles si nécessaire avec des biocides homologués. Neutralisation des odeurs par nébulisation ou générateur d\'ozone O3.',
-    color: 'bg-blue-50 text-blue-600'
-  },
-  {
-    icon: Sparkles,
-    title: 'Nettoyage Approfondi',
-    description: 'Lessivage complet des murs, plafonds, sols et sanitaires avec agents dégraissants professionnels. Nettoyage vapeur haute température (140°C) pour les sanitaires et les zones à biofilm. Remise à neuf des surfaces pour un logement à nouveau habitable.',
-    color: 'bg-green-50 text-green-600'
-  }
-];
+const QUOTE_FACTORS = [
+  'Volume à évacuer et surface du logement',
+  'Accès (étage sans ascenseur, couloirs étroits, distance de la benne)',
+  'État sanitaire (déchets souillés, moisissures, nuisibles)',
+  'Niveau de nettoyage et de désinfection nécessaire',
+  'Stationnement benne et autorisation de voirie si occupation du trottoir ou de la chaussée',
+  'Horaires et contraintes de discrétion',
+] as const;
 
 export function NettoyageDiogenePage() {
   return (
     <>
-      <SEO_Guardian
-        currentSection="nettoyage-diogene"
-        faqItems={FAQ_DIOGENE}
-
+      <SEO_Guardian currentSection="nettoyage-diogene" faqItems={FAQ_DIOGENE} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Nettoyage syndrome de Diogène à Marseille',
+            description:
+              'Désencombrement, tri, nettoyage et désinfection de logement en situation d’accumulation. Intervention discrète, devis confidentiel.',
+            provider: NATURE_CLEAN_PROVIDER,
+            areaServed: { '@type': 'AdministrativeArea', name: 'Bouches-du-Rhône' },
+            serviceType: 'Nettoyage syndrome de Diogène',
+            url: 'https://natureclean.fr/services/nettoyage-diogene',
+          }),
+        }}
       />
 
       <ServicePageHero
-        title="Nettoyage Syndrome de Diogène Marseille"
-        subtitle="Désencombrement, désinfection et accompagnement humain pour un nouveau départ"
-        badge="Discrétion & Bienveillance"
-        badgeIcon={<Heart className="w-4 h-4" />}
-        imageSrc={IMAGES.appartVideLumineux}
-        imageAlt="Nettoyage Diogène Marseille - Remise en état logement insalubre et désencombrement Nature Clean"
+        title="Nettoyage syndrome de Diogène à Marseille"
+        subtitle="Désencombrement, nettoyage et désinfection d'un logement, avec discrétion et sans jugement"
+        badge="Discrétion & respect"
+        badgeIcon={<Heart className="w-4 h-4" aria-hidden="true" />}
+        imageSrc={IMAGES.hygieneLocauxSante}
+        imageAlt="Équipement de protection et matériel professionnel pour intervention en milieu sensible"
         breadcrumbs={[
           { label: 'Accueil', to: '/' },
           { label: 'Services', to: '/services' },
-          { label: 'Syndrome de Diogène' },
+          { label: 'Nettoyage syndrome de Diogène' },
         ]}
         devisLink="/devis?service=diogene"
       />
 
-      {/* Introduction Empathique */}
-      <section className="py-20 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
-            <ScrollReveal
-              direction="left"
-              className="lg:w-1/2 space-y-6"
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                Plus qu'un simple nettoyage, un <span className="text-emerald-700 italic">accompagnement humain</span>
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Le syndrome de Diogène nécessite une approche qui allie <strong>technicité professionnelle</strong> et <strong>sensibilité humaine</strong>. On ne vide pas un logement — on dénoue une situation complexe, souvent héritée par la famille ou signalée par un voisin ou un médecin.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Nos équipes sont formées aux interventions en milieu insalubre et à la psychologie du comportement d'accumulation. On intervient <strong>sans jugement</strong>, avec des EPI adaptés — combinaisons de protection de type 5/6 et masques FFP3 — et des produits virucides conformes <strong>EN 14476</strong>. Chaque objet est traité avec respect lors de la phase de tri.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <div className="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full text-emerald-700 font-medium">
-                  <ShieldCheck className="w-5 h-5" />
-                  Certifié Certibiocide
-                </div>
-                <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full text-blue-700 font-medium">
-                  <Clock className="w-5 h-5" />
-                  Intervention 7j/7
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal
-              direction="right"
-              className="lg:w-1/2"
-            >
-              <Card className="border-2 border-emerald-100 shadow-xl overflow-hidden">
-                <CardContent className="p-0">
-                  <ImageWithFallback
-                    src={IMAGES.degatDesEaux}
-                    alt="Logement avant intervention spécialisée Nature Clean Diogène"
-                    className="w-full h-64 object-cover"
-                    loading="lazy" decoding="async" width={700} height={400}
-                  />
-                  <div className="p-6 bg-emerald-900 text-white">
-                    <p className="italic text-sm">
-                      "Notre équipe est formée spécifiquement aux interventions en milieu insalubre et à la psychologie du syndrome de Diogène."
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-          </div>
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Un proche, un locataire ou un voisin vit dans un{' '}
+              <strong>logement insalubre</strong> ou envahi par les objets et les déchets, et vous ne
+              savez pas par où commencer ? Nature Clean intervient à Marseille et dans les{' '}
+              {ZONE_LABEL} pour remettre le logement en{' '}
+              <strong>état de propreté et d’hygiène</strong>, en respectant la personne et ses
+              affaires.
+            </p>
+            <p className="text-sm text-gray-600 mb-6">
+              Réponse sous 2 h en horaires d’ouverture (lundi–samedi, 8 h–18 h). Visite et devis
+              gratuits sous 24 h — le diagnostic et le devis sont sans engagement.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild size="lg" className="bg-emerald-700 hover:bg-emerald-800 font-bold">
+                <Link to="/devis?service=diogene">
+                  Demander un devis confidentiel
+                  <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold"
+              >
+                <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
+                  <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
+                  {PHONE_DISPLAY}
+                </a>
+              </Button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Le Processus en 3 Étapes */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Notre méthodologie éprouvée</h2>
-              <p className="text-gray-600">Nous suivons un protocole rigoureux pour assurer une remise en état pérenne et sécurisée du logement.</p>
-            </ScrollReveal>
-          </div>
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-6xl grid lg:grid-cols-2 gap-12 items-start">
+          <ScrollReveal>
+            <h2 className="text-3xl font-black text-gray-900 mb-6">Une intervention, pas un jugement</h2>
+            <div className="space-y-4 text-gray-700 leading-relaxed">
+              <p>
+                Le syndrome de Diogène, ou <strong>syllogomanie</strong>, se manifeste par une
+                accumulation d’objets ou de déchets et une négligence du logement, souvent dans un
+                contexte d’isolement. Ce n’est ni un manque de volonté ni une simple question de
+                ménage. La situation est souvent découverte par la famille, un voisin, un médecin ou
+                un syndic.
+              </p>
+              <p>
+                On ne vide pas un logement — on dénoue une situation. Notre rôle est limité et clair
+                : <strong>faire le travail matériel</strong> (tri, évacuation,{' '}
+                <strong>désencombrement d’appartement</strong>, nettoyage, désinfection){' '}
+                <strong>avec discrétion et respect</strong>. Nous ne remplaçons pas un médecin ni un
+                accompagnement social ; nous pouvons vous orienter vers les bons interlocuteurs.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+              <ImageWithFallback
+                src={IMAGES.finChantierEquipe}
+                alt="Équipe Nature Clean avec équipements de protection sur un chantier"
+                className="w-full h-64 object-cover"
+                loading="lazy"
+                decoding="async"
+                width={600}
+                height={256}
+              />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {steps.map((step, idx) => (
-              <ScrollReveal
-                key={idx}
-                delay={idx * 0.2}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-              >
-                <div className={`w-14 h-14 rounded-xl ${step.color} flex items-center justify-center mb-6`}>
-                  <step.icon className="w-8 h-8" />
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 flex items-center gap-2">
+              <Users className="w-7 h-7 text-emerald-600" aria-hidden="true" />
+              Qui peut demander une intervention ?
+            </h2>
+            <ul className="space-y-3 mb-6">
+              {WHO_CAN_REQUEST.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-gray-700 leading-relaxed bg-amber-50 border border-amber-100 rounded-xl p-5">
+              <strong className="text-gray-900">Nous n’intervenons pas</strong> sans l’accord de
+              l’occupant ou de son représentant légal. Si la situation est bloquée, tournez-vous
+              vers le médecin traitant, une assistante sociale ou le service d’hygiène de la mairie.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <h2 className="text-3xl font-black text-gray-900 mb-8 text-center">
+              Comment se déroule une intervention
+            </h2>
+            <div className="space-y-4">
+              {PROCESS_STEPS.map((step) => (
+                <div
+                  key={step.title}
+                  className="flex gap-4 p-5 bg-white rounded-xl border border-gray-100 shadow-sm"
+                >
+                  <ClipboardList className="w-8 h-8 text-emerald-600 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <h3 className="font-bold text-gray-900 mb-1">{step.title}</h3>
+                    <p className="text-sm text-gray-700 leading-relaxed">{step.text}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{step.description}</p>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <ScrollReveal>
+            <h2 className="text-3xl font-black text-gray-900 mb-8 text-center">Notre façon de travailler</h2>
+          </ScrollReveal>
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                icon: Heart,
+                title: 'Discrétion',
+                text: 'Véhicule banalisé sur demande, horaires adaptés, tenue neutre. Pas de communication sur l’intervention au voisinage ou à des tiers non désignés.',
+              },
+              {
+                icon: ShieldCheck,
+                title: 'Protection',
+                text: 'Combinaisons, gants et masques adaptés à la situation ; protection des parties communes pendant l’évacuation. Aiguilles ou déchets souillés : protocole renforcé ou recours à un intervenant spécialisé si nécessaire.',
+              },
+              {
+                icon: CheckCircle2,
+                title: 'Équipe et assurance',
+                text: 'Personnel déclaré, couvert par notre assurance responsabilité civile professionnelle (RC Pro).',
+              },
+              {
+                icon: Trash2,
+                title: 'Nuisibles',
+                text: 'Si des nuisibles sont constatés, traitement par un partenaire spécialisé ou solution adaptée — précisé au devis, avec les habilitations requises.',
+              },
+              {
+                icon: Sparkles,
+                title: 'Odeurs',
+                text: 'Nettoyage approfondi et aération en priorité. Nébulisation ou ozone uniquement si adapté : logement inoccupé pendant le traitement, puis aération avant toute réoccupation.',
+              },
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 0.05}>
+                <div className="p-6 bg-gray-50 rounded-xl border border-gray-100 h-full">
+                  <item.icon className="w-8 h-8 text-emerald-600 mb-3" aria-hidden="true" />
+                  <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-gray-700 leading-relaxed">{item.text}</p>
+                </div>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ConversionBreak mid-page */}
-      <ConversionBreak
-        image={IMAGES.appartVideLumineux}
-        imageAlt="Logement remis en état après intervention Diogène Nature Clean"
-        title="Besoin d'une intervention discrète et bienveillante ?"
-        subtitle="Diagnostic gratuit et confidentiel. Nos équipes interviennent 7j/7 à Marseille et dans toute la région PACA."
-        urgencyText="Intervention sous 48h"
-        devisLink="/devis?service=diogene"
-      />
-
-      {/* Section Services Complémentaires */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <ScrollReveal delay={0}>
-                    <div className="bg-emerald-50 p-4 rounded-xl aspect-square flex flex-col items-center justify-center text-center">
-                      <Trash2 className="w-10 h-10 text-emerald-600 mb-2" />
-                      <span className="text-sm font-bold text-gray-900">Évacuation Encombrants</span>
-                    </div>
-                  </ScrollReveal>
-                  <ScrollReveal delay={0.15}>
-                    <div className="bg-blue-50 p-4 rounded-xl aspect-square flex flex-col items-center justify-center text-center">
-                      <ShieldCheck className="w-10 h-10 text-blue-600 mb-2" />
-                      <span className="text-sm font-bold text-gray-900">Désinfection Virucide</span>
-                    </div>
-                  </ScrollReveal>
-                </div>
-                <div className="space-y-4 pt-8">
-                  <ScrollReveal delay={0.1}>
-                    <div className="bg-amber-50 p-4 rounded-xl aspect-square flex flex-col items-center justify-center text-center">
-                      <CheckCircle2 className="w-10 h-10 text-amber-600 mb-2" />
-                      <span className="text-sm font-bold text-gray-900">Traitement Nuisibles</span>
-                    </div>
-                  </ScrollReveal>
-                  <ScrollReveal delay={0.25}>
-                    <div className="bg-purple-50 p-4 rounded-xl aspect-square flex flex-col items-center justify-center text-center">
-                      <Home className="w-10 h-10 text-purple-600 mb-2" />
-                      <span className="text-sm font-bold text-gray-900">Remise en état Sols</span>
-                    </div>
-                  </ScrollReveal>
-                </div>
-              </div>
-            </div>
-            <ScrollReveal direction="right" className="order-1 lg:order-2 space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900">Une solution de nettoyage <span className="text-emerald-700">360°</span></h2>
-              <p className="text-gray-700 leading-relaxed">
-                Intervenir sur un cas de syndrome de Diogène ne s'arrête pas au ménage. Nous gérons l'intégralité de la chaîne logistique :
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'Location et remplissage de bennes agréées — évacuation vers centres de tri déclarés préfecture',
-                  'Neutralisation des odeurs par nébulisation ou génération d\'ozone O3 (3 à 6h selon volume)',
-                  'Lessivage des murs avec agents dégraissants professionnels pH alcalin',
-                  'Remise en état des vitreries et encadrements',
-                  'Nettoyage vapeur haute température (140°C) pour sanitaires et zones à biofilm'
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray-700">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button asChild className="mt-4 bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-6 text-lg rounded-full shadow-lg">
-                <Link to="/devis?service=diogene">Demander un diagnostic gratuit</Link>
-              </Button>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-16 bg-emerald-50 border-y border-emerald-100">
+        <div className="container mx-auto px-4 max-w-4xl">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white">Besoin d'une intervention discrète ?</h2>
-            <p className="text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
-              Contactez-nous pour un devis gratuit et personnalisé. Nous intervenons sous 48h à Marseille et dans toute la région PACA.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <a
-                href={PHONE_HREF}
-                className="flex items-center justify-center gap-3 bg-white text-emerald-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 transition-colors shadow-xl"
-                aria-label={ARIA_PHONE}
-              >
-                <Phone className="w-6 h-6" />
-                {PHONE_DISPLAY}
-              </a>
-              <Link
-                to="/contact"
-                className="flex items-center justify-center gap-3 bg-emerald-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-600 border border-emerald-500 transition-colors shadow-xl"
-              >
-                <Mail className="w-6 h-6" />
-                Nous écrire
-              </Link>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6">
+              Ce que nous faisons — et ce que nous ne faisons pas
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8 text-sm text-gray-700 leading-relaxed">
+              <div>
+                <h3 className="font-bold text-gray-900 mb-2">Nous faisons</h3>
+                <ul className="space-y-2 list-disc pl-5">
+                  <li>Tri et évacuation, nettoyage approfondi, désinfection</li>
+                  <li>Remise en état de propreté des sols, murs, sanitaires et cuisine</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-amber-600" aria-hidden="true" />
+                  Nous ne faisons pas
+                </h3>
+                <ul className="space-y-2 list-disc pl-5">
+                  <li>
+                    Constater l’insalubrité ou la salubrité d’un logement (autorités compétentes :
+                    mairie, ARS)
+                  </li>
+                  <li>Travaux de rénovation (peinture, plomberie, électricité)</li>
+                  <li>Suivi médical ou social — le nettoyage ne traite pas la cause</li>
+                </ul>
+              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <FAQSection items={FAQ_DIOGENE} title="Questions fréquentes sur le nettoyage Diogène" />
+      <ConversionBreak
+        image={IMAGES.hygieneLocauxSante}
+        imageAlt="Matériel professionnel de nettoyage et d'hygiène"
+        title="Besoin d’en parler ?"
+        subtitle="Appel confidentiel — Marseille et Bouches-du-Rhône (13). Devis sous 24 h après visite."
+        devisLink="/devis?service=diogene"
+      />
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+              Ce qui fait varier le devis
+            </h2>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              Nous n’affichons pas de tarif standard : chaque{' '}
+              <strong>désencombrement d’appartement</strong> ou maison est différent. À Marseille,
+              comptez aussi les étages sans ascenseur, les couloirs étroits et l’organisation de la
+              benne.
+            </p>
+            <ul className="space-y-2">
+              {QUOTE_FACTORS.map((factor) => (
+                <li key={factor} className="flex items-start gap-2 text-gray-700 text-sm">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  {factor}
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <FAQSection
+        items={FAQ_DIOGENE}
+        title="Questions fréquentes — Syndrome de Diogène"
+        subtitle="Désencombrement, discrétion et délais à Marseille"
+      />
+
+      <section className="py-16 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Besoin d’en parler ?</h2>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            Appel confidentiel, visite et devis gratuits. {ZONE_LABEL}.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-gray-900 font-black">
+              <Link to="/devis?service=diogene">
+                Demander un devis confidentiel
+                <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white/10 font-bold"
+            >
+              <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
+                <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
+                {PHONE_DISPLAY}
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Consultez également :</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild variant="outline" className="border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold">
+              <Link to="/services/nettoyage-coproprietes">Nettoyage de copropriétés (syndics)</Link>
+            </Button>
+            <Button asChild variant="outline" className="border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold">
+              <Link to="/contact">Contact confidentiel</Link>
+            </Button>
+            <Button asChild variant="outline" className="border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold">
+              <Link to="/services">Tous nos services</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

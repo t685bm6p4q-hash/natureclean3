@@ -76,7 +76,7 @@ const PARAM_CONTEXT: Record<string, CtxInfo> = {
   evenementiel: { label: 'Événementiel', subtitle: 'Votre événement mérite un cadre impeccable.' },
   graffitis: { label: 'Dégraffitage', subtitle: 'Effacement rapide et restauration de votre bien.' },
   commerces: { label: 'Commerces & Retail', subtitle: 'Un espace de vente propre booste votre chiffre.' },
-  vitres: { label: 'Nettoyage de Vitres', subtitle: 'Des vitrages éclatants, en toute sécurité.' },
+  vitres: { label: 'Nettoyage de Vitres', subtitle: 'Vitrines, bureaux, façades — perche et eau déminéralisée.' },
   sols: { label: 'Remise en état sols', subtitle: 'Lustrage et nettoyage profond de vos sols.' },
 };
 

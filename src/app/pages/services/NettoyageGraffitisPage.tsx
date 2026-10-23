@@ -48,7 +48,7 @@ export function NettoyageGraffitisPage() {
         <ServiceGeoIntentBlock
           serviceIntent="Fiche métier graffitis (techniques, délais, supports). Exemple concret sur une grande surface commerciale marseillaise :"
           caseStudy={{
-            href: '/blog/nettoyage-graffitis-carrefour-marseille',
+            href: '/blog/nettoyage-graffitis-grande-surface-marseille',
             label: 'effacement tags Carrefour Marseille (avant / après)',
           }}
         />

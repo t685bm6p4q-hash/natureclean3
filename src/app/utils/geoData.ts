@@ -28,6 +28,11 @@ export interface GeoPageData {
   conversionSubtitle: string;
   faqItems: FAQItem[];
   relatedGeoPages: string[];
+  /** H1 distinct de « service + ville » (anti-cannibalisation). */
+  heroTitle?: string;
+  heroSubtitle?: string;
+  breadcrumbLabel?: string;
+  faqTitle?: string;
   /** Distinction explicite fiche service vs page locale (évite contenu dupliqué perçu). */
   serviceDifferentiator?: string;
   /** Preuves terrain (quartier, délai, cas client). */
@@ -39,84 +44,83 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
   'nettoyage-coproprietes-la-ciotat': {
     slug: 'nettoyage-coproprietes-la-ciotat',
     city: 'La Ciotat',
-    department: 'Bouches-du-Rhone',
+    department: 'Bouches-du-Rhône',
     postalCode: '13600',
-    service: 'Nettoyage de coproprietes',
+    service: 'Nettoyage de copropriétés',
     serviceSlug: '/services/nettoyage-coproprietes',
     heroImage: IMAGES.residenceModerne,
-    heroAlt: 'Nettoyage coproprietes et residences a La Ciotat — Nature Clean',
+    heroAlt: 'Résidence et parties communes à La Ciotat',
+    heroTitle: 'Nettoyage de copropriétés à La Ciotat',
+    heroSubtitle:
+      'Syndics : halls, escaliers, parkings et locaux poubelles — 13600, depuis Marseille 8e',
+    breadcrumbLabel: 'Copropriétés à La Ciotat',
     seo: {
-      title: 'Nettoyage Coproprietes La Ciotat (13600) | Nature Clean | Contrat Syndic',
-      description: 'Entretien de coproprietes a La Ciotat : halls, escaliers, parkings, piscines communes. Contrat syndic flexible. Devis gratuit 04 84 89 68 75',
-      keywords: 'nettoyage copropriete La Ciotat, entretien parties communes 13600, nettoyage syndic La Ciotat, menage immeuble La Ciotat, entretien residence La Ciotat',
+      title: 'Nettoyage Copropriétés La Ciotat (13600) | Syndic | Nature Clean',
+      description:
+        'Entretien de parties communes à La Ciotat : halls, escaliers, parkings, locaux poubelles. Réponse sous 2 h, devis sous 24 h. RC Pro.',
+      keywords:
+        'nettoyage copropriété La Ciotat, entretien parties communes 13600, nettoyage syndic La Ciotat, ménage immeuble La Ciotat',
     },
-    intro: 'Nature Clean accompagne les coproprietes de La Ciotat dans l\'entretien de leurs parties communes. Ville en plein essor avec de nombreux programmes neufs, La Ciotat compte des residences variees — des immeubles du Vieux-Port aux residences modernes du quartier des Calanques ou de l\'Ile Verte — qui necessitent un entretien regulier et professionnel.',
+    intro:
+      'Depuis Marseille 8e, La Ciotat est à environ 25–35 minutes selon le quartier (A50, route de la Ciotat). Nature Clean travaille avec des syndics et des conseils syndicaux pour l\'entretien des parties communes : centre et Vieux-Port, L\'Île Verte, L\'Aubépine, Eoures. Sur place, le sable remonté dans les halls, les embruns sur les vitrages de cage et les parkings souterrains mal ventilés imposent des fréquences réalistes — on les fixe à la visite, pas sur un forfait générique.',
     highlights: [
-      'Experience des coproprietes neuves et anciennes (10 a 150+ lots)',
-      'Entretien des piscines communes et espaces de loisirs',
-      'Nettoyage des parkings souterrains et zones de stationnement',
-      'Sortie/rentree containers et desinfection locaux poubelles',
-      'Suivi qualite mensuel avec rapport photographique au syndic',
-      'Zone couverte : La Ciotat, Ceyreste, Saint-Cyr-sur-Mer',
+      '25–35 min depuis Marseille 8e selon le quartier',
+      'Centre, L\'Île Verte, L\'Aubépine, Eoures et résidences récentes',
+      'Halls, cages, ascenseurs, parkings, locaux poubelles',
+      'Sortie / rentrée des containers si prévu avec le syndic',
+      'Renfort estival possible si écrit au contrat (juin–septembre)',
+      '50 % éco-labellisés, RC Pro — pas d\'entretien « piscine » (eau / chimie)',
     ],
     secondaryImage: IMAGES.hallCoproBoites,
-    secondaryImageAlt: 'Hall de copropriete entretenu a La Ciotat',
-    conversionTitle: 'Syndics de La Ciotat : un partenaire proprete reactif',
-    conversionSubtitle: 'Devis gratuit et audit de vos parties communes sous 48h',
+    secondaryImageAlt: 'Hall de copropriété avec boîtes aux lettres à La Ciotat',
+    conversionTitle: 'Syndics de La Ciotat : cahier des charges clair',
+    conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h après visite des parties communes',
     faqItems: [
-      { question: 'Couvrez-vous les nouvelles residences de La Ciotat ?', answer: 'Oui, nous intervenons dans les residences neuves comme anciennes : quartier de l\'Ile Verte, ZAC des Calanques, Vieux-Port, Eoures et tous les nouveaux programmes de La Ciotat.' },
-      { question: 'Gerez-vous l\'entretien des piscines de copropriete ?', answer: 'Nous assurons le nettoyage des abords de piscine, vestiaires et douches communes. Pour le traitement de l\'eau et la maintenance technique, nous recommandons un pisciniste specialise.' },
-      { question: 'Quelle frequence recommandez-vous pour une copropriete en bord de mer ?', answer: 'En bord de mer, le sable et les embruns salissent davantage. Nous recommandons 3 passages hebdomadaires minimum, avec un renforcement en saison estivale.' },
-      { question: 'Proposez-vous un renforcement en ete avec l\'afflux de residents ?', answer: 'Oui, nous adaptons la frequence des passages en haute saison (juin-septembre) quand les residences secondaires sont occupees et que les parties communes sont plus sollicitees.' },
-    ],
-    relatedGeoPages: ['nettoyage-coproprietes-aubagne', 'nettoyage-bureaux-marseille'],
-  },
-
-  'nettoyage-fin-chantier-marseille': {
-    slug: 'nettoyage-fin-chantier-marseille',
-    city: 'Marseille',
-    department: 'Bouches-du-Rhone',
-    postalCode: '13000',
-    service: 'Nettoyage fin de chantier',
-    serviceSlug: '/services/nettoyage-chantiers',
-    heroImage: IMAGES.cuisineLivraisonValentine,
-    heroAlt: 'Nettoyage fin de chantier à Marseille — remise en état après travaux',
-    seo: {
-      title: 'Nettoyage Fin de Chantier Marseille (13) | Nature Clean | Devis Gratuit',
-      description: 'Nettoyage après travaux à Marseille : évacuation gravats, lessivage complet, vitres. Livraison promoteur, rénovation appartement. Intervention rapide 7j/7. Devis gratuit 04 84 89 68 75',
-      keywords: 'nettoyage fin chantier Marseille, nettoyage après travaux Marseille, remise en état chantier 13, nettoyage livraison promoteur Marseille, entreprise nettoyage construction Marseille',
-    },
-    intro: 'Nature Clean, entreprise marseillaise basée dans le 8ème, intervient tous les jours pour le nettoyage fin de chantier à Marseille et dans les Bouches-du-Rhône. Qu\'il s\'agisse d\'un programme neuf livré par un promoteur, d\'une rénovation d\'appartement entre locataires ou d\'un chantier commercial dans le centre-ville, on connaît Marseille par cœur — et on sait qu\'un chantier bien nettoyé, c\'est la différence entre une livraison qui traîne et un client satisfait qui signe le jour même.',
-    highlights: [
-      'Évacuation complète des gravats et tri sélectif des déchets',
-      'Lessivage des sols, murs, plafonds et menuiseries neuves',
-      'Nettoyage de vitres intérieures et extérieures après travaux',
-      'Intervention rapide sous 24h à Marseille — équipe dédiée 7j/7',
-      'Conforme aux exigences des promoteurs et syndics marseillais',
-      'Zone couverte : tous arrondissements (13001 à 13016), Aubagne, Vitrolles',
-    ],
-    secondaryImage: IMAGES.remiseEtatCuisine,
-    secondaryImageAlt: 'Cuisine remise en état après travaux à Marseille',
-    conversionTitle: 'Promoteurs et artisans à Marseille : livrez propre du premier coup',
-    conversionSubtitle: 'Devis gratuit sous 4h — intervention dès demain si besoin',
-    faqItems: [
-      { question: 'Combien de temps pour nettoyer un T3 après rénovation à Marseille ?', answer: 'Pour un T3 standard (60-70 m²) après rénovation complète, comptez 4 à 6 heures avec une équipe de 2 personnes. On évacue les gravats, on lessive tout, on fait les vitres. Si le chantier est vraiment sale (plâtre partout, ciment sur le carrelage), on rajoute 2 heures. On vous dit tout au téléphone avant de venir.' },
-      { question: 'Vous intervenez dans quel délai à Marseille ?', answer: 'Notre bureau est à Marseille 8ème, rue Paradis. Si vous appelez avant 14h, on peut souvent passer le jour même pour les urgences. Sinon, intervention sous 24h partout à Marseille. Pour les gros chantiers promoteurs, on cale un planning une semaine avant la livraison, mais on garde toujours une marge pour les imprévus.' },
-      { question: 'Vous gérez les gros programmes neufs à Marseille ?', answer: 'Oui, on a l\'habitude. On a déjà fait des livraisons de 30, 50, 80 logements sur Marseille — Euroméditerranée, Les Docks, Bonneveine, Saint-Giniez. On mobilise une équipe de 6 à 10 personnes selon la taille, avec un chef d\'équipe qui reste sur place et qui coordonne tout. Vous avez un interlocuteur unique, pas 15 numéros différents.' },
-      { question: 'Vous évacuez vraiment tous les gravats ou faut prévoir une benne ?', answer: 'On évacue tout : sacs de gravats, cartons, chutes de placo, résidus de ciment. Si le chantier a déjà une benne, parfait, on remplit. Sinon, on embarque tout dans notre camion et on va à la déchetterie de Septèmes ou des Aygalades. C\'est inclus dans le devis, pas de supplément surprise.' },
-    ],
-    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
-    serviceDifferentiator:
-      'Page orientée livraison promoteur et rénovation à Marseille. La fiche service « nettoyage chantiers » décrit gravats, lessivage et certification pour tous types de chantiers en PACA.',
-    localProof: [
       {
-        title: 'T3 après rénovation',
-        detail: '4 à 6 h avec 2 agents : évacuation gravats, lessivage complet, vitres.',
+        question: 'Intervenez-vous dans les résidences neuves de La Ciotat ?',
+        answer:
+          'Oui, après visite : L\'Île Verte, programmes récents autour du port, immeubles anciens du centre. Le devis liste hall, cage, parking et local poubelles avec les fréquences adaptées au site.',
       },
       {
-        title: 'Urgence livraison',
-        detail: 'Check-list conforme aux attentes promoteurs et assureurs DO.',
-        href: '/blog/normes-nettoyage-chantier-2025',
+        question: 'Nettoyez-vous les piscines collectives ?',
+        answer:
+          'Non pour le traitement de l\'eau et la maintenance technique (pisciniste). En revanche, nettoyage des abords, vestiaires ou douches communes si c\'est au contrat de ménage.',
+      },
+      {
+        question: 'Comment adaptez-vous la fréquence en bord de mer ?',
+        answer:
+          'Le sable et le sel accélèrent l\'encrassement des sols et des vitrages. On propose un planning après audit — souvent plus dense qu\'à l\'intérieur des terres, sans imposer un chiffre fixe sans visite.',
+      },
+      {
+        question: 'Peut-on renforcer les passages en été ?',
+        answer:
+          'Oui si c\'est prévu au contrat ou par avenant quand les résidences secondaires sont occupées et que les parties communes sont plus sollicitées.',
+      },
+      {
+        question: 'Quelle zone couvrez-vous depuis La Ciotat ?',
+        answer:
+          'La Ciotat (13600) en priorité. Hors Bouches-du-Rhône : déplacement chiffré au devis.',
+      },
+    ],
+    relatedGeoPages: ['nettoyage-coproprietes-aubagne', 'nettoyage-bureaux-marseille'],
+    serviceDifferentiator:
+      'Cette page décrit le terrain ciotaden (accès, mer, parkings). La fiche service « nettoyage de copropriétés » détaille contrat syndic, suivi et pièces administratives.',
+    localProof: [
+      {
+        title: 'Hall proche du port',
+        detail:
+          'Sable et sel : passages hall et cage calés sur la saison, local poubelles désinfecté les jours de collecte.',
+      },
+      {
+        title: '25–35 min depuis Marseille 8e',
+        detail:
+          'Trajet A50 / route de la Ciotat. Les reprises urgentes (local poubelles, hall) restent possibles dans la journée si appel aux heures d\'ouverture.',
+      },
+      {
+        title: 'Vitres de cage',
+        detail:
+          'Vitrages communs au contrat ; façades ou grande hauteur : voir la fiche nettoyage de vitres (perche, calcaire).',
+        href: '/services/nettoyage-vitre',
       },
     ],
   },
@@ -124,43 +128,64 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
   'nettoyage-bureaux-aix-en-provence': {
     slug: 'nettoyage-bureaux-aix-en-provence',
     city: 'Aix-en-Provence',
-    department: 'Bouches-du-Rhone',
+    department: 'Bouches-du-Rhône',
     postalCode: '13100',
     service: 'Nettoyage de bureaux',
     serviceSlug: '/services/entretien-bureaux',
     heroImage: IMAGES.grandOpenSpaceModerne,
-    heroAlt: 'Nettoyage de bureaux professionnels a Aix-en-Provence — Nature Clean',
+    heroAlt: 'Open space de bureaux à Aix-en-Provence entretenu par Nature Clean',
     seo: {
       title: 'Nettoyage Bureaux Aix-en-Provence (13100) | Nature Clean | Devis Gratuit',
-      description: 'Entretien de bureaux a Aix-en-Provence : open spaces, sanitaires, vitres. Intervention 6h-22h, contrat sur mesure. 50% produits eco. Devis gratuit 04 84 89 68 75',
-      keywords: 'nettoyage bureaux Aix-en-Provence, entretien locaux 13100, societe nettoyage Aix, nettoyage professionnel Aix-en-Provence, menage bureau Aix',
+      description: 'Entretien de bureaux à Aix-en-Provence : centre, Jas de Bouffan, Les Milles, Duranne. 25 à 40 min depuis Marseille 8e. Réponse sous 2 h, devis sous 24 h.',
+      keywords: 'nettoyage bureaux Aix-en-Provence, entretien locaux 13100, société nettoyage Aix, nettoyage professionnel Aix-en-Provence, ménage bureau Les Milles',
     },
-    intro: 'Nature Clean intervient a Aix-en-Provence et dans tout le Pays d\'Aix pour l\'entretien regulier de vos bureaux et locaux professionnels. Que vous soyez installe dans le centre-ville, au Jas de Bouffan, aux Milles ou sur la zone d\'activites de la Duranne, nos equipes assurent un nettoyage professionnel adapte a votre rythme de travail.',
+    intro: 'Nature Clean part de Marseille 8e (22 Traverse Pupat) pour l\'entretien de bureaux à Aix-en-Provence. Hors heure de pointe, comptez environ 30 minutes jusqu\'au centre-ville et 25 minutes jusqu\'au pôle d\'activités des Milles ; entre 7 h 30 et 9 h, l\'A51 allonge souvent le trajet de 10 à 15 minutes. Nous intervenons dans le centre historique (agences, coworkings, étages au-dessus des commerces), au Jas de Bouffan, aux Milles, à la Duranne, à Luynes et à Puyricard. Les contraintes ne sont pas les mêmes partout : dans le centre, les rues semi-piétonnes interdisent souvent le stationnement d\'un utilitaire après 10 h — on arrive tôt et on porte le matériel. Aux Milles, les parcs d\'activités demandent un badge, un créneau avant l\'arrivée des salariés, et le parking visiteurs est saturé dès 8 h.',
     highlights: [
-      'Intervention 6h-22h, 7j/7 — avant ou apres vos horaires de bureau',
-      'Contrats hebdomadaires ou quotidiens adaptes a votre surface',
-      '50% de produits eco-labellises Bio et biodegradables',
-      'Equipe dediee avec un referent unique pour votre site',
-      'Zone couverte : centre Aix, Jas de Bouffan, Les Milles, Duranne',
-      'Assurance RC Pro et garantie qualite contractuelle',
+      '25 à 40 min depuis Marseille 8e selon le créneau et l\'A51',
+      'Centre historique : matériel léger, passage avant 10 h',
+      'Pôle des Milles : badge, open spaces, créneau avant 7 h 30',
+      'Jas de Bouffan, Duranne, Luynes, Puyricard',
+      'Intervention 6 h–22 h, 7 j/7 — hors horaires de bureau',
+      '50 % de produits éco-labellisés, RC Pro, interlocuteur dédié',
     ],
     secondaryImage: IMAGES.openSpaceBureaux,
-    secondaryImageAlt: 'Open space entretenu par Nature Clean a Aix-en-Provence',
-    conversionTitle: 'Vos bureaux a Aix meritent un entretien professionnel',
-    conversionSubtitle: 'Devis gratuit sous 24h — intervention sur tout le Pays d\'Aix',
+    secondaryImageAlt: 'Plateaux de bureaux au pôle d\'activités des Milles, près d\'Aix-en-Provence',
+    conversionTitle: 'Vos bureaux à Aix méritent un entretien calé sur vos horaires',
+    conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h — centre, Milles, Duranne, Jas de Bouffan',
     faqItems: [
-      { question: 'Intervenez-vous dans toutes les zones d\'Aix-en-Provence ?', answer: 'Oui, nous couvrons tout Aix-en-Provence : centre historique, Jas de Bouffan, Les Milles, Duranne, Luynes, Puyricard et les zones d\'activites environnantes.' },
-      { question: 'Quel est le delai pour demarrer un contrat a Aix ?', answer: 'Nous pouvons demarrer sous 48h apres validation du devis. Un audit gratuit de vos locaux est realise pour calibrer la prestation.' },
-      { question: 'Vos equipes sont-elles basees pres d\'Aix-en-Provence ?', answer: 'Notre siege est a Marseille 8e, a 25 minutes d\'Aix. Nous avons des equipes dediees aux secteurs Aix et Pays d\'Aix pour garantir ponctualite et reactivite.' },
-      { question: 'Proposez-vous le nettoyage de vitres a Aix ?', answer: 'Oui, le nettoyage des vitres interieures et exterieures est inclus ou disponible en option dans nos contrats bureaux a Aix-en-Provence.' },
+      { question: 'Intervenez-vous dans toutes les zones d\'Aix-en-Provence ?', answer: 'Oui : centre historique, Jas de Bouffan, pôle d\'activités des Milles, Duranne, Luynes, Puyricard et les zones d\'activités autour. Chaque site a ses accès : on les note dès la visite.' },
+      { question: 'Combien de temps faut-il depuis Marseille 8e ?', answer: 'Environ 25 minutes jusqu\'aux Milles et 30 minutes jusqu\'au centre hors pointe. Sur l\'A51 entre 7 h 30 et 9 h, prévoyez 10 à 15 minutes de plus. C\'est pour ça que les contrats bureaux à Aix commencent souvent avant 7 h 30 ou après 19 h.' },
+      { question: 'Comment gérez-vous le stationnement dans le centre d\'Aix ?', answer: 'Les rues semi-piétonnes et les livraisons limitées le matin interdisent souvent de laisser un utilitaire. On arrive tôt, on décharge, et on travaille avec du matériel compact. Aux Milles et à la Duranne, le sujet est plutôt le badge et la place visiteurs avant 8 h.' },
+      { question: 'Quel délai pour démarrer un contrat à Aix ?', answer: 'Réponse sous 2 h, devis sous 24 h après la visite. Démarrage généralement sous 48 h une fois le devis validé.' },
+      { question: 'Proposez-vous le nettoyage de vitres à Aix ?', answer: 'Oui, vitres intérieures et extérieures, en option ou inclus selon le contrat. En centre-ville, on privilégie les perches plutôt que la nacelle dès que la hauteur le permet.' },
     ],
     relatedGeoPages: ['nettoyage-coproprietes-aubagne', 'nettoyage-bureaux-marseille'],
+    serviceDifferentiator:
+      'Cette page décrit les accès et horaires propres à Aix (centre, Milles, A51). La fiche service « entretien de bureaux » détaille le protocole : sols, sanitaires, planning.',
+    localProof: [
+      {
+        title: 'Pôle d\'activités des Milles',
+        detail: 'Type d\'intervention : open space d\'environ 600 m², 2 passages par semaine avant 7 h 30, badge d\'accès, sanitaires et kitchenette. Le parking visiteurs se remplit dès 8 h.',
+      },
+      {
+        title: 'Centre historique',
+        detail: 'Agences et coworkings en étage : matériel porté à la main, pas d\'utilitaire en double file. Passage souvent avant 10 h, quand les rues sont encore praticables.',
+      },
+      {
+        title: 'Trajet depuis Marseille 8e',
+        detail: '22 Traverse Pupat → Aix : ~30 min hors pointe, davantage sur l\'A51 aux heures de bureau. On cale les tournées en conséquence.',
+      },
+      {
+        title: 'Duranne & Jas de Bouffan',
+        detail: 'Parkings plus simples qu\'en centre-ville. Contrats hebdomadaires ou quotidiens selon la surface, même équipe dédiée.',
+      },
+    ],
   },
 
   'nettoyage-medical-marseille': {
     slug: 'nettoyage-medical-marseille',
     city: 'Marseille',
-    department: 'Bouches-du-Rhone',
+    department: 'Bouches-du-Rhône',
     postalCode: '13000',
     service: 'Nettoyage médical et locaux de santé',
     serviceSlug: '/services/entretien-bureaux',
@@ -203,54 +228,68 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
         answer: 'Oui, c\'est le fonctionnement de la grande majorité de nos clients médicaux. Contrat hebdomadaire, bi-hebdomadaire ou quotidien selon la fréquentation du cabinet. On établit un protocole écrit, un planning fixe, et vous avez toujours le même agent — ce qui est essentiel dans un cabinet médical pour des raisons de confidentialité et de confiance.',
       },
     ],
-    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-fin-chantier-marseille'],
+    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
   },
 
   'nettoyage-bureaux-marseille': {
     slug: 'nettoyage-bureaux-marseille',
     city: 'Marseille',
-    department: 'Bouches-du-Rhone',
+    department: 'Bouches-du-Rhône',
     postalCode: '13000',
     service: 'Nettoyage de bureaux',
     serviceSlug: '/services/entretien-bureaux',
     heroImage: IMAGES.grandOpenSpaceModerne,
-    heroAlt: 'Nettoyage de bureaux professionnels a Marseille — Nature Clean Marseille',
+    heroAlt: 'Plateau de bureaux vitrés côté Joliette, postes alignés le long des baies',
+    heroTitle: 'Entretien de bureaux au Prado, à La Joliette et à Euroméditerranée',
+    heroSubtitle: 'Accès, badges, parkings et horaires décalés depuis Marseille 8e',
+    breadcrumbLabel: 'Prado, Joliette, Euromed',
+    faqTitle: 'Questions fréquentes — Bureaux Prado, Joliette, Euromed',
     seo: {
-      title: 'Entreprise Nettoyage Bureaux Marseille | Devis 24h | Nature Clean',
+      title: 'Bureaux Prado, Joliette, Euromed | Nature Clean',
       description:
-        'Entreprise de nettoyage de bureaux à Marseille 8e. Joliette, Prado, 13001-13016. Devis gratuit 24 h · Note 4,7/5 · 04 84 89 68 75 · Éco-responsable.',
-      keywords: 'nettoyage bureaux Marseille, entretien locaux Marseille, societe nettoyage Marseille, nettoyage professionnel Marseille 13, menage bureau Marseille, entreprise nettoyage 13008',
+        'Entretien de bureaux au Prado, à La Joliette et à Euroméditerranée. Depuis le 8e. Horaires décalés, RC Pro. Réponse sous 2 h, devis sous 24 h.',
+      keywords: 'nettoyage bureaux Prado, entretien bureaux Joliette, nettoyage bureaux Euroméditerranée, ménage open space Marseille 8e, bureaux docks Marseille',
     },
-    intro: 'Nature Clean est une entreprise de nettoyage professionnelle basee a Marseille 8e, et c\'est ici que nous intervenons au quotidien pour l\'entretien de vos bureaux et locaux professionnels. Du Vieux-Port a la Timone, du Prado aux Calanques, de la zone d\'activites de Vitrolles au technopole de Chateau-Gombert : nos equipes connaissent Marseille arrondissement par arrondissement, et nous assurons un nettoyage professionnel adapte a vos horaires, a votre surface et a votre secteur d\'activite.',
+    intro: 'Cette page n\'est pas un second « nettoyage de bureaux à Marseille ». Elle parle de trois quartiers d\'affaires : le Prado et le 8e (près de notre base, Traverse Pupat), La Joliette et les docks, Euroméditerranée. Badge, parking visiteur, livraison le matin, open space qui ouvre à 8 h 30 : ce sont ces contraintes-là qu\'on cale au devis. Le protocole (fréquences, sanitaires, planning) reste sur la fiche service.',
     highlights: [
-      'Siege social a Marseille 8e — equipes locales et reactivite maximale',
-      'Intervention 6h-22h, 7j/7 — avant ou apres vos horaires de bureau',
-      'Contrats hebdomadaires ou quotidiens, resiliables avec 1 mois de preavis',
-      '50% de produits eco-labellises Ecolabel Europeen et biodegradables',
-      'Equipe dediee avec un referent unique et numero direct pour votre site',
-      'Zone couverte : tous arrondissements (13001 a 13016), Aubagne, Vitrolles',
+      'Base à Marseille 8e — Prado et Saint-Giniez à quelques minutes',
+      'Joliette / docks : badges, parkings souterrains, horaires de livraison',
+      'Euroméditerranée : plateaux, coworkings, intervention avant 8 h',
+      'Horaires décalés 6 h–22 h, standard lun–sam 8 h–18 h',
+      '50 % de produits éco-labellisés, matériel et consommables fournis',
+      'La Valentine est un quartier du 11e, pas une ville à côté de Marseille',
     ],
     secondaryImage: IMAGES.openSpaceBureaux,
-    secondaryImageAlt: 'Open space marseillais entretenu par Nature Clean',
-    conversionTitle: 'Vos bureaux a Marseille meritent le meilleur entretien',
-    conversionSubtitle: 'Devis gratuit et audit de vos locaux sous 24h — toute la metropole',
+    secondaryImageAlt: 'Open space en open plan, moquette et postes, quartier d\'affaires marseillais',
+    conversionTitle: 'Un site au Prado, à la Joliette ou à Euromed ?',
+    conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h — visite des accès et du parking',
     faqItems: [
-      { question: 'Intervenez-vous dans tous les arrondissements de Marseille ?', answer: 'Oui, nous couvrons l\'integralite des 16 arrondissements de Marseille : centre-ville (13001-13006), Prado, Bonneveine, Saint-Giniez (13008), Vauban, Baille, Timone (13005), Nord-Marseille (13013-13015), La Rose, L\'Estaque et jusqu\'aux quartiers periferiques de Plan-de-Cuques, Allauch et Aubagne.' },
-      { question: 'Quel est le delai pour demarrer un contrat d\'entretien a Marseille ?', answer: 'Notre siege etant a Marseille 8e, nous pouvons realiser un audit gratuit de vos locaux sous 24h et demarrer la prestation sous 48h apres validation du devis. Pas de periode d\'attente : vous beneficiez d\'une equipe dediee des le premier jour.' },
-      { question: 'Intervenez-vous en dehors des heures de bureau ?', answer: 'Oui, c\'est meme notre mode operatoire standard a Marseille. La majorite de nos clients preferent un passage avant 8h ou apres 19h. Nos equipes interviennent de 6h a 22h, 7j/7. Pour les grandes surfaces en open space, on travaille souvent en binome pour aller plus vite sans perturber votre activite.' },
-      { question: 'Proposez-vous un contrat sans engagement longue duree ?', answer: 'Oui. Nous proposons une periode d\'essai de 4 semaines pour que vous puissiez evaluer la qualite de notre travail. Les contrats sont ensuite resiliables avec 1 mois de preavis. C\'est la qualite constante du resultat qui fidelyse nos clients — pas une clause contractuelle.' },
+      { question: 'Pourquoi une page Prado / Joliette / Euromed en plus de la fiche bureaux ?', answer: 'La fiche service décrit le contrat et le protocole. Ici on parle d\'accès : badge Euromed, parking docks, créneau avant l\'ouverture au Prado. Deux pages, deux rôles — pas deux fois la même requête.' },
+      { question: 'Combien de temps depuis le 8e jusqu\'à La Joliette ?', answer: 'En pratique, 15 à 25 minutes selon l\'heure, via le tunnel Prado ou le littoral. Un oubli le matin (kitchenette, sanitaires) peut encore être rattrapé dans la journée.' },
+      { question: 'Gérez-vous les badges et les parkings souterrains ?', answer: 'Oui. On récupère les badges à la visite, on note le local poubelles et le niveau de parking. Rien n\'est improvisé le premier lundi devant une barrière.' },
+      { question: 'Intervenez-vous aussi à La Valentine ou à Château-Gombert ?', answer: 'Oui, La Valentine (11e) et Château-Gombert sont des quartiers de Marseille. Ce n\'est pas le même trajet que la Joliette : on le dit au devis, on ne promet pas le même créneau qu\'un site du 8e.' },
+      { question: 'Les horaires 6 h–22 h sont-ils ceux du standard ?', answer: 'Non. 6 h–22 h = fenêtre d\'intervention sur site. Le standard répond du lundi au samedi, 8 h–18 h. Réponse sous 2 h, devis sous 24 h.' },
     ],
     relatedGeoPages: ['nettoyage-bureaux-aix-en-provence', 'nettoyage-coproprietes-aubagne'],
     serviceDifferentiator:
-      'Cette page répond à une recherche locale (« bureaux + Marseille + quartier »). La fiche service « entretien de bureaux » détaille le protocole métier (sanitaires, moquettes, normes NF X50-790).',
+      'Cette page décrit les accès des quartiers d\'affaires (Prado, Joliette, Euroméditerranée). La fiche service détaille fréquences, sanitaires et démarrage de contrat.',
     localProof: [
       {
-        title: 'Siège Marseille 8e — Traverse Pupat',
-        detail: 'Audit de vos locaux sous 24 h, démarrage possible sous 48 h après validation du devis.',
+        title: 'Prado / 8e — près de Traverse Pupat',
+        detail: 'Cabinets et petites agences : 2 à 3 passages par semaine, souvent avant 8 h. Le siège est dans le même arrondissement.',
       },
       {
-        title: 'Open spaces > 400 m²',
-        detail: 'Intervention en binôme avant 8 h ou après 19 h pour limiter la gêne.',
+        title: 'Joliette et docks',
+        detail: 'Immeubles tertiaires, badge, parking sous-sol. On note les horaires de livraison pour ne pas coincer l\'autolaveuse dans la rampe.',
+      },
+      {
+        title: 'Euroméditerranée — plateaux',
+        detail: 'Open spaces et coworkings : binôme tôt le matin, surfaces tactiles et kitchenette à chaque passage.',
+      },
+      {
+        title: 'Sols tertiaires — déjà en réalisations',
+        detail: 'Remise en état de sols dans un immeuble de bureaux de la métropole : décapage, monobrosse, émulsion.',
+        href: '/realisations',
       },
     ],
   },
@@ -258,44 +297,73 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
   'nettoyage-coproprietes-aubagne': {
     slug: 'nettoyage-coproprietes-aubagne',
     city: 'Aubagne',
-    department: 'Bouches-du-Rhone',
+    department: 'Bouches-du-Rhône',
     postalCode: '13400',
-    service: 'Nettoyage de coproprietes',
+    service: 'Nettoyage de copropriétés',
     serviceSlug: '/services/nettoyage-coproprietes',
     heroImage: IMAGES.hallMarbreAscenseurs,
-    heroAlt: 'Nettoyage coproprietes et parties communes a Aubagne — Nature Clean',
+    heroAlt: 'Hall et parties communes d\'une copropriété à Aubagne',
+    heroTitle: 'Nettoyage de copropriétés à Aubagne',
+    heroSubtitle: 'Syndics : halls, parkings, locaux poubelles — 13400, 15–20 min depuis Marseille 8e',
+    breadcrumbLabel: 'Copropriétés à Aubagne',
     seo: {
       title: 'Nettoyage Copropriété Aubagne (13400) | Syndic | Nature Clean',
       description:
-        'Nettoyage copropriété à Aubagne : halls, escaliers, parkings, locaux poubelles. Contrat syndic sur mesure · 15 min de Marseille · Devis 24 h · 04 84 89 68 75',
-      keywords: 'nettoyage copropriete Aubagne, entretien parties communes 13400, nettoyage syndic Aubagne, menage immeuble Aubagne, entretien residence Aubagne',
+        'Nettoyage de copropriété à Aubagne : halls, escaliers, parkings, locaux poubelles. 15 à 20 min depuis Marseille 8e. Réponse sous 2 h, devis sous 24 h.',
+      keywords: 'nettoyage copropriété Aubagne, entretien parties communes 13400, nettoyage syndic Aubagne, ménage immeuble Aubagne, entretien résidence Tourtelle',
     },
-    intro: 'Nature Clean accompagne les syndics, gestionnaires et coproprietes d\'Aubagne dans l\'entretien de leurs parties communes. Du centre-ville aux quartiers residentiels de la Tourtelle, du Pin Vert ou de Camp Major, nous assurons un nettoyage regulier et rigoureux de vos halls, escaliers, ascenseurs et espaces exterieurs.',
+    intro: 'Depuis Marseille 8e, Aubagne est à 15–20 minutes par l\'A50 — c\'est notre secteur Est le plus proche. Nature Clean travaille avec des syndics et des conseils syndicaux d\'Aubagne pour l\'entretien des parties communes : centre-ville, Tourtelle, Pin Vert, Camp Major, Les Passons et Pont-de-l\'Étoile. Sur place, les sujets qui reviennent sont concrets : jours de collecte des ordures, locaux poubelles à désinfecter, parkings souterrains souvent mal éclairés, et halls qui prennent la poussière dès qu\'un chantier de ravalement démarre. Nous calons les passages sur les horaires de sortie des containers et sur la vie de l\'immeuble, pas sur un planning générique écrit à Marseille.',
     highlights: [
-      'Contrats adaptes aux petites et grandes coproprietes (10 a 200+ lots)',
-      'Sortie/rentree des containers et desinfection des locaux poubelles',
-      'Nettoyage des parkings souterrains et zones de stationnement',
-      'Produits eco-responsables pour le respect des residents',
-      'Suivi qualite mensuel avec rapport au syndic',
-      'Proximite : a 15 minutes de notre siege marseillais',
+      '15 à 20 min depuis Marseille 8e via l\'A50',
+      'Tourtelle, Pin Vert, Camp Major, Les Passons, Pont-de-l\'Étoile',
+      'Sortie / rentrée des containers calée sur les jours de collecte',
+      'Parkings souterrains, halls, cages d\'escalier, ascenseurs',
+      'Registre ou compte-rendu photo si prévu au contrat',
+      'RC Pro, 50 % éco-labellisés — petites copropriétés et résidences de plusieurs dizaines de lots',
     ],
     secondaryImage: IMAGES.cageEscalier,
-    secondaryImageAlt: 'Cage d\'escalier entretenue dans une copropriete a Aubagne',
-    conversionTitle: 'Syndics d\'Aubagne : un partenaire proprete fiable',
-    conversionSubtitle: 'Devis gratuit et audit de vos parties communes sous 48h',
+    secondaryImageAlt: 'Cage d\'escalier d\'une copropriété à Aubagne après entretien',
+    conversionTitle: 'Syndics d\'Aubagne : un prestataire déjà dans le 13 Est',
+    conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h — audit des parties communes sur place',
     faqItems: [
-      { question: 'Couvrez-vous tous les quartiers d\'Aubagne ?', answer: 'Oui : centre-ville, Tourtelle, Pin Vert, Camp Major, Les Passons, Pont de l\'Etoile et toutes les residences alentour.' },
-      { question: 'Pouvez-vous reprendre un contrat en cours avec un autre prestataire ?', answer: 'Absolument. Nous realisons un audit gratuit et proposons une transition sans interruption de service. Le preavis de votre ancien prestataire est gere en parallele.' },
-      { question: 'Quelle frequence recommandez-vous pour une copropriete de 50 lots ?', answer: 'Pour 50 lots, nous recommandons 2 a 3 passages hebdomadaires pour les parties communes, avec un nettoyage approfondi mensuel des parkings et locaux techniques.' },
-      { question: 'Les residents peuvent-ils vous contacter directement ?', answer: 'Oui, nous fournissons un numero de contact dedie. Les residents ou le gardien peuvent signaler un besoin ponctuel avec une reactivite garantie sous 24h.' },
+      { question: 'Couvrez-vous tous les quartiers d\'Aubagne ?', answer: 'Oui : centre-ville, Tourtelle, Pin Vert, Camp Major, Les Passons, Pont-de-l\'Étoile et les résidences autour. Le délai depuis Marseille 8e reste le même, environ 15 à 20 minutes.' },
+      { question: 'Comment gérez-vous les jours de collecte et les locaux poubelles ?', answer: 'On note les jours de collecte dès l\'audit. Sortie et rentrée des containers, lavage et désinfection du local : c\'est dans le contrat, pas en extra surprise. Si le jour change, le gardien ou le syndic nous prévient sur le numéro dédié.' },
+      { question: 'Pouvez-vous reprendre un contrat en cours avec un autre prestataire ?', answer: 'Oui. Audit gratuit, transition sans trou dans le planning, préavis de l\'ancien prestataire géré en parallèle. On ne laisse pas un hall une semaine sans passage.' },
+      { question: 'Quelle fréquence pour une copropriété d\'environ 50 lots ?', answer: 'En pratique à Aubagne, 2 à 3 passages hebdomadaires sur les parties communes, plus un passage mensuel approfondi parking et locaux techniques. On ajuste si un ravalement ou des travaux salissent les halls.' },
+      {
+        question: 'Les résidents peuvent-ils vous joindre directement ?',
+        answer:
+          'En priorité via le syndic ou le gardien. Si le contrat le prévoit, un contact pour les urgences propreté (local poubelles, hall). Tags ou dégât des eaux : intervention chiffrée à part, souvent sans attendre l\'AG.',
+      },
     ],
-    relatedGeoPages: ['nettoyage-bureaux-aix-en-provence', 'nettoyage-fin-chantier-marseille'],
+    relatedGeoPages: ['nettoyage-bureaux-aix-en-provence', 'nettoyage-coproprietes-la-ciotat'],
+    serviceDifferentiator:
+      'Cette page décrit le terrain aubagnais (A50, collecte, parkings). La fiche service « nettoyage de copropriétés » détaille le protocole halls, escaliers et contrat syndic.',
+    localProof: [
+      {
+        title: 'Résidence type 40 à 70 lots',
+        detail: 'Halls, cages, local poubelles et parking : 2 à 3 passages par semaine, calés sur les jours de collecte. Fréquent à la Tourtelle, au Pin Vert et à Camp Major.',
+      },
+      {
+        title: '15–20 min depuis Marseille 8e',
+        detail: 'A50 direction Toulon. C\'est pour ça qu\'un oubli de container ou un hall sali le matin peut encore être rattrapé dans la journée.',
+      },
+      {
+        title: 'Remise en état après travaux — Aubagne',
+        detail: 'Un appartement aubagnais déjà présenté dans nos réalisations : sols, plinthes et pièces de vie livrés pour la réception. Le même secteur Est, un autre métier.',
+        href: '/realisations',
+      },
+      {
+        title: 'Chantier de ravalement en cours',
+        detail: 'Poussière dans les halls dès qu\'un échafaudage est monté. On renforce temporairement les passages plutôt que d\'attendre la fin du chantier.',
+      },
+    ],
   },
 
   'nettoyage-industriel-marseille': {
     slug: 'nettoyage-industriel-marseille',
     city: 'Marseille',
-    department: 'Bouches-du-Rhone',
+    department: 'Bouches-du-Rhône',
     postalCode: '13000',
     service: 'Nettoyage industriel',
     serviceSlug: '/services/nettoyage-chantiers',
@@ -329,7 +397,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
       { question: 'Vos equipes sont-elles habilitees pour le travail en hauteur ?', answer: 'Oui, nos agents disposent des habilitations CACES nacelle et travail en hauteur pour le nettoyage des charpentes, structures metalliques, gaines de ventilation et eclairages industriels. Nous fournissons l\'attestation d\'habilitation sur demande.' },
       { question: 'Couvrez-vous les zones industrielles peripheriques de Marseille ?', answer: 'Oui, nous couvrons toutes les zones d\'activites de la metropole : Arnavant, La Cabucelle, Saint-Menet, La Valentine, Les Aygalades, Plan-de-Campagne, Vitrolles et la zone portuaire de Marseille-Fos. Notre siege a Marseille 8e garantit une reactivite optimale.' },
     ],
-    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-fin-chantier-marseille'],
+    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
     serviceDifferentiator:
       'Page locale « industriel + Marseille » : entrepôts, dégraissage et horaires de nuit. La fiche service chantiers couvre aussi les remises en état après travaux.',
     localProof: [

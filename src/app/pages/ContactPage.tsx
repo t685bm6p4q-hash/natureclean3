@@ -286,7 +286,15 @@ export function ContactPage() {
                 ))}
               </div>
               <p className="text-center text-gray-600 mt-6">
-                Également : <span className="font-semibold text-green-700">Aubagne</span>, <span className="font-semibold text-green-700">Aix-en-Provence</span>, <span className="font-semibold text-green-700">Alpes-Maritimes</span>
+                Également :{' '}
+                <span className="font-semibold text-green-700">Aix-en-Provence</span>,{' '}
+                <span className="font-semibold text-green-700">Aubagne</span>,{' '}
+                <span className="font-semibold text-green-700">La Ciotat</span>,{' '}
+                <span className="font-semibold text-green-700">Marignane</span>,{' '}
+                <span className="font-semibold text-green-700">Vitrolles</span>,{' '}
+                <span className="font-semibold text-green-700">Istres</span>,{' '}
+                <span className="font-semibold text-green-700">Martigues</span>,{' '}
+                <span className="font-semibold text-green-700">Salon-de-Provence</span> — Bouches-du-Rhône (13).
               </p>
             </div>
           </div>

@@ -20,6 +20,7 @@ import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, ARIA_EMAIL } 
 const SERVICE_PAGE_DEVIS_MAP: Record<string, string> = {
   '/services/entretien-bureaux':         '/devis?service=bureaux',
   '/services/nettoyage-commerces':       '/devis?service=commerces',
+  '/services/remise-etat-urgence-commerce': '/devis?service=commerces',
   '/services/nettoyage-chantiers':       '/devis?service=fin-chantier',
   '/services/nettoyage-coproprietes':    '/devis?service=coproprietes',
   '/services/nettoyage-diogene':         '/devis?service=diogene',
@@ -36,27 +37,27 @@ const SERVICE_PAGE_DEVIS_MAP: Record<string, string> = {
 
 /** Dropdown "Entreprise" — Bureaux, Commerces, Chantiers, Sols, Vitres, Evénementiel */
 const entrepriseServices = [
-  { icon: Building2, label: 'Bureaux', href: '/services/entretien-bureaux', desc: 'Nettoyage professionnel', thumb: IMAGES.entrepriseBureauxMarseille },
+  { icon: HomeIcon, label: 'Copropriétés', href: '/services/nettoyage-coproprietes', desc: 'Parties communes', thumb: IMAGES.hallCoproBoites },
+  { icon: HardHat, label: 'Chantiers', href: '/services/nettoyage-chantiers', desc: 'Fin de chantier', thumb: IMAGES.finChantierMarseille },
+  { icon: Building2, label: 'Bureaux', href: '/services/entretien-bureaux', desc: 'Locaux tertiaires', thumb: IMAGES.entrepriseBureauxMarseille },
   { icon: Store, label: 'Commerces', href: '/services/nettoyage-commerces', desc: 'Entretien de locaux', thumb: IMAGES.vitrineBoutiqueLuxe },
-  { icon: HardHat, label: 'Chantiers', href: '/services/nettoyage-chantiers', desc: 'Remise en etat', thumb: IMAGES.finChantierMarseille },
-  { icon: Layers, label: 'Sols', href: '/services/remise-etat-sols', desc: 'Decapage & cristallisation', thumb: IMAGES.monobrosseAction },
-  { icon: Droplet, label: 'Vitres', href: '/services/nettoyage-vitre', desc: 'Vitrerie en hauteur', thumb: IMAGES.facadeVitreeImmeuble },
+  { icon: Heart, label: 'Diogène', href: '/services/nettoyage-diogene', desc: 'Désencombrement discret', thumb: IMAGES.appartVideLumineux },
+  { icon: Eraser, label: 'Graffitis', href: '/services/nettoyage-graffitis', desc: 'Effacement tags & façades', thumb: IMAGES.graffitiCarrefourAvant },
+  { icon: Layers, label: 'Sols', href: '/services/remise-etat-sols', desc: 'Décapage & cristallisation', thumb: IMAGES.monobrosseAction },
+  { icon: Droplet, label: 'Vitres', href: '/services/nettoyage-vitre', desc: 'Lavage de vitres', thumb: IMAGES.facadeVitreeImmeuble },
   { icon: Sparkles, label: 'Événementiel', href: '/services/nettoyage-evenementiel', desc: 'Propreté pré/post événement', thumb: IMAGES.salleEvenementielle },
-  { icon: Eraser,   label: 'Graffitis',    href: '/services/nettoyage-graffitis',    desc: 'Effacement tags & façades',  thumb: IMAGES.graffitiCarrefourAvant },
 ] as const;
 
-/** Liens individuels directs dans la nav */
+/** Lien direct Diogène (rappel en nav) — aussi dans le menu Entreprise */
 const individualServices = [
-  { icon: HomeIcon, label: 'Coproprietes', href: '/services/nettoyage-coproprietes' },
-  { icon: Heart, label: 'Diogene', href: '/services/nettoyage-diogene' },
-  { icon: HardHat, label: 'Gros Chantiers', href: '/services/nettoyage-gros-chantiers' },
+  { icon: Heart, label: 'Diogène', href: '/services/nettoyage-diogene' },
 ] as const;
 
 /** Pages secondaires dans le dropdown "Plus" */
 const secondaryPages = [
   {
     icon: ImageIcon,
-    label: 'Realisations',
+    label: 'Réalisations',
     href: '/realisations',
     desc: 'Portfolio de nos chantiers',
     thumb: IMAGES.appartVidePropre,
@@ -70,23 +71,23 @@ const secondaryPages = [
   },
   {
     icon: Info,
-    label: 'A propos',
+    label: 'À propos',
     href: '/a-propos',
-    desc: 'Notre equipe et nos valeurs',
+    desc: 'Notre équipe et nos valeurs',
     thumb: IMAGES.equipe4Personnes,
   },
   {
     icon: BookOpen,
     label: 'Blog',
     href: '/blog',
-    desc: 'Conseils et actualites',
+    desc: 'Conseils et actualités',
     thumb: IMAGES.carnetBlog,
   },
   {
     icon: Mail,
     label: 'Contact',
     href: '/contact',
-    desc: 'Nous ecrire ou nous appeler',
+    desc: 'Nous écrire ou nous appeler',
     thumb: IMAGES.poigneeMainDevis,
   },
 ] as const;
@@ -202,7 +203,7 @@ export function Header() {
             </li>
             <li className="flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-              Marseille & PACA
+              Marseille et Bouches-du-Rhône
             </li>
             <li className="flex items-center gap-1.5">
               <Shield className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />

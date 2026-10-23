@@ -3,9 +3,7 @@ import { IMAGES, cldResize } from '@/app/utils/images';
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, FOUNDING_YEAR } from '@/app/utils/constants';
 import {
   MapPin, Phone, Mail, Clock, Leaf,
-  Building2, Store, HardHat, Layers, Droplet,
   ChevronRight, Shield, Star,
-  Home as HomeIcon, PartyPopper, Eraser
 } from 'lucide-react';
 
 export function Footer() {
@@ -20,7 +18,7 @@ export function Footer() {
                 Un devis gratuit en moins de 24h
               </h2>
               <p className="text-white/80 text-sm md:text-base">
-                Intervention rapide sur Marseille et les Bouches-du-Rhone
+                Réponse sous 2 h, devis sous 24 h — Marseille et Bouches-du-Rhône
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
@@ -61,12 +59,12 @@ export function Footer() {
               />
               <div>
                 <h3 className="font-black text-white">Nature Clean</h3>
-                <p className="text-[11px] text-green-400 font-medium">Entretien & Proprete Eco-Responsable</p>
+                <p className="text-[11px] text-green-400 font-medium">Entretien & propreté à Marseille</p>
               </div>
             </div>
             <p className="text-sm leading-relaxed text-gray-300 mb-5">
-              Entreprise d'entretien et de nettoyage professionnel eco-responsable a Marseille.
-              50% de produits ecologiques pour un resultat impeccable et respectueux de l'environnement.
+              Entreprise d'entretien et de nettoyage professionnel à Marseille.
+              50 % de produits éco-labellisés pour un résultat impeccable et respectueux de l'environnement.
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap gap-2">
@@ -76,7 +74,7 @@ export function Footer() {
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 rounded-lg text-xs text-gray-300">
                 <Leaf className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-                Eco-responsable
+                50 % éco-labellisés
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 rounded-lg text-xs text-gray-300">
                 <Star className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
@@ -87,16 +85,18 @@ export function Footer() {
 
           {/* Colonne 2 : Prestations SEO — 7 services clés à Marseille */}
           <div>
-            <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Nos Prestations à Marseille</h4>
-            <ul className="space-y-2 mb-5">
+            <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Nos prestations à Marseille</h4>
+            <ul className="space-y-2">
               {[
-                { label: 'Nettoyage de chantiers à Marseille', href: '/services/nettoyage-chantiers' },
                 { label: 'Nettoyage de copropriétés à Marseille', href: '/services/nettoyage-coproprietes' },
-                { label: 'Nettoyage de commerces à Marseille', href: '/services/nettoyage-commerces' },
+                { label: 'Nettoyage de fin de chantier à Marseille', href: '/services/nettoyage-chantiers' },
                 { label: 'Entretien de bureaux à Marseille', href: '/services/entretien-bureaux' },
-                { label: 'Remise en état des sols à Marseille', href: '/services/remise-etat-sols' },
-                { label: 'Nettoyage de graffitis à Marseille', href: '/services/nettoyage-graffitis' },
+                { label: 'Nettoyage de commerces à Marseille', href: '/services/nettoyage-commerces' },
                 { label: 'Nettoyage syndrome de Diogène à Marseille', href: '/services/nettoyage-diogene' },
+                { label: 'Enlèvement de graffitis à Marseille', href: '/services/nettoyage-graffitis' },
+                { label: 'Remise en état des sols à Marseille', href: '/services/remise-etat-sols' },
+                { label: 'Nettoyage de vitres à Marseille', href: '/services/nettoyage-vitre' },
+                { label: 'Nettoyage événementiel à Marseille', href: '/services/nettoyage-evenementiel' },
               ].map((item) => (
                 <li key={item.href}>
                   <Link
@@ -108,28 +108,11 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-
-            <p className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">
-              <Building2 className="w-3 h-3 text-green-500" aria-hidden="true" />
-              Autres services
+            <p className="mt-4 text-xs text-gray-400">
+              <Link to="/services/remise-etat-urgence-commerce" className="hover:text-green-400 transition-colors">
+                Urgence magasin après dégradation
+              </Link>
             </p>
-            <ul className="space-y-2">
-              {[
-                { icon: PartyPopper, label: 'Événementiel', href: '/services/nettoyage-evenementiel' },
-                { icon: Droplet, label: 'Nettoyage Vitres', href: '/services/nettoyage-vitre' },
-                { icon: HardHat, label: 'Gros chantiers', href: '/services/nettoyage-gros-chantiers' },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    to={item.href}
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-green-400 transition-colors group"
-                  >
-                    <item.icon className="w-4 h-4 text-gray-500 group-hover:text-green-500 transition-colors flex-shrink-0" />
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Colonne 3 : Navigation + Ressources */}
@@ -139,8 +122,8 @@ export function Footer() {
               {[
                 { label: 'Accueil', href: '/' },
                 { label: 'Tous nos services', href: '/services' },
-                { label: 'Nos realisations', href: '/realisations' },
-                { label: 'A propos', href: '/a-propos' },
+                { label: 'Nos réalisations', href: '/realisations' },
+                { label: 'À propos', href: '/a-propos' },
                 { label: 'Blog & Conseils', href: '/blog' },
                 { label: 'Zones d\'intervention', href: '/zones-intervention' },
                 { label: 'Contact', href: '/contact' },
@@ -255,19 +238,17 @@ export function Footer() {
                 Zone d'intervention
               </h5>
               <p className="text-xs text-gray-300 leading-relaxed mb-2">
-                <strong className="text-gray-300">Marseille</strong> (13001 a 13016),{' '}
-                <strong className="text-gray-300">Aix-en-Provence</strong>,{' '}
-                Aubagne et La Ciotat — Bouches-du-Rhone (13).
+                <strong className="text-gray-300">Marseille</strong> (13001 à 13016),{' '}
+                Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Istres, Martigues et Salon-de-Provence — Bouches-du-Rhône (13).
               </p>
               <ul className="flex flex-wrap gap-x-3 gap-y-2" role="list">
                 {[
+                  { label: 'Zones d\'intervention', href: '/zones-intervention' },
                   { label: 'Bureaux Marseille', href: '/nettoyage-bureaux-marseille' },
-                  { label: 'Fin de chantier Marseille', href: '/nettoyage-fin-chantier-marseille' },
-                  { label: 'Industriel Marseille', href: '/nettoyage-industriel-marseille' },
-                  { label: 'Médical Marseille', href: '/nettoyage-medical-marseille' },
                   { label: 'Bureaux Aix', href: '/nettoyage-bureaux-aix-en-provence' },
-                  { label: 'Copros Aubagne', href: '/nettoyage-coproprietes-aubagne' },
-                  { label: 'Copros La Ciotat', href: '/nettoyage-coproprietes-la-ciotat' },
+                  { label: 'Copropriétés Aubagne', href: '/nettoyage-coproprietes-aubagne' },
+                  { label: 'Copropriétés La Ciotat', href: '/nettoyage-coproprietes-la-ciotat' },
+                  { label: 'Fin de chantier', href: '/services/nettoyage-chantiers' },
                 ].map((link) => (
                   <li key={link.href}>
                     <Link to={link.href} className="text-xs text-gray-400 hover:text-green-400 transition-colors inline-block">
@@ -298,7 +279,7 @@ export function Footer() {
               </Link>
               <span className="text-gray-700 text-xs hidden md:inline" aria-hidden="true">·</span>
               <p className="text-xs text-gray-400 text-center md:text-right">
-                Nettoyage professionnel ecologique Marseille | Bureaux, Commerces, Coproprietes, Chantiers, Evenementiel | Bouches-du-Rhone 13 & PACA
+                22 Traverse Pupat, 13008 Marseille — Lun–Sam 8h–18h
               </p>
             </div>
           </div>

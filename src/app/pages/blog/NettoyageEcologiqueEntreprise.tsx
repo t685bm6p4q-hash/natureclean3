@@ -9,22 +9,23 @@ import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { useArticleJsonLd } from '@/app/hooks/useArticleJsonLd';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
+import { BlogArticleByline } from '@/app/components/BlogArticleByline';
 
 const FAQ_ITEMS: FAQItem[] = [
   { question: 'Les produits de nettoyage ecologiques sont-ils aussi efficaces ?', answer: 'Oui, les produits eco-labellises actuels offrent une efficacite comparable aux produits conventionnels pour l\'entretien courant. Seuls certains cas extremes (decapage industriel, desinfection hospitaliere) peuvent necessiter des produits specifiques.' },
-  { question: 'Le nettoyage ecologique coute-t-il plus cher ?', answer: 'Le surcout est marginal (5 a 10% sur les produits). Il est compense par la reduction de l\'absenteisme (moins d\'irritations), la valorisation de votre image RSE et la conformite aux normes environnementales.' },
+  { question: 'Le nettoyage ecologique coute-t-il plus cher ?', answer: 'Le surcout produit reste en general modere ; le devis compare eco-labellise et protocole standard. L\'interet principal est la qualite de l\'air interieur, l\'image RSE et l\'alignement avec vos engagements — sans promesse de ROI chiffre.' },
   { question: 'Quels labels garantissent un produit de nettoyage ecologique ?', answer: 'Les labels les plus fiables sont l\'Ecolabel Europeen, Nature & Progres, et Ecocert. Ils garantissent une formulation biodegradable, l\'absence de substances toxiques et un impact environnemental reduit.' },
 ];
 
 export function NettoyageEcologiqueEntreprise() {
   useArticleJsonLd({
-    headline: 'Nettoyage ecologique en entreprise : pourquoi passer aux produits bio',
-    description: 'Avantages du nettoyage eco-responsable pour les entreprises a Marseille. Labels, benefices sante, impact RSE et retour sur investissement.',
+    headline: 'Nettoyage eco-responsable en entreprise : produits eco-labellises',
+    description: 'Pourquoi choisir des produits eco-labellises pour l\'entretien courant a Marseille. Labels, sante des occupants, RSE et engagement Nature Clean (~50 % eco-labellises).',
     image: IMAGES.produitsEcoHero,
     datePublished: '2026-02-20',
-    dateModified: '2026-02-20',
+    dateModified: '2026-10-24',
     slug: 'nettoyage-ecologique-produits-bio-entreprise',
-    keywords: 'nettoyage ecologique entreprise, produits bio nettoyage, nettoyage eco-responsable bureaux, nettoyage vert marseille, RSE nettoyage professionnel',
+    keywords: 'nettoyage ecologique entreprise, produits eco-labellises nettoyage, nettoyage eco-responsable bureaux marseille, RSE nettoyage professionnel',
     articleSection: 'Eco-responsabilite',
     wordCount: 1300,
   });
@@ -33,7 +34,7 @@ export function NettoyageEcologiqueEntreprise() {
     {
       icon: Heart,
       title: 'Sante des occupants',
-      desc: 'Les produits conventionnels contiennent des COV (composes organiques volatils) qui irritent les voies respiratoires. Les produits eco-labellises eliminent ces risques et reduisent l\'absenteisme de 15 a 20% selon l\'INRS.',
+      desc: 'Les produits conventionnels peuvent emettre des COV irritants. Les produits eco-labellises limitent ces expositions pour le personnel present pendant ou apres le nettoyage — un argument concret pour les bureaux occupes.',
     },
     {
       icon: Leaf,
@@ -61,9 +62,9 @@ export function NettoyageEcologiqueEntreprise() {
   return (
     <>
       <SEO_Guardian
-        title="Nettoyage Ecologique Entreprise : Produits Bio & RSE | Nature Clean Marseille"
-        description="Pourquoi passer au nettoyage eco-responsable en entreprise ? Avantages sante, labels fiables, impact RSE et retour sur investissement. Guide Nature Clean Marseille."
-        keywords="nettoyage ecologique entreprise, produits bio nettoyage professionnel, nettoyage eco-responsable bureaux marseille, RSE nettoyage, produits verts entreprise"
+        title="Nettoyage Eco-Responsable Entreprise | Produits Eco-Labellisés | Nature Clean"
+        description="Produits eco-labellises pour l'entretien de bureaux a Marseille : labels, sante, RSE et ~50 % eco-labellises chez Nature Clean. Sans promesse ROI chiffre."
+        keywords="nettoyage ecologique entreprise, produits eco-labellises nettoyage professionnel, nettoyage eco-responsable bureaux marseille, RSE nettoyage"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
 
@@ -96,7 +97,7 @@ export function NettoyageEcologiqueEntreprise() {
                 <span>20 fevrier 2026</span>
               </div>
               <h1 className="text-3xl md:text-4xl font-black text-white max-w-3xl">
-                Nettoyage ecologique en entreprise : pourquoi passer aux produits bio
+                Nettoyage eco-responsable en entreprise : produits eco-labellises
               </h1>
             </div>
           </div>
@@ -105,9 +106,11 @@ export function NettoyageEcologiqueEntreprise() {
         {/* Contenu */}
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
+            <BlogArticleByline publishedLabel="20 février 2026" updatedLabel="24 octobre 2026" />
             <ScrollReveal>
               <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                Vos salaries passent en moyenne <strong>8 heures par jour</strong> dans vos locaux. La qualite de l'air interieur depend directement des produits utilises pour le nettoyage. En 2026, de plus en plus d'entreprises a Marseille font le choix du <strong>nettoyage ecologique</strong> — et les raisons vont bien au-dela de l'argument environnemental.
+                Vos salaries passent en moyenne <strong>8 heures par jour</strong> dans vos locaux. La qualite de l'air interieur depend directement des produits utilises pour le nettoyage. De plus en plus d'entreprises a Marseille font le choix de l'<strong>entretien avec produits eco-labellises</strong> — confort, image RSE et cohérence avec notre démarche sur{' '}
+                <Link to="/a-propos" className="text-green-800 font-semibold underline">la page À propos</Link>.
               </p>
             </ScrollReveal>
 
@@ -191,7 +194,7 @@ export function NettoyageEcologiqueEntreprise() {
                   Notre engagement
                 </span>
                 <h2 className="text-2xl font-black text-white mb-3">
-                  Chez Nature Clean, 50% de nos produits sont eco-labellises
+                  Chez Nature Clean, environ 50 % de nos produits sont eco-labellises
                 </h2>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   Depuis notre creation en 2021, nous avons progressivement remplace nos produits conventionnels par des alternatives ecologiques certifiees. Notre objectif : atteindre 80% de produits eco-labellises d'ici 2027, sans compromis sur l'efficacite.
