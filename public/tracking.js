@@ -1,7 +1,7 @@
 /**
  * Nature Clean — Google Ads + Meta (RGPD Consent Mode v2)
- * - gtag configuré dans index.html (AW-18438425597)
- * - gtag.js chargé après load (idle) sans attendre les cookies
+ * - gtag stub + consent dans index.html (AW-18438425597)
+ * - gtag.js : première interaction ou 4 s (perf), consentement avant envoi Ads
  * - Meta Pixel uniquement après consentement explicite
  */
 
@@ -13,11 +13,12 @@
     GOOGLE_ADS_LEAD_SEND_TO: '',
     GA4_ID: 'G-XXXXXXXXXX',
     FB_PIXEL_ID: 'XXXXXXXXXX',
-    GTAG_IDLE_TIMEOUT_MS: 5000,
+    GTAG_FALLBACK_MS: 4000,
     FB_DEFER_AFTER_LOAD_MS: 4500,
   };
 
   var gtagScriptInjected = false;
+  var gtagScheduleStarted = false;
   var fbLoaded = false;
 
   function hasConsent() {
@@ -63,20 +64,33 @@
     }
   }
 
+  function runGtagLoad() {
+    injectGtagScript();
+    if (hasConsent()) {
+      grantGoogleConsent();
+    }
+  }
+
+  /** Diffère le téléchargement gtag.js : interaction utilisateur ou secours 4 s. */
   function scheduleGtagLoad() {
+    if (gtagScheduleStarted) return;
+    gtagScheduleStarted = true;
+
     var run = function () {
-      injectGtagScript();
-      if (hasConsent()) {
-        grantGoogleConsent();
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(runGtagLoad, { timeout: 2000 });
+      } else {
+        setTimeout(runGtagLoad, 0);
       }
     };
 
-    if (typeof window.requestIdleCallback === 'function') {
-      window.requestIdleCallback(run, { timeout: CONFIG.GTAG_IDLE_TIMEOUT_MS });
-    } else {
-      setTimeout(run, 800);
-    }
+    run();
   }
+
+  ['pointerdown', 'keydown', 'scroll'].forEach(function (ev) {
+    window.addEventListener(ev, scheduleGtagLoad, { once: true, passive: true });
+  });
+  setTimeout(scheduleGtagLoad, CONFIG.GTAG_FALLBACK_MS);
 
   function loadFacebookPixel() {
     if (fbLoaded || !hasConsent()) return;
@@ -131,14 +145,13 @@
 
   window.addEventListener('ncm:consent:accepted', function () {
     grantGoogleConsent();
-    injectGtagScript();
+    scheduleGtagLoad();
     loadFacebookPixel();
   });
 
   window.addEventListener(
     'load',
     function () {
-      scheduleGtagLoad();
       scheduleFacebookLoad();
     },
     { once: true }

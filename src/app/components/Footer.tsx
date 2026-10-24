@@ -158,7 +158,7 @@ export function Footer() {
             <div className="mb-4 flex flex-col gap-2 sm:flex-row md:max-w-md">
               <Link
                 to="/devis"
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-green-500"
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-700 px-4 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-green-800"
               >
                 <FileText className="h-4 w-4 shrink-0" aria-hidden="true" />
                 Devis gratuit

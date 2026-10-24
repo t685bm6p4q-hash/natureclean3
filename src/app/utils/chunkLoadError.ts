@@ -27,7 +27,9 @@ export function reloadOnceOnChunkError(): boolean {
     return false;
   }
   sessionStorage.setItem(CHUNK_RELOAD_KEY, '1');
-  window.location.reload();
+  const url = new URL(window.location.href);
+  url.searchParams.set('nc', String(Date.now()));
+  window.location.replace(url.toString());
   return true;
 }
 

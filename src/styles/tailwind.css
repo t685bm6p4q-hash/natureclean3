@@ -14,3 +14,11 @@
 @source '../app/components/ui/card.tsx';
 @source '../app/components/ui/input-otp.tsx';
 @source '../app/components/ui/utils.ts';
+
+@layer utilities {
+  /* Sections sous la ligne de flottaison — moins de travail de rendu initial (LCP / TBT). */
+  .ncm-below-fold {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+}

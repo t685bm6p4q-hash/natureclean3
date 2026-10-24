@@ -260,7 +260,7 @@ export function NettoyageGrosChantiersPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <a
                 href={PHONE_HREF}
-                className="flex items-center justify-center gap-3 bg-emerald-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-500 transition-colors shadow-xl"
+                className="flex items-center justify-center gap-3 bg-emerald-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-800 transition-colors shadow-xl"
                 aria-label={ARIA_PHONE}
               >
                 <Phone className="w-6 h-6" />

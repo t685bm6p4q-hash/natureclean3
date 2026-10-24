@@ -299,7 +299,7 @@ export function RealisationsPage() {
         ]}
       />
 
-      <section className="py-10 bg-green-50 border-y border-green-100">
+      <section className="py-10 bg-green-50 border-y border-green-100 ncm-below-fold">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
             <div className="bg-white rounded-xl p-4 border border-green-100">
@@ -322,7 +322,7 @@ export function RealisationsPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
@@ -416,7 +416,7 @@ export function RealisationsPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-10 text-center">

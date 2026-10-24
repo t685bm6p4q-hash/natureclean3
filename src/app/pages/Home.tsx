@@ -356,7 +356,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           2. CARROUSEL DES 9 SERVICES
           ══════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-gray-50 overflow-x-clip">
+      <section className="py-16 md:py-20 bg-gray-50 overflow-x-clip ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center mb-12">
@@ -393,7 +393,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           3. POURQUOI NOUS CHOISIR — 6 avantages
           ═══════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center mb-12 max-w-3xl mx-auto">
@@ -444,7 +444,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           4. DUO DYNAMIQUE — Commerces/Santé × Fin de chantier
           ══════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white overflow-hidden">
+      <section className="py-16 md:py-24 bg-white overflow-hidden ncm-below-fold">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
 
@@ -486,7 +486,7 @@ export function Home() {
                       width={600} height={320} loading="lazy" decoding="async"
                     />
                     <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                      <span className="bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                      <span className="bg-green-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                         Commerces & magasins · Marseille
                       </span>
                     </div>
@@ -669,7 +669,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           4b. FOCUS GRAFFITIS — Spotlight service urgent
           ═══════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-white overflow-hidden">
+      <section className="py-16 md:py-20 bg-white overflow-hidden ncm-below-fold">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="rounded-3xl overflow-hidden shadow-2xl grid lg:grid-cols-2">
@@ -753,7 +753,7 @@ export function Home() {
       {/* ══════════════════════════════════════════
           4c. DIOGÈNE — Section dédiée accueil
           ═══════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-gray-50 overflow-hidden">
+      <section className="py-16 md:py-20 bg-gray-50 overflow-hidden ncm-below-fold">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
@@ -895,7 +895,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           6. REALISATIONS PREVIEW — 3 cartes
           ════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center mb-12">
@@ -932,7 +932,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           7. SECTION EQUIPE — Confiance + chiffres
           ═══════════════════════════════════════════ */}
-      <section className="relative py-16 md:py-20 bg-gray-50 overflow-hidden">
+      <section className="relative py-16 md:py-20 bg-gray-50 overflow-hidden ncm-below-fold">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -1069,7 +1069,7 @@ export function Home() {
           ═══════════════════════════════════════════ */}
       {/* content-visibility: auto — section ~3000px sous le fold mobile
           contain-intrinsic-size: auto 520px — hauteur estimée (titre + grille zones + quartiers) */}
-      <section className="py-16 md:py-20 bg-gray-50 [content-visibility:auto] [contain-intrinsic-size:auto_520px]">
+      <section className="py-16 md:py-20 bg-gray-50 ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center mb-10 max-w-3xl mx-auto">
@@ -1169,7 +1169,7 @@ export function Home() {
           11. CTA FINAL — Photo + conversion
           ══════════════════════════════════════════ */}
       {/* content-visibility: auto — dernier bloc, ~3600px sous le fold mobile */}
-      <section className="py-20 md:py-24 bg-gray-900 [content-visibility:auto] [contain-intrinsic-size:auto_380px]">
+      <section className="py-20 md:py-24 bg-gray-900 ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto">

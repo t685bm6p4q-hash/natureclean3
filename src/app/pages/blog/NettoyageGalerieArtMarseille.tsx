@@ -59,7 +59,7 @@ export function NettoyageGalerieArtMarseille() {
                 Retour au blog
               </Link>
               <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span className="inline-flex items-center gap-1.5 bg-green-600/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <span className="inline-flex items-center gap-1.5 bg-green-700/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                   <Sparkles className="w-3 h-3" />
                   Cas clients
                 </span>
@@ -164,7 +164,7 @@ export function NettoyageGalerieArtMarseille() {
                     label: 'Avant vernissage',
                     desc: "Grand nettoyage complet pour une ouverture au public parfaite : sols lustrés, vitrines sans trace, cimaises impeccables.",
                     color: 'bg-green-50 border-green-200',
-                    badge: 'bg-green-600',
+                    badge: 'bg-green-700',
                   },
                   {
                     label: 'Après démontage',

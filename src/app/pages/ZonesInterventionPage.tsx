@@ -152,7 +152,7 @@ export function ZonesInterventionPage() {
             (lundi–samedi, 8 h–18 h), devis gratuit sous 24 h.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 text-white font-bold">
+            <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 text-white font-bold">
               <Link to="/devis">Demander un devis gratuit</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-green-600 text-green-700 font-bold">
@@ -384,7 +384,7 @@ export function ZonesInterventionPage() {
           <ol className="space-y-8">
             {PROCESS_STEPS.map((step, i) => (
               <li key={step.title} className="flex gap-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-600 text-white font-black">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-700 text-white font-black">
                   {i + 1}
                 </span>
                 <div>
