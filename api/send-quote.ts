@@ -81,6 +81,8 @@ const quotePayloadSchema = z
     referrer: z.string().max(500).default(''),
     journey: z.string().max(2000).default(''),
     timestamp: z.string().max(50).default(''),
+    photoBase64: z.string().max(600_000).optional(),
+    photoName: z.string().max(120).optional(),
   })
   .superRefine((data, ctx) => {
     const email = (data.email || '').trim();
@@ -121,15 +123,23 @@ type ValidatedQuotePayload = z.infer<typeof quotePayloadSchema>;
 const SURFACE_LABELS: Record<string, string> = {
   'moins-50': 'Moins de 50 m²',
   '50-100': '50 – 100 m²',
-  '50-150': '50 – 150 m²',
+  '50-150': '50 à 150 m²',
   '100-300': '100 – 300 m²',
   '150-300': '150 – 300 m²',
+  'plus-150': 'Plus de 150 m²',
   'plus-300': 'Plus de 300 m²',
   inconnu: 'Non précisée',
 };
 const FREQUENCE_LABELS: Record<string, string> = {
-  ponctuel: 'Ponctuel', hebdomadaire: 'Hebdomadaire', quotidien: 'Quotidien',
-  'Intervention Unique': 'Intervention Unique ⚡', Hebdomadaire: 'Hebdomadaire', Quotidien: 'Quotidien',
+  ponctuel: 'Ponctuel',
+  regulier: 'Régulier / contrat',
+  Ponctuel: 'Ponctuel',
+  'Contrat régulier': 'Régulier / contrat',
+  hebdomadaire: 'Hebdomadaire',
+  quotidien: 'Quotidien',
+  'Intervention Unique': 'Intervention Unique ⚡',
+  Hebdomadaire: 'Hebdomadaire',
+  Quotidien: 'Quotidien',
 };
 const TYPE_LABELS: Record<string, string> = {
   bureaux: 'Entretien bureaux', coproprietes: 'Nettoyage copropriétés',
@@ -153,7 +163,8 @@ const labelDate      = (r: string) => {
 
 const isHighPriority = (d: ValidatedQuotePayload) =>
   ['fin-chantier','bureaux','coproprietes','Chantier','Bureaux','Copros'].includes(d.typeNettoyage)
-  || d.frequence === 'Intervention Unique';
+  || d.frequence === 'Intervention Unique'
+  || d.frequence === 'Ponctuel';
 
 // ═══════════════════════════════════════════════════════════════
 // TEMPLATE EMAIL HTML
@@ -197,6 +208,7 @@ function buildEmailHtml(data: ValidatedQuotePayload): string {
       <div style="background:white;padding:14px 18px;border-radius:8px;border-left:4px solid ${color};color:#374151;font-style:italic;">
         ${data.message || 'Aucun message laissé par le client.'}
       </div>
+      ${data.photoBase64 ? `${sec('📷 Photo du chantier')}<p style="margin:0;"><img src="${data.photoBase64}" alt="Photo chantier" style="max-width:100%;border-radius:8px;border:1px solid #e5e7eb;" /></p>` : ''}
       ${sec("📊 Parcours d'acquisition")}
       ${row('Source', data.source)}
       ${row('Page de provenance', data.sourcePage)}

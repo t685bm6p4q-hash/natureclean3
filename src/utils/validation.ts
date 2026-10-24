@@ -31,13 +31,19 @@ const POSTAL_REGEX = /^[0-9]{5}$/;
 
 export const SURFACE_RANGE_OPTIONS = [
   { id: 'moins-50', label: 'Moins de 50 m²' },
-  { id: '50-150', label: '50 – 150 m²' },
-  { id: '150-300', label: '150 – 300 m²' },
-  { id: 'plus-300', label: 'Plus de 300 m²' },
+  { id: '50-150', label: '50 à 150 m²' },
+  { id: 'plus-150', label: 'Plus de 150 m²' },
   { id: 'inconnu', label: 'Je ne sais pas' },
 ] as const;
 
 export type SurfaceRangeId = (typeof SURFACE_RANGE_OPTIONS)[number]['id'];
+
+export const FREQUENCE_EXPRESS_OPTIONS = [
+  { id: 'ponctuel', label: 'Ponctuel', apiValue: 'Ponctuel' },
+  { id: 'regulier', label: 'Régulier / contrat', apiValue: 'Contrat régulier' },
+] as const;
+
+export type FrequenceExpressId = (typeof FREQUENCE_EXPRESS_OPTIONS)[number]['id'];
 
 export const leadExpressSchema = z
   .object({
@@ -47,13 +53,19 @@ export const leadExpressSchema = z
       .min(2, { message: 'Indiquez une ville ou un code postal.' })
       .max(120, { message: 'Maximum 120 caractères.' })
       .transform(sanitize),
+    nom: z
+      .string()
+      .min(2, { message: 'Indiquez votre nom ou le nom de votre entreprise.' })
+      .max(200, { message: 'Maximum 200 caractères.' })
+      .transform(sanitize),
     email: z.string().max(254).default(''),
     telephone: z.string().max(30).default(''),
     surface: z.string().default('inconnu'),
+    frequence: z.string().min(1, { message: 'Indiquez une fréquence.' }),
     message: z
       .string()
-      .min(3, { message: 'Décrivez votre besoin en quelques mots.' })
       .max(2000, { message: 'Maximum 2000 caractères.' })
+      .default('')
       .transform(sanitize),
     rgpd: z.literal(true, {
       message: 'Vous devez accepter la politique de confidentialité.',
@@ -63,13 +75,18 @@ export const leadExpressSchema = z
     const email = data.email.trim();
     const tel = data.telephone.trim();
 
-    if (!email && !tel) {
+    if (!tel) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: 'Indiquez un téléphone ou un email pour que nous puissions vous rappeler.',
-        path: ['contact'],
+        message: 'Le téléphone est indispensable pour vous rappeler rapidement.',
+        path: ['telephone'],
       });
-      return;
+    } else if (!PHONE_REGEX.test(tel)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Format invalide (ex. 06 12 34 56 78).',
+        path: ['telephone'],
+      });
     }
 
     if (email && !EMAIL_REGEX.test(email)) {
@@ -77,14 +94,6 @@ export const leadExpressSchema = z
         code: z.ZodIssueCode.custom,
         message: "Format d'email invalide.",
         path: ['email'],
-      });
-    }
-
-    if (tel && !PHONE_REGEX.test(tel)) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'Format invalide (ex. 06 12 34 56 78).',
-        path: ['telephone'],
       });
     }
 
@@ -99,6 +108,51 @@ export const leadExpressSchema = z
   });
 
 export type LeadExpressFormData = z.infer<typeof leadExpressSchema>;
+
+export function validateLeadExpressStep(
+  step: 1 | 2 | 3,
+  data: Record<string, unknown>
+): { success: boolean; errors?: Record<string, string> } {
+  const errors: Record<string, string> = {};
+
+  if (step === 1) {
+    if (!String(data.secteur ?? '').trim()) {
+      errors.secteur = 'Choisissez un type de prestation.';
+    }
+  }
+
+  if (step === 2) {
+    const loc = String(data.localisation ?? '').trim();
+    if (!loc || loc.length < 2) {
+      errors.localisation = 'Indiquez une ville ou un code postal.';
+    }
+    if (!String(data.frequence ?? '').trim()) {
+      errors.frequence = 'Choisissez ponctuel ou régulier.';
+    }
+  }
+
+  if (step === 3) {
+    const nom = String(data.nom ?? '').trim();
+    if (nom.length < 2) {
+      errors.nom = 'Indiquez votre nom ou le nom de votre entreprise.';
+    }
+    const tel = String(data.telephone ?? '').trim();
+    if (!tel) {
+      errors.telephone = 'Le téléphone est indispensable pour vous rappeler rapidement.';
+    } else if (!PHONE_REGEX.test(tel)) {
+      errors.telephone = 'Format invalide (ex. 06 12 34 56 78).';
+    }
+    const email = String(data.email ?? '').trim();
+    if (email && !EMAIL_REGEX.test(email)) {
+      errors.email = "Format d'email invalide.";
+    }
+    if (data.rgpd !== true) {
+      errors.rgpd = 'Vous devez accepter la politique de confidentialité.';
+    }
+  }
+
+  return { success: Object.keys(errors).length === 0, errors };
+}
 
 export function validateLeadExpressForm(data: Record<string, unknown>): {
   success: boolean;
