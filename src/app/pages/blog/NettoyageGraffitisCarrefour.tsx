@@ -183,7 +183,7 @@ export function NettoyageGraffitisCarrefour() {
                   className="w-full h-72 md:h-96 object-cover"
                 />
                 <div className="bg-gray-900 text-white px-6 py-3 text-sm text-center">
-                  Résultat après intervention — façade restituée sans trace résiduelle visible
+                  Résultat après intervention — façade nettoyée selon le support et le test préalable
                 </div>
               </div>
             </section>

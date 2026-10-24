@@ -115,7 +115,7 @@ export function NettoyageGraffitisPage() {
               {[
                 {
                   title: 'Aérogommage',
-                  desc: 'Projection de microparticules naturelles (calcite ou bicarbonate) à basse pression — entre 1 et 3 bar. Indispensable sur les pierres calcaires et briques poreuses du vieux Marseille. Aucun risque d\'arrachement du support.',
+                  desc: 'Projection de microparticules naturelles (calcite ou bicarbonate) à basse pression — entre 1 et 3 bar. Indispensable sur les pierres calcaires et briques poreuses du vieux Marseille. Test préalable sur une zone discrète pour valider le support.',
                 },
                 {
                   title: 'Traitement chimique doux',

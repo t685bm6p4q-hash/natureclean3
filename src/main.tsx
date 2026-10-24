@@ -2,8 +2,14 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@/app/App';
 import '@/styles/index.css';
-import { clearChunkReloadFlag, isChunkLoadError, reloadOnceOnChunkError } from '@/app/utils/chunkLoadError';
+import {
+  clearChunkReloadFlag,
+  isChunkLoadError,
+  reloadOnceOnChunkError,
+  stripEphemeralQueryParams,
+} from '@/app/utils/chunkLoadError';
 
+stripEphemeralQueryParams();
 clearChunkReloadFlag();
 
 window.addEventListener('vite:preloadError', (event) => {

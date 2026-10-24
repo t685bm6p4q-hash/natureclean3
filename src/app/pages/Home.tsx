@@ -457,12 +457,12 @@ export function Home() {
                 </span>
                 <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-5 leading-tight">
                   De l'entretien de vos locaux
-                  <span className="block text-green-600">à la remise en état après travaux</span>
+                  <span className="block text-green-700">à la remise en état après travaux</span>
                 </h2>
                 <p className="text-lg text-gray-500 leading-relaxed">
                   Peu importe l'état de départ — poussière de chantier, fin de bail
                   ou locaux très fréquentés — le résultat est toujours le même :
-                  {' '}<strong className="text-gray-700">impeccable, certifié Nature Clean.</strong>
+                  {' '}<strong className="text-gray-700">soigné et contrôlé en fin de mission.</strong>
                 </p>
               </div>
             </ScrollReveal>
@@ -966,15 +966,15 @@ export function Home() {
 
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-600">4+</div>
+                    <div className="text-2xl md:text-3xl font-black text-green-700">4+</div>
                     <div className="text-xs text-gray-500 mt-1">Années d&apos;exp.</div>
                   </div>
                   <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-600">RC Pro</div>
+                    <div className="text-2xl md:text-3xl font-black text-green-700">RC Pro</div>
                     <div className="text-xs text-gray-500 mt-1">Assurance</div>
                   </div>
                   <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-600">13</div>
+                    <div className="text-2xl md:text-3xl font-black text-green-700">13</div>
                     <div className="text-xs text-gray-500 mt-1">Bouches-du-Rhône</div>
                   </div>
                 </div>

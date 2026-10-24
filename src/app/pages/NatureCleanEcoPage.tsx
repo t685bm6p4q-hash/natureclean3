@@ -30,18 +30,14 @@ import {
 } from '@/app/utils/constants';
 import { SERVED_CITIES_SHORT } from '@/app/config/zone-data';
 
-function AConfirmer({ children }: { children: string }) {
-  return <strong className="text-amber-800 font-semibold">[à confirmer : {children}]</strong>;
-}
-
 const PRACTICES: { title: string; body: ReactNode }[] = [
   {
     title: 'Produits d\'entretien courant',
     body: (
       <>
-        Environ 50 % de nos produits pour l&apos;entretien régulier sont éco-labellés — marques et labels exacts :{' '}
-        <AConfirmer>noms de labels et références produits</AConfirmer>. Les fiches de données de sécurité peuvent être
-        communiquées sur demande.
+        Environ 50 % de nos produits pour l&apos;entretien régulier sont éco-labellisés (Ecolabel européen, Ecocert,
+        Nature &amp; Progrès selon les références). Les fiches de données de sécurité peuvent être communiquées sur
+        demande.
       </>
     ),
   },
@@ -58,7 +54,7 @@ const PRACTICES: { title: string; body: ReactNode }[] = [
     body: (
       <>
         Tri des emballages et déchets générés en intervention selon les consignes du site client et du prestataire de
-        collecte — <AConfirmer>procédure déchets sur chantier</AConfirmer>.
+        collecte.
       </>
     ),
   },
@@ -83,7 +79,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Que signifie « environ 50 % de produits éco-labellisés » ?',
     answer:
-      'Il s\'agit des produits utilisés pour l\'entretien courant (sols, surfaces, vitrerie légère), pas des désinfectants réglementés. La liste précise des marques et labels est communiquée au devis [à confirmer].',
+      'Il s\'agit des produits utilisés pour l\'entretien courant (sols, surfaces, vitrerie légère), pas des désinfectants réglementés. La liste précise des marques et labels est communiquée au devis.',
   },
   {
     question: 'Intervenez-vous où ?',

@@ -43,7 +43,8 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     // Trailing slash sur "/" uniquement. Sur la 404, canonicalHref force l'accueil.
     const rawPath = window.location.pathname;
     const canonicalPath = rawPath === '/' ? '/' : rawPath.replace(/\/$/, ''); // supprime trailing slash sauf racine
-    const canonicalURL = canonicalHref ?? `${BASE_URL}${canonicalPath}`;
+    // Canonical = pathname uniquement (jamais ?nc= ni autres query params)
+    const canonicalURL = (canonicalHref ?? `${BASE_URL}${canonicalPath}`).split('?')[0]!;
     
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (!canonical) {

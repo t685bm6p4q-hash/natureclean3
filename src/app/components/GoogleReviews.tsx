@@ -291,7 +291,7 @@ export function GoogleReviews() {
             href={GOOGLE_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-green-600 transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-green-700 transition-colors font-medium"
           >
             Voir tous nos avis sur Google
             <ExternalLink className="w-3.5 h-3.5" />

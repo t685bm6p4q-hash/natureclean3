@@ -40,14 +40,6 @@ import {
   LOCAL_GEO_PAGE_SLUGS,
 } from '@/app/config/zone-data';
 
-function AConfirmer({ suffix }: { suffix?: string }) {
-  return (
-    <strong className="text-amber-800 font-semibold">
-      [à confirmer{suffix ? ` : ${suffix}` : ''}]
-    </strong>
-  );
-}
-
 const MARSEILLE_GEO_LINKS = [
   { label: 'Nettoyage de bureaux à Marseille', href: '/nettoyage-bureaux-marseille' },
   { label: 'Nettoyage de copropriétés à Marseille', href: '/services/nettoyage-coproprietes' },
@@ -95,22 +87,22 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Facturez-vous un supplément hors de Marseille ?',
     answer:
-      'Cela dépend de la ville, du type de prestation et de la fréquence. Les conditions éventuelles sont indiquées clairement dans le devis, avant toute intervention. [à confirmer]',
+      'Cela dépend de la ville, du type de prestation et de la fréquence. Les conditions éventuelles sont indiquées clairement dans le devis, avant toute intervention.',
   },
   {
     question: 'Quel est votre délai d\'intervention ?',
     answer:
-      'Réponse sous 2 h en horaires d\'ouverture et devis sous 24 h. Le délai d\'intervention dépend du service et de la zone : en général sous 48 h pour une urgence [à confirmer], plus selon planning pour un contrat régulier.',
+      'Réponse sous 2 h en horaires d\'ouverture et devis sous 24 h. Le délai d\'intervention dépend du service, de la zone et du planning : nous vous annonçons une date au devis.',
   },
   {
     question: 'Proposez-vous les mêmes services dans toutes les villes ?',
     answer:
-      'Nos neuf services sont disponibles dans les zones desservies. Certaines prestations demandant un matériel spécifique peuvent être limitées selon l\'accès ou la distance. Nous vous le disons dès le devis. [à confirmer]',
+      'Nos neuf services sont disponibles dans les zones desservies. Certaines prestations demandant un matériel spécifique peuvent être limitées selon l\'accès ou la distance. Nous vous le disons dès le devis.',
   },
   {
     question: 'Où êtes-vous basés ?',
     answer:
-      'À Marseille 8e (22 Traverse Pupat). Nos horaires d\'accueil sont du lundi au samedi, de 8 h à 18 h, et nous intervenons de 6 h à 22 h, 7 j/7, dans le cadre de contrats sur mesure [à confirmer].',
+      'À Marseille 8e (22 Traverse Pupat). Nos horaires d\'accueil sont du lundi au samedi, de 8 h à 18 h. Les créneaux d\'intervention sur site (6 h–22 h, week-end possible) se définissent au contrat.',
   },
   {
     question: 'Comment demander un devis pour ma ville ?',
@@ -211,7 +203,7 @@ export function ZonesInterventionPage() {
             <p className="text-gray-600 text-sm leading-relaxed mb-8">
               Pour chaque quartier, nous tenons compte des contraintes locales : accès difficiles dans les ruelles
               du Panier ou du Vieux-Port, stationnement en centre-ville, immeubles anciens sans ascenseur, horaires
-              de livraison <AConfirmer suffix="contraintes terrain à valider avec vous" />.
+              de livraison — nous vous les confirmons au devis.
             </p>
             <div className="flex flex-wrap gap-3">
               {MARSEILLE_GEO_LINKS.map((link) => (
@@ -249,9 +241,7 @@ export function ZonesInterventionPage() {
                     <tr key={row.sector} className="border-t border-gray-100">
                       <td className="p-3 font-medium text-gray-900">{row.sector}</td>
                       <td className="p-3 text-gray-700">{row.cities}</td>
-                      <td className="p-3 text-gray-600">
-                        <AConfirmer />
-                      </td>
+                      <td className="p-3 text-gray-600">Annoncé au devis (trajet depuis Marseille 8e)</td>
                     </tr>
                   ))}
                 </tbody>
@@ -280,9 +270,8 @@ export function ZonesInterventionPage() {
           <ScrollReveal>
             <h2 className="text-3xl font-black text-gray-900 mb-4 text-center">Nos services dans ces zones</h2>
             <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto text-sm leading-relaxed">
-              Tous nos services sont proposés sur les zones desservies{' '}
-              <AConfirmer suffix="ville par ville : certains services lourds, comme la nacelle ou les sols en marbre, peuvent être limités à certaines zones" />
-              :
+              Tous nos services sont proposés sur les zones desservies. Certains équipements lourds (nacelle,
+              marbre) peuvent être limités selon l&apos;accès : nous vous le précisons au devis :
             </p>
           </ScrollReveal>
           <ul className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
@@ -368,7 +357,7 @@ export function ZonesInterventionPage() {
           <h2 className="text-2xl font-black text-gray-900 mb-4">Votre commune n&apos;est pas dans la liste ?</h2>
           <p className="text-gray-600 leading-relaxed mb-6">
             Appelez-nous. Selon la distance et le type de prestation, nous étudions les interventions ponctuelles
-            hors de ces zones <AConfirmer suffix="périmètre et conditions à préciser" />.
+            hors de ces zones — périmètre et conditions précisés au devis.
           </p>
           <Button asChild variant="outline" className="border-green-600 text-green-700 font-bold">
             <a href={PHONE_HREF} aria-label={ARIA_PHONE}>

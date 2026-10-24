@@ -18,6 +18,7 @@ MIN_TEXT_LEN=800
 
 SSG_ROUTES=(
   "/"
+  "/realisations"
   "/services"
   "/services/entretien-bureaux"
   "/services/nettoyage-commerces"
@@ -119,7 +120,10 @@ check_url() {
   else
     local expected="${BASE_URL}${path}"
     [[ "$path" == "/" ]] && expected="${BASE_URL}/"
-    if [[ "$canonical" != "$expected" && "$canonical" != "${expected%/}" ]]; then
+    if [[ "$canonical" == *"?"* ]]; then
+      url_ok=false
+      url_issues+=("canonical contient des query params")
+    elif [[ "$canonical" != "$expected" && "$canonical" != "${expected%/}" ]]; then
       url_ok=false
       url_issues+=("canonical mismatch: $canonical")
     fi
