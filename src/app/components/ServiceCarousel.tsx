@@ -274,9 +274,9 @@ export function ServiceCarousel() {
     >
 
       {/* ── MOBILE : scroll horizontal natif (inchangé) ── */}
-      <div className="md:hidden -mx-4 px-4 pb-2 flex overflow-x-auto snap-x snap-mandatory gap-3 overscroll-x-contain scroll-px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="md:hidden -mx-4 px-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-3 overscroll-x-contain scroll-px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-w-[100vw]">
         {services.map((service) => (
-          <div key={service.title} className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center">
+          <div key={service.title} className="flex-shrink-0 w-[88%] max-w-sm snap-center">
             <MobileServiceCard service={service} />
           </div>
         ))}

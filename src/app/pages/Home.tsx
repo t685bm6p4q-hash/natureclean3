@@ -384,10 +384,10 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           3. POURQUOI NOUS CHOISIR — 6 avantages
           ═══════════════════════════════════════════ */}
-      <section className="pt-16 pb-16 md:py-20 bg-white max-md:pb-[7.5rem]">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <div className="text-center mb-12 max-w-3xl mx-auto max-md:scroll-mt-24">
+            <div className="text-center mb-12 max-w-3xl mx-auto">
               <span className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
                 Nos engagements

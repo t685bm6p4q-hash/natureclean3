@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Outlet, ScrollRestoration, useLocation, Link } from 'react-router';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
@@ -7,6 +7,7 @@ import { AuthProvider } from '@/app/contexts/AuthContext';
 import { usePageJourney } from '@/app/hooks/usePageJourney';
 import { IMAGES } from '@/app/utils/images';
 import { isMobileStickyBarHidden } from '@/app/components/MobileStickyBar';
+import { NCM_MOBILE_SCROLL_ID, scrollLayoutToTop } from '@/app/utils/mobileSticky';
 
 // Lazy-load non-critical layout components — hors du bundle critique
 const WhatsAppButton  = lazy(() => import('@/app/components/WhatsAppButton').then(m => ({ default: m.WhatsAppButton })));
@@ -51,24 +52,29 @@ export function RootLayout() {
   usePageJourney();
   const { pathname } = useLocation();
   const isDevis = pathname.startsWith('/devis');
-  const reserveMobileStickySpace = !isDevis && !isMobileStickyBarHidden(pathname);
+  const useMobileScrollPort = !isDevis && !isMobileStickyBarHidden(pathname);
+
+  useEffect(() => {
+    scrollLayoutToTop(useMobileScrollPort);
+  }, [pathname, useMobileScrollPort]);
 
   return (
     <AuthProvider>
       <SkipToContent />
       <div
         className={
-          reserveMobileStickySpace ? 'min-h-screen bg-white ncm-sticky-offset' : 'min-h-screen bg-white'
+          useMobileScrollPort ? 'min-h-screen bg-white ncm-sticky-offset' : 'min-h-screen bg-white'
         }
       >
-        {isDevis ? <DevisHeader /> : <Header />}
         <div
+          id={useMobileScrollPort ? NCM_MOBILE_SCROLL_ID : undefined}
           className={
-            reserveMobileStickySpace
-              ? 'max-md:pb-[calc(5.75rem+env(safe-area-inset-bottom,0px))]'
+            useMobileScrollPort
+              ? 'max-md:fixed max-md:inset-x-0 max-md:top-0 max-md:z-0 max-md:overflow-y-auto max-md:overscroll-y-contain max-md:touch-pan-y max-md:h-[calc(100dvh-var(--ncm-mobile-cta-h))] md:relative md:h-auto md:overflow-visible'
               : undefined
           }
         >
+          {isDevis ? <DevisHeader /> : <Header />}
           <main id="main-content" tabIndex={-1}>
             <Suspense fallback={<LoadingFallback />}>
               <Outlet />
