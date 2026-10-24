@@ -2,5 +2,12 @@
 @import './tailwind.css';
 @import './theme.css';
 @import './dropdown.css';
+
+/* Réserve d’espace sous le contenu quand la barre sticky mobile (Appeler / Devis) est active */
+@media (max-width: 767px) {
+  .ncm-sticky-offset #main-content {
+    scroll-padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
 /* slick-minimal.css est chargé directement dans ServiceCarousel.tsx
    → sort du bundle CSS critique, ne bloque plus le FCP/LCP */

@@ -3,6 +3,13 @@ import { Phone, FileText } from 'lucide-react';
 import { Link, useLocation } from 'react-router';
 import { PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
 
+const HIDDEN_PREFIXES = ['/devis', '/contact', '/merci', '/admin'] as const;
+
+/** Formulaires et admin : pas de barre sticky (évite le chevauchement avec les champs). */
+export function isMobileStickyBarHidden(pathname: string): boolean {
+  return HIDDEN_PREFIXES.some((p) => pathname.startsWith(p));
+}
+
 /**
  * Sticky CTA bar — visible uniquement sur mobile.
  * Apparaît après 350px de scroll, se masque sur /devis et /contact
@@ -15,10 +22,7 @@ export function MobileStickyBar() {
   const [show, setShow] = useState(false);
   const { pathname } = useLocation();
 
-  // Pages où la barre est masquée (formulaires, merci, admin)
-  const hidden = ['/devis', '/contact', '/merci', '/admin'].some((p) =>
-    pathname.startsWith(p)
-  );
+  const hidden = isMobileStickyBarHidden(pathname);
 
   useEffect(() => {
     if (hidden) {
@@ -39,7 +43,7 @@ export function MobileStickyBar() {
 
   return (
     <div
-      className="fixed bottom-0 inset-x-0 z-40 md:hidden"
+      className="fixed bottom-0 inset-x-0 z-40 md:hidden pb-[env(safe-area-inset-bottom,0px)]"
       role="complementary"
       aria-label="Actions rapides"
     >

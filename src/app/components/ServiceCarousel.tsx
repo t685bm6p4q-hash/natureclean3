@@ -152,7 +152,7 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
   const IconComponent = service.icon;
   const imgSrc = SERVICE_IMAGES[service.link] || '';
   return (
-    <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md flex flex-col h-full">
+    <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md flex flex-col h-full min-w-0 w-full max-w-full">
       <div className="relative h-44 flex-shrink-0 overflow-hidden">
         <ImageWithFallback
           src={getOptimizedCldUrl(imgSrc, 600)}
@@ -172,7 +172,7 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
           </div>
         </div>
       </div>
-      <div className="p-4 flex flex-col flex-grow">
+      <div className="p-4 flex flex-col flex-grow min-w-0">
         <h3 className="font-bold text-gray-900 mb-1.5">{service.title}</h3>
         <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-2 flex-grow">
           {service.description}

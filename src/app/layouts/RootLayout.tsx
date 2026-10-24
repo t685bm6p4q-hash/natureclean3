@@ -6,10 +6,13 @@ import { SkipToContent } from '@/app/components/SkipToContent';
 import { AuthProvider } from '@/app/contexts/AuthContext';
 import { usePageJourney } from '@/app/hooks/usePageJourney';
 import { IMAGES } from '@/app/utils/images';
+import { isMobileStickyBarHidden } from '@/app/components/MobileStickyBar';
 
 // Lazy-load non-critical layout components — hors du bundle critique
 const WhatsAppButton  = lazy(() => import('@/app/components/WhatsAppButton').then(m => ({ default: m.WhatsAppButton })));
-const MobileStickyBar = lazy(() => import('@/app/components/MobileStickyBar').then(m => ({ default: m.MobileStickyBar })));
+const MobileStickyBar = lazy(() =>
+  import('@/app/components/MobileStickyBar').then((m) => ({ default: m.MobileStickyBar }))
+);
 const CookieConsentBanner = lazy(() => import('@/app/components/CookieConsentBanner').then(m => ({ default: m.CookieConsentBanner })));
 
 function LoadingFallback() {
@@ -48,18 +51,31 @@ export function RootLayout() {
   usePageJourney();
   const { pathname } = useLocation();
   const isDevis = pathname.startsWith('/devis');
+  const reserveMobileStickySpace = !isDevis && !isMobileStickyBarHidden(pathname);
 
   return (
     <AuthProvider>
       <SkipToContent />
-      <div className="min-h-screen bg-white">
+      <div
+        className={
+          reserveMobileStickySpace ? 'min-h-screen bg-white ncm-sticky-offset' : 'min-h-screen bg-white'
+        }
+      >
         {isDevis ? <DevisHeader /> : <Header />}
-        <main id="main-content" tabIndex={-1}>
-          <Suspense fallback={<LoadingFallback />}>
-            <Outlet />
-          </Suspense>
-        </main>
-        {!isDevis && <Footer />}
+        <div
+          className={
+            reserveMobileStickySpace
+              ? 'max-md:pb-[calc(5.75rem+env(safe-area-inset-bottom,0px))]'
+              : undefined
+          }
+        >
+          <main id="main-content" tabIndex={-1}>
+            <Suspense fallback={<LoadingFallback />}>
+              <Outlet />
+            </Suspense>
+          </main>
+          {!isDevis && <Footer />}
+        </div>
         <Suspense fallback={null}>
           {!isDevis && <MobileStickyBar />}
           {isDevis && <WhatsAppButton />}
