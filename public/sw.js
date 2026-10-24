@@ -9,7 +9,7 @@
  * meme sans connexion (tunnel, metro, zone blanche).
  */
 
-const CACHE_VERSION = 'nc-v5';
+const CACHE_VERSION = 'nc-v6';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -40,10 +40,33 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter((name) => name.startsWith('nc-') && name !== STATIC_CACHE && name !== DYNAMIC_CACHE && name !== IMAGE_CACHE)
+          .filter(
+            (name) =>
+              name.startsWith('nc-') &&
+              name !== STATIC_CACHE &&
+              name !== DYNAMIC_CACHE &&
+              name !== IMAGE_CACHE
+          )
           .map((name) => caches.delete(name))
       );
-    }).then(() => self.clients.claim())
+    })
+      .then(() => caches.open(STATIC_CACHE))
+      .then((cache) => cache.keys())
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((req) => {
+              try {
+                const p = new URL(req.url).pathname;
+                return p.startsWith('/assets/') || p.endsWith('.js') || p.endsWith('.css');
+              } catch {
+                return false;
+              }
+            })
+            .map((req) => caches.delete(req))
+        )
+      )
+      .then(() => self.clients.claim())
   );
 });
 
@@ -71,8 +94,20 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Assets statiques (JS, CSS, fonts) : Cache-First
-  if (url.pathname.startsWith('/assets/') || url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.pathname.endsWith('.woff2')) {
+  // Service worker : toujours à jour
+  if (url.pathname === '/sw.js') {
+    event.respondWith(fetch(request));
+    return;
+  }
+
+  // Bundles Vite hashés : Network-First (évite "Importing a module script failed" après deploy)
+  if (url.pathname.startsWith('/assets/')) {
+    event.respondWith(networkFirst(request, STATIC_CACHE));
+    return;
+  }
+
+  // Fonts : Cache-First
+  if (url.pathname.endsWith('.woff2')) {
     event.respondWith(cacheFirst(request, STATIC_CACHE));
     return;
   }

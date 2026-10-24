@@ -317,8 +317,8 @@ function auditPackageJson(allFiles: string[]): Violation[] {
   const INFRA_DEPS = new Set([
     '@tailwindcss/vite', '@vitejs/plugin-react', 'tailwindcss', 'vite',
     'typescript', 'tsx', 'husky', 'lint-staged', 'knip',
-    '@types/react', '@types/react-dom', '@types/react-slick',
-    'tw-animate-css', 'slick-carousel', // CSS-only deps
+    '@types/react', '@types/react-dom',
+    'tw-animate-css',
   ]);
 
   for (const dep of allDeps) {

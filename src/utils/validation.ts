@@ -122,9 +122,3 @@ export function validateLeadExpressForm(data: Record<string, unknown>): {
   return { success: false, errors };
 }
 
-/** @deprecated Utiliser validateLeadExpressForm */
-export function validateQuoteForm(data: Record<string, unknown>) {
-  return validateLeadExpressForm(data);
-}
-
-export const quoteFormSchema = leadExpressSchema;

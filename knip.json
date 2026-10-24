@@ -23,12 +23,10 @@
   "ignoreDependencies": [
     "@types/react",
     "@types/react-dom",
-    "@types/react-slick",
     "typescript",
     "tsx",
     "husky",
     "lint-staged",
-    "slick-carousel",
     "@tailwindcss/vite",
     "@vitejs/plugin-react",
     "tailwindcss",

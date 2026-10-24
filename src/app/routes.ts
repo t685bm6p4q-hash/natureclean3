@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router';
 
 // Layouts
 import { RootLayout } from '@/app/layouts/RootLayout';
+import { RouteErrorFallback } from '@/app/components/RouteErrorFallback';
 
 // Fallback component
 function RouteFallback() {
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     Component: RootLayout,
+    errorElement: createElement(RouteErrorFallback),
     HydrateFallback: RouteFallback,
     children: [
       { index: true, Component: Home },

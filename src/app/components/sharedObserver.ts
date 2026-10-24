@@ -5,7 +5,7 @@
  * un fichier .tsx ne doit exporter QUE des composants React.
  * Les fonctions utilitaires vivent ici (fichier .ts pur, sans JSX).
  *
- * Utilisé par : ScrollReveal.tsx, AnimatedCounter.tsx
+ * Utilisé par : ScrollReveal.tsx
  */
 
 const callbacks = new Map<Element, () => void>();
