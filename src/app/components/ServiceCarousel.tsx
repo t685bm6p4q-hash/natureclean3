@@ -147,41 +147,28 @@ const CARDS_VISIBLE = 3;
 const TOTAL_CARDS   = services.length;
 const MAX_SLIDE     = TOTAL_CARDS - CARDS_VISIBLE;
 
-/** Vignettes carrousel — WebP eco (mobile : 320–400 px max, pas de 900w). */
-const CARD_IMG_MOBILE = { widths: [320, 400] as const, q: 'auto:eco', fmt: 'webp' as const };
+/** Vignettes carrousel — WebP eco + srcset DPR (400 / 640 / 900). */
+const CARD_IMG_MOBILE = { widths: [400, 640, 900] as const, q: 'auto:eco', fmt: 'webp' as const };
 const CARD_IMG_DESKTOP = { widths: [400, 640, 900] as const, q: 'auto:eco', fmt: 'webp' as const };
 
 /* ─── Carte mobile ──────────────────────────────────────── */
-function MobileServiceCard({
-  service,
-  isFirstVisible,
-}: {
-  service: ServiceCard;
-  /** Première carte du scroll horizontal — seule avec srcSet (Lighthouse ~127 Kio). */
-  isFirstVisible?: boolean;
-}) {
+function MobileServiceCard({ service }: { service: ServiceCard }) {
   const IconComponent = service.icon;
   const imgSrc = SERVICE_IMAGES[service.link] || '';
-  const mobileSrc = getOptimizedCldUrl(imgSrc, 400, CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt);
   return (
-    <article className="ncm-svc-mobile-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md flex flex-col h-full min-w-0 w-full max-w-full">
+    <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md flex flex-col h-full min-w-0 w-full max-w-full">
       <div className="relative h-44 flex-shrink-0 overflow-hidden">
         <ImageWithFallback
-          src={mobileSrc}
-          {...(isFirstVisible
-            ? {
-                srcSet: cldSrcSet(imgSrc, [...CARD_IMG_MOBILE.widths], CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt),
-                sizes: '88vw',
-              }
-            : {})}
+          src={getOptimizedCldUrl(imgSrc, 640, CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
+          srcSet={cldSrcSet(imgSrc, [...CARD_IMG_MOBILE.widths], CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
+          sizes="(max-width: 768px) 88vw, 75vw"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
-          loading={isFirstVisible ? 'eager' : 'lazy'}
+          loading="lazy"
           decoding="async"
           width={400}
           height={176}
-          {...(!isFirstVisible ? { fetchPriority: 'low' as const } : {})}
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-14 h-14 bg-white/95 rounded-2xl flex items-center justify-center shadow-xl">
@@ -292,9 +279,9 @@ export function ServiceCarousel() {
 
       {/* ── MOBILE : scroll horizontal natif (inchangé) ── */}
       <div className="md:hidden -mx-4 px-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-3 overscroll-x-contain scroll-px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-w-[100vw]">
-        {services.map((service, index) => (
+        {services.map((service) => (
           <div key={service.title} className="flex-shrink-0 w-[88%] max-w-sm snap-center">
-            <MobileServiceCard service={service} isFirstVisible={index === 0} />
+            <MobileServiceCard service={service} />
           </div>
         ))}
       </div>

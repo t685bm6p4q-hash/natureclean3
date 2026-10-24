@@ -34,35 +34,32 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: true,
-    modulePreload: { polyfill: false },
     rollupOptions: {
       output: {
         // Découpage manuel pour sortir les grosses librairies du bundle principal
         // → réduit le JS critique qui bloque le thread principal (TBT)
         manualChunks(id) {
-          if (id.includes('/node_modules/react/') ||
+          // React core → chunk stable, mis en cache indépendamment
+          if (
+            id.includes('/node_modules/react/') ||
             id.includes('/node_modules/react-dom/') ||
-            id.includes('/node_modules/scheduler/')) {
+            id.includes('/node_modules/scheduler/')
+          ) {
             return 'vendor-react';
           }
+          // React Router
           if (id.includes('/node_modules/react-router')) {
             return 'vendor-router';
           }
+          // Radix UI primitives (utilisés par shadcn/ui)
+          // Chunk SÉPARÉ intentionnellement : produit des tâches JS plus courtes
+          // → chaque chunk < 50ms de parse → contribue moins au TBT
           if (id.includes('/node_modules/@radix-ui/')) {
             return 'vendor-radix';
           }
+          // lucide-react est lourd (icônes SVG) — chunk séparé
           if (id.includes('/node_modules/lucide-react')) {
             return 'vendor-lucide';
-          }
-          if (
-            id.includes('/node_modules/clsx/') ||
-            id.includes('/node_modules/class-variance-authority/') ||
-            id.includes('/node_modules/tailwind-merge/')
-          ) {
-            return 'vendor-ui-utils';
-          }
-          if (id.includes('/node_modules/zod/')) {
-            return 'vendor-zod';
           }
         },
       },

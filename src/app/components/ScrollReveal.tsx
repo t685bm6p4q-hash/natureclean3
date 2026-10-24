@@ -61,20 +61,9 @@ export function ScrollReveal({
       return;
     }
 
-    const register = () => registerObserverCallback(el, show);
-    const cancelRegister = () => unregisterObserverCallback(el);
+    registerObserverCallback(el, show);
 
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    if (isMobile && 'requestIdleCallback' in window) {
-      const idleId = window.requestIdleCallback(register, { timeout: 1500 });
-      return () => {
-        window.cancelIdleCallback(idleId);
-        cancelRegister();
-      };
-    }
-
-    register();
-    return cancelRegister;
+    return () => unregisterObserverCallback(el);
   }, [eager]);
 
   const style: CSSProperties = eager

@@ -3,7 +3,7 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { Link } from 'react-router';
 import { ArrowRight, Phone, Clock, Shield } from 'lucide-react';
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
-import { cldAutoContentAttrs } from '@/app/utils/images';
+import { cldSrcSet } from '@/app/utils/images';
 
 interface ConversionBreakProps {
   image: string;
@@ -34,7 +34,9 @@ export function ConversionBreak({
   return (
     <section className="relative py-14 md:py-20 overflow-hidden min-h-[320px] flex items-end">
       <ImageWithFallback
-        {...cldAutoContentAttrs(image, '100vw')}
+        src={image}
+        srcSet={cldSrcSet(image, [400, 850, 1200, 1920])}
+        sizes="100vw"
         alt={imageAlt}
         aria-hidden="true"
         className={`absolute inset-0 w-full h-full object-cover ${objectPosition || ''}`}

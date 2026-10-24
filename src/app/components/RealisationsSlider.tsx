@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { cldAutoContentAttrs } from '@/app/utils/images';
+import { cldSrcSet } from '@/app/utils/images';
 
 interface Realisation {
   title: string;
@@ -43,18 +43,19 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
         {visible.map(({ data: real, key }, i) => (
           <article
             key={`${key}-${i}`}
-            className={`group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${i > 0 ? 'hidden md:block' : ''}`}
+            className="group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           >
             <div className="relative h-52 overflow-hidden">
               <ImageWithFallback
-                {...cldAutoContentAttrs(real.image, '(max-width: 768px) 100vw, 400px')}
+                src={real.image}
                 alt={real.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                srcSet={cldSrcSet(real.image, [320, 480, 640])}
+                sizes="(max-width: 768px) 100vw, 400px"
                 width={400}
                 height={208}
                 loading="lazy"
                 decoding="async"
-                fetchPriority="low"
               />
               <div className="absolute top-3 left-3">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
