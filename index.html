@@ -11,6 +11,9 @@
          NE PAS ajouter box-sizing ni resets ici : Tailwind preflight les gère déjà
          et les dupliquer force des recalculs de style sur chaque élément du DOM. */
       html,body{background:#111827}
+      /* Hero LCP statique — visible avant React (Moto G : -2 s de render delay) */
+      #ncm-lcp-hero{position:fixed;top:0;left:0;width:100%;height:max(420px,58vh);object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}
+      #root{position:relative;z-index:1;min-height:100vh}
     </style>
     <link rel="icon" type="image/png" sizes="64x64" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_64,h_64,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_32,h_32,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
@@ -112,6 +115,7 @@
           Toute divergence de format/qualité/largeur = cache MISS = LCP inchangé.
     -->
     <img
+      id="ncm-lcp-hero"
       src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
       srcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
       sizes="100vw"
@@ -120,7 +124,6 @@
       decoding="async"
       alt=""
       aria-hidden="true"
-      style="position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;z-index:-9999;"
     />
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

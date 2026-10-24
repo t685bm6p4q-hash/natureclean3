@@ -3,6 +3,7 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { vitePrerenderPlugin } from './scripts/vite-plugin-prerender'
+import { viteModulePreloadPlugin } from './scripts/vite-plugin-modulepreload'
 
 
 function figmaAssetResolver() {
@@ -25,6 +26,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     vitePrerenderPlugin(),
+    viteModulePreloadPlugin(),
   ],
   resolve: {
     alias: {

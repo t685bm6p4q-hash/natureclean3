@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useLayoutEffect } from 'react';
 import { Link } from 'react-router';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import {
@@ -244,6 +244,10 @@ const cardBgs = [
 ];
 
 export function Home() {
+  useLayoutEffect(() => {
+    document.getElementById('ncm-lcp-hero')?.remove();
+  }, []);
+
   return (
     <>
       <SEO_Guardian currentSection="home" faqItems={[...HOME_FAQ, ...DIOGENE_HOME_FAQ]} />
@@ -358,7 +362,7 @@ export function Home() {
           ══════════════════════════════════════════ */}
       <section className="py-16 md:py-20 bg-gray-50 overflow-x-clip ncm-below-fold">
         <div className="container mx-auto px-4">
-          <ScrollReveal>
+          <ScrollReveal eager>
             <div className="text-center mb-12">
               <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 <Sparkles className="w-4 h-4" aria-hidden="true" />
@@ -373,9 +377,7 @@ export function Home() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.15}>
-            <ServiceCarousel />
-          </ScrollReveal>
+          <ServiceCarousel />
 
           <ScrollReveal delay={0.3}>
             <div className="text-center mt-12">

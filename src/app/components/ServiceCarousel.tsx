@@ -147,6 +147,10 @@ const CARDS_VISIBLE = 3;
 const TOTAL_CARDS   = services.length;
 const MAX_SLIDE     = TOTAL_CARDS - CARDS_VISIBLE;
 
+/** Vignettes carrousel — WebP + qualité basse (Lighthouse mobile : -127 Ko vs f_auto). */
+const CARD_IMG_MOBILE = { w: 400, q: 35, fmt: 'webp' as const };
+const CARD_IMG_DESKTOP = { w: 500, q: 40, fmt: 'webp' as const };
+
 /* ─── Carte mobile ──────────────────────────────────────── */
 function MobileServiceCard({ service }: { service: ServiceCard }) {
   const IconComponent = service.icon;
@@ -155,8 +159,8 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
     <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md flex flex-col h-full min-w-0 w-full max-w-full">
       <div className="relative h-44 flex-shrink-0 overflow-hidden">
         <ImageWithFallback
-          src={getOptimizedCldUrl(imgSrc, 600)}
-          srcSet={cldSrcSet(imgSrc, [300, 450, 600])}
+          src={getOptimizedCldUrl(imgSrc, CARD_IMG_MOBILE.w, CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
+          srcSet={cldSrcSet(imgSrc, [200, 300, 400], CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
           sizes="(max-width: 768px) 88vw, 75vw"
           alt=""
           aria-hidden="true"
@@ -168,7 +172,7 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-14 h-14 bg-white/95 rounded-2xl flex items-center justify-center shadow-xl">
-            <IconComponent className="w-7 h-7 text-green-600" aria-hidden="true" />
+            <IconComponent className="w-7 h-7 text-green-700" aria-hidden="true" />
           </div>
         </div>
       </div>
@@ -186,7 +190,7 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
           aria-label={service.cta}
           className="mt-auto inline-flex w-full min-h-[44px] items-center justify-center gap-2 rounded-xl bg-green-700 px-3 py-2.5 text-sm font-semibold text-white hover:bg-green-800 transition-colors"
         >
-          En savoir plus
+          {service.cta}
           <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
         </Link>
       </div>
@@ -203,8 +207,8 @@ function DesktopServiceCard({ service }: { service: ServiceCard }) {
         <CardContent className="p-0 flex flex-col h-full">
           <div className="relative h-40 flex-shrink-0 overflow-hidden">
             <ImageWithFallback
-              src={getOptimizedCldUrl(imgSrc, 600)}
-              srcSet={cldSrcSet(imgSrc, [300, 450, 600])}
+              src={getOptimizedCldUrl(imgSrc, CARD_IMG_DESKTOP.w, CARD_IMG_DESKTOP.q, CARD_IMG_DESKTOP.fmt)}
+              srcSet={cldSrcSet(imgSrc, [300, 400, 500], CARD_IMG_DESKTOP.q, CARD_IMG_DESKTOP.fmt)}
               sizes="(max-width: 1024px) 50vw, 33vw"
               alt=""
               aria-hidden="true"

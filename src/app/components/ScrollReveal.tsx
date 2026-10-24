@@ -26,6 +26,8 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   className?: string;
+  /** Pas d’animation ni de lecture layout — contenu visible dès le premier paint (perf mobile). */
+  eager?: boolean;
 }
 
 const transforms: Record<string, string> = {
@@ -41,31 +43,15 @@ export function ScrollReveal({
   delay = 0,
   duration = 0.5,
   className = '',
+  eager = false,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (eager) return;
+
     const el = ref.current;
     if (!el) return;
-
-    // PHASE LECTURE SEULE — getBoundingClientRect sans écriture immédiate.
-    // Tous les useEffect ScrollReveal lisent le layout dans le même frame → pas
-    // d'invalidation entre lectures → layout calculé une seule fois (O(1) ensuite).
-    // Sans ce découplage, chaque écriture style.opacity='1' invalide le layout pour
-    // le composant suivant → layout thrashing × N composants → TBT +250 ms.
-    const rect = el.getBoundingClientRect();
-    const isAboveFold = rect.top < window.innerHeight && rect.bottom > 0;
-
-    if (isAboveFold) {
-      // PHASE ÉCRITURE différée — requestAnimationFrame regroupe toutes les écritures
-      // en un seul batch après que TOUS les useEffects ont lu le layout.
-      const raf = requestAnimationFrame(() => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        el.style.transition = 'none';
-      });
-      return () => cancelAnimationFrame(raf);
-    }
 
     registerObserverCallback(el, () => {
       el.style.opacity = '1';
@@ -73,15 +59,15 @@ export function ScrollReveal({
     });
 
     return () => unregisterObserverCallback(el);
-  }, []);
+  }, [eager]);
 
-  // Style initial figé — aucune condition, aucun switch d'objet entre renders.
-  // React ne voit jamais ce prop changer → zéro "static flag" mismatch.
-  const style: CSSProperties = {
-    opacity: 0,
-    transform: transforms[direction],
-    transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
-  };
+  const style: CSSProperties = eager
+    ? {}
+    : {
+        opacity: 0,
+        transform: transforms[direction],
+        transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
+      };
 
   return (
     <div

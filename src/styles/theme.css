@@ -205,6 +205,15 @@
   will-change: transform, opacity;
 }
 
+@media (max-width: 767px) {
+  .ncm-hero-fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}
+
 .ncm-cookie-slide-in {
   animation: ncm-cookie-slide-in-kf 0.4s ease-out forwards;
   will-change: transform, opacity;
