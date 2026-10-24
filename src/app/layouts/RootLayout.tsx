@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Outlet, ScrollRestoration, useLocation, Link } from 'react-router';
 import { Header } from '@/app/components/Header';
-import { Footer } from '@/app/components/Footer';
+import { Footer, isMobileFooterDevisBarVisible } from '@/app/components/Footer';
 import { SkipToContent } from '@/app/components/SkipToContent';
 import { AuthProvider } from '@/app/contexts/AuthContext';
 import { usePageJourney } from '@/app/hooks/usePageJourney';
@@ -47,13 +47,22 @@ export function RootLayout() {
   usePageJourney();
   const { pathname } = useLocation();
   const isDevis = pathname.startsWith('/devis');
+  const mobileDevisBar = !isDevis && isMobileFooterDevisBarVisible(pathname);
 
   return (
     <AuthProvider>
       <SkipToContent />
       <div className="min-h-screen bg-white">
         {isDevis ? <DevisHeader /> : <Header />}
-        <main id="main-content" tabIndex={-1}>
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className={
+            mobileDevisBar
+              ? 'max-md:pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))]'
+              : undefined
+          }
+        >
           <Suspense fallback={<LoadingFallback />}>
             <Outlet />
           </Suspense>

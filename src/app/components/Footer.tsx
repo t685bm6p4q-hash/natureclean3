@@ -1,13 +1,23 @@
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { IMAGES, cldResize } from '@/app/utils/images';
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, FOUNDING_YEAR } from '@/app/utils/constants';
 import {
   MapPin, Phone, Mail, Clock, Leaf,
-  ChevronRight, Shield, Star,
+  ChevronRight, Shield, Star, FileText,
 } from 'lucide-react';
 
+const MOBILE_DEVIS_BAR_HIDDEN = ['/devis', '/contact', '/merci', '/admin'] as const;
+
+export function isMobileFooterDevisBarVisible(pathname: string): boolean {
+  return !MOBILE_DEVIS_BAR_HIDDEN.some((p) => pathname.startsWith(p));
+}
+
 export function Footer() {
+  const { pathname } = useLocation();
+  const showMobileDevisBar = isMobileFooterDevisBarVisible(pathname);
+
   return (
+    <>
     <footer className="bg-gray-900 text-gray-300">
       {/* ═══ BANDE CTA PRE-FOOTER ═══ */}
       <div className="bg-gradient-to-r from-green-600 to-green-700">
@@ -26,7 +36,7 @@ export function Footer() {
                 to="/devis"
                 className="inline-flex items-center justify-center gap-2 bg-white text-green-700 px-6 py-3 rounded-xl font-bold hover:bg-green-50 transition-colors shadow-lg"
               >
-                Demander un devis
+                Demander un devis gratuit
                 <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Link>
               <a
@@ -144,6 +154,13 @@ export function Footer() {
           {/* Colonne 4 : Contact + Zone */}
           <div>
             <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
+            <Link
+              to="/devis"
+              className="mb-4 flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-green-500 md:max-w-xs"
+            >
+              <FileText className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Demander un devis gratuit
+            </Link>
             <div className="space-y-3 mb-6">
               <a
                 href={PHONE_HREF}
@@ -286,5 +303,22 @@ export function Footer() {
         </div>
       </div>
     </footer>
+
+    {showMobileDevisBar && (
+      <div
+        className="fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-gray-900 px-4 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden"
+        role="complementary"
+        aria-label="Demande de devis"
+      >
+        <Link
+          to="/devis"
+          className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-green-500 text-sm font-black text-gray-900 shadow-lg shadow-green-500/20 transition-colors hover:bg-green-400"
+        >
+          <FileText className="h-5 w-5 shrink-0" aria-hidden="true" />
+          Demander un devis gratuit
+        </Link>
+      </div>
+    )}
+    </>
   );
 }
