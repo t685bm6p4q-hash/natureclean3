@@ -332,79 +332,6 @@ export function Header() {
                     </div>
                   </div>
               </li>
-
-              {/* Dropdown "Plus" pour pages secondaires */}
-              <li
-                className="relative"
-                ref={dropdownRef}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button
-                  onClick={() => setPlusOpen((v) => !v)}
-                  className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors min-h-[44px] ${
-                    isSecondaryActive
-                      ? 'text-green-700 bg-green-50'
-                      : 'text-gray-600 hover:text-green-700 hover:bg-gray-50'
-                  }`}
-                  aria-expanded={plusOpen}
-                  aria-haspopup="true"
-                >
-                  <MoreHorizontal className="w-4 h-4" aria-hidden="true" />
-                  <span className="font-medium text-sm">Plus</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${plusOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-                </button>
-
-                {/* ══ DROPDOWN "Plus" — avec vignettes AVIF ═══ */}
-                <div
-                  className={`absolute top-full left-0 mt-1.5 w-80 rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
-                    plusOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
-                  }`}
-                  aria-hidden={!plusOpen}
-                >
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-2xl">
-                    <ul className="relative p-2 space-y-0.5 list-none">
-                      {secondaryPages.map((page) => (
-                        <li key={page.href}>
-                          <Link
-                            to={page.href}
-                            className={`flex items-center gap-3 px-2.5 py-2.5 rounded-lg transition-all group min-h-[44px] ${
-                              isActive(page.href) ? 'bg-green-500/15 text-green-700' : 'hover:bg-white/50'
-                            }`}
-                          >
-                            {/* Vignette AVIF */}
-                            <img
-                              src={getOptimizedCldUrl(page.thumb, 96)}
-                              alt=""
-                              width="48"
-                              height="48"
-                              className="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-white/60 group-hover:border-green-300/60 transition-colors shadow-sm"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-sm text-gray-900">{page.label}</div>
-                              <div className="text-xs text-gray-500 mt-0.5">{page.desc}</div>
-                            </div>
-                            <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-green-500 transition-colors flex-shrink-0" />
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* CTA integre au dropdown */}
-                    <div className="relative px-2 py-2 border-t border-white/30">
-                      <Link
-                        to="/services"
-                        className="flex items-center justify-between px-3 py-2.5 text-sm font-medium text-white bg-green-700 hover:bg-green-800 rounded-lg transition-colors shadow-sm min-h-[44px]"
-                      >
-                        Voir tous nos services
-                        <ChevronRight className="w-4 h-4 text-white" />
-                      </Link>
-                    </div>
-                    </div>
-                  </div>
-              </li>
             </ul>
 
             <span className="w-px h-6 bg-gray-200 shrink-0" aria-hidden="true" />
@@ -427,10 +354,99 @@ export function Header() {
                   </Link>
                 </li>
               ))}
+
+              {/* Dropdown "Plus" — après Diogène */}
+              <li
+                className="relative"
+                ref={dropdownRef}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  onClick={() => setPlusOpen((v) => !v)}
+                  className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors min-h-[44px] ${
+                    isSecondaryActive
+                      ? 'text-green-700 bg-green-50'
+                      : 'text-gray-600 hover:text-green-700 hover:bg-gray-50'
+                  }`}
+                  aria-expanded={plusOpen}
+                  aria-haspopup="true"
+                >
+                  <MoreHorizontal className="w-4 h-4" aria-hidden="true" />
+                  <span className="font-medium text-sm">Plus</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${plusOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                </button>
+
+                <div
+                  className={`absolute top-full right-0 mt-1.5 w-80 rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
+                    plusOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
+                  }`}
+                  aria-hidden={!plusOpen}
+                >
+                    <div className="bg-white rounded-xl border border-gray-100 shadow-2xl">
+                    <ul className="relative p-2 space-y-0.5 list-none">
+                      {secondaryPages.map((page) => (
+                        <li key={page.href}>
+                          <Link
+                            to={page.href}
+                            className={`flex items-center gap-3 px-2.5 py-2.5 rounded-lg transition-all group min-h-[44px] ${
+                              isActive(page.href) ? 'bg-green-500/15 text-green-700' : 'hover:bg-white/50'
+                            }`}
+                          >
+                            <img
+                              src={getOptimizedCldUrl(page.thumb, 96)}
+                              alt=""
+                              width="48"
+                              height="48"
+                              className="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-white/60 group-hover:border-green-300/60 transition-colors shadow-sm"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-sm text-gray-900">{page.label}</div>
+                              <div className="text-xs text-gray-500 mt-0.5">{page.desc}</div>
+                            </div>
+                            <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-green-500 transition-colors flex-shrink-0" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="relative px-2 py-2 border-t border-white/30">
+                      <Link
+                        to="/services"
+                        className="flex items-center justify-between px-3 py-2.5 text-sm font-medium text-white bg-green-700 hover:bg-green-800 rounded-lg transition-colors shadow-sm min-h-[44px]"
+                      >
+                        Voir tous nos services
+                        <ChevronRight className="w-4 h-4 text-white" />
+                      </Link>
+                    </div>
+                    </div>
+                  </div>
+              </li>
             </ul>
           </nav>
 
-          {/* Mobile : menu uniquement (CTA dans le hero / footer / panneau menu) */}
+          {/* Desktop — téléphone + devis */}
+          <div className="hidden lg:flex items-center gap-2 shrink-0 ml-2">
+            <a
+              href={PHONE_HREF}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold text-green-800 border border-green-200 bg-green-50 hover:bg-green-100 transition-colors whitespace-nowrap min-h-[44px]"
+              aria-label={ARIA_PHONE}
+            >
+              <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+              {PHONE_DISPLAY}
+            </a>
+            <Link
+              to={smartDevisLink}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-white bg-green-700 hover:bg-green-800 shadow-sm transition-colors whitespace-nowrap min-h-[44px]"
+            >
+              <FileText className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+              Devis gratuit
+            </Link>
+          </div>
+
+          {/* Mobile : menu uniquement (CTA dans le panneau menu / footer) */}
           <div className="flex lg:hidden items-center shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
