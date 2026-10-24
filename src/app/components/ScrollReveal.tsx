@@ -1,19 +1,13 @@
 /**
- * ScrollReveal — Animation au scroll SANS motion library, SANS useState
- * Utilise UN SEUL IntersectionObserver partagé (singleton) + CSS transitions pures
+ * ScrollReveal — Animation au scroll SANS motion library
+ * IntersectionObserver singleton + transitions CSS via style React (jamais el.style).
  *
- * Pourquoi pas useState ?
- *   → useState déclenche un re-render React quand l'observer fire.
- *   → Figma's FGCmp inspector (preview) ne supporte pas ces re-renders conditionnels
- *     dans React 18.3.x → warning "Expected static flag was missing".
- *   → Solution : mutation directe du style via ref.current — zéro re-render,
- *     même résultat visuel, transition CSS identique.
- *
- * ⚠️  Ce fichier n'exporte QUE le composant ScrollReveal (règle Vite Fast Refresh).
- *     Les utilitaires (getSharedObserver, register/unregister) sont dans sharedObserver.ts.
+ * Hydratation SSG : le HTML prerender doit coller au 1er render client (opacity 0).
+ * Puppeteer définit window.__NC_PRERENDER pour ne pas révéler les blocs avant snapshot.
+ * Mode `eager` : visible via style React dès le 1er render (hero Home).
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ReactNode, CSSProperties } from 'react';
 import {
   registerObserverCallback,
@@ -26,7 +20,7 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   className?: string;
-  /** Pas d’animation ni de lecture layout — contenu visible dès le premier paint (perf mobile). */
+  /** Contenu visible dès le premier paint — style React explicite (hydrate-safe). */
   eager?: boolean;
 }
 
@@ -37,6 +31,10 @@ const transforms: Record<string, string> = {
   none: 'none',
 };
 
+function isPrerenderCapture(): boolean {
+  return typeof window !== 'undefined' && window.__NC_PRERENDER === true;
+}
+
 export function ScrollReveal({
   children,
   direction = 'up',
@@ -46,28 +44,27 @@ export function ScrollReveal({
   eager = false,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
+    if (eager || isPrerenderCapture()) return;
+
     const el = ref.current;
     if (!el) return;
 
-    const show = () => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    };
-
-    if (eager || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      show();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setRevealed(true);
       return;
     }
 
-    registerObserverCallback(el, show);
-
+    registerObserverCallback(el, () => setRevealed(true));
     return () => unregisterObserverCallback(el);
   }, [eager]);
 
-  const style: CSSProperties = eager
-    ? {}
+  const visible = eager || revealed;
+
+  const style: CSSProperties = visible
+    ? { opacity: 1, transform: 'none' }
     : {
         opacity: 0,
         transform: transforms[direction],
@@ -75,11 +72,7 @@ export function ScrollReveal({
       };
 
   return (
-    <div
-      ref={ref}
-      className={className}
-      style={style}
-    >
+    <div ref={ref} className={className} style={style}>
       {children}
     </div>
   );

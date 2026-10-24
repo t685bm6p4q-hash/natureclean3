@@ -24,6 +24,8 @@ interface DataLayerEvent {
 }
 
 interface Window {
+  /** true pendant la capture Puppeteer SSG — ScrollReveal reste en opacity 0 */
+  __NC_PRERENDER?: boolean;
   NatureCleanTracking?: NatureCleanTracking;
   dataLayer?: DataLayerEvent[];
   gtag?: (command: GtagCommand, ...args: (string | TrackingParams | Date)[]) => void;

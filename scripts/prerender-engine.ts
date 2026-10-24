@@ -31,6 +31,9 @@ const BLOCKED_PRERENDER_URL_PARTS = [
 ] as const;
 
 async function configurePrerenderPage(page: Page): Promise<void> {
+  await page.evaluateOnNewDocument(() => {
+    window.__NC_PRERENDER = true;
+  });
   await page.setRequestInterception(true);
   page.on('request', (request) => {
     const url = request.url();

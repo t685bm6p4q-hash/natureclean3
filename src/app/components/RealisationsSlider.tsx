@@ -85,16 +85,15 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* Points de navigation */}
-      <div className="flex items-center justify-center gap-2 mt-6">
+      {/* Points de navigation — zone tactile ≥24px, sans role=tab (pas de tablist parent) */}
+      <div className="flex items-center justify-center gap-2 mt-6" aria-label="Pagination des réalisations">
         {items.map((_, i) => (
           <button
             key={i}
             type="button"
-            role="tab"
-            aria-selected={i === current}
             onClick={() => setCurrent(i)}
             aria-label={`Aller à la réalisation ${i + 1}`}
+            aria-current={i === current ? 'true' : undefined}
             className="p-2 -m-2 flex items-center justify-center cursor-pointer group"
           >
             <span

@@ -324,7 +324,6 @@ export function Footer() {
         <div className="flex gap-3">
           <a
             href={PHONE_HREF}
-            aria-label={ARIA_PHONE}
             className="flex flex-1 min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/20"
           >
             <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />

@@ -240,7 +240,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:h-[68px] lg:py-0">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,220px)] lg:max-w-[240px]" aria-label="Nature Clean - Accueil">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,220px)] lg:max-w-[240px]">
             <img
               src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_144,h_144,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
