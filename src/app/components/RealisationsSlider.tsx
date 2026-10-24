@@ -1,7 +1,9 @@
 import { useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { cldSrcSet } from '@/app/utils/images';
+import { cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
+
+const REAL_IMG = { q: 'auto:eco' as const, fmt: 'webp' as const, widths: [320, 480, 640] as const };
 
 interface Realisation {
   title: string;
@@ -43,19 +45,20 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
         {visible.map(({ data: real, key }, i) => (
           <article
             key={`${key}-${i}`}
-            className="group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            className={`group bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${i > 0 ? 'hidden md:block' : ''}`}
           >
             <div className="relative h-52 overflow-hidden">
               <ImageWithFallback
-                src={real.image}
+                src={getOptimizedCldUrl(real.image, 480, REAL_IMG.q, REAL_IMG.fmt)}
                 alt={real.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                srcSet={cldSrcSet(real.image, [320, 480, 640])}
+                srcSet={cldSrcSet(real.image, [...REAL_IMG.widths], REAL_IMG.q, REAL_IMG.fmt)}
                 sizes="(max-width: 768px) 100vw, 400px"
                 width={400}
                 height={208}
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
               />
               <div className="absolute top-3 left-3">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
