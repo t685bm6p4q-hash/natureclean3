@@ -147,9 +147,9 @@ const CARDS_VISIBLE = 3;
 const TOTAL_CARDS   = services.length;
 const MAX_SLIDE     = TOTAL_CARDS - CARDS_VISIBLE;
 
-/** Vignettes carrousel — WebP eco + srcset DPR (400 / 640 / 900). */
-const CARD_IMG_MOBILE = { widths: [400, 640, 900] as const, q: 'auto:eco', fmt: 'webp' as const };
-const CARD_IMG_DESKTOP = { widths: [400, 640, 900] as const, q: 'auto:eco', fmt: 'webp' as const };
+/** Vignettes carrousel — WebP eco, largeurs calées sur l’affichage (~400 px max). */
+const CARD_IMG_MOBILE = { widths: [320, 400, 480] as const, q: 'auto:eco', fmt: 'webp' as const };
+const CARD_IMG_DESKTOP = { widths: [320, 400, 480] as const, q: 'auto:eco', fmt: 'webp' as const };
 
 /* ─── Carte mobile ──────────────────────────────────────── */
 function MobileServiceCard({ service }: { service: ServiceCard }) {
@@ -159,9 +159,9 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
     <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md flex flex-col h-full min-w-0 w-full max-w-full">
       <div className="relative h-44 flex-shrink-0 overflow-hidden">
         <ImageWithFallback
-          src={getOptimizedCldUrl(imgSrc, 640, CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
+          src={getOptimizedCldUrl(imgSrc, 400, CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
           srcSet={cldSrcSet(imgSrc, [...CARD_IMG_MOBILE.widths], CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
-          sizes="(max-width: 768px) 88vw, 75vw"
+          sizes="88vw"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
@@ -207,7 +207,7 @@ function DesktopServiceCard({ service }: { service: ServiceCard }) {
         <CardContent className="p-0 flex flex-col h-full">
           <div className="relative h-40 flex-shrink-0 overflow-hidden">
             <ImageWithFallback
-              src={getOptimizedCldUrl(imgSrc, 640, CARD_IMG_DESKTOP.q, CARD_IMG_DESKTOP.fmt)}
+              src={getOptimizedCldUrl(imgSrc, 400, CARD_IMG_DESKTOP.q, CARD_IMG_DESKTOP.fmt)}
               srcSet={cldSrcSet(imgSrc, [...CARD_IMG_DESKTOP.widths], CARD_IMG_DESKTOP.q, CARD_IMG_DESKTOP.fmt)}
               sizes="(max-width: 1024px) 50vw, 33vw"
               alt=""
@@ -238,7 +238,7 @@ function DesktopServiceCard({ service }: { service: ServiceCard }) {
               className="w-full max-w-full bg-green-700 hover:bg-green-800 text-sm py-2.5 mt-auto whitespace-normal h-auto min-h-11 leading-snug px-3"
               asChild
             >
-              <Link to={service.link} className="text-center line-clamp-2" aria-label={service.cta}>
+              <Link to={service.link} className="text-center line-clamp-2 text-white" aria-label={service.cta}>
                 {service.cta}
               </Link>
             </Button>
@@ -339,16 +339,21 @@ export function ServiceCarousel() {
             {Array.from({ length: MAX_SLIDE + 1 }).map((_, i) => (
               <button
                 key={i}
+                type="button"
                 role="tab"
                 aria-selected={i === current}
-                aria-label={`Groupe ${i + 1} sur ${MAX_SLIDE + 1}`}
+                aria-label={`Aller au groupe ${i + 1}`}
                 onClick={() => goTo(i)}
-                className={`rounded-full transition-all ${
-                  i === current
-                    ? 'w-6 h-2.5 bg-green-600'
-                    : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-                }`}
-              />
+                className="p-2 -m-2 flex items-center justify-center cursor-pointer group"
+              >
+                <span
+                  className={`rounded-full transition-all ${
+                    i === current
+                      ? 'w-6 h-2 bg-green-700'
+                      : 'w-2.5 h-2.5 bg-gray-300 group-hover:bg-gray-400'
+                  }`}
+                />
+              </button>
             ))}
           </div>
 

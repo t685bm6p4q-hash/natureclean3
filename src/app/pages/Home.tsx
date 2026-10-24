@@ -563,8 +563,10 @@ export function Home() {
                       Nettoyage de cabinets médicaux à Marseille
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
-                    <Link to="/services/entretien-bureaux">Nettoyage de bureaux à Marseille</Link>
+                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold text-green-800">
+                    <Link to="/services/entretien-bureaux" className="text-green-800">
+                      Nettoyage de bureaux à Marseille
+                    </Link>
                   </Button>
                 </div>
               </ScrollReveal>
@@ -628,8 +630,10 @@ export function Home() {
                       Nettoyage de fin de chantier à Marseille <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" className="border-gray-300 hover:border-amber-300 hover:bg-amber-50 font-bold">
-                    <Link to="/services/remise-etat-sols">Remise en état sols</Link>
+                  <Button asChild variant="outline" className="border-gray-300 hover:border-amber-300 hover:bg-amber-50 font-bold text-green-800">
+                    <Link to="/services/remise-etat-sols" className="text-green-800">
+                      Remise en état sols
+                    </Link>
                   </Button>
                 </div>
               </ScrollReveal>
@@ -999,8 +1003,8 @@ export function Home() {
                       Découvrir l&apos;équipe
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
-                    <Link to="/services/nettoyage-chantiers">
+                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold text-green-800">
+                    <Link to="/services/nettoyage-chantiers" className="text-green-800">
                       <HardHat className="w-4 h-4 mr-1.5" aria-hidden="true" />
                       Fin de chantier
                     </Link>

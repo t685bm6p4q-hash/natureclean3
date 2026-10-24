@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { cldSrcSet } from '@/app/utils/images';
+import { cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
 
 interface Realisation {
   title: string;
@@ -47,10 +47,10 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
           >
             <div className="relative h-52 overflow-hidden">
               <ImageWithFallback
-                src={real.image}
+                src={getOptimizedCldUrl(real.image, 400, 'auto', 'auto')}
                 alt={real.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                srcSet={cldSrcSet(real.image, [320, 480, 640])}
+                srcSet={cldSrcSet(real.image, [320, 400, 480], 'auto', 'auto')}
                 sizes="(max-width: 768px) 100vw, 400px"
                 width={400}
                 height={208}
@@ -90,14 +90,21 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
         {items.map((_, i) => (
           <button
             key={i}
+            type="button"
+            role="tab"
+            aria-selected={i === current}
             onClick={() => setCurrent(i)}
             aria-label={`Aller à la réalisation ${i + 1}`}
-            className={`rounded-full transition-all duration-300 ${
-              i === current
-                ? 'w-6 h-2.5 bg-green-600'
-                : 'w-2.5 h-2.5 bg-gray-300 hover:bg-green-300'
-            }`}
-          />
+            className="p-2 -m-2 flex items-center justify-center cursor-pointer group"
+          >
+            <span
+              className={`rounded-full transition-all duration-300 ${
+                i === current
+                  ? 'w-6 h-2 bg-green-700'
+                  : 'w-2.5 h-2.5 bg-gray-300 group-hover:bg-green-400'
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>
