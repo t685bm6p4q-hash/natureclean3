@@ -245,7 +245,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
           ══════════════════════════════════════════ */}
-      <section className="relative bg-gray-900 text-white min-h-[min(78vh,580px)] md:min-h-[min(72vh,620px)] flex flex-col justify-end overflow-hidden pb-[7.5rem] md:pb-[6.5rem]">
+      <section className="relative bg-gray-900 text-white overflow-hidden md:min-h-[36rem] md:pb-24">
         <img
           src={getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')}
           srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
@@ -260,15 +260,18 @@ export function Home() {
         />
 
         <div
-          className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/40 to-gray-900/10 md:bg-gradient-to-r md:from-gray-950/88 md:via-gray-900/45 md:to-transparent"
+          className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/50 to-gray-900/15 md:bg-gradient-to-r md:from-gray-950/88 md:via-gray-900/45 md:to-transparent"
           aria-hidden="true"
         />
 
-        <div className="container mx-auto px-4 relative z-10 w-full pt-24 md:pt-28">
+        <div className="relative z-10 container mx-auto px-4 pt-6 pb-6 md:pt-28 md:pb-10">
           <div className="max-w-lg md:max-w-2xl ncm-hero-fade-in">
             <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-4 md:mb-5">
-              <Leaf className="w-4 h-4" aria-hidden="true" />
-              Entreprise de nettoyage à Marseille depuis 2021
+              <Leaf className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <span>
+                <strong className="font-bold text-white">Nature Clean</strong>
+                {' · '}Marseille depuis 2021
+              </span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6 tracking-tight leading-[1.1] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
@@ -280,15 +283,15 @@ export function Home() {
               et dans les Bouches-du-Rhône. Réponse sous 2 h, devis gratuit sous 24 h.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-base px-8 shadow-lg shadow-green-500/25">
+            <div className="flex flex-col gap-3 sm:flex-row md:gap-4">
+              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-base px-8 shadow-lg shadow-green-500/25 w-full sm:w-auto">
                 <Link to="/devis">
                   Obtenir mon devis gratuit
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
-              <Button asChild size="lg" className="bg-white/15 backdrop-blur-sm border border-white/30 text-white hover:bg-white/25 font-semibold">
-                <a href={PHONE_HREF} className="flex items-center gap-2" aria-label={ARIA_PHONE}>
+              <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 font-semibold w-full sm:w-auto">
+                <a href={PHONE_HREF} className="flex items-center justify-center gap-2" aria-label={ARIA_PHONE}>
                   <Phone className="w-5 h-5" aria-hidden="true" />
                   <span>{PHONE_DISPLAY}</span>
                 </a>
@@ -297,19 +300,19 @@ export function Home() {
           </div>
         </div>
 
-        {/* Stats bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gray-950/75 backdrop-blur-sm border-t border-white/10">
+        {/* Stats : en flux sur mobile (évite chevauchement CTA) · fixe en bas sur desktop */}
+        <div className="relative z-10 bg-gray-950/80 backdrop-blur-sm border-t border-white/10 md:absolute md:bottom-0 md:left-0 md:right-0">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-white/10">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="flex items-center gap-3 py-4 md:py-5 px-4 md:px-6"
+                  className="flex items-center gap-2 py-3 px-2 sm:gap-3 sm:py-4 sm:px-4 md:py-5 md:px-6 min-w-0"
                 >
-                  <stat.icon className="w-5 h-5 text-green-400 flex-shrink-0" aria-hidden="true" />
-                  <div>
-                    <div className="text-white font-black text-lg md:text-xl">{stat.value}</div>
-                    <div className="text-gray-300 text-xs">{stat.label}</div>
+                  <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 shrink-0" aria-hidden="true" />
+                  <div className="min-w-0">
+                    <div className="text-white font-black text-base sm:text-lg md:text-xl leading-tight">{stat.value}</div>
+                    <div className="text-gray-300 text-[10px] sm:text-xs leading-snug">{stat.label}</div>
                   </div>
                 </div>
               ))}

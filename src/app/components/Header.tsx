@@ -192,7 +192,7 @@ export function Header() {
   const smartDevisLink = SERVICE_PAGE_DEVIS_MAP[location.pathname] ?? '/devis';
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white shadow-sm pt-[env(safe-area-inset-top,0px)]">
       {/* ═══ TOP BAR : Confiance & Contact rapide ═══ */}
       <div className="hidden lg:block bg-gray-900 text-gray-300">
         <div className="container mx-auto px-4 flex items-center justify-between h-9 text-xs">
@@ -237,20 +237,20 @@ export function Header() {
 
       {/* ═══ NAV PRINCIPALE ═══ */}
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 lg:h-[68px]">
+        <div className="flex items-center justify-between min-h-16 py-2 lg:h-[68px] lg:py-0">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group flex-shrink-0" aria-label="Nature Clean - Accueil">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 max-w-[calc(100%-7rem)] shrink" aria-label="Nature Clean - Accueil">
             <img
               src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_144,h_144,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
-              width="72"
-              height="72"
-              className="w-[72px] h-[72px] rounded-full shadow-md group-hover:shadow-lg transition-shadow object-cover bg-white ring-2 ring-white"
+              width="56"
+              height="56"
+              className="w-14 h-14 lg:w-[72px] lg:h-[72px] shrink-0 rounded-full shadow-md group-hover:shadow-lg transition-shadow object-cover bg-white ring-2 ring-white"
               aria-hidden="true"
             />
-            <div className="hidden sm:block">
-              <span className="text-lg font-black text-gray-900 leading-tight block">Nature Clean</span>
-              <p className="text-[11px] text-green-700 font-medium -mt-0.5">Nettoyage Professionnel Marseille</p>
+            <div className="min-w-0 leading-tight">
+              <span className="text-base sm:text-lg font-black text-gray-900 block truncate">Nature Clean</span>
+              <p className="text-[10px] sm:text-[11px] text-green-700 font-medium truncate">Nettoyage pro · Marseille</p>
             </div>
           </Link>
 
