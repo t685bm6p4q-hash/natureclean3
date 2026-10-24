@@ -214,27 +214,55 @@ async function prerenderRoute(
  * Vercel sert ce fichier avec un vrai HTTP 404 dès qu'aucune route statique
  * ni rewrite /admin|/api ne correspond.
  */
-const NOT_FOUND_CAPTURE_PATH = '/__not-found__';
+/** Chemin volontairement absent — déclenche la route `*` (NotFoundPage). */
+const NOT_FOUND_CAPTURE_PATH = '/__ncm-prerender-404__';
+
+const FALLBACK_404_HTML = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://natureclean.fr/">
+  <title>Page introuvable | Nature Clean Marseille</title>
+</head>
+<body>
+  <main id="main-content"><h1>404</h1><p>Page introuvable — <a href="https://natureclean.fr/">Retour à l'accueil</a></p></main>
+</body>
+</html>`;
+
+function writeFallback404(distDir: string): void {
+  const outFile = resolve(distDir, '404.html');
+  writeFileSync(outFile, FALLBACK_404_HTML, 'utf-8');
+  console.log('  ⚠ 404.html → fallback statique (prerender React non capturé)');
+}
 
 async function prerenderNotFoundPage(
   browser: Browser,
   distDir: string,
   previewUrl: string,
 ): Promise<void> {
+  if (process.env.PRERENDER_SKIP_404 === '1') {
+    writeFallback404(distDir);
+    return;
+  }
+
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 900 });
   await configurePrerenderPage(page);
 
   try {
     await page.goto(`${previewUrl}${NOT_FOUND_CAPTURE_PATH}`, {
-      waitUntil: 'domcontentloaded',
+      waitUntil: 'load',
       timeout: 120_000,
     });
     await page.waitForFunction(() => {
       const robots = document.querySelector('meta[name="robots"]')?.getAttribute('content') ?? '';
       const canonical = (document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null)?.href ?? '';
       const h1 = document.querySelector('main h1')?.textContent ?? '';
+      const footer = document.querySelector('footer');
       return (
+        Boolean(footer) &&
         robots.includes('noindex') &&
         (canonical === 'https://natureclean.fr/' || canonical === 'https://natureclean.fr') &&
         h1.includes('404')
@@ -245,6 +273,12 @@ async function prerenderNotFoundPage(
     const outFile = resolve(distDir, '404.html');
     writeFileSync(outFile, html, 'utf-8');
     console.log('  ✓ 404.html → dist/404.html (HTTP 404 Vercel)');
+  } catch (error) {
+    console.warn(
+      '  ⚠ Prerender 404 React échoué — fallback statique pour ne pas bloquer le build Vercel:',
+      error instanceof Error ? error.message : error,
+    );
+    writeFallback404(distDir);
   } finally {
     await page.close();
   }
@@ -276,7 +310,12 @@ export async function runPrerender(options: PrerenderOptions): Promise<void> {
         );
       }
     }
-    await prerenderNotFoundPage(browser, distDir, previewUrl);
+    try {
+      await prerenderNotFoundPage(browser, distDir, previewUrl);
+    } catch (error) {
+      console.warn('  ⚠ Capture 404 ignorée:', error instanceof Error ? error.message : error);
+      writeFallback404(distDir);
+    }
   } finally {
     await browser.close();
     await new Promise<void>((resolveClose, rejectClose) => {

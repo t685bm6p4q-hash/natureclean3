@@ -7,6 +7,7 @@
  * Vercel sert dist/{route}/index.html avant le fallback SPA.
  *
  * Désactiver : PRERENDER_SKIP=1 vite build
+ * 404 seulement : PRERENDER_SKIP_404=1 (fallback HTML statique)
  */
 
 import { resolve } from 'node:path';

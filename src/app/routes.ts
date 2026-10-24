@@ -11,6 +11,8 @@ function RouteFallback() {
 
 // Home is eagerly loaded — it's always the landing page, no lazy waterfall
 import { Home } from '@/app/pages/Home';
+// 404 eager — le prerender Puppeteer (dist/404.html) ne doit pas attendre un chunk lazy (timeout Vercel).
+import { NotFoundPage } from '@/app/pages/NotFoundPage';
 
 // ProtectedRoute wrapper for admin pages
 import { ProtectedRoute } from '@/app/components/ProtectedRoute';
@@ -88,7 +90,7 @@ export const router = createBrowserRouter([
         path: 'admin/security-audit',
         Component: () => createElement(Navigate, { to: '/admin/audits?tab=security', replace: true }),
       },
-      { path: '*', lazy: () => import('@/app/pages/NotFoundPage').then(m => ({ Component: m.NotFoundPage })) },
+      { path: '*', Component: NotFoundPage },
     ],
   },
 ]);
