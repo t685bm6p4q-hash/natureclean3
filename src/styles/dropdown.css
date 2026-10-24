@@ -35,10 +35,6 @@
   }
 }
 
-.ncm-hero-fade-in {
-  animation: heroFadeIn 0.6s ease-out both;
-}
-
 /* ═══ Map marker stagger reveal ═══ */
 @keyframes mapMarkerPop {
   from {

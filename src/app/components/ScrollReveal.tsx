@@ -1,10 +1,6 @@
 /**
- * ScrollReveal — Animation au scroll SANS motion library
- * IntersectionObserver singleton + transitions CSS via style React (jamais el.style).
- *
- * Hydratation SSG : le HTML prerender doit coller au 1er render client (opacity 0).
- * Puppeteer définit window.__NC_PRERENDER pour ne pas révéler les blocs avant snapshot.
- * Mode `eager` : visible via style React dès le 1er render (hero Home).
+ * ScrollReveal — IntersectionObserver + classes CSS (zéro style inline → hydrate-safe SSG).
+ * Puppeteer : window.__NC_PRERENDER désactive l’IO avant snapshot.
  */
 
 import { useEffect, useRef, useState } from 'react';
@@ -20,19 +16,24 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   className?: string;
-  /** Contenu visible dès le premier paint — style React explicite (hydrate-safe). */
+  /** Visible dès le 1er render (titres above-the-fold). */
   eager?: boolean;
 }
 
-const transforms: Record<string, string> = {
-  up: 'translateY(30px)',
-  left: 'translateX(-30px)',
-  right: 'translateX(30px)',
-  none: 'none',
+const DIRECTION_CLASS: Record<string, string> = {
+  up: 'ncm-sr--up',
+  left: 'ncm-sr--left',
+  right: 'ncm-sr--right',
+  none: 'ncm-sr--none',
 };
 
 function isPrerenderCapture(): boolean {
   return typeof window !== 'undefined' && window.__NC_PRERENDER === true;
+}
+
+function formatCssSeconds(value: number): string {
+  const rounded = Math.round(value * 1000) / 1000;
+  return `${rounded}s`;
 }
 
 export function ScrollReveal({
@@ -63,16 +64,25 @@ export function ScrollReveal({
 
   const visible = eager || revealed;
 
-  const style: CSSProperties = visible
-    ? { opacity: 1, transform: 'none' }
-    : {
-        opacity: 0,
-        transform: transforms[direction],
-        transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
-      };
+  const classes = [
+    'ncm-sr',
+    DIRECTION_CLASS[direction] ?? DIRECTION_CLASS.up,
+    visible ? 'ncm-sr--visible' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const needsTimingVars = delay !== 0 || duration !== 0.5;
+  const style: CSSProperties | undefined = needsTimingVars
+    ? ({
+        '--ncm-sr-delay': formatCssSeconds(delay),
+        '--ncm-sr-duration': formatCssSeconds(duration),
+      } as CSSProperties)
+    : undefined;
 
   return (
-    <div ref={ref} className={className} style={style}>
+    <div ref={ref} className={classes} style={style}>
       {children}
     </div>
   );

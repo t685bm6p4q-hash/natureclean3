@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from '@/app/App';
 import '@/styles/index.css';
@@ -29,11 +28,7 @@ if (!container) {
   throw new Error('Root element #root introuvable');
 }
 
-const app = (
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+const app = <App />;
 
 // Prérendu SSG : conserver le HTML (héros, H1) au lieu de le remplacer — réduit le render delay LCP.
 if (container.hasChildNodes()) {

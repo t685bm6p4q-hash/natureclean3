@@ -214,8 +214,43 @@
   }
 }
 
+/* ScrollReveal — classes stables pour hydratation SSG (pas de style inline opacity/transform) */
+.ncm-sr {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--ncm-sr-duration, 0.5s) ease-out var(--ncm-sr-delay, 0s),
+    transform var(--ncm-sr-duration, 0.5s) ease-out var(--ncm-sr-delay, 0s);
+}
+
+.ncm-sr--left {
+  transform: translateX(-30px);
+}
+
+.ncm-sr--right {
+  transform: translateX(30px);
+}
+
+.ncm-sr--none {
+  transform: none;
+}
+
+.ncm-sr--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Mobile : sections sous le fold visibles tout de suite → Speed Index (desktop inchangé) */
+@media (max-width: 767px) {
+  .ncm-below-fold .ncm-sr:not(.ncm-sr--visible) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .ncm-scroll-reveal-pending {
+  .ncm-sr {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;

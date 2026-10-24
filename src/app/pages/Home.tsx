@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useLayoutEffect } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 import { dismissNcmLcpBoot } from '@/app/utils/dismissNcmLcpBoot';
 import { Link } from 'react-router';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
@@ -29,12 +29,10 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 //   → Mobile SI : 4.5s → ~2.0s → score mobile 90 → ~94.
 import { ServiceCarousel } from '@/app/components/ServiceCarousel';
 import { RealisationsSlider } from '@/app/components/RealisationsSlider';
+import { GoogleReviews } from '@/app/components/GoogleReviews';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { SERVED_CITIES_SHORT, MARSEILLE_QUARTIERS } from '@/app/config/zone-data';
-
-// GoogleReviews reste lazy : vrai below-fold sur tous les viewports.
-const GoogleReviews = lazy(() => import('@/app/components/GoogleReviews').then(m => ({ default: m.GoogleReviews })));
 
 /* ──────────────────────────────────────────────
    DATA
@@ -1076,10 +1074,8 @@ export function Home() {
       {/* content-visibility: auto — section ~2500px sous le fold mobile
           contain-intrinsic-size: auto 400px correspond au fallback Suspense h-[400px]
           → zéro CLS : le navigateur réserve 400px avant de rendre le composant */}
-      <div className="[content-visibility:auto] [contain-intrinsic-size:auto_400px]">
-        <Suspense fallback={<div className="w-full h-[400px] bg-gray-50 animate-pulse" aria-hidden="true" />}>
-          <GoogleReviews />
-        </Suspense>
+      <div className="[content-visibility:auto] [contain-intrinsic-size:auto_400px] ncm-below-fold">
+        <GoogleReviews />
       </div>
 
       {/* ═══════════════════════════════════════════
