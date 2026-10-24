@@ -154,13 +154,23 @@ export function Footer() {
           {/* Colonne 4 : Contact + Zone */}
           <div>
             <h4 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
-            <Link
-              to="/devis"
-              className="mb-4 flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-green-500 md:max-w-xs"
-            >
-              <FileText className="h-4 w-4 shrink-0" aria-hidden="true" />
-              Demander un devis gratuit
-            </Link>
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row md:max-w-md">
+              <Link
+                to="/devis"
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-green-500"
+              >
+                <FileText className="h-4 w-4 shrink-0" aria-hidden="true" />
+                Devis gratuit
+              </Link>
+              <a
+                href={PHONE_HREF}
+                aria-label={ARIA_PHONE}
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-green-500 px-4 py-3 text-sm font-bold text-green-400 transition-colors hover:bg-green-500/10"
+              >
+                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                Appeler
+              </a>
+            </div>
             <div className="space-y-3 mb-6">
               <a
                 href={PHONE_HREF}
@@ -306,17 +316,27 @@ export function Footer() {
 
     {showMobileDevisBar && (
       <div
-        className="fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-gray-900 px-4 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden"
+        className="fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-gray-900/95 backdrop-blur-sm px-4 py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] md:hidden"
         role="complementary"
-        aria-label="Demande de devis"
+        aria-label="Actions rapides"
       >
-        <Link
-          to="/devis"
-          className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-green-500 text-sm font-black text-gray-900 shadow-lg shadow-green-500/20 transition-colors hover:bg-green-400"
-        >
-          <FileText className="h-5 w-5 shrink-0" aria-hidden="true" />
-          Demander un devis gratuit
-        </Link>
+        <div className="flex gap-3">
+          <a
+            href={PHONE_HREF}
+            aria-label={ARIA_PHONE}
+            className="flex flex-1 min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/20"
+          >
+            <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Appeler
+          </a>
+          <Link
+            to="/devis"
+            className="flex flex-[1.3] min-h-[48px] items-center justify-center gap-2 rounded-xl bg-green-500 py-2.5 text-sm font-black text-gray-900 shadow-lg shadow-green-500/20 transition-colors hover:bg-green-400"
+          >
+            <FileText className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Devis gratuit
+          </Link>
+        </div>
       </div>
     )}
     </>

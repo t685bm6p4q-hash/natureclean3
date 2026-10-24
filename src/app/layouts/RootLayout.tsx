@@ -59,7 +59,7 @@ export function RootLayout() {
           tabIndex={-1}
           className={
             mobileDevisBar
-              ? 'max-md:pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))]'
+              ? 'max-md:pb-[calc(5.75rem+env(safe-area-inset-bottom,0px))]'
               : undefined
           }
         >
