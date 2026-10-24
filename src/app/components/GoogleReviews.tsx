@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote, ExternalLink } from 'lucide-react';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { GOOGLE_PROFILE_URL } from '@/app/utils/constants';
+import { formatFrenchMonthYear } from '@/app/utils/formatFrenchDate';
 
 /* ──────────────────────────────────────────────
    TYPES
@@ -156,10 +157,7 @@ function ReviewCard({ review }: { review: GoogleReview }) {
 
       {/* Date */}
       <div className="mt-4 pt-3 border-t border-gray-50 text-xs text-gray-500">
-        {new Date(review.date).toLocaleDateString('fr-FR', {
-          year: 'numeric',
-          month: 'long',
-        })}
+        {formatFrenchMonthYear(review.date)}
       </div>
     </article>
   );

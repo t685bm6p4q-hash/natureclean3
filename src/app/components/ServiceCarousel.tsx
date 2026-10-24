@@ -156,12 +156,14 @@ const CARD_IMG_DESKTOP = { widths: [320, 400, 480] as const, q: 'auto:eco', fmt:
 function MobileServiceCard({ service, isFirstVisible }: { service: ServiceCard; isFirstVisible?: boolean }) {
   const IconComponent = service.icon;
   const imgSrc = SERVICE_IMAGES[service.link] || '';
+  const imgQ = isFirstVisible ? 30 : 20;
+  const imgWidths = isFirstVisible ? CARD_IMG_MOBILE.widths : ([320] as const);
   return (
     <article className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md flex flex-col h-full min-w-0 w-full max-w-full">
       <div className="relative h-44 flex-shrink-0 overflow-hidden">
         <ImageWithFallback
-          src={getOptimizedCldUrl(imgSrc, 400, CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
-          srcSet={cldSrcSet(imgSrc, [...CARD_IMG_MOBILE.widths], CARD_IMG_MOBILE.q, CARD_IMG_MOBILE.fmt)}
+          src={getOptimizedCldUrl(imgSrc, 400, imgQ, CARD_IMG_MOBILE.fmt)}
+          srcSet={cldSrcSet(imgSrc, [...imgWidths], imgQ, CARD_IMG_MOBILE.fmt)}
           sizes="88vw"
           alt=""
           aria-hidden="true"

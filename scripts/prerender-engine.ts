@@ -31,6 +31,7 @@ const BLOCKED_PRERENDER_URL_PARTS = [
 ] as const;
 
 async function configurePrerenderPage(page: Page): Promise<void> {
+  await page.setExtraHTTPHeaders({ 'Accept-Language': 'fr-FR,fr;q=0.9' });
   await page.evaluateOnNewDocument(() => {
     window.__NC_PRERENDER = true;
   });

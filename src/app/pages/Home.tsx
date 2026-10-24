@@ -266,7 +266,7 @@ export function Home() {
       <section className="relative bg-gray-900 text-white overflow-hidden md:min-h-[36rem] md:pb-24">
         <img
           id="ncm-hero-react"
-          src={getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')}
+          src={getOptimizedCldUrl(IMAGES.heroHome, 850, 30, 'webp')}
           srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
           sizes="100vw"
           alt="Vue de Marseille et Notre-Dame de la Garde depuis une baie vitrée — Nature Clean"

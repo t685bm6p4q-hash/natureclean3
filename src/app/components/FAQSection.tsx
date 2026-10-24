@@ -43,6 +43,7 @@ export function FAQSection({
                 <details
                   className="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-shadow hover:shadow-md"
                   open={index === 0}
+                  suppressHydrationWarning
                 >
                   <summary className="flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer list-none focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 rounded-xl [&::-webkit-details-marker]:hidden">
                     <span className="font-bold text-gray-900 pr-2">
