@@ -240,6 +240,35 @@
   transform: none;
 }
 
+.ncm-sr-d-50 { --ncm-sr-delay: 0.05s; }
+.ncm-sr-d-60 { --ncm-sr-delay: 0.06s; }
+.ncm-sr-d-70 { --ncm-sr-delay: 0.07s; }
+.ncm-sr-d-80 { --ncm-sr-delay: 0.08s; }
+.ncm-sr-d-90 { --ncm-sr-delay: 0.09s; }
+.ncm-sr-d-100 { --ncm-sr-delay: 0.1s; }
+.ncm-sr-d-120 { --ncm-sr-delay: 0.12s; }
+.ncm-sr-d-160 { --ncm-sr-delay: 0.16s; }
+.ncm-sr-d-240 { --ncm-sr-delay: 0.24s; }
+.ncm-sr-d-150 { --ncm-sr-delay: 0.15s; }
+.ncm-sr-d-200 { --ncm-sr-delay: 0.2s; }
+.ncm-sr-d-250 { --ncm-sr-delay: 0.25s; }
+.ncm-sr-d-300 { --ncm-sr-delay: 0.3s; }
+.ncm-sr-d-350 { --ncm-sr-delay: 0.35s; }
+.ncm-sr-d-400 { --ncm-sr-delay: 0.4s; }
+.ncm-sr-d-450 { --ncm-sr-delay: 0.45s; }
+.ncm-sr-d-500 { --ncm-sr-delay: 0.5s; }
+
+.ncm-sr-t-300 { --ncm-sr-duration: 0.3s; }
+.ncm-sr-t-400 { --ncm-sr-duration: 0.4s; }
+.ncm-sr-t-600 { --ncm-sr-duration: 0.6s; }
+.ncm-sr-t-700 { --ncm-sr-duration: 0.7s; }
+
+/* Carrousel services desktop — transform via --slide (pas de style inline hydratation) */
+.ncm-svc-carousel-track {
+  transition: transform 500ms ease-out;
+  transform: translateX(calc(var(--slide, 0) * -100% / 3));
+}
+
 /* Mobile : sections sous le fold visibles tout de suite → Speed Index (desktop inchangé) */
 @media (max-width: 767px) {
   .ncm-below-fold .ncm-sr:not(.ncm-sr--visible) {

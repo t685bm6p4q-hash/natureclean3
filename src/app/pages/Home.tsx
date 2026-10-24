@@ -996,13 +996,13 @@ export function Home() {
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
-                    <Link to="/a-propos">
+                  <Button asChild className="bg-green-800 hover:bg-green-900 font-bold shadow-md">
+                    <Link to="/a-propos" className="text-white">
                       Découvrir l&apos;équipe
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold text-green-800">
-                    <Link to="/services/nettoyage-chantiers" className="text-green-800">
+                  <Button asChild variant="outline" className="border-gray-400 bg-white hover:border-green-400 hover:bg-green-50 font-bold">
+                    <Link to="/services/nettoyage-chantiers" className="text-green-900">
                       <HardHat className="w-4 h-4 mr-1.5" aria-hidden="true" />
                       Fin de chantier
                     </Link>
@@ -1035,8 +1035,8 @@ export function Home() {
                   normes de désinfection médicale uniquement lorsque la réglementation sanitaire l'exige —
                   expertise pragmatique, propreté irréprochable, impact minimal.
                 </p>
-                <Button asChild className="bg-white text-green-700 hover:bg-green-50 font-bold shadow-md">
-                  <Link to="/a-propos">
+                <Button asChild className="bg-white text-green-900 hover:bg-green-50 font-bold shadow-md">
+                  <Link to="/a-propos" className="text-green-900">
                     Notre démarche verte
                     <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                   </Link>

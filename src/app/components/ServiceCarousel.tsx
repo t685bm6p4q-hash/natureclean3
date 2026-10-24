@@ -148,11 +148,12 @@ const TOTAL_CARDS   = services.length;
 const MAX_SLIDE     = TOTAL_CARDS - CARDS_VISIBLE;
 
 /** Vignettes carrousel — WebP eco, largeurs calées sur l’affichage (~400 px max). */
-const CARD_IMG_MOBILE = { widths: [320, 400, 480] as const, q: 'auto:eco', fmt: 'webp' as const };
+/** Mobile PSI : q_30 + max 400w (pas de 480) — desktop utilise CARD_IMG_DESKTOP. */
+const CARD_IMG_MOBILE = { widths: [320, 400] as const, q: 30, fmt: 'webp' as const };
 const CARD_IMG_DESKTOP = { widths: [320, 400, 480] as const, q: 'auto:eco', fmt: 'webp' as const };
 
 /* ─── Carte mobile ──────────────────────────────────────── */
-function MobileServiceCard({ service }: { service: ServiceCard }) {
+function MobileServiceCard({ service, isFirstVisible }: { service: ServiceCard; isFirstVisible?: boolean }) {
   const IconComponent = service.icon;
   const imgSrc = SERVICE_IMAGES[service.link] || '';
   return (
@@ -165,7 +166,7 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
+          loading={isFirstVisible ? 'eager' : 'lazy'}
           decoding="async"
           width={400}
           height={176}
@@ -279,9 +280,9 @@ export function ServiceCarousel() {
 
       {/* ── MOBILE : scroll horizontal natif (inchangé) ── */}
       <div className="md:hidden -mx-4 px-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-3 overscroll-x-contain scroll-px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-w-[100vw]">
-        {services.map((service) => (
+        {services.map((service, index) => (
           <div key={service.title} className="flex-shrink-0 w-[88%] max-w-sm snap-center">
-            <MobileServiceCard service={service} />
+            <MobileServiceCard service={service} isFirstVisible={index === 0} />
           </div>
         ))}
       </div>
@@ -304,11 +305,7 @@ export function ServiceCarousel() {
         <div className="overflow-hidden">
           <div
             ref={trackRef}
-            className="flex"
-            style={{
-              transition: 'transform 500ms ease-out',
-              transform: 'translateX(calc(var(--slide, 0) * -100% / 3))',
-            } as React.CSSProperties}
+            className="ncm-svc-carousel-track flex"
           >
             {services.map((service, i) => (
               <div

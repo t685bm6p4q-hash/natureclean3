@@ -1,10 +1,9 @@
 /**
- * ScrollReveal — IntersectionObserver + classes CSS (zéro style inline → hydrate-safe SSG).
- * Puppeteer : window.__NC_PRERENDER désactive l’IO avant snapshot.
+ * ScrollReveal — IntersectionObserver + classes CSS (zéro attribut style → hydrate-safe SSG).
  */
 
 import { useEffect, useRef, useState } from 'react';
-import type { ReactNode, CSSProperties } from 'react';
+import type { ReactNode } from 'react';
 import {
   registerObserverCallback,
   unregisterObserverCallback,
@@ -16,7 +15,6 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   className?: string;
-  /** Visible dès le 1er render (titres above-the-fold). */
   eager?: boolean;
 }
 
@@ -31,9 +29,17 @@ function isPrerenderCapture(): boolean {
   return typeof window !== 'undefined' && window.__NC_PRERENDER === true;
 }
 
-function formatCssSeconds(value: number): string {
-  const rounded = Math.round(value * 1000) / 1000;
-  return `${rounded}s`;
+/** Délai arrondi au 50 ms → classe stable entre prerender et hydratation. */
+function delayClass(delay: number): string {
+  if (delay <= 0) return '';
+  const ms = Math.round((delay * 1000) / 50) * 50;
+  return `ncm-sr-d-${ms}`;
+}
+
+function durationClass(duration: number): string {
+  if (duration === 0.5) return '';
+  const ms = Math.round(duration * 1000);
+  return `ncm-sr-t-${ms}`;
 }
 
 export function ScrollReveal({
@@ -67,22 +73,16 @@ export function ScrollReveal({
   const classes = [
     'ncm-sr',
     DIRECTION_CLASS[direction] ?? DIRECTION_CLASS.up,
+    delayClass(delay),
+    durationClass(duration),
     visible ? 'ncm-sr--visible' : '',
     className,
   ]
     .filter(Boolean)
     .join(' ');
 
-  const needsTimingVars = delay !== 0 || duration !== 0.5;
-  const style: CSSProperties | undefined = needsTimingVars
-    ? ({
-        '--ncm-sr-delay': formatCssSeconds(delay),
-        '--ncm-sr-duration': formatCssSeconds(duration),
-      } as CSSProperties)
-    : undefined;
-
   return (
-    <div ref={ref} className={classes} style={style}>
+    <div ref={ref} className={classes}>
       {children}
     </div>
   );

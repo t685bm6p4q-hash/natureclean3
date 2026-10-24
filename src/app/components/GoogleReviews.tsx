@@ -265,14 +265,13 @@ export function GoogleReviews() {
             <button
               key={index}
               onClick={() => { setCurrentIndex(index); handleInteraction(); }}
-              className={`rounded-full transition-all duration-300 p-1.5 ${
+              className={`flex min-h-11 min-w-11 items-center justify-center rounded-full p-1.5 transition-all duration-300 ${
                 index === currentIndex
                   ? 'bg-green-600'
                   : 'bg-transparent hover:bg-gray-100'
               }`}
               aria-label={`Avis ${index + 1} sur ${reviews.length}`}
               aria-current={index === currentIndex ? 'true' : undefined}
-              style={{ minWidth: '44px', minHeight: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <span
                 className={`block rounded-full transition-all duration-300 ${
