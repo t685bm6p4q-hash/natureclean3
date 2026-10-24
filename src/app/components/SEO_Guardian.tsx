@@ -151,6 +151,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
       realisations: 'Réalisations',
       actualites: 'Actualités',
       'entretien-bureaux': 'Entretien Bureaux',
+      'nettoyage-cabinet-medical-marseille': 'Nettoyage cabinets médicaux',
       'nettoyage-commerces': 'Nettoyage Commerces',
       'remise-etat-urgence-commerce': 'Urgence commerce',
       'nettoyage-coproprietes': 'Nettoyage Copropriétés',
@@ -168,7 +169,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     ];
 
     // Ajouter la section parente si c'est un sous-service
-    const isSubService = ['entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'remise-etat-urgence-commerce'].includes(currentSection);
+    const isSubService = ['entretien-bureaux', 'nettoyage-cabinet-medical-marseille', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'remise-etat-urgence-commerce'].includes(currentSection);
     const isGeoPage = currentSection.startsWith('geo-');
     if (isSubService) {
       breadcrumbItems.push({ name: 'Services', url: `${BASE_URL}/services` });
@@ -212,7 +213,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
     }
 
     // Pages où la FAQ est pertinente (évite le spam structured data sur blog, contact, etc.)
-    const faqPages = ['home', 'services', 'entretien-bureaux', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'remise-etat-urgence-commerce', 'quote'];
+    const faqPages = ['home', 'services', 'entretien-bureaux', 'nettoyage-cabinet-medical-marseille', 'nettoyage-commerces', 'nettoyage-coproprietes', 'nettoyage-chantiers', 'nettoyage-evenementiel', 'nettoyage-graffitis', 'nettoyage-diogene', 'remise-etat-sols', 'nettoyage-vitre', 'remise-etat-urgence-commerce', 'quote'];
 
     if (faqPages.includes(currentSection) || currentSection.startsWith('geo-') || currentSection === 'zones-intervention' || (currentSection === 'blog' && faqItems)) {
       // Construire les questions FAQ — soit depuis le prop faqItems (contextuel), soit fallback générique

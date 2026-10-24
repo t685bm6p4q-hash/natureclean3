@@ -48,15 +48,8 @@ export function CasCabinetMedicalMarseillePage() {
               <li>Produits professionnels adaptés aux supports du cabinet</li>
             </ul>
             <p className="text-sm mt-4 text-gray-600">
-              Nous ne remplaçons pas un protocole hospitalier ARS : le périmètre est défini au devis
-              avec le praticien ou le gestionnaire de site.
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.08}>
-            <p className="text-sm text-amber-800 bg-amber-50 border border-amber-100 rounded-lg p-4">
-              Identité du cabinet et citation client : publication uniquement avec accord écrit.
-              Indiquez-nous durée et fréquence réelles pour mettre à jour cette fiche.
+              Nous n&apos;effectuons pas la stérilisation des instruments ni la gestion des DASRI :
+              le périmètre est défini au devis avec le praticien ou le gestionnaire de site.
             </p>
           </ScrollReveal>
 
@@ -73,8 +66,8 @@ export function CasCabinetMedicalMarseillePage() {
 
           <div className="flex flex-wrap gap-3 pt-4">
             <Button asChild className="bg-green-700 hover:bg-green-800 font-bold">
-              <Link to="/services/entretien-bureaux">
-                Entretien de bureaux et locaux tertiaires
+              <Link to="/services/nettoyage-cabinet-medical-marseille">
+                Nettoyage de cabinets médicaux à Marseille
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Link>
             </Button>

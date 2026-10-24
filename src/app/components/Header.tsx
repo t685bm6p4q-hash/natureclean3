@@ -4,7 +4,7 @@ import {
   Phone, Menu, X, ChevronDown, ChevronRight,
   Building2, Store, HardHat, Layers, Droplet,
   Clock, Mail, FileText, MapPin, Shield, Eraser,
-  Home as HomeIcon, Zap, MoreHorizontal, ImageIcon, Info, BookOpen, Sparkles
+  Home as HomeIcon, Zap, MoreHorizontal, ImageIcon, Info, BookOpen, Sparkles, Stethoscope
 } from 'lucide-react';
 import { useFocusTrap } from '@/app/hooks/useFocusTrap';
 import { IMAGES } from '@/app/utils/images';
@@ -18,6 +18,7 @@ import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, ARIA_EMAIL } 
    ────────────────────────────────────────────────────────── */
 const SERVICE_PAGE_DEVIS_MAP: Record<string, string> = {
   '/services/entretien-bureaux':         '/devis?service=bureaux',
+  '/services/nettoyage-cabinet-medical-marseille': '/devis?service=bureaux',
   '/services/nettoyage-commerces':       '/devis?service=commerces',
   '/services/remise-etat-urgence-commerce': '/devis?service=commerces',
   '/services/nettoyage-chantiers':       '/devis?service=fin-chantier',
@@ -39,7 +40,7 @@ const entrepriseServices = [
   { icon: HomeIcon, label: 'Copropriétés', href: '/services/nettoyage-coproprietes', desc: 'Parties communes', thumb: IMAGES.hallCoproBoites },
   { icon: HardHat, label: 'Chantiers', href: '/services/nettoyage-chantiers', desc: 'Fin de chantier', thumb: IMAGES.finChantierMarseille },
   { icon: Building2, label: 'Bureaux', href: '/services/entretien-bureaux', desc: 'Locaux tertiaires', thumb: IMAGES.entrepriseBureauxMarseille },
-  { icon: Store, label: 'Commerces', href: '/services/nettoyage-commerces', desc: 'Entretien de locaux', thumb: IMAGES.vitrineBoutiqueLuxe },
+  { icon: Stethoscope, label: 'Cabinets médicaux', href: '/services/nettoyage-cabinet-medical-marseille', desc: 'Locaux de santé', thumb: IMAGES.cabinetMedical },
   { icon: Eraser, label: 'Graffitis', href: '/services/nettoyage-graffitis', desc: 'Effacement tags & façades', thumb: IMAGES.graffitiCarrefourAvant },
   { icon: Layers, label: 'Sols', href: '/services/remise-etat-sols', desc: 'Décapage & cristallisation', thumb: IMAGES.monobrosseAction },
   { icon: Droplet, label: 'Vitres', href: '/services/nettoyage-vitre', desc: 'Lavage de vitres', thumb: IMAGES.facadeVitreeImmeuble },

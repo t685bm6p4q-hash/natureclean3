@@ -117,7 +117,7 @@ const HOME_FAQ: FAQItem[] = [
   },
   {
     question: 'Vos produits sont-ils écologiques ?',
-    answer: 'Environ 50 % de nos produits d’entretien courant sont éco-labellisés. Pour la désinfection (cabinets médicaux notamment), nous utilisons des produits conformes aux normes sanitaires quand la réglementation l’exige.',
+    answer: 'Environ 50 % de nos produits d’entretien courant sont éco-labellisés. Pour la désinfection des locaux (cabinets médicaux notamment), nous utilisons des produits professionnels adaptés — sans stérilisation d’instruments ni gestion des DASRI.',
   },
   {
     question: 'Intervenez-vous en dehors des horaires de bureau, le week-end ?',
@@ -528,7 +528,7 @@ export function Home() {
                 <ul className="space-y-2.5 mb-8">
                   {[
                     'Entretien régulier magasins & boutiques Marseille',
-                    'Désinfection aux normes sanitaires — cabinets médicaux',
+                    'Entretien et désinfection des locaux — cabinets médicaux',
                     'Vitres, sols, sanitaires & espaces de vente',
                     'Contrats sur mesure, intervention hors heures d\'ouverture',
                   ].map((item) => (
@@ -542,6 +542,11 @@ export function Home() {
                   <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
                     <Link to="/services/nettoyage-commerces">
                       Nettoyage de commerces à Marseille <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" className="border-green-600 text-green-800 font-bold">
+                    <Link to="/services/nettoyage-cabinet-medical-marseille">
+                      Nettoyage de cabinets médicaux à Marseille
                     </Link>
                   </Button>
                   <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">

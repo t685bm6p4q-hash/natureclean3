@@ -22,6 +22,7 @@ import {
   Eraser,
   Heart,
   GlassWater,
+  Stethoscope,
 } from 'lucide-react';
 import { IMAGES } from '@/app/utils/images';
 import { GEO_PAGES } from '@/app/utils/geoData';
@@ -55,6 +56,7 @@ const MARSEILLE_GEO_LINKS = [
 
 const ZONE_SERVICE_LINKS = [
   { icon: Building2, label: 'Entretien de bureaux à Marseille', href: '/nettoyage-bureaux-marseille' },
+  { icon: Stethoscope, label: 'Nettoyage de cabinets médicaux à Marseille', href: '/services/nettoyage-cabinet-medical-marseille' },
   { icon: Store, label: 'Nettoyage de commerces à Marseille', href: '/services/nettoyage-commerces' },
   { icon: HomeIcon, label: 'Nettoyage de copropriétés à Marseille', href: '/services/nettoyage-coproprietes' },
   { icon: HardHat, label: 'Nettoyage de fin de chantier à Marseille', href: '/nettoyage-fin-chantier-marseille' },

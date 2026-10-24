@@ -101,6 +101,7 @@ export function Footer() {
                 { label: 'Nettoyage de copropriétés à Marseille', href: '/services/nettoyage-coproprietes' },
                 { label: 'Nettoyage de fin de chantier à Marseille', href: '/services/nettoyage-chantiers' },
                 { label: 'Entretien de bureaux à Marseille', href: '/services/entretien-bureaux' },
+                { label: 'Nettoyage de cabinets médicaux à Marseille', href: '/services/nettoyage-cabinet-medical-marseille' },
                 { label: 'Nettoyage de commerces à Marseille', href: '/services/nettoyage-commerces' },
                 { label: 'Nettoyage syndrome de Diogène à Marseille', href: '/services/nettoyage-diogene' },
                 { label: 'Enlèvement de graffitis à Marseille', href: '/services/nettoyage-graffitis' },

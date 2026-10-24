@@ -68,6 +68,13 @@ export const SEO_DATA: Record<string, SEOEntry> = {
     keywords:
       'entretien bureaux Marseille, nettoyage bureaux 13, nettoyage open space, société nettoyage bureaux, entretien locaux professionnels Marseille, ménage bureau quotidien',
   },
+  'nettoyage-cabinet-medical-marseille': {
+    title: 'Nettoyage de Cabinet Médical à Marseille | Nature Clean',
+    description:
+      'Nettoyage et désinfection de cabinets médicaux et paramédicaux à Marseille : salles de consultation, accueil, sanitaires. Hors heures de soins, devis gratuit sous 24 h.',
+    keywords:
+      'nettoyage cabinet médical Marseille, entretien cabinet paramédical 13, désinfection locaux santé Marseille, ménage cabinet dentaire, nettoyage salle consultation',
+  },
   'nettoyage-commerces': {
     title: 'Nettoyage de Commerces à Marseille | Nature Clean',
     description:

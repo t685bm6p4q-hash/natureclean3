@@ -56,6 +56,19 @@ const SERVICE_SECTIONS = [
     ],
   },
   {
+    id: 'cabinet-medical',
+    title: 'Nettoyage de cabinets médicaux à Marseille',
+    href: '/services/nettoyage-cabinet-medical-marseille',
+    linkLabel: 'Nettoyage de cabinets médicaux à Marseille',
+    intro:
+      'Salles de consultation, accueil et sanitaires : entretien hors heures de soins, sans stérilisation d\'instruments ni gestion des DASRI.',
+    bullets: [
+      'Cabinets médicaux et paramédicaux',
+      'Désinfection des surfaces de contact',
+      'Discrétion et planning adapté au cabinet',
+    ],
+  },
+  {
     id: 'commerces',
     title: 'Nettoyage de commerces à Marseille',
     href: '/services/nettoyage-commerces',
@@ -150,6 +163,11 @@ const PROFILE_LINKS = [
     label: 'Responsable de bureaux',
     href: '/services/entretien-bureaux',
     linkText: 'Entretien de bureaux à Marseille',
+  },
+  {
+    label: 'Médecin, dentiste ou paramédical',
+    href: '/services/nettoyage-cabinet-medical-marseille',
+    linkText: 'Nettoyage de cabinets médicaux à Marseille',
   },
   {
     label: 'Commerçant ou gérant de magasin',

@@ -8,7 +8,7 @@ https://natureclean.fr/sitemap.xml
 ## 2. Inspection d’URL → « Demander une indexation » (une par une, pages cibles)
 https://natureclean.fr/
 https://natureclean.fr/nettoyage-bureaux-marseille
-https://natureclean.fr/nettoyage-medical-marseille
+https://natureclean.fr/services/nettoyage-cabinet-medical-marseille
 https://natureclean.fr/nettoyage-fin-chantier-marseille
 https://natureclean.fr/nettoyage-coproprietes-aubagne
 https://natureclean.fr/services/entretien-bureaux

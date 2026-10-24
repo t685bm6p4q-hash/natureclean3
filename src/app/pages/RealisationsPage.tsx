@@ -226,8 +226,8 @@ const realisations: Realisation[] = [
     location: 'Marseille 13005',
     image: IMAGES.cabinetMedical,
     desc: 'Salle d’attente et salles de consultation, surfaces de contact et poignées, après la fermeture.',
-    link: '/realisations/cas/cabinet-medical-marseille',
-    linkLabel: 'Lire le cas',
+    link: '/services/nettoyage-cabinet-medical-marseille',
+    linkLabel: 'Nettoyage de cabinets médicaux à Marseille',
     color: 'green',
   },
   {

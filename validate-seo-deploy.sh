@@ -32,7 +32,7 @@ SSG_ROUTES=(
   "/nettoyage-bureaux-marseille"
   "/nettoyage-fin-chantier-marseille"
   "/nettoyage-industriel-marseille"
-  "/nettoyage-medical-marseille"
+  "/services/nettoyage-cabinet-medical-marseille"
   "/nettoyage-bureaux-aix-en-provence"
   "/nettoyage-coproprietes-aubagne"
   "/nettoyage-coproprietes-la-ciotat"

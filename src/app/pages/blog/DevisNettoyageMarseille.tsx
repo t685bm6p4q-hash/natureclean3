@@ -57,7 +57,7 @@ const prestations = [
   { label: 'Copropriétés & syndics', href: '/services/nettoyage-coproprietes' },
   { label: 'Fin de chantier', href: '/services/nettoyage-chantiers' },
   { label: 'Industriel & entrepôts', href: '/nettoyage-industriel-marseille' },
-  { label: 'Cabinets médicaux', href: '/nettoyage-medical-marseille' },
+  { label: 'Cabinets médicaux', href: '/services/nettoyage-cabinet-medical-marseille' },
 ];
 
 export function DevisNettoyageMarseille() {

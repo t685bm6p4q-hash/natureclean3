@@ -133,7 +133,8 @@
     { "source": "/nettoyage-fin-chantier-marignane", "destination": "/services/nettoyage-chantiers", "permanent": true },
     { "source": "/nettoyage-fin-chantier-aubagne", "destination": "/services/nettoyage-chantiers", "permanent": true },
     { "source": "/nettoyage-coproprietes-marseille", "destination": "/services/nettoyage-coproprietes", "permanent": true },
-    { "source": "/nettoyage-medical-marseille.html", "destination": "/nettoyage-medical-marseille", "permanent": true }
+    { "source": "/nettoyage-medical-marseille.html", "destination": "/services/nettoyage-cabinet-medical-marseille", "permanent": true },
+    { "source": "/nettoyage-medical-marseille", "destination": "/services/nettoyage-cabinet-medical-marseille", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
