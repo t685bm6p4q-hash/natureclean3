@@ -32,6 +32,12 @@ interface ServicePageHeroProps {
   devisLink?: string;
 }
 
+/** Dégradé pour lisibilité du texte sans masquer la photo hero. */
+const HERO_OVERLAY =
+  'absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/45 to-gray-900/15 md:bg-gradient-to-r md:from-gray-950/90 md:via-gray-900/50 md:to-transparent';
+
+const HERO_TEXT_SHADOW = 'drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]';
+
 export function ServicePageHero({
   title,
   subtitle,
@@ -43,7 +49,7 @@ export function ServicePageHero({
   devisLink,
 }: ServicePageHeroProps) {
   return (
-    <section className="relative bg-gray-900 text-white py-24 md:py-32 overflow-hidden">
+    <section className="relative bg-gray-900 text-white min-h-[min(72vh,520px)] md:min-h-[min(68vh,560px)] flex items-end overflow-hidden">
       {imageSrc && (
         <img
           src={imageSrc}
@@ -55,20 +61,27 @@ export function ServicePageHero({
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
           fetchpriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center md:object-[center_35%]"
         />
       )}
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="ncm-hero-fade-in max-w-4xl bg-gray-900/85 rounded-2xl p-6 md:p-10 border border-white/10">
-          {/* Breadcrumb */}
+      <div className={HERO_OVERLAY} aria-hidden="true" />
+
+      <div className="container mx-auto px-4 relative z-10 w-full pb-10 pt-28 md:pt-32 md:pb-14">
+        <div className="ncm-hero-fade-in max-w-lg md:max-w-2xl">
           {breadcrumbs?.length > 0 && (
-            <nav className="text-sm mb-6 text-gray-300" aria-label="Fil d'ariane">
+            <nav
+              className={`text-xs md:text-sm mb-4 md:mb-5 text-gray-200 ${HERO_TEXT_SHADOW}`}
+              aria-label="Fil d'ariane"
+            >
               {breadcrumbs.map((crumb, i) => (
                 <span key={i}>
-                  {i > 0 && <span className="mx-1.5 text-gray-500">/</span>}
+                  {i > 0 && <span className="mx-1.5 text-gray-400">/</span>}
                   {crumb.to ? (
-                    <Link to={crumb.to} className="hover:text-white transition-colors underline decoration-gray-500 underline-offset-2">
+                    <Link
+                      to={crumb.to}
+                      className="hover:text-white transition-colors underline decoration-gray-400 underline-offset-2"
+                    >
                       {crumb.label}
                     </Link>
                   ) : (
@@ -79,27 +92,27 @@ export function ServicePageHero({
             </nav>
           )}
 
-          {/* Badge optionnel */}
           {badge && (
-            <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-400/30 text-green-200 px-4 py-1.5 rounded-full text-sm mb-5">
+            <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-4 md:mb-5">
               {badgeIcon}
               {badge}
             </div>
           )}
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tight leading-[1.1] max-w-4xl">
+          <h1
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 md:mb-4 tracking-tight leading-[1.12] ${HERO_TEXT_SHADOW}`}
+          >
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl">
+          <p className={`text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed max-w-xl ${HERO_TEXT_SHADOW}`}>
             {subtitle}
           </p>
 
-          {/* CTAs — affichés seulement si devisLink est fourni */}
           {devisLink && (
-            <div className="flex flex-wrap gap-3 mt-8">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6 md:mt-8">
               <Link
                 to={devisLink}
-                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-gray-900 font-black px-6 py-3 rounded-full shadow-lg shadow-green-500/20 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-gray-900 font-black px-6 py-3 rounded-full shadow-lg shadow-green-500/25 transition-colors text-sm md:text-base"
               >
                 Devis gratuit
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -107,7 +120,7 @@ export function ServicePageHero({
               <a
                 href={PHONE_HREF}
                 aria-label={ARIA_PHONE}
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold px-6 py-3 rounded-full transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-sm border border-white/30 text-white font-bold px-6 py-3 rounded-full transition-colors text-sm md:text-base"
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
                 {PHONE_DISPLAY}

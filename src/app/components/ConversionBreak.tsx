@@ -32,7 +32,7 @@ export function ConversionBreak({
   devisLink = '/devis',
 }: ConversionBreakProps) {
   return (
-    <section className="relative py-16 md:py-20 overflow-hidden">
+    <section className="relative py-14 md:py-20 overflow-hidden min-h-[320px] flex items-end">
       <ImageWithFallback
         src={image}
         srcSet={cldSrcSet(image, [400, 850, 1200, 1920])}
@@ -45,28 +45,33 @@ export function ConversionBreak({
         width={1920}
         height={600}
       />
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl bg-gray-900/90 rounded-2xl p-6 md:p-10 border border-white/10">
-          {/* Trust chips */}
-          <div className="flex flex-wrap gap-3 mb-6">
-            <span className="inline-flex items-center gap-1.5 bg-green-500/20 text-green-200 px-3 py-1 rounded-full text-xs font-bold border border-green-500/30">
+      <div
+        className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/50 to-gray-900/20"
+        aria-hidden="true"
+      />
+      <div className="container mx-auto px-4 relative z-10 w-full pb-8 md:pb-10 pt-16">
+        <div className="max-w-lg md:max-w-2xl">
+          <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
+            <span className="inline-flex items-center gap-1.5 bg-black/35 backdrop-blur-sm text-green-100 px-3 py-1 rounded-full text-xs font-bold border border-white/20">
               <Clock className="w-3 h-3" aria-hidden="true" />
               {urgencyText}
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-white/10 text-white/90 px-3 py-1 rounded-full text-xs font-bold border border-white/20">
+            <span className="inline-flex items-center gap-1.5 bg-black/30 backdrop-blur-sm text-white/95 px-3 py-1 rounded-full text-xs font-bold border border-white/20">
               <Shield className="w-3 h-3" aria-hidden="true" />
               Assurance RC Pro
             </span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-3 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl">{subtitle}</p>
+            <p className="text-base md:text-lg text-gray-100 mb-6 md:mb-8 max-w-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+              {subtitle}
+            </p>
           )}
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <Button
               asChild
               size="lg"

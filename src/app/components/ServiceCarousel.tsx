@@ -157,7 +157,7 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
         <ImageWithFallback
           src={getOptimizedCldUrl(imgSrc, 600)}
           srcSet={cldSrcSet(imgSrc, [300, 450, 600])}
-          sizes="75vw"
+          sizes="(max-width: 768px) 88vw, 75vw"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
@@ -181,12 +181,14 @@ function MobileServiceCard({ service }: { service: ServiceCard }) {
           <span className="text-green-500 text-xs mt-0.5 flex-shrink-0">✓</span>
           <span className="text-xs text-gray-600 leading-tight">{service.features[0]}</span>
         </div>
-        <Button asChild size="sm" className="w-full bg-green-700 hover:bg-green-800 mt-auto">
-          <Link to={service.link} className="flex items-center justify-center gap-1.5 text-center leading-tight">
-            {service.cta}
-            <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
-          </Link>
-        </Button>
+        <Link
+          to={service.link}
+          aria-label={service.cta}
+          className="mt-auto inline-flex w-full min-h-[44px] items-center justify-center gap-2 rounded-xl bg-green-700 px-3 py-2.5 text-sm font-semibold text-white hover:bg-green-800 transition-colors"
+        >
+          En savoir plus
+          <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+        </Link>
       </div>
     </article>
   );
@@ -228,8 +230,13 @@ function DesktopServiceCard({ service }: { service: ServiceCard }) {
                 </li>
               ))}
             </ul>
-            <Button className="w-full bg-green-700 hover:bg-green-800 text-sm py-2.5 mt-auto whitespace-normal h-auto leading-tight" asChild>
-              <Link to={service.link}>{service.cta}</Link>
+            <Button
+              className="w-full max-w-full bg-green-700 hover:bg-green-800 text-sm py-2.5 mt-auto whitespace-normal h-auto min-h-11 leading-snug px-3"
+              asChild
+            >
+              <Link to={service.link} className="text-center line-clamp-2">
+                {service.cta}
+              </Link>
             </Button>
           </div>
         </CardContent>
@@ -267,9 +274,9 @@ export function ServiceCarousel() {
     >
 
       {/* ── MOBILE : scroll horizontal natif (inchangé) ── */}
-      <div className="md:hidden -mx-4 px-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-4">
+      <div className="md:hidden -mx-4 px-4 pb-2 flex overflow-x-auto snap-x snap-mandatory gap-3 overscroll-x-contain scroll-px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {services.map((service) => (
-          <div key={service.title} className="flex-shrink-0 w-[75vw] snap-start">
+          <div key={service.title} className="flex-shrink-0 w-[calc(100vw-2rem)] max-w-sm snap-center">
             <MobileServiceCard service={service} />
           </div>
         ))}

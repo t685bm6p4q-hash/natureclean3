@@ -64,7 +64,7 @@ export function ContactPage() {
       <SEO_Guardian currentSection="contact" />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-green-600 to-green-700 text-white py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-gray-900 text-white min-h-[min(52vh,420px)] flex items-end overflow-hidden">
         <img
           src={IMAGES.poigneeMainDevis}
           alt="Service client Nature Clean Marseille - Contact et communication pour nettoyage professionnel"
@@ -73,20 +73,27 @@ export function ContactPage() {
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
           fetchpriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl bg-green-900/85 rounded-2xl p-6 md:p-10 border border-white/10">
-          <nav className="text-sm mb-6 opacity-90">
-            <Link to="/" className="hover:underline">Accueil</Link> &gt; <span>Contact</span>
-          </nav>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-            Contactez-nous
-          </h1>
-          <p className="text-xl md:text-2xl">
-            Nature Clean Marseille est à votre écoute pour tous vos besoins de nettoyage professionnel
-          </p>
+        <div
+          className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/45 to-transparent md:bg-gradient-to-r md:from-gray-950/90 md:via-gray-900/50 md:to-transparent"
+          aria-hidden="true"
+        />
+
+        <div className="container mx-auto px-4 relative z-10 w-full pb-10 pt-24 md:pb-14 md:pt-28">
+          <div className="max-w-lg md:max-w-2xl">
+            <nav className="text-xs md:text-sm mb-4 text-gray-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+              <Link to="/" className="hover:underline">
+                Accueil
+              </Link>{' '}
+              &gt; <span>Contact</span>
+            </nav>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 md:mb-4 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+              Contactez-nous
+            </h1>
+            <p className="text-base md:text-xl text-gray-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+              Nature Clean Marseille est à votre écoute pour tous vos besoins de nettoyage professionnel
+            </p>
           </div>
         </div>
       </section>

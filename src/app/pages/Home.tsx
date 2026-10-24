@@ -245,7 +245,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
           ══════════════════════════════════════════ */}
-      <section className="relative bg-gray-900 text-white py-32 md:py-44 overflow-hidden">
+      <section className="relative bg-gray-900 text-white min-h-[min(78vh,580px)] md:min-h-[min(72vh,620px)] flex flex-col justify-end overflow-hidden pb-[7.5rem] md:pb-[6.5rem]">
         <img
           src={getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')}
           srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
@@ -256,33 +256,38 @@ export function Home() {
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
           fetchpriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-center"
         />
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl ncm-hero-fade-in bg-gray-900/85 rounded-2xl p-6 md:p-10 border border-white/10">
-            <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-400/30 text-green-200 px-4 py-1.5 rounded-full text-sm mb-6">
+        <div
+          className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/40 to-gray-900/10 md:bg-gradient-to-r md:from-gray-950/88 md:via-gray-900/45 md:to-transparent"
+          aria-hidden="true"
+        />
+
+        <div className="container mx-auto px-4 relative z-10 w-full pt-24 md:pt-28">
+          <div className="max-w-lg md:max-w-2xl ncm-hero-fade-in">
+            <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-4 md:mb-5">
               <Leaf className="w-4 h-4" aria-hidden="true" />
               Entreprise de nettoyage à Marseille depuis 2021
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6 tracking-tight leading-[1.1] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
               Entreprise de nettoyage
               <span className="block text-green-400">professionnel à Marseille</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
+            <p className="text-base md:text-xl text-gray-100 mb-6 md:mb-8 max-w-xl leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               Bureaux, copropriétés, fin de chantier — Nature Clean intervient à Marseille
               et dans les Bouches-du-Rhône. Réponse sous 2 h, devis gratuit sous 24 h.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-base px-8 shadow-lg shadow-green-500/25">
                 <Link to="/devis">
                   Obtenir mon devis gratuit
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
-              <Button asChild size="lg" className="bg-white/10 border border-white/20 text-white hover:bg-white/20 font-semibold">
+              <Button asChild size="lg" className="bg-white/15 backdrop-blur-sm border border-white/30 text-white hover:bg-white/25 font-semibold">
                 <a href={PHONE_HREF} className="flex items-center gap-2" aria-label={ARIA_PHONE}>
                   <Phone className="w-5 h-5" aria-hidden="true" />
                   <span>{PHONE_DISPLAY}</span>
@@ -293,7 +298,7 @@ export function Home() {
         </div>
 
         {/* Stats bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gray-900/70 border-t border-white/10">
+        <div className="absolute bottom-0 left-0 right-0 bg-gray-950/75 backdrop-blur-sm border-t border-white/10">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
               {stats.map((stat) => (
