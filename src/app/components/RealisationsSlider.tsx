@@ -1,9 +1,7 @@
 import { useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
-
-const REAL_IMG = { q: 'auto:eco' as const, fmt: 'webp' as const, widths: [320, 480, 640] as const };
+import { cldAutoContentAttrs } from '@/app/utils/images';
 
 interface Realisation {
   title: string;
@@ -49,11 +47,9 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
           >
             <div className="relative h-52 overflow-hidden">
               <ImageWithFallback
-                src={getOptimizedCldUrl(real.image, 480, REAL_IMG.q, REAL_IMG.fmt)}
+                {...cldAutoContentAttrs(real.image, '(max-width: 768px) 100vw, 400px')}
                 alt={real.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                srcSet={cldSrcSet(real.image, [...REAL_IMG.widths], REAL_IMG.q, REAL_IMG.fmt)}
-                sizes="(max-width: 768px) 100vw, 400px"
                 width={400}
                 height={208}
                 loading="lazy"

@@ -10,8 +10,7 @@ import {
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
-import { ConversionBreak } from '@/app/components/ConversionBreak';
-import { IMAGES, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
+import { IMAGES, cldAutoContentAttrs, cldImgAttrs, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
 // ServiceCarousel : import EAGER (direct, non lazy).
@@ -28,9 +27,17 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 //   → Desktop TBT : +~12ms (110ms → ~122ms) — même bande de score, desktop reste 98.
 //   → Mobile SI : 4.5s → ~2.0s → score mobile 90 → ~94.
 import { ServiceCarousel } from '@/app/components/ServiceCarousel';
-import { RealisationsSlider } from '@/app/components/RealisationsSlider';
-import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
+
+const ConversionBreak = lazy(() =>
+  import('@/app/components/ConversionBreak').then((m) => ({ default: m.ConversionBreak }))
+);
+const RealisationsSlider = lazy(() =>
+  import('@/app/components/RealisationsSlider').then((m) => ({ default: m.RealisationsSlider }))
+);
+const FAQSection = lazy(() =>
+  import('@/app/components/FAQSection').then((m) => ({ default: m.FAQSection }))
+);
 import { SERVED_CITIES_SHORT, MARSEILLE_QUARTIERS } from '@/app/config/zone-data';
 
 // GoogleReviews reste lazy : vrai below-fold sur tous les viewports.
@@ -431,9 +438,7 @@ export function Home() {
                 <div key={item.title} className="flex-shrink-0 w-[82vw] snap-start md:w-auto group relative overflow-hidden p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/50 transition-all">
                   {/* Ambient background — ultra-light, masqué sur mobile */}
                   <img
-                    src={getOptimizedCldUrl(cardBgs[i], 250)}
-                    srcSet={`${getOptimizedCldUrl(cardBgs[i], 250)} 250w, ${getOptimizedCldUrl(cardBgs[i], 450)} 450w`}
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    {...cldImgAttrs(cardBgs[i], 'thumb', '200px')}
                     alt=""
                     aria-hidden="true"
                     width={400}
@@ -492,9 +497,7 @@ export function Home() {
                   {/* Image principale */}
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
                     <ImageWithFallback
-                      src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
-                      srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      {...cldAutoContentAttrs(IMAGES.entrepriseBureauxMarseille)}
                       alt="Open space de bureaux nettoyé à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={320} loading="lazy" decoding="async"
@@ -509,9 +512,7 @@ export function Home() {
                   {/* Image secondaire */}
                   <div className="relative rounded-xl overflow-hidden shadow-xl h-56 lg:h-64 group">
                     <ImageWithFallback
-                      src={getOptimizedCldUrl(IMAGES.cabinetMedical, 600)}
-                      srcSet={cldSrcSet(IMAGES.cabinetMedical, [300, 500, 700])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      {...cldAutoContentAttrs(IMAGES.cabinetMedical)}
                       alt="Agent désinfectant un cabinet médical à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={256} loading="lazy" decoding="async"
@@ -642,9 +643,7 @@ export function Home() {
                   {/* Image principale */}
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
                     <ImageWithFallback
-                      src={IMAGES.finChantierMaison}
-                      srcSet={cldSrcSet(IMAGES.finChantierMaison, [350, 600, 900])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      {...cldAutoContentAttrs(IMAGES.finChantierMaison)}
                       alt="Équipe Nature Clean en remise en état après travaux à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={320} loading="lazy" decoding="async"
@@ -659,9 +658,7 @@ export function Home() {
                   {/* Image secondaire */}
                   <div className="relative rounded-xl overflow-hidden shadow-xl h-56 lg:h-64 group">
                     <ImageWithFallback
-                      src={IMAGES.nettoyageTerrassePro}
-                      srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [350, 600, 900])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      {...cldAutoContentAttrs(IMAGES.nettoyageTerrassePro)}
                       alt="Terrasse professionnelle nettoyée à haute pression à Marseille"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       width={600} height={256} loading="lazy" decoding="async"
@@ -748,9 +745,7 @@ export function Home() {
               </div>
               <div className="relative min-h-[280px] lg:min-h-[420px]">
                 <ImageWithFallback
-                  src={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 1200)}
-                  srcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [600, 1200])}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  {...cldAutoContentAttrs(IMAGES.graffitiCarrefourAvant, '(min-width: 1024px) 50vw, 100vw')}
                   alt="Façade d'un Carrefour à Marseille recouverte de graffitis, avant intervention"
                   className="absolute inset-0 w-full h-full object-cover"
                   width={1200}
@@ -789,9 +784,7 @@ export function Home() {
               <ScrollReveal direction="left">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <ImageWithFallback
-                    src={getOptimizedCldUrl(IMAGES.appartVideLumineux, 800)}
-                    srcSet={cldSrcSet(IMAGES.appartVideLumineux, [400, 700, 1000])}
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    {...cldAutoContentAttrs(IMAGES.appartVideLumineux, '(max-width: 1024px) 100vw, 50vw')}
                     alt="Intérieur de logement lumineux après remise en propreté"
                     className="w-full h-[280px] lg:h-[420px] object-cover"
                     width={800}
@@ -898,13 +891,15 @@ export function Home() {
       {/* ══════════════════════════════════════════
           5. CONVERSION BREAK — Photo immersive mid-page
           ═══════════════════════════════════════════ */}
-      <ConversionBreak
-        image={IMAGES.equipeCamionnette}
-        imageAlt="Équipe Nature Clean prête à intervenir à Marseille"
-        title="Devis gratuit sous 24 h"
-        subtitle="Intervention à Marseille (13001 à 13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Istres, Martigues et Salon-de-Provence."
-        urgencyText="Réponse sous 2 h, devis sous 24 h"
-      />
+      <Suspense fallback={<div className="min-h-[320px] bg-gray-900" aria-hidden="true" />}>
+        <ConversionBreak
+          image={IMAGES.equipeCamionnette}
+          imageAlt="Équipe Nature Clean prête à intervenir à Marseille"
+          title="Devis gratuit sous 24 h"
+          subtitle="Intervention à Marseille (13001 à 13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Istres, Martigues et Salon-de-Provence."
+          urgencyText="Réponse sous 2 h, devis sous 24 h"
+        />
+      </Suspense>
 
       {/* ═══════════════════════════════════════════
           6. REALISATIONS PREVIEW — 3 cartes
@@ -927,7 +922,9 @@ export function Home() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} className="px-6 md:px-8">
-            <RealisationsSlider items={realisationsPreview} />
+            <Suspense fallback={<div className="min-h-[220px] md:min-h-[280px] max-w-5xl mx-auto" aria-hidden="true" />}>
+              <RealisationsSlider items={realisationsPreview} />
+            </Suspense>
           </ScrollReveal>
 
           <ScrollReveal delay={0.35}>
@@ -953,9 +950,10 @@ export function Home() {
               <ScrollReveal direction="left">
                 <div className="rounded-2xl overflow-hidden shadow-2xl">
                   <ImageWithFallback
-                    src={getOptimizedCldUrl('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', 600)}
-                    srcSet={cldSrcSet('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', [350, 600, 900])}
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    {...cldAutoContentAttrs(
+                      'v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png',
+                      '(max-width: 1024px) 100vw, 50vw'
+                    )}
                     alt="Équipe Nature Clean en intervention de nettoyage professionnel"
                     className="w-full h-[380px] lg:h-[460px] object-cover"
                     width={600}
@@ -1173,11 +1171,13 @@ export function Home() {
         </div>
       </section>
 
-      <FAQSection
-        items={HOME_FAQ}
-        title="Questions fréquentes sur nos services de nettoyage à Marseille"
-        subtitle="Tarifs, délais, produits fournis, horaires et zones d’intervention"
-      />
+      <Suspense fallback={<div className="min-h-[240px]" aria-hidden="true" />}>
+        <FAQSection
+          items={HOME_FAQ}
+          title="Questions fréquentes sur nos services de nettoyage à Marseille"
+          subtitle="Tarifs, délais, produits fournis, horaires et zones d’intervention"
+        />
+      </Suspense>
 
       {/* ═══════════════════════════════════════════
           11. CTA FINAL — Photo + conversion

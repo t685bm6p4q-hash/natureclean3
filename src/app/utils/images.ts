@@ -27,6 +27,7 @@ export {
   getOptimizedCldUrl,
   getResponsiveSrcSet,
   cldImgAttrs,
+  cldAutoContentAttrs,
   cldResize,
   cldSrcSet,
   CLD_PRESETS,

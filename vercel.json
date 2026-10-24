@@ -140,7 +140,7 @@
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/admin", "destination": "/index.html" },
     { "source": "/admin/:path*", "destination": "/index.html" },
-    { "source": "/((?!api/|assets/|admin).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|assets/|admin|\\.well-known/|llms\\.txt|ai-catalog\\.json|robots\\.txt|sitemap\\.xml|manifest\\.json|sw\\.js|tracking\\.js|logo\\.svg).*)", "destination": "/index.html" }
   ],
   "headers": [
     {

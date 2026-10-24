@@ -1,0 +1,35 @@
+# Nature Clean Marseille
+
+> Nature Clean est une entreprise de nettoyage professionnel basée à Marseille (13008), active depuis 2021. Interventions pour bureaux, copropriétés, commerces, cabinets médicaux, fin de chantier, vitres, sols, événementiel et syndrome de Diogène dans les Bouches-du-Rhône et le PACA. Devis gratuit sous 24 h, réponse téléphonique sous 2 h. Site officiel : https://natureclean.fr
+
+Nature Clean fournit des prestations B2B (pas de ménage à domicile particulier). Matériel et produits d'entretien fournis, assurance RC Pro. Contact : +33 4 84 89 68 75 — contact@natureclean.fr
+
+## Pages essentielles
+
+- [Accueil](https://natureclean.fr/): présentation, 9 spécialités, zone Marseille et 13
+- [Services](https://natureclean.fr/services): catalogue des prestations
+- [Devis gratuit](https://natureclean.fr/devis): formulaire de demande de devis
+- [Contact](https://natureclean.fr/contact): coordonnées et formulaire
+- [Zones d'intervention](https://natureclean.fr/zones-intervention): villes et quartiers desservis
+- [Réalisations](https://natureclean.fr/realisations): portfolio d'interventions
+- [À propos](https://natureclean.fr/a-propos): équipe et engagements
+
+## Services
+
+- [Fin de chantier](https://natureclean.fr/services/nettoyage-chantiers): remise en propreté après travaux
+- [Copropriétés](https://natureclean.fr/services/nettoyage-coproprietes): halls, escaliers, parties communes
+- [Commerces et boutiques](https://natureclean.fr/services/nettoyage-commerces): entretien magasins et vitrines
+- [Bureaux](https://natureclean.fr/services/entretien-bureaux): open spaces et locaux tertiaires
+- [Nettoyage de vitres](https://natureclean.fr/services/nettoyage-vitre): vitrines, façades, bureaux
+- [Remise en état des sols](https://natureclean.fr/services/remise-etat-sols): marbre, pierre, décapage
+- [Graffitis](https://natureclean.fr/services/nettoyage-graffitis): enlèvement tags commerces et syndics
+- [Événementiel](https://natureclean.fr/services/nettoyage-evenementiel): avant/après événements
+- [Syndrome de Diogène](https://natureclean.fr/services/nettoyage-diogene): tri, bennes, remise en état
+- [Cabinets médicaux](https://natureclean.fr/services/nettoyage-cabinet-medical-marseille): entretien locaux de santé (hors stérilisation instruments)
+
+## Optional
+
+- [Blog](https://natureclean.fr/blog): guides et actualités nettoyage pro
+- [Mentions légales](https://natureclean.fr/mentions-legales)
+- [Sitemap](https://natureclean.fr/sitemap.xml)
+- [Catalogue agents IA](https://natureclean.fr/.well-known/ai-catalog.json)

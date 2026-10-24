@@ -139,7 +139,8 @@ export function getResponsiveSrcSet(url: string, widths: number[] = [600, 1200],
  */
 export const CLD_PRESETS = {
   hero:    { width: 1200, widths: [400,  800, 1200] as const, sizes: '100vw' },
-  content: { width:  900, widths: [400,  600,  900] as const, sizes: '(max-width: 768px) 100vw, 50vw' },
+  /** f_auto,q_auto — blocs éditoriaux (duo Home, réalisations). */
+  content: { width:  720, widths: [280,  480,  720] as const, sizes: '(max-width: 768px) 100vw, 50vw' },
   card:    { width:  600, widths: [300,  450,  600] as const, sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw' },
   thumb:   { width:  200, widths: [100,  150,  200] as const, sizes: '200px' },
   logo:    { width:  144, widths: [ 72,  144]        as const, sizes: '72px' },
@@ -197,10 +198,15 @@ export function cldImgAttrs(url: string, preset: CldPreset, sizesOverride?: stri
     : '';
 
   return {
-    src:    getOptimizedCldUrl(url, width),
+    src:    getOptimizedCldUrl(url, width, 'auto', 'auto'),
     srcSet,
     sizes:  sizesOverride ?? sizes,
   };
+}
+
+/** Alias explicite — contenu responsive f_auto,q_auto (Lighthouse image delivery). */
+export function cldAutoContentAttrs(url: string, sizesOverride?: string): CldImgAttrs {
+  return cldImgAttrs(url, 'content', sizesOverride);
 }
 
 // ─────────────────────────────────────────────────────────────

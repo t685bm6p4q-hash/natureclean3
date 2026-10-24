@@ -7,6 +7,9 @@ Allow: /
 # Sitemap
 Sitemap: https://natureclean.fr/sitemap.xml
 
+# Agent Resource Discovery (AI Catalog)
+Agentmap: https://natureclean.fr/.well-known/ai-catalog.json
+
 # Bloquer les pages admin/API
 Disallow: /api/
 Disallow: /admin/

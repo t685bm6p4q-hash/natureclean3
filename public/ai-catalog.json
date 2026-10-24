@@ -1,0 +1,66 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Nature Clean Marseille",
+    "identifier": "https://natureclean.fr",
+    "documentationUrl": "https://natureclean.fr/llms.txt",
+    "logoUrl": "https://natureclean.fr/logo.svg"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:natureclean.fr:doc:llms",
+      "displayName": "Résumé site pour agents (llms.txt)",
+      "type": "text/plain",
+      "description": "Vue d'ensemble markdown des services et liens clés Nature Clean.",
+      "url": "https://natureclean.fr/llms.txt",
+      "representativeQueries": [
+        "Quels services propose Nature Clean à Marseille ?",
+        "Comment obtenir un devis nettoyage professionnel Nature Clean ?"
+      ]
+    },
+    {
+      "identifier": "urn:air:natureclean.fr:site:home",
+      "displayName": "Accueil Nature Clean",
+      "type": "text/html",
+      "description": "Entreprise de nettoyage professionnel à Marseille et Bouches-du-Rhône.",
+      "url": "https://natureclean.fr/",
+      "representativeQueries": [
+        "entreprise de nettoyage professionnel Marseille",
+        "Nature Clean nettoyage bureaux copropriétés"
+      ]
+    },
+    {
+      "identifier": "urn:air:natureclean.fr:site:devis",
+      "displayName": "Demande de devis",
+      "type": "text/html",
+      "description": "Formulaire de devis gratuit sous 24 h.",
+      "url": "https://natureclean.fr/devis",
+      "representativeQueries": [
+        "devis nettoyage gratuit Marseille",
+        "demander un devis Nature Clean"
+      ]
+    },
+    {
+      "identifier": "urn:air:natureclean.fr:site:services",
+      "displayName": "Catalogue des services",
+      "type": "text/html",
+      "description": "Neuf spécialités : chantiers, copropriétés, commerces, bureaux, vitres, sols, graffitis, événementiel, Diogène.",
+      "url": "https://natureclean.fr/services",
+      "representativeQueries": [
+        "liste prestations nettoyage Nature Clean",
+        "nettoyage fin de chantier Marseille devis"
+      ]
+    },
+    {
+      "identifier": "urn:air:natureclean.fr:site:cabinet-medical",
+      "displayName": "Nettoyage cabinets médicaux",
+      "type": "text/html",
+      "description": "Entretien locaux de santé à Marseille (hors stérilisation d'instruments).",
+      "url": "https://natureclean.fr/services/nettoyage-cabinet-medical-marseille",
+      "representativeQueries": [
+        "nettoyage cabinet médical Marseille",
+        "entretien locaux santé professionnel PACA"
+      ]
+    }
+  ]
+}
