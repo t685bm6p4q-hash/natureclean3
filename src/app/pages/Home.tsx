@@ -1,4 +1,5 @@
-import { Suspense, lazy, useLayoutEffect } from 'react';
+import { Suspense, lazy, useCallback, useLayoutEffect } from 'react';
+import { dismissNcmLcpBoot } from '@/app/utils/dismissNcmLcpBoot';
 import { Link } from 'react-router';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import {
@@ -244,9 +245,18 @@ const cardBgs = [
 ];
 
 export function Home() {
-  useLayoutEffect(() => {
-    document.getElementById('ncm-lcp-hero')?.remove();
+  const onHeroReady = useCallback(() => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => dismissNcmLcpBoot());
+    });
   }, []);
+
+  useLayoutEffect(() => {
+    const boot = document.getElementById('ncm-lcp-hero');
+    if (!boot) return;
+    const hero = document.getElementById('ncm-hero-react');
+    if (hero?.complete) onHeroReady();
+  }, [onHeroReady]);
 
   return (
     <>
@@ -257,6 +267,7 @@ export function Home() {
           ══════════════════════════════════════════ */}
       <section className="relative bg-gray-900 text-white overflow-hidden md:min-h-[36rem] md:pb-24">
         <img
+          id="ncm-hero-react"
           src={getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')}
           srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
           sizes="100vw"
@@ -266,6 +277,7 @@ export function Home() {
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
           fetchpriority="high"
           decoding="async"
+          onLoad={onHeroReady}
           className="absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-center"
         />
 

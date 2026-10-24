@@ -48,15 +48,20 @@ export function ScrollReveal({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (eager) return;
-
     const el = ref.current;
     if (!el) return;
 
-    registerObserverCallback(el, () => {
+    const show = () => {
       el.style.opacity = '1';
       el.style.transform = 'none';
-    });
+    };
+
+    if (eager || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      show();
+      return;
+    }
+
+    registerObserverCallback(el, show);
 
     return () => unregisterObserverCallback(el);
   }, [eager]);

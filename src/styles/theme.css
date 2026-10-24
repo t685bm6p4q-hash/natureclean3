@@ -214,6 +214,14 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .ncm-scroll-reveal-pending {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 .ncm-cookie-slide-in {
   animation: ncm-cookie-slide-in-kf 0.4s ease-out forwards;
   will-change: transform, opacity;

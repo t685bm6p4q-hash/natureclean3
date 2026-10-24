@@ -11,7 +11,7 @@
          NE PAS ajouter box-sizing ni resets ici : Tailwind preflight les gère déjà
          et les dupliquer force des recalculs de style sur chaque élément du DOM. */
       html,body{background:#111827}
-      /* Hero LCP statique — visible avant React (Moto G : -2 s de render delay) */
+      /* Hero bootstrap — uniquement accueil sans HTML SSG (voir script ncm-lcp-boot) */
       #ncm-lcp-hero{position:fixed;top:0;left:0;width:100%;height:max(420px,58vh);object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}
       #root{position:relative;z-index:1;min-height:100vh}
     </style>
@@ -53,6 +53,7 @@
            getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')
            cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp') -->
     <link
+      id="ncm-lcp-preload"
       rel="preload"
       as="image"
       fetchpriority="high"
@@ -116,6 +117,7 @@
     -->
     <img
       id="ncm-lcp-hero"
+      hidden
       src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
       srcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
       sizes="100vw"
@@ -126,6 +128,22 @@
       aria-hidden="true"
     />
     <div id="root"></div>
+    <script>
+      (function () {
+        var path = location.pathname;
+        var isHome = path === '/' || path === '';
+        var root = document.getElementById('root');
+        var hero = document.getElementById('ncm-lcp-hero');
+        var preload = document.getElementById('ncm-lcp-preload');
+        var hasPrerender = root && root.childElementCount > 0;
+        if (!isHome || hasPrerender) {
+          if (hero) hero.remove();
+          if (preload) preload.remove();
+        } else if (hero) {
+          hero.hidden = false;
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Google Ads AW-18438425597 : gtag.js après interaction ou 4 s — /public/tracking.js -->
