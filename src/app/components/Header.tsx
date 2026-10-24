@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router';
 import {
   Phone, Menu, X, ChevronDown, ChevronRight,
   Building2, Store, HardHat, Layers, Droplet,
-  Clock, Mail, FileText, MapPin, Shield, Heart, Eraser,
+  Clock, Mail, FileText, MapPin, Shield, Eraser,
   Home as HomeIcon, Zap, MoreHorizontal, ImageIcon, Info, BookOpen, Sparkles
 } from 'lucide-react';
 import { useFocusTrap } from '@/app/hooks/useFocusTrap';
@@ -49,7 +49,7 @@ const entrepriseServices = [
 const individualServices = [
   { icon: HardHat, label: 'Gros chantiers', href: '/services/nettoyage-gros-chantiers' },
   { icon: Sparkles, label: 'Événementiel', href: '/services/nettoyage-evenementiel' },
-  { icon: Heart, label: 'Diogène', href: '/services/nettoyage-diogene' },
+  { icon: Store, label: 'Commerces', href: '/services/nettoyage-commerces' },
 ] as const;
 
 /** Pages secondaires dans le dropdown "Plus" */
@@ -237,9 +237,9 @@ export function Header() {
 
       {/* ═══ NAV PRINCIPALE ═══ */}
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between min-h-16 py-2 lg:h-[68px] lg:py-0">
+        <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:h-[68px] lg:py-0">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 flex-1" aria-label="Nature Clean - Accueil">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,220px)] lg:max-w-[240px]" aria-label="Nature Clean - Accueil">
             <img
               src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_144,h_144,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
@@ -254,9 +254,12 @@ export function Header() {
             </div>
           </Link>
 
-          {/* ═══ Navigation Desktop — menus à gauche (logo), CTA à droite ═══ */}
-          <nav className="hidden lg:flex flex-1 min-w-0 items-center gap-2 pl-4 xl:pl-8" aria-label="Navigation principale">
-            <ul className="flex items-center gap-0.5 list-none shrink-0">
+          {/* ═══ Navigation Desktop — centrée entre logo et CTA ═══ */}
+          <nav
+            className="hidden lg:flex min-w-0 items-center justify-center gap-1 xl:gap-2 px-1"
+            aria-label="Navigation principale"
+          >
+            <ul className="flex items-center justify-center gap-0.5 list-none shrink min-w-0 flex-wrap">
               {/* ═══ Dropdown "Entreprise" — Bureaux, Commerces, Chantiers ═══ */}
               <li
                 className="relative"
@@ -266,7 +269,7 @@ export function Header() {
               >
                 <button
                   onClick={() => setEntrepriseOpen((v) => !v)}
-                  className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-all min-h-[44px] ${
+                  className={`flex items-center gap-1 px-2.5 xl:px-3 py-2 rounded-lg text-[13px] xl:text-sm transition-all min-h-[44px] whitespace-nowrap ${
                     isEntrepriseActive
                       ? 'text-green-700 bg-green-50 font-medium'
                       : 'text-gray-600 hover:text-green-700 hover:bg-green-50/60'
@@ -336,12 +339,12 @@ export function Header() {
 
             <span className="w-px h-6 bg-gray-200 shrink-0" aria-hidden="true" />
 
-            <ul className="flex items-center gap-0.5 list-none min-w-0">
+            <ul className="flex items-center justify-center gap-0.5 list-none min-w-0 shrink">
               {individualServices.map((s) => (
-                <li key={s.href}>
+                <li key={s.href} className="shrink-0">
                   <Link
                     to={s.href}
-                    className={`flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-sm transition-all min-h-[44px] whitespace-nowrap ${
+                    className={`flex items-center gap-1 px-2 xl:px-2.5 py-2 rounded-lg text-[13px] xl:text-sm transition-all min-h-[44px] whitespace-nowrap ${
                       isActive(s.href)
                         ? 'text-green-700 bg-green-50 font-medium'
                         : 'text-gray-600 hover:text-green-700 hover:bg-green-50/60'
@@ -364,7 +367,7 @@ export function Header() {
               >
                 <button
                   onClick={() => setPlusOpen((v) => !v)}
-                  className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors min-h-[44px] ${
+                  className={`flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg transition-colors min-h-[44px] whitespace-nowrap ${
                     isSecondaryActive
                       ? 'text-green-700 bg-green-50'
                       : 'text-gray-600 hover:text-green-700 hover:bg-gray-50'
@@ -428,10 +431,10 @@ export function Header() {
           </nav>
 
           {/* Desktop — téléphone + devis */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0 ml-2">
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0 justify-self-end">
             <a
               href={PHONE_HREF}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold text-green-800 border border-green-200 bg-green-50 hover:bg-green-100 transition-colors whitespace-nowrap min-h-[44px]"
+              className="inline-flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-bold text-green-800 border border-green-200 bg-green-50 hover:bg-green-100 transition-colors whitespace-nowrap min-h-[44px]"
               aria-label={ARIA_PHONE}
             >
               <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
@@ -439,7 +442,7 @@ export function Header() {
             </a>
             <Link
               to={smartDevisLink}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-white bg-green-700 hover:bg-green-800 shadow-sm transition-colors whitespace-nowrap min-h-[44px]"
+              className="inline-flex items-center gap-1 px-3 xl:px-4 py-2 rounded-lg text-xs xl:text-sm font-bold text-white bg-green-700 hover:bg-green-800 shadow-sm transition-colors whitespace-nowrap min-h-[44px]"
             >
               <FileText className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
               Devis gratuit

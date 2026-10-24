@@ -58,28 +58,16 @@ const services: ServiceCard[] = [
     cta: 'Nettoyage de copropriétés à Marseille',
   },
   {
-    icon: Heart,
-    title: 'Diogène',
-    description: 'Tri, bennes, désinfection — discret pour familles et mandataires.',
-    features: [
-      'Désencombrement',
-      'Remise en propreté',
-      'RC Pro',
-    ],
-    link: '/services/nettoyage-diogene',
-    cta: 'Nettoyage Diogène à Marseille',
-  },
-  {
     icon: Store,
-    title: 'Commerces',
-    description: 'Entretien régulier avant ouverture, vitrines et sols.',
+    title: 'Commerces & boutiques',
+    description: 'Entretien régulier avant ouverture, vitrines et sols de vente.',
     features: [
       'Hors heures d\'ouverture',
       'Surface de vente',
       'Devis sur mesure',
     ],
     link: '/services/nettoyage-commerces',
-    cta: 'Nettoyage de commerces à Marseille',
+    cta: 'Nettoyage de commerces et boutiques à Marseille',
   },
   {
     icon: Briefcase,
@@ -140,6 +128,18 @@ const services: ServiceCard[] = [
     ],
     link: '/services/nettoyage-evenementiel',
     cta: 'Nettoyage événementiel à Marseille',
+  },
+  {
+    icon: Heart,
+    title: 'Diogène',
+    description: 'Tri, bennes, désinfection — discret pour familles et mandataires.',
+    features: [
+      'Désencombrement',
+      'Remise en propreté',
+      'RC Pro',
+    ],
+    link: '/services/nettoyage-diogene',
+    cta: 'Nettoyage Diogène à Marseille',
   },
 ];
 
@@ -234,7 +234,7 @@ function DesktopServiceCard({ service }: { service: ServiceCard }) {
               className="w-full max-w-full bg-green-700 hover:bg-green-800 text-sm py-2.5 mt-auto whitespace-normal h-auto min-h-11 leading-snug px-3"
               asChild
             >
-              <Link to={service.link} className="text-center line-clamp-2">
+              <Link to={service.link} className="text-center line-clamp-2" aria-label={service.cta}>
                 {service.cta}
               </Link>
             </Button>

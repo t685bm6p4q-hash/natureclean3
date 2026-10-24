@@ -91,8 +91,14 @@ const P_whatsappImage20260429   = 'v1779387123/nettoyage-sol-menage-marseille_mn
 const P_magasinBoutiquePACA     = 'v1779380746/nettoyage-magasin-boutique-marseille-paca_eviyct.jpg';
 const P_jdSportMarseilleFloor   = 'v1779962471/nettoyage-sol-magasin-marseille.jpg_m3lnyq.jpg';
 const P_magasinPretAPorterUrgence = 'v1792680440/93fa1c9f-d9ee-489c-b9a9-c0e71e3c4f44_mqmzqd.jpg';
+const P_vitrinesBoutiqueCentreCommercialMarseille =
+  'v1792860014/entreprise-propreté-commerces-paca-nature-clean_ngmqko.png';
+const P_entretienEntreeBoutiqueCentreCommercialMarseille =
+  'v1792860013/entretien-locaux-commerciaux-nature-clean-marseille._msi5py.jpg';
 
 // ── BUREAUX SPÉCIALISÉS ──
+const P_entretienSalleReunionMarseille =
+  'v1792860012/entreprise-entretien-salle-de-reunion-marseille._yxbmsw.jpg';
 const P_cabinetMedical          = 'v1779962468/nettoyage-cabinet-medical-marseille.jpg_b9gt6a.jpg';
 const P_entrepriseNettoyage13008 = 'v1777394245/entreprise-nettoyage-marseille-13008_ytpdye.jpg';
 const P_hygieneLocauxSante      = 'v1777394245/hygiene-locaux-sante-nature-clean_pf4x5b.jpg';
@@ -189,9 +195,12 @@ export const IMAGES = {
   magasinBoutiquePACA:    O(P_magasinBoutiquePACA),
   jdSportMarseilleFloor:  O(P_jdSportMarseilleFloor),
   magasinPretAPorterUrgence: O(P_magasinPretAPorterUrgence),
+  vitrinesBoutiqueCentreCommercialMarseille: O(P_vitrinesBoutiqueCentreCommercialMarseille),
+  entretienEntreeBoutiqueCentreCommercialMarseille: O(P_entretienEntreeBoutiqueCentreCommercialMarseille),
 
   // ── BUREAUX SPÉCIALISÉS ──
   cabinetMedical:         O(P_cabinetMedical),
+  entretienSalleReunionMarseille: O(P_entretienSalleReunionMarseille),
   entrepriseNettoyage13008: O(P_entrepriseNettoyage13008),
   hygieneLocauxSante:     O(P_hygieneLocauxSante),
   entrepriseBureauxMarseille: O(P_entrepriseBureauxMarseille),

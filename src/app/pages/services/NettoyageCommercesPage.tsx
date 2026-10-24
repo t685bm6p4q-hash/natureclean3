@@ -101,6 +101,10 @@ export function NettoyageCommercesPage() {
               client avant de pousser la porte. Nature Clean entretient des commerces à Marseille
               depuis {FOUNDING_YEAR}, depuis le 8e.
             </p>
+            <p className="text-lg font-semibold text-gray-900">
+              Boutiques, cafés, galeries : l&apos;entretien suit le type de commerce, pas un
+              protocole unique.
+            </p>
             <p>
               On intervient avant l&apos;ouverture ou après la fermeture — Vieux-Port, Canebière, La
               Valentine (11e), Plan-de-Campagne, Aubagne. Produits et matériel fournis, environ 50 %
@@ -179,18 +183,20 @@ export function NettoyageCommercesPage() {
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
                 Boutiques, cafés, galeries
               </h2>
-              <p className="text-center text-gray-500 mb-12 text-lg">
-                L&apos;entretien suit le type de commerce, pas un protocole unique.
+              <p className="text-center text-gray-500 mb-4 max-w-2xl mx-auto text-lg leading-relaxed">
+                L&apos;entretien suit le type de commerce, pas un protocole unique. Vitrines grand
+                format, sol carrelé, salle de café ou galerie : le cahier des charges se fixe à la
+                visite.
               </p>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
               <ScrollReveal delay={0.08}>
                 <ServiceShowcaseCard
-                  src={IMAGES.entretienMagasin}
-                  alt="Rayonnages et allée d'une boutique après entretien"
+                  src={IMAGES.vitrinesBoutiqueCentreCommercialMarseille}
+                  alt="Vitrine et entrée d'une boutique de sport en centre commercial, vitres propres et cadre noir nettoyé"
                   title="Boutiques & magasins"
-                  subtitle="Prêt-à-porter, retail, électronique"
+                  subtitle="Vitrines, entrée, sols — retail, sport, jeux vidéo, prêt-à-porter"
                 />
               </ScrollReveal>
               <ScrollReveal delay={0.16}>
@@ -203,13 +209,67 @@ export function NettoyageCommercesPage() {
               </ScrollReveal>
               <ScrollReveal delay={0.24}>
                 <ServiceShowcaseCard
-                  src={IMAGES.lavageVitrine}
-                  alt="Vitrine de galerie commerciale lavée à l'eau déminéralisée"
-                  title="Galeries commerciales"
-                  subtitle="Devantures et espaces communs accessibles"
+                  src={IMAGES.galerieArtMarseille}
+                  alt="Galerie d'art avec sol propre après entretien"
+                  title="Galeries & espaces culturels"
+                  subtitle="Sols, vitrines, salles d'exposition — produits adaptés aux œuvres"
                 />
               </ScrollReveal>
             </div>
+
+            <ScrollReveal delay={0.12}>
+              <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
+                Exemples d&apos;interventions commerces
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <article className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+                  <ImageWithFallback
+                    src={IMAGES.vitrinesBoutiqueCentreCommercialMarseille}
+                    alt="Vitrine et entrée d'une boutique de sport en centre commercial, vitres propres et cadre noir nettoyé"
+                    className="w-full h-52 object-cover object-center"
+                    loading="lazy"
+                    width={800}
+                    height={400}
+                  />
+                  <div className="p-5">
+                    <p className="font-bold text-gray-900 mb-2">
+                      Vitrines en centre commercial, Marseille
+                    </p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Lavage vitrine grand format, dégraissage du cadre, enseigne si prévu — créneau
+                      avant ouverture ou en soirée.
+                    </p>
+                  </div>
+                </article>
+                <article className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+                  <ImageWithFallback
+                    src={IMAGES.entretienEntreeBoutiqueCentreCommercialMarseille}
+                    alt="Entrée d'une boutique de jeux vidéo avec sol en carrelage brillant après entretien"
+                    className="w-full h-52 object-cover object-center"
+                    loading="lazy"
+                    width={800}
+                    height={400}
+                  />
+                  <div className="p-5">
+                    <p className="font-bold text-gray-900 mb-2">
+                      Entrée et sols — boutique en centre commercial
+                    </p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      Baies vitrées de l&apos;entrée, lavage du carrelage, panneaux de façade selon
+                      cahier des charges.
+                    </p>
+                  </div>
+                </article>
+              </div>
+              <p className="text-center mt-8">
+                <Link
+                  to="/realisations"
+                  className="text-green-800 font-semibold underline underline-offset-2 hover:text-green-900"
+                >
+                  Voir toutes nos réalisations commerces
+                </Link>
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>

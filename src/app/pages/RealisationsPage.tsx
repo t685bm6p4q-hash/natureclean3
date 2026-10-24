@@ -1,6 +1,5 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
-import { BeforeAfterCarousel } from '@/app/components/BeforeAfterCarousel';
 import { Button } from '@/app/components/ui/button';
 import {
   Building2,
@@ -64,6 +63,30 @@ const realisations: Realisation[] = [
     color: 'cyan',
   },
   {
+    id: 'real-vitrines-cc',
+    title: 'Nettoyage de vitrines de boutique en centre commercial, Marseille',
+    alt: 'Vitrine et entrée d’une boutique de sport en centre commercial, vitres propres et cadre noir nettoyé',
+    category: 'Commerces',
+    location: 'Marseille — centre commercial',
+    image: IMAGES.vitrinesBoutiqueCentreCommercialMarseille,
+    desc: 'Lavage des vitres grand format, dégraissage du cadre, enseigne dépoussiérée si prévu au contrat — créneau hors clientèle.',
+    link: '/services/nettoyage-commerces',
+    linkLabel: 'Nettoyage de commerces à Marseille',
+    color: 'cyan',
+  },
+  {
+    id: 'real-entree-boutique-jeux',
+    title: 'Entretien de l’entrée et des sols d’une boutique de jeux vidéo, Marseille',
+    alt: 'Entrée d’une boutique de jeux vidéo avec sol en carrelage brillant après entretien',
+    category: 'Commerces',
+    location: 'Marseille — centre commercial',
+    image: IMAGES.entretienEntreeBoutiqueCentreCommercialMarseille,
+    desc: 'Baies vitrées de l’entrée, lavage du carrelage et panneaux de façade selon cahier des charges.',
+    link: '/services/nettoyage-commerces',
+    linkLabel: 'Nettoyage de commerces à Marseille',
+    color: 'cyan',
+  },
+  {
     id: 'real-galerie-art-marseille',
     title: 'Entretien d’une galerie d’art',
     alt: 'Salle d’exposition avec sol lustré et vitrine',
@@ -85,18 +108,6 @@ const realisations: Realisation[] = [
     desc: 'Diagnostic du support, choix du procédé, remise en état sans fermeture prolongée.',
     link: '/services/nettoyage-graffitis',
     linkLabel: 'Voir le service',
-    color: 'cyan',
-  },
-  {
-    id: 'real-magasin-centre',
-    title: 'Entretien d’un magasin en centre-ville',
-    alt: 'Salle de vente, sol carrelé après passage autolaveuse',
-    category: 'Commerces',
-    location: 'Marseille centre',
-    image: IMAGES.jdSportMarseilleFloor,
-    desc: 'Sols lavés à l’autolaveuse avant l’ouverture.',
-    link: '/realisations/cas/magasin-centre-ville',
-    linkLabel: 'Lire le cas',
     color: 'cyan',
   },
   {
@@ -404,8 +415,6 @@ export function RealisationsPage() {
           </div>
         </div>
       </section>
-
-      <BeforeAfterCarousel />
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">

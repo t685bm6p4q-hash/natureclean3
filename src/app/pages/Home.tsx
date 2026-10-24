@@ -91,10 +91,10 @@ const localExpertisePages = [
     icon: HardHat,
   },
   {
-    to: '/services/nettoyage-diogene',
-    title: 'Nettoyage Diogène à Marseille',
-    subtitle: 'Discrétion, familles et mandataires',
-    icon: Heart,
+    to: '/services/nettoyage-commerces',
+    title: 'Nettoyage de commerces à Marseille',
+    subtitle: 'Boutiques, vitrines, surfaces de vente',
+    icon: Store,
   },
 ] as const;
 
@@ -191,10 +191,16 @@ const realisationsPreview = [
     location: 'Marseille',
   },
   {
-    title: 'Nettoyage magasin JD Sport Marseille',
+    title: 'Nettoyage de vitrines de boutique en centre commercial, Marseille',
     category: 'Commerces',
-    image: IMAGES.jdSportMarseilleFloor,
-    location: 'Marseille Centre',
+    image: IMAGES.vitrinesBoutiqueCentreCommercialMarseille,
+    location: 'Marseille — centre commercial',
+  },
+  {
+    title: 'Entretien entrée et sols — boutique jeux vidéo, Marseille',
+    category: 'Commerces',
+    image: IMAGES.entretienEntreeBoutiqueCentreCommercialMarseille,
+    location: 'Marseille — centre commercial',
   },
   {
     title: 'Entretien bureaux — Entreprise Marseille',
@@ -919,7 +925,76 @@ export function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          7. ENGAGEMENT ECO — Bande accent
+          7. SECTION EQUIPE — Confiance + chiffres
+          ═══════════════════════════════════════════ */}
+      <section className="relative py-16 md:py-20 bg-gray-50 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <ScrollReveal direction="left">
+                <div className="rounded-2xl overflow-hidden shadow-2xl">
+                  <ImageWithFallback
+                    src={getOptimizedCldUrl('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', 600)}
+                    srcSet={cldSrcSet('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', [350, 600, 900])}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    alt="Équipe Nature Clean en intervention de nettoyage professionnel"
+                    className="w-full h-[380px] lg:h-[460px] object-cover"
+                    width={600}
+                    height={460}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal direction="right">
+                <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                  Notre engagement
+                </span>
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">
+                  Une équipe formée et engagée
+                </h2>
+                <p className="text-gray-500 mb-8 leading-relaxed text-lg">
+                  Depuis 2021, Nature Clean réunit des professionnels qualifiés,
+                  équipés de matériels de pointe et formés aux dernières normes d&apos;hygiène.
+                </p>
+
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                  <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                    <div className="text-2xl md:text-3xl font-black text-green-600">4+</div>
+                    <div className="text-xs text-gray-500 mt-1">Années d&apos;exp.</div>
+                  </div>
+                  <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                    <div className="text-2xl md:text-3xl font-black text-green-600">RC Pro</div>
+                    <div className="text-xs text-gray-500 mt-1">Assurance</div>
+                  </div>
+                  <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
+                    <div className="text-2xl md:text-3xl font-black text-green-600">13</div>
+                    <div className="text-xs text-gray-500 mt-1">Bouches-du-Rhône</div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
+                    <Link to="/a-propos">
+                      Découvrir l&apos;équipe
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
+                    <Link to="/services/nettoyage-chantiers">
+                      <HardHat className="w-4 h-4 mr-1.5" aria-hidden="true" />
+                      Fin de chantier
+                    </Link>
+                  </Button>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          8. ENGAGEMENT ECO — Bande accent
           ═══════════════════════════════════════════ */}
       <section className="py-14 md:py-16 bg-green-700 text-white overflow-hidden">
         <div className="container mx-auto px-4">
@@ -973,7 +1048,7 @@ export function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          9. AVIS GOOGLE — Preuve sociale
+          10. AVIS GOOGLE — Preuve sociale
           ═══════════════════════════════════════════ */}
       {/* content-visibility: auto — section ~2500px sous le fold mobile
           contain-intrinsic-size: auto 400px correspond au fallback Suspense h-[400px]

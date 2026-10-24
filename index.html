@@ -151,8 +151,15 @@
     <!-- COUCHE 2 : Service Worker PWA (mode Survie) — production only -->
     <script>
       if ('serviceWorker' in navigator && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1') && !window.location.port) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').catch(function() {});
+        var registerSw = function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        };
+        window.addEventListener('load', function () {
+          if (typeof requestIdleCallback === 'function') {
+            requestIdleCallback(registerSw, { timeout: 8000 });
+          } else {
+            setTimeout(registerSw, 3000);
+          }
         });
       }
     </script>
