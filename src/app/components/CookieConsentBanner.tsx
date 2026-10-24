@@ -17,9 +17,9 @@ export function CookieConsentBanner() {
       // Légère temporisation pour ne pas bloquer le LCP
       const t = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(t);
-    } else {
-      setStatus(stored);
     }
+    setStatus(stored);
+    return undefined;
   }, []);
 
   const accept = () => {

@@ -56,7 +56,7 @@ export const leadExpressSchema = z
       .max(2000, { message: 'Maximum 2000 caractères.' })
       .transform(sanitize),
     rgpd: z.literal(true, {
-      errorMap: () => ({ message: 'Vous devez accepter la politique de confidentialité.' }),
+      message: 'Vous devez accepter la politique de confidentialité.',
     }),
   })
   .superRefine((data, ctx) => {

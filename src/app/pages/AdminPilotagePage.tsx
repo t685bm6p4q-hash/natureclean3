@@ -86,7 +86,7 @@ export function AdminPilotagePage() {
   const [loading, setLoading] = useState(true);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [retargetingSignals, setRetargetingSignals] = useState<RetargetingSignal[]>([]);
-  const [lighthouseScores, setLighthouseScores] = useState({
+  const [lighthouseScores] = useState({
     performance: 100,
     seo: 98,
     accessibility: 95,

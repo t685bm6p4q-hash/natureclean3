@@ -588,7 +588,7 @@ function FindingCard({ finding }: { finding: Finding }) {
 // ──────────────────────────────────────────
 // Main Page
 // ──────────────────────────────────────────
-export function SecurityAuditPage() {
+export function SecurityAuditPage({ embedded = false }: { embedded?: boolean }) {
   const [filter, setFilter] = useState<Severity | 'all'>('all');
   const [showMitigated, setShowMitigated] = useState(true);
 
@@ -618,7 +618,7 @@ export function SecurityAuditPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className={embedded ? 'bg-slate-50' : 'min-h-screen bg-slate-50'}>
       {/* ── Header ── */}
       <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <div className="max-w-6xl mx-auto px-4 py-10">

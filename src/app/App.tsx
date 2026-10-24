@@ -5,10 +5,7 @@ import { ErrorBoundary } from '@/app/components/ErrorBoundary';
 function App() {
   return (
     <ErrorBoundary>
-      <RouterProvider
-        router={router}
-        fallbackElement={null}
-      />
+      <RouterProvider router={router} />
     </ErrorBoundary>
   );
 }

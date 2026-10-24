@@ -22,7 +22,6 @@ export function AdminLoginPage() {
   const [error, setError] = useState('');
   const [devOtp, setDevOtp] = useState<string | undefined>();
   const [attemptsRemaining, setAttemptsRemaining] = useState<number | undefined>();
-  const [lockedUntil, setLockedUntil] = useState<number | undefined>();
 
   // Si déjà connecté, rediriger vers le dashboard
   useEffect(() => {
@@ -58,8 +57,6 @@ export function AdminLoginPage() {
     if (result.success) {
       navigate('/admin/pilotage');
     } else if (result.retryAfter) {
-      const unlockTime = Date.now() + result.retryAfter * 1000;
-      setLockedUntil(unlockTime);
       setError(`Trop de tentatives. Réessayez dans ${Math.ceil(result.retryAfter / 60)} min.`);
       setOtp('');
     } else {
@@ -182,7 +179,7 @@ export function AdminLoginPage() {
                   <InputOTP
                     maxLength={6}
                     value={otp}
-                    onChange={(value) => {
+                    onValueChange={(value) => {
                       setOtp(value);
                       if (value.length === 6) {
                         handleSubmit(value);

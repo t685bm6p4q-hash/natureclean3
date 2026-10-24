@@ -5,6 +5,12 @@
 
 import { IMAGES } from '@/app/utils/images';
 import type { FAQItem } from '@/app/components/FAQSection';
+import { FAQ_COPROPRIETES_LA_CIOTAT } from '@/app/data/geo/faq/coproprietes-la-ciotat';
+import { FAQ_BUREAUX_AIX } from '@/app/data/geo/faq/bureaux-aix-en-provence';
+import { FAQ_MEDICAL_MARSEILLE } from '@/app/data/geo/faq/medical-marseille';
+import { FAQ_BUREAUX_MARSEILLE } from '@/app/data/geo/faq/bureaux-marseille';
+import { FAQ_COPROPRIETES_AUBAGNE } from '@/app/data/geo/faq/coproprietes-aubagne';
+import { FAQ_INDUSTRIEL_MARSEILLE } from '@/app/data/geo/faq/industriel-marseille';
 
 export interface GeoPageData {
   slug: string;
@@ -75,33 +81,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     secondaryImageAlt: 'Hall de copropriété avec boîtes aux lettres à La Ciotat',
     conversionTitle: 'Syndics de La Ciotat : cahier des charges clair',
     conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h après visite des parties communes',
-    faqItems: [
-      {
-        question: 'Intervenez-vous dans les résidences neuves de La Ciotat ?',
-        answer:
-          'Oui, après visite : L\'Île Verte, programmes récents autour du port, immeubles anciens du centre. Le devis liste hall, cage, parking et local poubelles avec les fréquences adaptées au site.',
-      },
-      {
-        question: 'Nettoyez-vous les piscines collectives ?',
-        answer:
-          'Non pour le traitement de l\'eau et la maintenance technique (pisciniste). En revanche, nettoyage des abords, vestiaires ou douches communes si c\'est au contrat de ménage.',
-      },
-      {
-        question: 'Comment adaptez-vous la fréquence en bord de mer ?',
-        answer:
-          'Le sable et le sel accélèrent l\'encrassement des sols et des vitrages. On propose un planning après audit — souvent plus dense qu\'à l\'intérieur des terres, sans imposer un chiffre fixe sans visite.',
-      },
-      {
-        question: 'Peut-on renforcer les passages en été ?',
-        answer:
-          'Oui si c\'est prévu au contrat ou par avenant quand les résidences secondaires sont occupées et que les parties communes sont plus sollicitées.',
-      },
-      {
-        question: 'Quelle zone couvrez-vous depuis La Ciotat ?',
-        answer:
-          'La Ciotat (13600) en priorité. Hors Bouches-du-Rhône : déplacement chiffré au devis.',
-      },
-    ],
+    faqItems: FAQ_COPROPRIETES_LA_CIOTAT,
     relatedGeoPages: ['nettoyage-coproprietes-aubagne', 'nettoyage-bureaux-marseille'],
     serviceDifferentiator:
       'Cette page décrit le terrain ciotaden (accès, mer, parkings). La fiche service « nettoyage de copropriétés » détaille contrat syndic, suivi et pièces administratives.',
@@ -152,13 +132,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     secondaryImageAlt: 'Plateaux de bureaux au pôle d\'activités des Milles, près d\'Aix-en-Provence',
     conversionTitle: 'Vos bureaux à Aix méritent un entretien calé sur vos horaires',
     conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h — centre, Milles, Duranne, Jas de Bouffan',
-    faqItems: [
-      { question: 'Intervenez-vous dans toutes les zones d\'Aix-en-Provence ?', answer: 'Oui : centre historique, Jas de Bouffan, pôle d\'activités des Milles, Duranne, Luynes, Puyricard et les zones d\'activités autour. Chaque site a ses accès : on les note dès la visite.' },
-      { question: 'Combien de temps faut-il depuis Marseille 8e ?', answer: 'Environ 25 minutes jusqu\'aux Milles et 30 minutes jusqu\'au centre hors pointe. Sur l\'A51 entre 7 h 30 et 9 h, prévoyez 10 à 15 minutes de plus. C\'est pour ça que les contrats bureaux à Aix commencent souvent avant 7 h 30 ou après 19 h.' },
-      { question: 'Comment gérez-vous le stationnement dans le centre d\'Aix ?', answer: 'Les rues semi-piétonnes et les livraisons limitées le matin interdisent souvent de laisser un utilitaire. On arrive tôt, on décharge, et on travaille avec du matériel compact. Aux Milles et à la Duranne, le sujet est plutôt le badge et la place visiteurs avant 8 h.' },
-      { question: 'Quel délai pour démarrer un contrat à Aix ?', answer: 'Réponse sous 2 h, devis sous 24 h après la visite. Démarrage généralement sous 48 h une fois le devis validé.' },
-      { question: 'Proposez-vous le nettoyage de vitres à Aix ?', answer: 'Oui, vitres intérieures et extérieures, en option ou inclus selon le contrat. En centre-ville, on privilégie les perches plutôt que la nacelle dès que la hauteur le permet.' },
-    ],
+    faqItems: FAQ_BUREAUX_AIX,
     relatedGeoPages: ['nettoyage-coproprietes-aubagne', 'nettoyage-bureaux-marseille'],
     serviceDifferentiator:
       'Cette page décrit les accès et horaires propres à Aix (centre, Milles, A51). La fiche service « entretien de bureaux » détaille le protocole : sols, sanitaires, planning.',
@@ -210,24 +184,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     secondaryImageAlt: 'Hygiène locaux de santé Marseille — protocole renforcé Nature Clean',
     conversionTitle: 'Professionnels de santé à Marseille : un prestataire qui parle votre langue',
     conversionSubtitle: 'Devis gratuit sous 4h — premier passage d\'essai offert',
-    faqItems: [
-      {
-        question: 'Vous intervenez dans quel type de locaux médicaux à Marseille ?',
-        answer: 'Cabinets de médecins généralistes et spécialistes, dentistes, kinésithérapeutes, ostéopathes, infirmières libérales, pharmacies, laboratoires d\'analyses médicales, centres de radiologie, cabinets de psychologues. On connaît bien les contraintes de chaque type de local — un cabinet dentaire ne se nettoie pas comme une salle de kiné.',
-      },
-      {
-        question: 'Quels produits utilisez-vous pour la désinfection médicale ?',
-        answer: 'On utilise des produits bactéricides, virucides et fongicides adaptés aux surfaces médicales : désinfectants de surfaces norme EN 14476 (actifs sur les virus enveloppés et non enveloppés), lingettes imprégnées pour les points de contact, et produits de sol compatibles avec les revêtements vinyle et linoléum des cabinets. Tout est en conformité avec les recommandations de la HAS et de l\'ARS PACA.',
-      },
-      {
-        question: 'Pouvez-vous intervenir entre deux consultations à Marseille ?',
-        answer: 'Oui, c\'est même souvent ce qu\'on fait. Une heure de coupure le midi, une demi-journée de fermeture le mercredi — on s\'adapte. Nos équipes arrivent avec le strict minimum de matériel pour ne pas gêner l\'accueil des patients. Si vous avez une salle d\'attente avec des enfants ou des personnes âgées dans la journée, on utilise des produits sans odeur forte et à séchage rapide.',
-      },
-      {
-        question: 'Proposez-vous un contrat d\'entretien régulier pour les cabinets marseillais ?',
-        answer: 'Oui, c\'est le fonctionnement de la grande majorité de nos clients médicaux. Contrat hebdomadaire, bi-hebdomadaire ou quotidien selon la fréquentation du cabinet. On établit un protocole écrit, un planning fixe, et vous avez toujours le même agent — ce qui est essentiel dans un cabinet médical pour des raisons de confidentialité et de confiance.',
-      },
-    ],
+    faqItems: FAQ_MEDICAL_MARSEILLE,
     relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
   },
 
@@ -263,13 +220,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     secondaryImageAlt: 'Open space en open plan, moquette et postes, quartier d\'affaires marseillais',
     conversionTitle: 'Un site au Prado, à la Joliette ou à Euromed ?',
     conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h — visite des accès et du parking',
-    faqItems: [
-      { question: 'Pourquoi une page Prado / Joliette / Euromed en plus de la fiche bureaux ?', answer: 'La fiche service décrit le contrat et le protocole. Ici on parle d\'accès : badge Euromed, parking docks, créneau avant l\'ouverture au Prado. Deux pages, deux rôles — pas deux fois la même requête.' },
-      { question: 'Combien de temps depuis le 8e jusqu\'à La Joliette ?', answer: 'En pratique, 15 à 25 minutes selon l\'heure, via le tunnel Prado ou le littoral. Un oubli le matin (kitchenette, sanitaires) peut encore être rattrapé dans la journée.' },
-      { question: 'Gérez-vous les badges et les parkings souterrains ?', answer: 'Oui. On récupère les badges à la visite, on note le local poubelles et le niveau de parking. Rien n\'est improvisé le premier lundi devant une barrière.' },
-      { question: 'Intervenez-vous aussi à La Valentine ou à Château-Gombert ?', answer: 'Oui, La Valentine (11e) et Château-Gombert sont des quartiers de Marseille. Ce n\'est pas le même trajet que la Joliette : on le dit au devis, on ne promet pas le même créneau qu\'un site du 8e.' },
-      { question: 'Les horaires 6 h–22 h sont-ils ceux du standard ?', answer: 'Non. 6 h–22 h = fenêtre d\'intervention sur site. Le standard répond du lundi au samedi, 8 h–18 h. Réponse sous 2 h, devis sous 24 h.' },
-    ],
+    faqItems: FAQ_BUREAUX_MARSEILLE,
     relatedGeoPages: ['nettoyage-bureaux-aix-en-provence', 'nettoyage-coproprietes-aubagne'],
     serviceDifferentiator:
       'Cette page décrit les accès des quartiers d\'affaires (Prado, Joliette, Euroméditerranée). La fiche service détaille fréquences, sanitaires et démarrage de contrat.',
@@ -325,17 +276,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     secondaryImageAlt: 'Cage d\'escalier d\'une copropriété à Aubagne après entretien',
     conversionTitle: 'Syndics d\'Aubagne : un prestataire déjà dans le 13 Est',
     conversionSubtitle: 'Réponse sous 2 h, devis sous 24 h — audit des parties communes sur place',
-    faqItems: [
-      { question: 'Couvrez-vous tous les quartiers d\'Aubagne ?', answer: 'Oui : centre-ville, Tourtelle, Pin Vert, Camp Major, Les Passons, Pont-de-l\'Étoile et les résidences autour. Le délai depuis Marseille 8e reste le même, environ 15 à 20 minutes.' },
-      { question: 'Comment gérez-vous les jours de collecte et les locaux poubelles ?', answer: 'On note les jours de collecte dès l\'audit. Sortie et rentrée des containers, lavage et désinfection du local : c\'est dans le contrat, pas en extra surprise. Si le jour change, le gardien ou le syndic nous prévient sur le numéro dédié.' },
-      { question: 'Pouvez-vous reprendre un contrat en cours avec un autre prestataire ?', answer: 'Oui. Audit gratuit, transition sans trou dans le planning, préavis de l\'ancien prestataire géré en parallèle. On ne laisse pas un hall une semaine sans passage.' },
-      { question: 'Quelle fréquence pour une copropriété d\'environ 50 lots ?', answer: 'En pratique à Aubagne, 2 à 3 passages hebdomadaires sur les parties communes, plus un passage mensuel approfondi parking et locaux techniques. On ajuste si un ravalement ou des travaux salissent les halls.' },
-      {
-        question: 'Les résidents peuvent-ils vous joindre directement ?',
-        answer:
-          'En priorité via le syndic ou le gardien. Si le contrat le prévoit, un contact pour les urgences propreté (local poubelles, hall). Tags ou dégât des eaux : intervention chiffrée à part, souvent sans attendre l\'AG.',
-      },
-    ],
+    faqItems: FAQ_COPROPRIETES_AUBAGNE,
     relatedGeoPages: ['nettoyage-bureaux-aix-en-provence', 'nettoyage-coproprietes-la-ciotat'],
     serviceDifferentiator:
       'Cette page décrit le terrain aubagnais (A50, collecte, parkings). La fiche service « nettoyage de copropriétés » détaille le protocole halls, escaliers et contrat syndic.',
@@ -390,13 +331,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     secondaryImageAlt: 'Decapage de sol industriel a Marseille — Nature Clean',
     conversionTitle: 'Sites industriels a Marseille : une proprete a la hauteur de vos enjeux',
     conversionSubtitle: 'Devis gratuit et audit technique sous 48h — intervention sur toute la metropole',
-    faqItems: [
-      { question: 'Quels types de sites industriels nettoyez-vous a Marseille ?', answer: 'Nous intervenons dans tous types d\'environnements industriels : entrepots logistiques, plateformes de distribution, ateliers de production, sites agroalimentaires, garages et concessions, imprimeries, ateliers metallurgiques. Chaque secteur a ses contraintes — notre devis integre une visite technique prealable.' },
-      { question: 'Pouvez-vous intervenir la nuit ou le week-end pour ne pas arreter la production ?', answer: 'Oui, c\'est notre fonctionnement standard pour les sites industriels marseillais. Nous intervenons 7j/7, de 22h a 6h pour les sites en production continue, ou le week-end pour les nettoyages approfondis. Vos lignes de production ne sont jamais interrompues.' },
-      { question: 'Disposez-vous du materiel pour le degraissage et le decapage industriel ?', answer: 'Oui : autolaveuses autoportees, monobrosses haute vitesse, nettoyeurs haute pression eau chaude, decapeurs vapeur, aspirateurs industriels. Nous utilisons des degraissants alimentaires (HACCP) ou industriels selon votre secteur d\'activite.' },
-      { question: 'Vos equipes sont-elles habilitees pour le travail en hauteur ?', answer: 'Oui, nos agents disposent des habilitations CACES nacelle et travail en hauteur pour le nettoyage des charpentes, structures metalliques, gaines de ventilation et eclairages industriels. Nous fournissons l\'attestation d\'habilitation sur demande.' },
-      { question: 'Couvrez-vous les zones industrielles peripheriques de Marseille ?', answer: 'Oui, nous couvrons toutes les zones d\'activites de la metropole : Arnavant, La Cabucelle, Saint-Menet, La Valentine, Les Aygalades, Plan-de-Campagne, Vitrolles et la zone portuaire de Marseille-Fos. Notre siege a Marseille 8e garantit une reactivite optimale.' },
-    ],
+    faqItems: FAQ_INDUSTRIEL_MARSEILLE,
     relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
     serviceDifferentiator:
       'Page locale « industriel + Marseille » : entrepôts, dégraissage et horaires de nuit. La fiche service chantiers couvre aussi les remises en état après travaux.',

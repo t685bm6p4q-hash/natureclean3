@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { SEO_DATA } from '@/app/config/seo-data';
-import { BASE_URL, LOGO_URL } from '@/app/utils/constants';
+import { BASE_URL } from '@/app/utils/constants';
 import { buildCleaningServiceJsonLd, serializeJsonLd } from '@/app/utils/cleaning-service-jsonld';
 
 interface SEOGuardianProps {

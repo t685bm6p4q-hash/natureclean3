@@ -133,11 +133,6 @@ export function QuotePage() {
     }
   };
 
-  const handleSectorSelect = (id: string) => {
-    setFormData((prev) => ({ ...prev, secteur: id }));
-    if (errors.secteur) setErrors((prev) => ({ ...prev, secteur: '' }));
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const validation = validateLeadExpressForm(formData);

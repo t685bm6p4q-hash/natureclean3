@@ -29,10 +29,12 @@
 
 ```
 /
-├── api/                          # 4 Vercel Serverless Functions
-│   ├── send-quote.ts             # Endpoint principal devis (validation Zod + WhatsApp)
-│   ├── send-whatsapp-alert.ts    # Utilitaire alerte WhatsApp standalone
-│   ├── log-crisis.ts             # Recepteur logger crise → WhatsApp sur `security`
+├── api/                          # Vercel Serverless Functions
+│   ├── send-quote.ts             # Devis legacy / integrations Resend + WhatsApp
+│   ├── forward-quote.ts          # Proxy devis QuotePage → Make.com (Zod, rate limit)
+│   ├── send-otp.ts / verify-otp.ts / check-session.ts / logout.ts  # Admin 2FA
+│   ├── send-whatsapp-alert.ts    # Alerte WhatsApp standalone
+│   ├── log-crisis.ts             # Logger crise → WhatsApp sur `security`
 │   └── get-stats.ts              # Stats admin (mock, pret pour BDD)
 │
 ├── scripts/
@@ -44,9 +46,9 @@
 │   └── image-optimize.yml        # Optimisation images
 │
 ├── public/
-│   ├── sw.js                     # Service Worker PWA (3 strategies cache)
+│   ├── sw.js                     # Service Worker PWA (nc-v6, network-first /assets/)
 │   ├── manifest.json             # PWA manifest
-│   ├── sitemap.xml               # 15+ URLs indexees
+│   ├── sitemap.xml               # Genere au build (scripts/generate-sitemap.ts)
 │   ├── robots.txt                # Directives crawlers
 │   ├── tracking.js               # GA4 + FB Pixel (lazy 3s)
 │   └── logo.svg                  # Logo SVG
@@ -54,53 +56,28 @@
 ├── src/
 │   ├── app/
 │   │   ├── App.tsx               # Point d'entree (RouterProvider)
-│   │   ├── routes.ts             # createBrowserRouter + lazy-loading
+│   │   ├── routes.ts             # createBrowserRouter + lazy-loading + errorElement
 │   │   ├── layouts/
-│   │   │   └── RootLayout.tsx    # Layout principal (Header + Outlet + Footer)
-│   │   ├── pages/                # 15 pages lazy-loaded
+│   │   │   └── RootLayout.tsx    # Header + Outlet + Footer (barre mobile devis/tel)
+│   │   ├── pages/                # Home eager, reste lazy (30+ routes)
 │   │   │   ├── Home.tsx
-│   │   │   ├── ServicesPage.tsx
-│   │   │   ├── QuotePage.tsx
-│   │   │   ├── ContactPage.tsx
-│   │   │   ├── NatureCleanEcoPage.tsx
-│   │   │   ├── RealisationsPage.tsx
-│   │   │   ├── ActualitesPage.tsx
-│   │   │   ├── NettoyageParticuliersPage.tsx
-│   │   │   ├── NettoyageVitrePage.tsx
-│   │   │   ├── AdminLoginPage.tsx     # 2FA OTP via WhatsApp
-│   │   │   ├── AdminPilotagePage.tsx  # Dashboard admin protege
-│   │   │   ├── NotFoundPage.tsx
-│   │   │   ├── Blog.tsx
-│   │   │   ├── blog/             # Articles SEO
-│   │   │   │   ├── EtatLieuxSortie.tsx
-│   │   │   │   ├── NettoyageApresSinistre.tsx
-│   │   │   │   └── NormesChantier2025.tsx
-│   │   │   └── services/         # Pages services dediees
-│   │   │       ├── EntretienBureauxPage.tsx
-│   │   │       ├── NettoyageChantiersPage.tsx
-│   │   │       ├── NettoyageCommercesPage.tsx
-│   │   │       ├── NettoyageCoproprietesPage.tsx
-│   │   │       ├── NettoyageEvenementielPage.tsx
-│   │   │       └── RemiseEtatSolsPage.tsx
+│   │   │   ├── QuotePage.tsx     # Devis → POST /api/forward-quote
+│   │   │   ├── geo/              # 6 landings SEO locales (geoData.ts)
+│   │   │   ├── admin/AdminAuditsPage.tsx  # Hub audits site + securite
+│   │   │   ├── services/         # Fiches prestations
+│   │   │   └── blog/             # Articles SEO
+│   │   ├── data/geo/faq/         # FAQ longues extraites de geoData.ts (1 fichier / ville)
 │   │   ├── components/
-│   │   │   ├── Header.tsx         # Mega menu 3 colonnes + mobile slide
+│   │   │   ├── Header.tsx
 │   │   │   ├── Footer.tsx
-│   │   │   ├── QuoteForm.tsx      # Formulaire devis → POST /api/send-quote
-│   │   │   ├── SEO_Guardian.tsx   # Meta tags + JSON-LD + canonical (invisible)
-│   │   │   ├── GoogleReviews.tsx
-│   │   │   ├── ServiceCarousel.tsx
-│   │   │   ├── Services.tsx
-│   │   │   ├── WhatsAppButton.tsx
-│   │   │   ├── SkipToContent.tsx  # Accessibilite
-│   │   │   ├── ErrorBoundary.tsx
-│   │   │   ├── ProtectedRoute.tsx # Guard admin (AuthContext)
-│   │   │   └── ui/               # shadcn/ui (7 composants vivants)
+│   │   │   ├── ServiceCarousel.tsx  # Carrousel CSS natif (sans react-slick)
+│   │   │   ├── SEO_Guardian.tsx
+│   │   │   ├── RouteErrorFallback.tsx  # Chunk load + erreurs route
+│   │   │   ├── ProtectedRoute.tsx
+│   │   │   └── ui/               # shadcn/ui (4 composants)
 │   │   │       ├── button.tsx
 │   │   │       ├── card.tsx
-│   │   │       ├── input.tsx
 │   │   │       ├── input-otp.tsx
-│   │   │       ├── label.tsx
-│   │   │       ├── textarea.tsx
 │   │   │       └── utils.ts
 │   │   ├── contexts/
 │   │   │   └── AuthContext.tsx     # 2FA OTP + session 7j + logger.security()
@@ -108,15 +85,11 @@
 │   │       ├── useFocusTrap.ts
 │   │       └── usePageJourney.ts  # Tracking parcours prospect
 │   │
-│   ├── types/                     # Types centralises
-│   │   ├── global.d.ts            # Window augmente (gtag, fbq, dataLayer)
-│   │   ├── quote.ts               # Types devis
-│   │   ├── service.ts             # Types services
-│   │   └── admin.ts               # Types admin/stats
-│   │
-│   ├── utils/
-│   │   ├── logger.ts              # Couche 4 : logger crise (buffer/flush/sendBeacon)
-│   │   └── validation.ts          # Couche 3 : Zod v4 paranoiaque + sanitization
+│   ├── types/                     # global.d.ts, service.ts, admin.ts, vite-env.d.ts
+│   ├── app/utils/                 # images, geoData, chunkLoadError, …
+│   └── utils/
+│       ├── logger.ts              # Couche 4 : logger crise (buffer/flush/sendBeacon)
+│       └── validation.ts          # Couche 3 : Zod v4 + sanitization (QuotePage, APIs)
 │   │
 │   └── styles/
 │       ├── index.css              # Point d'entree CSS
@@ -149,7 +122,6 @@ Toutes les dependances sont verrouillees par version exacte dans `package.json`.
 | vite | 6.3.5 | Build |
 | tailwindcss | 4.1.12 | Styling |
 | react-router | 7.13.0 | Routing Data Mode |
-| react-hook-form | 7.55.0 | Forms |
 | zod | 4.3.6 | Validation paranoiaque |
 | knip | 5.85.0 | Dead code hunting |
 
@@ -159,23 +131,23 @@ Fichier : `public/sw.js`
 
 | Strategie | Cible | Comportement |
 |---|---|---|
-| **Cache-First** | Assets JS/CSS, fonts, images Unsplash | Instantane depuis le cache, fetch en backup |
-| **Network-First** | Pages HTML | Toujours fraiches si reseau disponible, cache en fallback |
-| **Stale-While-Revalidate** | Tout le reste | Cache immediatement, refresh en background |
+| **Network-First** | `/assets/*` (chunks Vite hashes) | Evite « Importing a module script failed » apres deploy |
+| **Network-First** | Pages HTML | Fraiches si reseau, cache en fallback |
+| **Cache-First** | Cloudinary, fonts `.woff2` | Images et polices |
+| **Stale-While-Revalidate** | Reste | Cache + refresh background |
 
-- Precache des assets critiques a l'installation
-- Nettoyage automatique des anciens caches a l'activation
+- Version cache `nc-v6` : purge JS/CSS au `activate`
+- `/sw.js` toujours fetch reseau (pas de SW obsolete)
 - Requetes `/api/` exclues du caching
-- Fallback SPA (`/index.html`) si offline
+- Fallback SPA (`/index.html`) si offline ; `RouteErrorFallback` + reload controle cote client
 
 ### Couche 3 — Validation Zod v4 paranoiaque double client/serveur
 
 **Cote client** (`src/utils/validation.ts`) :
-- Schema `quoteFormSchema` avec contraintes strictes (min/max/regex)
+- Schemas Zod pour le formulaire devis (`QuotePage.tsx`, etat local React)
 - Sanitization XSS : `stripHtml()` (balises, entites, `javascript:`, event handlers)
 - Sanitization SQL : `stripSqlInjection()` (quotes, commentaires, mots-cles DML)
 - Pipeline chain : `stripHtml → stripSqlInjection → trim`
-- Helper `validateQuoteForm()` pour integration `react-hook-form`
 
 **Cote serveur** (chaque fichier `/api/*.ts` a sa propre copie) :
 - Meme schema Zod + meme sanitization (zero confiance dans le client)
@@ -520,6 +492,13 @@ pnpm run dcz
 # Les ORANGES sont des avertissements (commit autorise)
 ```
 
+### Erreur « Importing a module script failed » (React Router)
+
+1. Hard refresh ou vider les donnees du site (ancien SW / chunks hashes)
+2. Verifier `CACHE_VERSION` dans `public/sw.js` apres un gros deploy
+3. Confirmer network-first sur `/assets/*` dans le SW
+4. Le fallback `RouteErrorFallback` tente un reload une fois si chunk obsolete
+
 ### Score Lighthouse baisse
 
 1. Verifier que le tracking est lazy-loaded (3s)
@@ -542,22 +521,9 @@ pnpm run clean:report
 
 ---
 
-## Purge UI shadcn (post-audit)
+## UI shadcn
 
-41 fichiers shadcn morts identifies. 7 survivants :
-`button`, `card`, `input`, `input-otp`, `label`, `textarea`, `utils`
-
-```bash
-cd src/app/components/ui
-rm accordion.tsx alert-dialog.tsx alert.tsx aspect-ratio.tsx avatar.tsx \
-   badge.tsx breadcrumb.tsx calendar.tsx carousel.tsx chart.tsx checkbox.tsx \
-   collapsible.tsx command.tsx context-menu.tsx dialog.tsx drawer.tsx \
-   dropdown-menu.tsx form.tsx hover-card.tsx menubar.tsx navigation-menu.tsx \
-   pagination.tsx popover.tsx progress.tsx radio-group.tsx resizable.tsx \
-   scroll-area.tsx select.tsx separator.tsx sheet.tsx sidebar.tsx skeleton.tsx \
-   slider.tsx sonner.tsx switch.tsx table.tsx tabs.tsx toggle-group.tsx \
-   toggle.tsx tooltip.tsx use-mobile.ts
-```
+Composants conserves : `button`, `card`, `input-otp`, `utils` (purge DCZ deja appliquee).
 
 ---
 
@@ -570,13 +536,11 @@ rm accordion.tsx alert-dialog.tsx alert.tsx aspect-ratio.tsx avatar.tsx \
 | Vite | 6.3.5 | Build tool |
 | Tailwind CSS | 4.1.12 | Utility-first CSS |
 | React Router | 7.13.0 | Data Mode routing + lazy-loading |
-| React Hook Form | 7.55.0 | Formulaires performants |
 | Zod | 4.3.6 | Validation paranoiaque |
 | Knip | 5.85.0 | Dead code detection |
 | Lucide React | 0.487.0 | Icones SVG |
-| React Slick | 0.31.0 | Carousel services |
 | Husky | 9.1.7 | Git hooks |
-| shadcn/ui | - | 7 composants (button, card, input, input-otp, label, textarea, utils) |
+| shadcn/ui | - | 4 composants (button, card, input-otp, utils) |
 
 ---
 

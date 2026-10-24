@@ -4,7 +4,7 @@
  * Tableau de bord transversal couvrant 5 domaines :
  *   Sécurité · SEO · Code Quality · Performance · RGPD/Accessibilité
  *
- * Accessible sur : /admin/site-audit
+ * Accessible sur : /admin/audits (onglet site) — /admin/site-audit redirige
  * Mis à jour le  : 2026-04-29
  */
 
@@ -80,7 +80,7 @@ const ITEMS: AuditItem[] = [
     domain: 'security',
     level: 'ok',
     title: 'Audit sécurité principal : 18/18 findings résolus (100/100)',
-    file: '/admin/security-audit',
+    file: '/admin/audits?tab=security',
     description:
       'SEC-001 à SEC-018 tous à l\'état mitigated. Cookie HttpOnly, CORS strict, CSP bloquante, HSTS 2 ans, rate limiting Redis, PII pseudonymisées, brute-force protection, X-Powered-By masqué.',
     status: 'fixed',
@@ -384,7 +384,7 @@ function AuditCard({ item }: { item: AuditItem }) {
 
 const ALL_DOMAINS: Domain[] = ['security', 'seo', 'code', 'performance', 'rgpd'];
 
-export function SiteAuditPage() {
+export function SiteAuditPage({ embedded = false }: { embedded?: boolean }) {
   const [activeDomain, setActiveDomain] = useState<Domain | 'all'>('all');
   const [activeStatus, setActiveStatus] = useState<Status | 'all'>('all');
 
@@ -403,7 +403,7 @@ export function SiteAuditPage() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className={embedded ? 'bg-slate-50' : 'min-h-screen bg-slate-50'}>
       {/* ── Header ── */}
       <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white">
         <div className="max-w-5xl mx-auto px-4 py-8">
@@ -483,7 +483,7 @@ export function SiteAuditPage() {
             Réinitialiser filtres
           </button>
           <a
-            href="/admin/security-audit"
+            href="/admin/audits?tab=security"
             className="flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-800 font-semibold border border-blue-200 rounded-full px-3 py-1 hover:bg-blue-50 transition-colors"
           >
             <ShieldCheck size={12} />
@@ -567,7 +567,7 @@ export function SiteAuditPage() {
           Audit réalisé par analyse statique du code source le 29/04/2026.
           Ne remplace pas un pentest ou un scan Lighthouse automatisé.
           <span className="mx-2">·</span>
-          <a href="/admin/security-audit" className="text-blue-500 hover:underline">Audit sécurité complet →</a>
+          <a href="/admin/audits?tab=security" className="text-blue-500 hover:underline">Audit sécurité complet →</a>
         </div>
       </div>
     </div>

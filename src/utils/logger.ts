@@ -50,6 +50,11 @@ class Logger {
     this.initialized = true;
 
     this.flushTimer = setInterval(() => this.flush(), BUFFER_FLUSH_INTERVAL);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('pagehide', () => {
+        if (this.flushTimer) clearInterval(this.flushTimer);
+      });
+    }
 
     if (typeof window !== 'undefined') {
       window.addEventListener('visibilitychange', () => {
