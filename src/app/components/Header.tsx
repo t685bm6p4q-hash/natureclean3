@@ -46,8 +46,9 @@ const entrepriseServices = [
   { icon: Droplet, label: 'Vitres', href: '/services/nettoyage-vitre', desc: 'Lavage de vitres', thumb: IMAGES.facadeVitreeImmeuble },
 ] as const;
 
-/** Liens directs dans la barre (hors dropdown Entreprise). */
+/** Liens directs dans la barre (hors menus déroulants). */
 const individualServices = [
+  { icon: HardHat, label: 'Gros chantiers', href: '/services/nettoyage-gros-chantiers' },
   { icon: Sparkles, label: 'Événementiel', href: '/services/nettoyage-evenementiel' },
   { icon: Heart, label: 'Diogène', href: '/services/nettoyage-diogene' },
 ] as const;
@@ -253,9 +254,9 @@ export function Header() {
             </div>
           </Link>
 
-          {/* ═══ Navigation Desktop — 2 menus déroulants : Entreprise + Plus ═══ */}
-          <nav className="hidden lg:flex flex-1 min-w-0 justify-center mx-2" aria-label="Navigation principale">
-            <ul className="flex items-center gap-0.5 list-none flex-wrap justify-center">
+          {/* ═══ Navigation Desktop — menus à gauche (logo), CTA à droite ═══ */}
+          <nav className="hidden lg:flex flex-1 min-w-0 items-center gap-2 pl-4 xl:pl-8" aria-label="Navigation principale">
+            <ul className="flex items-center gap-0.5 list-none shrink-0">
               {/* ═══ Dropdown "Entreprise" — Bureaux, Commerces, Chantiers ═══ */}
               <li
                 className="relative"
@@ -356,7 +357,7 @@ export function Header() {
 
                 {/* ══ DROPDOWN "Plus" — avec vignettes AVIF ═══ */}
                 <div
-                  className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
+                  className={`absolute top-full left-0 mt-1.5 w-80 rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
                     plusOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
                   }`}
                   aria-hidden={!plusOpen}
@@ -404,23 +405,23 @@ export function Header() {
                     </div>
                   </div>
               </li>
+            </ul>
 
-              {/* Separateur visuel */}
-              <li aria-hidden="true" className="w-px h-6 bg-gray-200 mx-1" />
+            <span className="w-px h-6 bg-gray-200 shrink-0" aria-hidden="true" />
 
-              {/* Liens directs (hors menus déroulants) */}
+            <ul className="flex items-center gap-0.5 list-none min-w-0">
               {individualServices.map((s) => (
                 <li key={s.href}>
                   <Link
                     to={s.href}
-                    className={`flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-sm transition-all min-h-[44px] ${
+                    className={`flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-sm transition-all min-h-[44px] whitespace-nowrap ${
                       isActive(s.href)
                         ? 'text-green-700 bg-green-50 font-medium'
                         : 'text-gray-600 hover:text-green-700 hover:bg-green-50/60'
                     }`}
                   >
                     <s.icon className={`w-3.5 h-3.5 flex-shrink-0 ${
-                      isActive(s.href) ? 'text-green-600' : 'text-gray-400 group-hover:text-green-500'
+                      isActive(s.href) ? 'text-green-600' : 'text-gray-400'
                     }`} aria-hidden="true" />
                     <span>{s.label}</span>
                   </Link>
