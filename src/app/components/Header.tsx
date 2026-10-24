@@ -6,7 +6,6 @@ import {
   Clock, Mail, FileText, MapPin, Shield, Heart, Eraser,
   Home as HomeIcon, Zap, MoreHorizontal, ImageIcon, Info, BookOpen, Sparkles
 } from 'lucide-react';
-import { Button } from '@/app/components/ui/button';
 import { useFocusTrap } from '@/app/hooks/useFocusTrap';
 import { IMAGES } from '@/app/utils/images';
 import { getOptimizedCldUrl } from '@/app/utils/cloudinaryHelper';
@@ -239,7 +238,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between min-h-16 py-2 lg:h-[68px] lg:py-0">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 max-w-[calc(100%-7rem)] shrink" aria-label="Nature Clean - Accueil">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 flex-1" aria-label="Nature Clean - Accueil">
             <img
               src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_144,h_144,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
@@ -430,31 +429,8 @@ export function Header() {
             </ul>
           </nav>
 
-          {/* CTA Desktop */}
-          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-            <Button asChild size="sm" variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 font-medium min-h-[44px]">
-              <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
-                <Phone className="w-4 h-4 mr-1.5" aria-hidden="true" />
-                {PHONE_DISPLAY}
-              </a>
-            </Button>
-            <Button asChild size="sm" className="bg-green-700 hover:bg-green-800 text-white font-bold shadow-md hover:shadow-lg transition-all min-h-[44px]">
-              <Link to={smartDevisLink}>
-                <FileText className="w-4 h-4 mr-1.5" />
-                Devis gratuit
-              </Link>
-            </Button>
-          </div>
-
-          {/* Mobile : Telephone + Burger (tap targets 44px) */}
-          <div className="flex lg:hidden items-center gap-2">
-            <a
-              href={PHONE_HREF}
-              className="p-2.5 bg-green-700 text-white rounded-xl shadow-md min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label={ARIA_PHONE}
-            >
-              <Phone className="w-5 h-5" />
-            </a>
+          {/* Mobile : menu uniquement (CTA dans le hero / footer / panneau menu) */}
+          <div className="flex lg:hidden items-center shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 text-gray-700 hover:text-green-600 hover:bg-gray-100 rounded-xl transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
