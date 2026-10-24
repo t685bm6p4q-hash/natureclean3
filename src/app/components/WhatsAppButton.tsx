@@ -18,7 +18,7 @@ export function WhatsAppButton() {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-0 group max-sm:bottom-20"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-0 group max-sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))]"
       aria-label={ARIA_WHATSAPP}
     >
       {/* Label qui apparait au hover desktop, toujours visible mobile */}

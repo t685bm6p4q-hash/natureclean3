@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { Outlet, ScrollRestoration, useLocation, Link } from 'react-router';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
@@ -6,14 +6,9 @@ import { SkipToContent } from '@/app/components/SkipToContent';
 import { AuthProvider } from '@/app/contexts/AuthContext';
 import { usePageJourney } from '@/app/hooks/usePageJourney';
 import { IMAGES } from '@/app/utils/images';
-import { isMobileStickyBarHidden } from '@/app/components/MobileStickyBar';
-import { NCM_MOBILE_SCROLL_ID, scrollLayoutToTop } from '@/app/utils/mobileSticky';
 
 // Lazy-load non-critical layout components — hors du bundle critique
 const WhatsAppButton  = lazy(() => import('@/app/components/WhatsAppButton').then(m => ({ default: m.WhatsAppButton })));
-const MobileStickyBar = lazy(() =>
-  import('@/app/components/MobileStickyBar').then((m) => ({ default: m.MobileStickyBar }))
-);
 const CookieConsentBanner = lazy(() => import('@/app/components/CookieConsentBanner').then(m => ({ default: m.CookieConsentBanner })));
 
 function LoadingFallback() {
@@ -52,38 +47,19 @@ export function RootLayout() {
   usePageJourney();
   const { pathname } = useLocation();
   const isDevis = pathname.startsWith('/devis');
-  const useMobileScrollPort = !isDevis && !isMobileStickyBarHidden(pathname);
-
-  useEffect(() => {
-    scrollLayoutToTop(useMobileScrollPort);
-  }, [pathname, useMobileScrollPort]);
 
   return (
     <AuthProvider>
       <SkipToContent />
-      <div
-        className={
-          useMobileScrollPort ? 'min-h-screen bg-white ncm-sticky-offset' : 'min-h-screen bg-white'
-        }
-      >
-        <div
-          id={useMobileScrollPort ? NCM_MOBILE_SCROLL_ID : undefined}
-          className={
-            useMobileScrollPort
-              ? 'max-md:fixed max-md:inset-x-0 max-md:top-0 max-md:z-0 max-md:overflow-y-auto max-md:overscroll-y-contain max-md:touch-pan-y max-md:h-[calc(100dvh-var(--ncm-mobile-cta-h))] md:relative md:h-auto md:overflow-visible'
-              : undefined
-          }
-        >
-          {isDevis ? <DevisHeader /> : <Header />}
-          <main id="main-content" tabIndex={-1}>
-            <Suspense fallback={<LoadingFallback />}>
-              <Outlet />
-            </Suspense>
-          </main>
-          {!isDevis && <Footer />}
-        </div>
+      <div className="min-h-screen bg-white">
+        {isDevis ? <DevisHeader /> : <Header />}
+        <main id="main-content" tabIndex={-1}>
+          <Suspense fallback={<LoadingFallback />}>
+            <Outlet />
+          </Suspense>
+        </main>
+        {!isDevis && <Footer />}
         <Suspense fallback={null}>
-          {!isDevis && <MobileStickyBar />}
           {isDevis && <WhatsAppButton />}
         </Suspense>
         <Suspense fallback={null}>
