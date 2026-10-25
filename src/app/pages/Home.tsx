@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 import { dismissNcmLcpBoot } from '@/app/utils/dismissNcmLcpBoot';
 import { Link } from 'react-router';
 import { BulletList } from '@/app/components/BulletList';
@@ -272,9 +272,16 @@ const cardBgs = [
 ];
 
 export function Home() {
+  const [heroReady, setHeroReady] = useState(false);
+
   const dismissBootHero = useCallback(() => {
     requestAnimationFrame(() => dismissNcmLcpBoot());
   }, []);
+
+  const onHeroReady = useCallback(() => {
+    setHeroReady(true);
+    dismissBootHero();
+  }, [dismissBootHero]);
 
   useLayoutEffect(() => {
     const hero = document.getElementById('ncm-hero-react') as HTMLImageElement | null;
@@ -282,18 +289,17 @@ export function Home() {
       dismissNcmLcpBoot();
       return;
     }
-    const finish = () => dismissBootHero();
     if (hero.complete && hero.naturalWidth > 0) {
-      finish();
+      onHeroReady();
       return;
     }
-    hero.addEventListener('load', finish, { once: true });
-    hero.addEventListener('error', finish, { once: true });
+    hero.addEventListener('load', onHeroReady, { once: true });
+    hero.addEventListener('error', onHeroReady, { once: true });
     return () => {
-      hero.removeEventListener('load', finish);
-      hero.removeEventListener('error', finish);
+      hero.removeEventListener('load', onHeroReady);
+      hero.removeEventListener('error', onHeroReady);
     };
-  }, [dismissBootHero]);
+  }, [onHeroReady]);
 
   return (
     <>
@@ -319,11 +325,11 @@ export function Home() {
           width="850"
           height="478"
           loading="eager"
-          // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
-          fetchpriority="high"
+          // @ts-ignore — LCP porté par #ncm-lcp-hero ; priorité basse ici
+          fetchpriority="low"
           decoding="async"
-          onLoad={dismissBootHero}
-          className="absolute inset-0 h-full w-full object-cover object-[center_30%] md:object-center"
+          onLoad={onHeroReady}
+          className={`absolute inset-0 h-full w-full object-cover object-[center_30%] md:object-center ${heroReady ? 'opacity-100' : 'opacity-0'}`}
         />
 
         <div
@@ -874,8 +880,8 @@ export function Home() {
               <BeforeAfterCompare
                 beforeSrc={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 700)}
                 beforeSrcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [400, 700, 900])}
-                afterSrc={getOptimizedCldUrl(IMAGES.effacementTagVitrine, 700)}
-                afterSrcSet={cldSrcSet(IMAGES.effacementTagVitrine, [400, 700, 900])}
+                afterSrc={getOptimizedCldUrl(IMAGES.effacementTagVitrine, 640)}
+                afterSrcSet={cldSrcSet(IMAGES.effacementTagVitrine, [400, 640, 700])}
                 sizes="(min-width: 1024px) 38vw, 100vw"
                 beforeAlt="Façade Carrefour à Marseille recouverte de graffitis, avant intervention Nature Clean"
                 afterAlt="Façade Carrefour à Marseille après effacement des tags — Nature Clean"
