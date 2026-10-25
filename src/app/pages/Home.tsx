@@ -255,9 +255,10 @@ const realisationsPreview = [
 /** Home version courte — `git revert` du commit « version courte » ou `HOME_SHORT = false` pour la home longue. */
 const HOME_SHORT = true;
 const HOME_FAQ_VISIBLE_COUNT = 5;
-const HOME_REALISATIONS_PREVIEW_COUNT = HOME_SHORT ? 4 : realisationsPreview.length;
-const HOME_EXPERTISE_VISIBLE_COUNT = HOME_SHORT ? 4 : localExpertisePages.length;
-const HOME_WHY_US_VISIBLE_COUNT = HOME_SHORT ? 4 : whyUs.length;
+/** Limites affichées sur mobile uniquement quand HOME_SHORT (desktop = contenu complet). */
+const HOME_SHORT_MOBILE_WHY_US = 4;
+const HOME_SHORT_MOBILE_EXPERTISE = 4;
+const HOME_SHORT_MOBILE_REALISATIONS = 4;
 
 const cardBgs = [
   IMAGES.openSpaceBureaux,
@@ -467,8 +468,11 @@ export function Home() {
           <ScrollReveal>
             {/* Mobile : scroll horizontal — Desktop : grille 3 colonnes */}
             <div className="-mx-4 px-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-4 md:mx-auto md:px-0 md:pb-0 md:grid md:grid-cols-2 md:overflow-visible md:snap-none md:gap-6 lg:grid-cols-3 max-w-5xl">
-              {whyUs.slice(0, HOME_WHY_US_VISIBLE_COUNT).map((item, i) => (
-                <div key={item.title} className="flex-shrink-0 w-[82vw] snap-start md:w-auto group relative overflow-hidden p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/50 transition-all">
+              {whyUs.map((item, i) => (
+                <div
+                  key={item.title}
+                  className={`flex-shrink-0 w-[82vw] snap-start md:w-auto group relative overflow-hidden p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/50 transition-all${HOME_SHORT && i >= HOME_SHORT_MOBILE_WHY_US ? ' max-md:hidden' : ''}`}
+                >
                   {/* Ambient background — ultra-light, masqué sur mobile */}
                   <img
                     src={getOptimizedCldUrl(cardBgs[i], 250)}
@@ -1109,7 +1113,10 @@ export function Home() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} className="px-6 md:px-8">
-            <RealisationsSlider items={realisationsPreview.slice(0, HOME_REALISATIONS_PREVIEW_COUNT)} />
+            <RealisationsSlider
+              items={realisationsPreview}
+              mobileItemLimit={HOME_SHORT ? HOME_SHORT_MOBILE_REALISATIONS : undefined}
+            />
           </ScrollReveal>
 
           <ScrollReveal delay={0.35}>
@@ -1131,7 +1138,7 @@ export function Home() {
       <section className={`${HOME_SHORT ? 'py-10 md:py-12' : 'py-14 md:py-16'} bg-green-700 text-white overflow-hidden`}>
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <div className={`grid ${HOME_SHORT ? 'gap-4' : 'md:grid-cols-2 gap-8'} items-center`}>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
               <ScrollReveal direction="left">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
@@ -1154,28 +1161,26 @@ export function Home() {
                 </Button>
               </ScrollReveal>
 
-              {!HOME_SHORT && (
-                <ScrollReveal direction="right">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                      <div className="text-3xl font-black">50 %</div>
-                      <div className="text-sm text-white/80 mt-1">Éco-labellisés</div>
-                    </div>
-                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                      <div className="text-3xl font-black">Ecolabel</div>
-                      <div className="text-sm text-white/80 mt-1">Ecover Pro</div>
-                    </div>
-                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                      <div className="text-3xl font-black">Inclus</div>
-                      <div className="text-sm text-white/80 mt-1">Produits fournis</div>
-                    </div>
-                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                      <div className="text-3xl font-black">RC Pro</div>
-                      <div className="text-sm text-white/80 mt-1">Assurance</div>
-                    </div>
+              <ScrollReveal direction="right" className={HOME_SHORT ? 'max-md:hidden' : undefined}>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                    <div className="text-3xl font-black">50 %</div>
+                    <div className="text-sm text-white/80 mt-1">Éco-labellisés</div>
                   </div>
-                </ScrollReveal>
-              )}
+                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                    <div className="text-3xl font-black">Ecolabel</div>
+                    <div className="text-sm text-white/80 mt-1">Ecover Pro</div>
+                  </div>
+                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                    <div className="text-3xl font-black">Inclus</div>
+                    <div className="text-sm text-white/80 mt-1">Produits fournis</div>
+                  </div>
+                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                    <div className="text-3xl font-black">RC Pro</div>
+                    <div className="text-sm text-white/80 mt-1">Assurance</div>
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
@@ -1223,13 +1228,13 @@ export function Home() {
                 className="md:mx-0 md:px-0 md:pb-0 md:grid sm:grid-cols-2 lg:grid-cols-3 md:gap-3 md:overflow-visible md:snap-none md:max-w-none"
                 slideClassName="w-[82%] snap-start md:w-auto"
               >
-                {localExpertisePages.slice(0, HOME_EXPERTISE_VISIBLE_COUNT).map((item) => {
+                {localExpertisePages.map((item, index) => {
                   const Icon = item.icon;
                   return (
                     <Link
                       key={item.to}
                       to={item.to}
-                      className="group flex items-start gap-3 bg-white border border-gray-200 rounded-xl px-4 py-4 hover:border-green-400 hover:shadow-md transition-all h-full"
+                      className={`group flex items-start gap-3 bg-white border border-gray-200 rounded-xl px-4 py-4 hover:border-green-400 hover:shadow-md transition-all h-full${HOME_SHORT && index >= HOME_SHORT_MOBILE_EXPERTISE ? ' max-md:hidden' : ''}`}
                     >
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50 text-green-700 group-hover:bg-green-100">
                         <Icon className="w-5 h-5" aria-hidden="true" />
@@ -1277,29 +1282,28 @@ export function Home() {
               ))}
             </div>
 
-            {HOME_SHORT ? (
-              <p className="mt-8 text-center text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+            {HOME_SHORT && (
+              <p className="mt-8 text-center text-sm text-gray-500 max-w-xl mx-auto leading-relaxed md:hidden">
                 Tous les arrondissements de Marseille (13001 à 13016) et le détail par quartier sont sur la{' '}
                 <Link to="/zones-intervention" className="font-semibold text-green-700 hover:text-green-800 underline underline-offset-4">
                   page zones d’intervention
                 </Link>
                 .
               </p>
-            ) : (
-              <div className="mt-8">
-                <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-center">
-                  Quartiers de Marseille desservis
-                </h3>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {quartiersMarseille.map((q) => (
-                    <span key={q} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-600 hover:border-green-300 hover:text-green-700 transition-colors">
-                      <MapPin className="w-3 h-3 text-green-400 flex-shrink-0" aria-hidden="true" />
-                      {q}
-                    </span>
-                  ))}
-                </div>
-              </div>
             )}
+            <div className={`mt-8${HOME_SHORT ? ' hidden md:block' : ''}`}>
+              <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-center">
+                Quartiers de Marseille desservis
+              </h3>
+              <div className="flex flex-wrap justify-center gap-2">
+                {quartiersMarseille.map((q) => (
+                  <span key={q} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-600 hover:border-green-300 hover:text-green-700 transition-colors">
+                    <MapPin className="w-3 h-3 text-green-400 flex-shrink-0" aria-hidden="true" />
+                    {q}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -13,6 +13,8 @@ interface Realisation {
 
 interface RealisationsSliderProps {
   items: Realisation[];
+  /** Limite le rail mobile (desktop carrousel = toute la liste). */
+  mobileItemLimit?: number;
 }
 
 function RealisationCard({ real }: { real: Realisation }) {
@@ -80,9 +82,11 @@ function PaginationDots({
   );
 }
 
-export function RealisationsSlider({ items }: RealisationsSliderProps) {
+export function RealisationsSlider({ items, mobileItemLimit }: RealisationsSliderProps) {
   const [current, setCurrent] = useState(0);
   const total = items.length;
+  const mobileItems =
+    mobileItemLimit != null && mobileItemLimit > 0 ? items.slice(0, mobileItemLimit) : items;
 
   const prev = useCallback(() => setCurrent((c) => (c - 1 + total) % total), [total]);
   const next = useCallback(() => setCurrent((c) => (c + 1) % total), [total]);
@@ -101,7 +105,7 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
           className="max-w-[100vw]"
           slideClassName="w-[88%] max-w-sm snap-center"
         >
-          {items.map((real) => (
+          {mobileItems.map((real) => (
             <RealisationCard key={real.title} real={real} />
           ))}
         </MobileSnapRail>
