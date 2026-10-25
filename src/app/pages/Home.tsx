@@ -243,18 +243,22 @@ const cardBgs = [
 ];
 
 export function Home() {
-  const onHeroReady = useCallback(() => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => dismissNcmLcpBoot());
-    });
+  const dismissBootHero = useCallback(() => {
+    requestAnimationFrame(() => dismissNcmLcpBoot());
   }, []);
 
   useLayoutEffect(() => {
-    const boot = document.getElementById('ncm-lcp-hero');
-    if (!boot) return;
-    const hero = document.getElementById('ncm-hero-react');
-    if (hero?.complete) onHeroReady();
-  }, [onHeroReady]);
+    const hero = document.getElementById('ncm-hero-react') as HTMLImageElement | null;
+    if (!hero) {
+      dismissNcmLcpBoot();
+      return;
+    }
+    // Retire l’image bootstrap dès que le héros React est dans le DOM (évite l’écran coupé au refresh).
+    dismissNcmLcpBoot();
+    if (hero.complete && hero.naturalWidth > 0) return;
+    hero.addEventListener('load', dismissBootHero, { once: true });
+    return () => hero.removeEventListener('load', dismissBootHero);
+  }, [dismissBootHero]);
 
   return (
     <>
@@ -263,7 +267,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
           ══════════════════════════════════════════ */}
-      <section className="relative bg-gray-900 text-white overflow-hidden md:min-h-[36rem] md:pb-24">
+      <section className="relative bg-gray-900 text-white overflow-hidden min-h-[max(420px,58vh)] md:min-h-[36rem] md:pb-24">
         <img
           id="ncm-hero-react"
           src={getOptimizedCldUrl(IMAGES.heroHome, 850, 30, 'webp')}
@@ -275,7 +279,7 @@ export function Home() {
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
           fetchpriority="high"
           decoding="async"
-          onLoad={onHeroReady}
+          onLoad={dismissBootHero}
           className="absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-center"
         />
 

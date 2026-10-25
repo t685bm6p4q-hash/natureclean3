@@ -210,6 +210,22 @@
   }
 }
 
+/* Liseré vert Nature Clean (header, footer, cartes) */
+.ncm-liseré-fin {
+  display: block;
+  width: 100%;
+  height: 3px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    90deg,
+    #166534 0%,
+    #22c55e 35%,
+    #4ade80 50%,
+    #22c55e 65%,
+    #166534 100%
+  );
+}
+
 /* Reflet animé — boutons Devis (.ncm-btn-shine) et blocs (.ncm-shine) */
 .ncm-shine,
 .ncm-btn-shine {

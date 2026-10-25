@@ -5,7 +5,6 @@
  * compatible avec react-hook-form et les formulaires existants.
  */
 import * as React from 'react';
-import { MinusIcon } from 'lucide-react';
 import { cn } from './utils';
 
 // ─── Contexte interne ────────────────────────────────────────────────────────
@@ -124,14 +123,4 @@ function InputOTPSlot({
   );
 }
 
-// ─── InputOTPSeparator ───────────────────────────────────────────────────────
-
-function InputOTPSeparator({ ...props }: React.ComponentProps<'div'>) {
-  return (
-    <div data-slot="input-otp-separator" role="separator" {...props}>
-      <MinusIcon />
-    </div>
-  );
-}
-
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator };
+export { InputOTP, InputOTPGroup, InputOTPSlot };

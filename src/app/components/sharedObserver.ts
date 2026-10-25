@@ -11,8 +11,7 @@
 const callbacks = new Map<Element, () => void>();
 let sharedObserver: IntersectionObserver | null = null;
 
-/** Singleton partagé — un seul IntersectionObserver pour toute l'app */
-export function getSharedObserver(): IntersectionObserver {
+function getSharedObserver(): IntersectionObserver {
   if (!sharedObserver) {
     sharedObserver = new IntersectionObserver(
       (entries) => {

@@ -82,13 +82,16 @@ const SOCIAL_LINKS = [
   },
 ] as const;
 
+const FOOTER_CARD_BASE =
+  'relative overflow-hidden border border-default-200/40 border-t-[3px] border-t-green-500 bg-gray-800';
+
 function FooterContactHeroUIInner() {
   return (
     <div className="dark flex flex-col gap-4">
       <Card
         shadow="sm"
         classNames={{
-          base: 'border border-default-200/40 bg-gray-800',
+          base: FOOTER_CARD_BASE,
           header: 'pb-0 pt-4 px-4',
           body: 'px-4 pb-4 pt-2 gap-3',
         }}
@@ -189,7 +192,7 @@ function FooterContactHeroUIInner() {
       <Card
         shadow="sm"
         classNames={{
-          base: 'border border-default-200/40 bg-gray-800',
+          base: FOOTER_CARD_BASE,
           header: 'pb-2 pt-4 px-4',
           body: 'px-4 pb-4 pt-0',
         }}

@@ -194,9 +194,11 @@ export function Header() {
   const smartDevisLink = SERVICE_PAGE_DEVIS_MAP[location.pathname] ?? '/devis';
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm pt-[env(safe-area-inset-top,0px)]">
-      {/* ═══ TOP BAR : Confiance & Contact rapide ═══ */}
-      <div className="hidden lg:block bg-gray-900 text-gray-300">
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="pt-[env(safe-area-inset-top,0px)]">
+        <div className="ncm-liseré-fin" aria-hidden="true" />
+        {/* ═══ TOP BAR : Confiance & Contact rapide ═══ */}
+        <div className="hidden lg:block bg-gray-900 text-gray-300">
         <div className="container mx-auto px-4 flex items-center justify-between h-9 text-xs">
           <ul className="flex items-center gap-5 list-none" aria-label="Informations entreprise">
             <li className="flex items-center gap-1.5">
@@ -235,10 +237,10 @@ export function Header() {
             </li>
           </ul>
         </div>
-      </div>
+        </div>
 
-      {/* ═══ NAV PRINCIPALE ═══ */}
-      <div className="container mx-auto px-4">
+        {/* ═══ NAV PRINCIPALE ═══ */}
+        <div className="container mx-auto px-4">
         <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:h-[68px] lg:py-0">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,220px)] lg:max-w-[240px]">
@@ -466,6 +468,7 @@ export function Header() {
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+        </div>
         </div>
       </div>
 
