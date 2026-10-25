@@ -13,7 +13,7 @@
 
 // ─── MAPPING LABELS ──────────────────────────────────────────────────────────
 
-export const PAGE_LABELS: Record<string, string> = {
+const PAGE_LABELS: Record<string, string> = {
   '/': "Page d'accueil",
   '/services': 'Page services (catalogue)',
   '/services/entretien-bureaux': 'Entretien BUREAUX',
@@ -29,21 +29,21 @@ export const PAGE_LABELS: Record<string, string> = {
   '/blog': 'Blog',
 };
 
-export const SERVICE_LABELS: Record<string, string> = {
+const SERVICE_LABELS: Record<string, string> = {
   bureaux: 'Entretien bureaux',
   coproprietes: 'Nettoyage coproprietes',
   'fin-chantier': 'Nettoyage fin de chantier',
   particuliers: 'Menage particuliers',
 };
 
-export const SURFACE_LABELS: Record<string, string> = {
+const SURFACE_LABELS: Record<string, string> = {
   'moins-50': 'Moins de 50m²',
   '50-100': '50-100m²',
   '100-300': '100-300m²',
   'plus-300': 'Plus de 300m²',
 };
 
-export const FREQUENCE_LABELS: Record<string, string> = {
+const FREQUENCE_LABELS: Record<string, string> = {
   ponctuel: 'Ponctuel',
   hebdomadaire: 'Hebdomadaire',
   quotidien: 'Quotidien',
@@ -51,7 +51,7 @@ export const FREQUENCE_LABELS: Record<string, string> = {
 
 // ─── PRIORITÉ BUSINESS ───────────────────────────────────────────────────────
 
-export function getPriorityTag(sourcePage: string, service = ''): string {
+function getPriorityTag(sourcePage: string, service = ''): string {
   const highValuePages = [
     '/services/nettoyage-chantiers',
     '/services/entretien-bureaux',
@@ -75,7 +75,7 @@ export function getPriorityTag(sourcePage: string, service = ''): string {
 
 // ─── FORMATAGE DES MESSAGES ───────────────────────────────────────────────────
 
-export interface DevisData {
+interface DevisData {
   nom?: string;
   prenom?: string;
   email?: string;

@@ -117,6 +117,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
 @layer base {
@@ -201,12 +203,85 @@
 }
 
 /* Bouton Devis — reflet animé (variant shine) */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
 @keyframes ncm-btn-shine-kf {
   0%, 72%, 100% {
     transform: translateX(-130%) skewX(-16deg);
   }
   38% {
     transform: translateX(330%) skewX(-16deg);
+  }
+}
+
+/* Signature de marque — slogan header & bandeau footer */
+.ncm-brand-signature {
+  font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: #065f46; /* emerald-800 */
+}
+
+@media (min-width: 640px) {
+  .ncm-brand-signature {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ncm-brand-signature {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+}
+
+.ncm-brand-signature--on-green {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  color: #ecfdf5; /* green-50 */
+}
+
+@media (min-width: 768px) {
+  .ncm-brand-signature--on-green {
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+.ncm-brand-signature-sub {
+  font-family: var(--font-system, ui-sans-serif, system-ui, sans-serif);
+}
+
+.ncm-brand-signature--on-dark {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  letter-spacing: 0.045em;
+  color: #a7f3d0; /* green-200 */
+}
+
+@media (min-width: 768px) {
+  .ncm-brand-signature--on-dark {
+    font-size: 1.0625rem;
   }
 }
 

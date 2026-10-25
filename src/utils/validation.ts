@@ -21,7 +21,7 @@ function stripSqlInjection(input: string): string {
     .trim();
 }
 
-export function sanitize(input: string): string {
+function sanitize(input: string): string {
   return stripSqlInjection(stripHtml(input));
 }
 
@@ -36,16 +36,12 @@ export const SURFACE_RANGE_OPTIONS = [
   { id: 'inconnu', label: 'Je ne sais pas' },
 ] as const;
 
-export type SurfaceRangeId = (typeof SURFACE_RANGE_OPTIONS)[number]['id'];
-
 export const FREQUENCE_EXPRESS_OPTIONS = [
   { id: 'ponctuel', label: 'Ponctuel', apiValue: 'Ponctuel' },
   { id: 'regulier', label: 'Régulier / contrat', apiValue: 'Contrat régulier' },
 ] as const;
 
-export type FrequenceExpressId = (typeof FREQUENCE_EXPRESS_OPTIONS)[number]['id'];
-
-export const leadExpressSchema = z
+const leadExpressSchema = z
   .object({
     secteur: z.string().min(1, { message: 'Choisissez un type de prestation.' }),
     localisation: z
@@ -107,7 +103,7 @@ export const leadExpressSchema = z
     }
   });
 
-export type LeadExpressFormData = z.infer<typeof leadExpressSchema>;
+type LeadExpressFormData = z.infer<typeof leadExpressSchema>;
 
 export function validateLeadExpressStep(
   step: 1 | 2 | 3,

@@ -1,9 +1,47 @@
-import { ChevronDown } from 'lucide-react';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/app/components/ui/accordion';
 
 export interface FAQItem {
   question: string;
   answer: string;
+}
+
+interface FAQAccordionListProps {
+  items: FAQItem[];
+  className?: string;
+  defaultOpenFirst?: boolean;
+}
+
+/**
+ * Liste FAQ en accordéon Radix (shadcn) — WAI-ARIA, contenu toujours dans le DOM (SEO).
+ */
+export function FAQAccordionList({
+  items,
+  className,
+  defaultOpenFirst = true,
+}: FAQAccordionListProps) {
+  if (items.length === 0) return null;
+
+  return (
+    <Accordion
+      type="single"
+      collapsible
+      defaultValue={defaultOpenFirst ? 'item-0' : undefined}
+      className={className}
+    >
+      {items.map((item, index) => (
+        <AccordionItem key={item.question} value={`item-${index}`}>
+          <AccordionTrigger>{item.question}</AccordionTrigger>
+          <AccordionContent>{item.answer}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
 }
 
 interface FAQSectionProps {
@@ -12,11 +50,6 @@ interface FAQSectionProps {
   subtitle?: string;
 }
 
-/**
- * FAQSection — Accordéon natif (`details`/`summary`).
- * Les réponses restent dans le HTML même repliées : indexables sans clic.
- * Compatible JSON-LD FAQPage via SEO_Guardian.faqItems.
- */
 export function FAQSection({
   items,
   title = 'Questions fréquentes',
@@ -37,30 +70,9 @@ export function FAQSection({
             )}
           </ScrollReveal>
 
-          <div className="space-y-3">
-            {items.map((item, index) => (
-              <ScrollReveal key={item.question} delay={index * 0.05}>
-                <details
-                  className="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-shadow hover:shadow-md"
-                  open={index === 0}
-                  suppressHydrationWarning
-                >
-                  <summary className="flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer list-none focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 rounded-xl [&::-webkit-details-marker]:hidden">
-                    <span className="font-bold text-gray-900 pr-2">
-                      {item.question}
-                    </span>
-                    <ChevronDown
-                      className="w-5 h-5 text-green-600 flex-shrink-0 transition-transform duration-300 group-open:rotate-180"
-                      aria-hidden="true"
-                    />
-                  </summary>
-                  <div className="px-6 pb-5 text-gray-600 leading-relaxed">
-                    {item.answer}
-                  </div>
-                </details>
-              </ScrollReveal>
-            ))}
-          </div>
+          <ScrollReveal delay={0.05}>
+            <FAQAccordionList items={items} />
+          </ScrollReveal>
         </div>
       </div>
     </section>

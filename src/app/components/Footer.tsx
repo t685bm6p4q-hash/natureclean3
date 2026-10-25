@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router';
 import { IMAGES, cldResize } from '@/app/utils/images';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE, FOUNDING_YEAR } from '@/app/utils/constants';
+import { PHONE_HREF, FOUNDING_YEAR } from '@/app/utils/constants';
 import {
   Phone, Leaf,
-  ChevronRight, Shield, Star, FileText,
+  Shield, Star, FileText,
 } from 'lucide-react';
 import { FooterContactHeroUI } from '@/app/components/FooterContactHeroUI';
 import { Button } from '@/app/components/ui/button';
@@ -21,35 +21,15 @@ export function Footer() {
   return (
     <>
     <footer className="bg-gray-900 text-gray-300">
-      {/* ═══ BANDE CTA PRE-FOOTER ═══ */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700">
+      {/* ═══ ACCROCHE — promesse (CTA devis : colonne contact + barre mobile) ═══ */}
+      <div className="bg-gradient-to-r from-green-700 to-green-600">
         <div className="container mx-auto px-4 py-8 md:py-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h2 className="text-xl md:text-2xl font-black text-white mb-1">
-                Un devis gratuit en moins de 24h
-              </h2>
-              <p className="text-white/80 text-sm md:text-base">
-                Réponse sous 2 h, devis sous 24 h — Marseille et Bouches-du-Rhône
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild variant="shine" size="lg" className="rounded-xl px-6">
-                <Link to="/devis">
-                  Demander un devis gratuit
-                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
-              </Button>
-              <a
-                href={PHONE_HREF}
-                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition-colors"
-                aria-label={ARIA_PHONE}
-              >
-                <Phone className="w-4 h-4" aria-hidden="true" />
-                {PHONE_DISPLAY}
-              </a>
-            </div>
-          </div>
+          <p className="ncm-brand-signature ncm-brand-signature--on-green mx-auto max-w-3xl text-center text-base md:text-xl leading-relaxed">
+            Au-delà du nettoyage, un véritable entretien professionnel
+            <span className="ncm-brand-signature-sub mt-2 block not-italic font-sans text-sm md:text-base font-normal normal-case tracking-normal text-green-50/95">
+              Expertise terrain, méthodes rigoureuses et tarifs raisonnables — Marseille et Bouches-du-Rhône (13).
+            </span>
+          </p>
         </div>
       </div>
 

@@ -2,7 +2,7 @@ import type { LucideIcon } from 'lucide-react';
 import { CheckCircle2 } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
-export interface ServiceFeatureCardItem {
+interface ServiceFeatureCardItem {
   bold: string;
   text: string;
 }

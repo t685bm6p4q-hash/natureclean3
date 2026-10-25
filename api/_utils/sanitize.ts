@@ -5,7 +5,7 @@
  * send-quote.ts, send-whatsapp-alert.ts et log-crisis.ts (SEC-012)
  */
 
-export function stripHtml(input: string): string {
+function stripHtml(input: string): string {
   return input
     .replace(/<[^>]*>/g, '')
     .replace(/&[#\w]+;/g, '')
@@ -14,7 +14,7 @@ export function stripHtml(input: string): string {
     .trim();
 }
 
-export function stripSqlInjection(input: string): string {
+function stripSqlInjection(input: string): string {
   return input
     .replace(/(['";\\\x00])/g, '')
     .replace(/(--)|(\*\/)/g, '')

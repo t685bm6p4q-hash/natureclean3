@@ -1,4 +1,4 @@
-export const DEVIS_LEAD_STORAGE_KEY = 'ncm_devis_lead';
+const DEVIS_LEAD_STORAGE_KEY = 'ncm_devis_lead';
 const LEAD_MAX_AGE_MS = 15 * 60 * 1000;
 
 export function storeDevisLeadForMerci(serviceId: string) {

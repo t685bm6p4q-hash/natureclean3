@@ -21,7 +21,7 @@ const STORAGE_KEY = 'nc_page_journey';
 const MAX_ENTRIES = 30; // Limite raisonnable par session
 
 /** Structure d'une étape du parcours */
-export interface JourneyStep {
+interface JourneyStep {
   path: string;
   ts: string;
 }

@@ -348,6 +348,3 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     ],
   },
 };
-
-/** Liste ordonnee des slugs pour le maillage interne */
-export const GEO_PAGE_SLUGS = Object.keys(GEO_PAGES);

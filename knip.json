@@ -4,11 +4,14 @@
     "src/main.tsx",
     "src/app/App.tsx",
     "src/app/routes.ts",
+    "src/styles/heroui-plugin.ts",
     "api/*.ts"
   ],
+  "ignoreExportsUsedInFile": true,
   "project": [
     "src/**/*.{ts,tsx}",
-    "api/**/*.ts"
+    "api/**/*.ts",
+    "scripts/**/*.ts"
   ],
   "ignore": [
     "**/*.test.ts",

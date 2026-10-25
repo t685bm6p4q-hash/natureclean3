@@ -30,7 +30,7 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { ServiceCarousel } from '@/app/components/ServiceCarousel';
 import { RealisationsSlider } from '@/app/components/RealisationsSlider';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
-import { FAQSection } from '@/app/components/FAQSection';
+import { FAQSection, FAQAccordionList } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { SERVED_CITIES_SHORT, MARSEILLE_QUARTIERS } from '@/app/config/zone-data';
 
@@ -593,8 +593,11 @@ export function Home() {
                   <p className="text-2xl md:text-3xl font-black text-green-400 leading-snug mb-3">
                     le résultat est toujours Nature Clean."
                   </p>
-                  <p className="text-gray-400 text-sm tracking-wide">
-                    Marseille et Bouches-du-Rhône · RC Pro · Réponse sous 2 h, devis sous 24 h
+                  <p className="ncm-brand-signature ncm-brand-signature--on-dark mx-auto max-w-xl mt-2">
+                    Au-delà du nettoyage, un véritable entretien professionnel
+                  </p>
+                  <p className="ncm-brand-signature-sub text-gray-400 text-xs sm:text-sm leading-relaxed mx-auto max-w-xl mt-3 tracking-normal">
+                    Expertise terrain, méthodes rigoureuses et tarifs raisonnables — Marseille et Bouches-du-Rhône (13).
                   </p>
                 </div>
               </div>
@@ -879,20 +882,7 @@ export function Home() {
             </ScrollReveal>
 
             <ScrollReveal>
-              <div className="space-y-3">
-                {DIOGENE_HOME_FAQ.map((item) => (
-                  <details
-                    key={item.question}
-                    className="group bg-white rounded-xl border border-gray-200 px-6 py-2"
-                  >
-                    <summary className="cursor-pointer list-none flex items-center justify-between gap-4 py-3 font-bold text-gray-900">
-                      {item.question}
-                      <span className="text-green-600 text-xl leading-none group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
-                    </summary>
-                    <p className="pb-4 text-gray-600 leading-relaxed">{item.answer}</p>
-                  </details>
-                ))}
-              </div>
+              <FAQAccordionList items={DIOGENE_HOME_FAQ} defaultOpenFirst={false} />
               <p className="text-center mt-6">
                 <Link
                   to="/services/nettoyage-diogene"

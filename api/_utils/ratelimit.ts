@@ -15,7 +15,7 @@
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 
-export interface RateLimitConfig {
+interface RateLimitConfig {
   /** Nombre max de requêtes dans la fenêtre */
   max: number;
   /** Durée de la fenêtre en secondes */
@@ -24,7 +24,7 @@ export interface RateLimitConfig {
   keyPrefix: string;
 }
 
-export interface RateLimitResult {
+interface RateLimitResult {
   limited: boolean;
   /** Nombre de requêtes dans la fenêtre courante */
   count: number;

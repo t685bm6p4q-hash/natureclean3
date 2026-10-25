@@ -11,27 +11,17 @@
  *
  * Pour une largeur différente dans un composant :
  *   getOptimizedCldUrl(IMAGES.hallMarbreAscenseurs, 200)   ← thumbnail
- *   getResponsiveSrcSet(IMAGES.heroHome, [400, 800, 1200]) ← srcSet hero
- *   cldImgAttrs(IMAGES.finChantierMaison, 'content')       ← props complets
+ *   cldSrcSet(IMAGES.heroHome, [400, 800, 1200])           ← srcSet hero
  *
  * ─── IMPORTS DANS LES COMPOSANTS ──────────────────────────────────────────
  *
- *   import { IMAGES } from '@/app/utils/images';
- *   import { getOptimizedCldUrl, getResponsiveSrcSet, cldImgAttrs } from '@/app/utils/cloudinaryHelper';
+ *   import { IMAGES, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
  */
 
 import { getOptimizedCldUrl } from '@/app/utils/cloudinaryHelper';
 
 // Re-exports complets — les composants n'importent QUE depuis ces deux fichiers
-export {
-  getOptimizedCldUrl,
-  getResponsiveSrcSet,
-  cldImgAttrs,
-  cldResize,
-  cldSrcSet,
-  CLD_PRESETS,
-} from '@/app/utils/cloudinaryHelper';
-export type { CldPreset, CldImgAttrs } from '@/app/utils/cloudinaryHelper';
+export { getOptimizedCldUrl, cldResize, cldSrcSet } from '@/app/utils/cloudinaryHelper';
 
 // ─────────────────────────────────────────────────────────────
 // PATHS BRUTS (privés) — jamais utilisés directement
@@ -140,8 +130,7 @@ const P_espaceCulturelMarseille     = 'v1789145831/entretien-proprete-espace-cul
 // Pour des tailles différentes dans un composant :
 //   getOptimizedCldUrl(IMAGES.xxx, 200)      → vignette 200 px
 //   getOptimizedCldUrl(IMAGES.xxx, 600)      → carte 600 px
-//   getResponsiveSrcSet(IMAGES.xxx)          → srcSet 600w + 1200w
-//   cldImgAttrs(IMAGES.xxx, 'content')       → src + srcSet + sizes
+//   cldSrcSet(IMAGES.xxx)                    → srcSet 600w + 1200w
 // ═══════════════════════════════════════════════════════════════════
 
 const O = (path: string, w = 1200) => getOptimizedCldUrl(path, w);
@@ -257,5 +246,3 @@ export const IMAGES = {
   // ── DÉVIS / CONTACT (alias) ──
   poigneeMainDevis:       O(P_hygieneLocauxSante),
 } as const;
-
-export type ImageKey = keyof typeof IMAGES;

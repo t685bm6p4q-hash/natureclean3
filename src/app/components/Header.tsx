@@ -1,16 +1,28 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import {
-  Phone, Menu, X, ChevronDown, ChevronRight,
+  Phone, Menu, X, ChevronRight,
   Building2, Store, HardHat, Layers, Droplet,
   Clock, Mail, FileText, MapPin, Shield, Eraser,
-  Home as HomeIcon, Zap, MoreHorizontal, ImageIcon, Info, BookOpen, Sparkles, Stethoscope
+  Home as HomeIcon, ImageIcon, Info, BookOpen, Sparkles, Stethoscope
 } from 'lucide-react';
 import { useFocusTrap } from '@/app/hooks/useFocusTrap';
 import { IMAGES } from '@/app/utils/images';
 import { getOptimizedCldUrl } from '@/app/utils/cloudinaryHelper';
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, ARIA_EMAIL } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
+import { AnimatedTabs } from '@/app/components/ui/animated-tabs';
+
+const HEADER_MAIN_TABS = [
+  'Entreprise',
+  'Gros chantiers',
+  'Événementiel',
+  'Commerces',
+  'Plus',
+] as const;
+
+const MOBILE_MENU_TABS = ['Entreprise', 'Autres', 'Plus'] as const;
+type MobileMenuTab = (typeof MOBILE_MENU_TABS)[number];
 
 /* ──────────────────────────────────────────────────────────
    SMART DEVIS — Mapping page service → ?service=xxx
@@ -100,11 +112,11 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [plusOpen, setPlusOpen] = useState(false);
   const [entrepriseOpen, setEntrepriseOpen] = useState(false);
-  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
-  const dropdownRef = useRef<HTMLLIElement>(null);
-  const entrepriseRef = useRef<HTMLLIElement>(null);
+  const [mobileMenuTab, setMobileMenuTab] = useState<MobileMenuTab>('Entreprise');
+  const navMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useFocusTrap(mobileMenuOpen);
   const location = useLocation();
+  const navigate = useNavigate();
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const entrepriseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -138,10 +150,8 @@ export function Header() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (navMenuRef.current && !navMenuRef.current.contains(event.target as Node)) {
         setPlusOpen(false);
-      }
-      if (entrepriseRef.current && !entrepriseRef.current.contains(event.target as Node)) {
         setEntrepriseOpen(false);
       }
     };
@@ -154,7 +164,7 @@ export function Header() {
 
   useEffect(() => {
     setMobileMenuOpen(false);
-    setMobileMoreOpen(false);
+    setMobileMenuTab('Entreprise');
   }, [location]);
 
   useEffect(() => {
@@ -189,6 +199,36 @@ export function Header() {
   const isActive = (path: string) => location.pathname === path;
   const isEntrepriseActive = entrepriseServices.some((s) => isActive(s.href));
   const isSecondaryActive = secondaryPages.some((p) => isActive(p.href));
+
+  const activeHeaderTab = (() => {
+    if (plusOpen || isSecondaryActive) return 'Plus';
+    if (entrepriseOpen || isEntrepriseActive) return 'Entreprise';
+    const direct = individualServices.find((s) => isActive(s.href));
+    if (direct) return direct.label;
+    return 'Entreprise';
+  })();
+
+  const handleHeaderTabChange = useCallback(
+    (label: string) => {
+      if (label === 'Entreprise') {
+        setPlusOpen(false);
+        setEntrepriseOpen((open) => !open);
+        return;
+      }
+      if (label === 'Plus') {
+        setEntrepriseOpen(false);
+        setPlusOpen((open) => !open);
+        return;
+      }
+      const service = individualServices.find((s) => s.label === label);
+      if (service) {
+        setEntrepriseOpen(false);
+        setPlusOpen(false);
+        navigate(service.href);
+      }
+    },
+    [navigate],
+  );
 
   /** Lien du bouton "Devis gratuit" — contextualisé si on est sur une page service */
   const smartDevisLink = SERVICE_PAGE_DEVIS_MAP[location.pathname] ?? '/devis';
@@ -243,7 +283,7 @@ export function Header() {
         <div className="container mx-auto px-4">
         <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:h-[68px] lg:py-0">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,220px)] lg:max-w-[240px]">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,280px)] lg:max-w-[320px]">
             <img
               src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_144,h_144,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
@@ -254,51 +294,53 @@ export function Header() {
             />
             <div className="min-w-0 leading-tight">
               <span className="text-base sm:text-lg font-black text-gray-900 block truncate">Nature Clean</span>
-              <p className="text-[10px] sm:text-[11px] text-green-700 font-medium truncate">Nettoyage pro · Marseille</p>
+              <span className="ncm-brand-signature mt-0.5 block line-clamp-2">
+                Au-delà du nettoyage, un véritable entretien professionnel
+              </span>
             </div>
           </Link>
 
-          {/* ═══ Navigation Desktop — centrée entre logo et CTA ═══ */}
+          {/* ═══ Navigation Desktop — AnimatedTabs + menus ═══ */}
           <nav
-            className="hidden lg:flex min-w-0 items-center justify-center gap-1 xl:gap-2 px-1"
+            className="hidden lg:flex min-w-0 items-center justify-center px-1"
             aria-label="Navigation principale"
           >
-            <ul className="flex items-center justify-center gap-0.5 list-none shrink min-w-0 flex-wrap">
-              {/* ═══ Dropdown "Entreprise" — Bureaux, Commerces, Chantiers ═══ */}
-              <li
-                className="relative"
-                ref={entrepriseRef}
+            <div
+              ref={navMenuRef}
+              className="relative min-w-0"
+              onMouseLeave={() => {
+                handleEntrepriseLeave();
+                handleMouseLeave();
+              }}
+            >
+              <AnimatedTabs
+                tabs={HEADER_MAIN_TABS}
+                activeTab={activeHeaderTab}
+                onTabChange={handleHeaderTabChange}
+                layoutId="ncm-header-main-tabs"
+                ariaLabel="Navigation principale"
+                className="max-w-full"
+                dropdownTabs={['Entreprise', 'Plus']}
+                isDropdownOpen={(tab) =>
+                  (tab === 'Entreprise' && entrepriseOpen) || (tab === 'Plus' && plusOpen)
+                }
+              />
+
+              <div
+                className={`absolute top-full left-0 mt-2 w-[340px] rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
+                  entrepriseOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
+                }`}
+                aria-hidden={!entrepriseOpen}
                 onMouseEnter={handleEntrepriseEnter}
                 onMouseLeave={handleEntrepriseLeave}
               >
-                <button
-                  onClick={() => setEntrepriseOpen((v) => !v)}
-                  className={`flex items-center gap-1 px-2.5 xl:px-3 py-2 rounded-lg text-[13px] xl:text-sm transition-all min-h-[44px] whitespace-nowrap ${
-                    isEntrepriseActive
-                      ? 'text-green-700 bg-green-50 font-medium'
-                      : 'text-gray-600 hover:text-green-700 hover:bg-green-50/60'
-                  }`}
-                  aria-expanded={entrepriseOpen}
-                  aria-haspopup="true"
-                >
-                  <Building2 className={`w-3.5 h-3.5 flex-shrink-0 ${isEntrepriseActive ? 'text-green-600' : 'text-gray-400'}`} aria-hidden="true" />
-                  <span>Entreprise</span>
-                  <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${entrepriseOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-                </button>
-
-                <div
-                  className={`absolute top-full left-0 mt-1.5 w-[340px] rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
-                    entrepriseOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
-                  }`}
-                  aria-hidden={!entrepriseOpen}
-                >
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-2xl">
-                    <ul className="relative p-2 space-y-0.5 list-none">
-                      {entrepriseServices.map((s) => (
-                        <li key={s.href}>
+                <div className="rounded-xl border border-gray-100 bg-white shadow-2xl">
+                  <ul className="relative list-none space-y-0.5 p-2">
+                    {entrepriseServices.map((s) => (
+                      <li key={s.href}>
                         <Link
                           to={s.href}
-                          className={`flex items-center gap-3 px-2.5 py-2 rounded-lg transition-all group min-h-[44px] ${
+                          className={`group flex min-h-[44px] items-center gap-3 rounded-lg px-2.5 py-2 transition-all ${
                             isActive(s.href) ? 'bg-green-500/15 text-green-700' : 'hover:bg-white/50'
                           }`}
                         >
@@ -308,130 +350,84 @@ export function Header() {
                               alt=""
                               width="44"
                               height="44"
-                              className="w-11 h-11 rounded-lg object-cover flex-shrink-0 border border-white/60 group-hover:border-green-300/60 transition-colors shadow-sm"
+                              className="h-11 w-11 shrink-0 rounded-lg border border-white/60 object-cover shadow-sm transition-colors group-hover:border-green-300/60"
                               loading="lazy"
                               decoding="async"
                             />
                           ) : (
-                            <div className="w-11 h-11 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 border border-white/60 group-hover:border-green-300/60 transition-colors shadow-sm">
-                              <s.icon className="w-5 h-5 text-gray-400" aria-hidden="true" />
+                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/60 bg-gray-100 shadow-sm transition-colors group-hover:border-green-300/60">
+                              <s.icon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </div>
                           )}
-                          <div className="flex-1 min-w-0">
-                            <div className="font-medium text-sm text-gray-900 group-hover:text-green-700 transition-colors">{s.label}</div>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-medium text-gray-900 transition-colors group-hover:text-green-700">{s.label}</div>
                             <div className="text-xs text-gray-500">{s.desc}</div>
                           </div>
-                          <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-green-500 transition-colors flex-shrink-0" aria-hidden="true" />
+                          <ChevronRight className="h-3.5 w-3.5 shrink-0 text-gray-300 transition-colors group-hover:text-green-500" aria-hidden="true" />
                         </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    {/* CTA intégré — vert avec flèche blanche */}
-                    <div className="relative px-2 py-2 border-t border-white/30">
-                      <Link
-                        to="/services"
-                        className="flex items-center justify-between px-3 py-2.5 text-sm font-medium text-white bg-green-700 hover:bg-green-800 rounded-lg transition-colors shadow-sm"
-                      >
-                        Tous nos services
-                        <ChevronRight className="w-4 h-4 text-white" />
-                      </Link>
-                    </div>
-                    </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="relative border-t border-white/30 px-2 py-2">
+                    <Link
+                      to="/services"
+                      className="flex min-h-[44px] items-center justify-between rounded-lg bg-green-700 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-800"
+                    >
+                      Tous nos services
+                      <ChevronRight className="h-4 w-4 text-white" />
+                    </Link>
                   </div>
-              </li>
-            </ul>
+                </div>
+              </div>
 
-            <span className="w-px h-6 bg-gray-200 shrink-0" aria-hidden="true" />
-
-            <ul className="flex items-center justify-center gap-0.5 list-none min-w-0 shrink">
-              {individualServices.map((s) => (
-                <li key={s.href} className="shrink-0">
-                  <Link
-                    to={s.href}
-                    className={`flex items-center gap-1 px-2 xl:px-2.5 py-2 rounded-lg text-[13px] xl:text-sm transition-all min-h-[44px] whitespace-nowrap ${
-                      isActive(s.href)
-                        ? 'text-green-700 bg-green-50 font-medium'
-                        : 'text-gray-600 hover:text-green-700 hover:bg-green-50/60'
-                    }`}
-                  >
-                    <s.icon className={`w-3.5 h-3.5 flex-shrink-0 ${
-                      isActive(s.href) ? 'text-green-600' : 'text-gray-400'
-                    }`} aria-hidden="true" />
-                    <span>{s.label}</span>
-                  </Link>
-                </li>
-              ))}
-
-              {/* Dropdown "Plus" — après Diogène */}
-              <li
-                className="relative"
-                ref={dropdownRef}
+              <div
+                className={`absolute top-full right-0 mt-2 w-80 rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
+                  plusOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
+                }`}
+                aria-hidden={!plusOpen}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <button
-                  onClick={() => setPlusOpen((v) => !v)}
-                  className={`flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg transition-colors min-h-[44px] whitespace-nowrap ${
-                    isSecondaryActive
-                      ? 'text-green-700 bg-green-50'
-                      : 'text-gray-600 hover:text-green-700 hover:bg-gray-50'
-                  }`}
-                  aria-expanded={plusOpen}
-                  aria-haspopup="true"
-                >
-                  <MoreHorizontal className="w-4 h-4" aria-hidden="true" />
-                  <span className="font-medium text-sm">Plus</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${plusOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-                </button>
-
-                <div
-                  className={`absolute top-full right-0 mt-1.5 w-80 rounded-xl shadow-2xl overflow-hidden z-50 transition-opacity duration-200 ${
-                    plusOpen ? 'visible opacity-100 pointer-events-auto' : 'invisible opacity-0 pointer-events-none'
-                  }`}
-                  aria-hidden={!plusOpen}
-                >
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-2xl">
-                    <ul className="relative p-2 space-y-0.5 list-none">
-                      {secondaryPages.map((page) => (
-                        <li key={page.href}>
-                          <Link
-                            to={page.href}
-                            className={`flex items-center gap-3 px-2.5 py-2.5 rounded-lg transition-all group min-h-[44px] ${
-                              isActive(page.href) ? 'bg-green-500/15 text-green-700' : 'hover:bg-white/50'
-                            }`}
-                          >
-                            <img
-                              src={getOptimizedCldUrl(page.thumb, 96)}
-                              alt=""
-                              width="48"
-                              height="48"
-                              className="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-white/60 group-hover:border-green-300/60 transition-colors shadow-sm"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-sm text-gray-900">{page.label}</div>
-                              <div className="text-xs text-gray-500 mt-0.5">{page.desc}</div>
-                            </div>
-                            <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-green-500 transition-colors flex-shrink-0" />
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="relative px-2 py-2 border-t border-white/30">
-                      <Link
-                        to="/services"
-                        className="flex items-center justify-between px-3 py-2.5 text-sm font-medium text-white bg-green-700 hover:bg-green-800 rounded-lg transition-colors shadow-sm min-h-[44px]"
-                      >
-                        Voir tous nos services
-                        <ChevronRight className="w-4 h-4 text-white" />
-                      </Link>
-                    </div>
-                    </div>
+                <div className="rounded-xl border border-gray-100 bg-white shadow-2xl">
+                  <ul className="relative list-none space-y-0.5 p-2">
+                    {secondaryPages.map((page) => (
+                      <li key={page.href}>
+                        <Link
+                          to={page.href}
+                          className={`group flex min-h-[44px] items-center gap-3 rounded-lg px-2.5 py-2.5 transition-all ${
+                            isActive(page.href) ? 'bg-green-500/15 text-green-700' : 'hover:bg-white/50'
+                          }`}
+                        >
+                          <img
+                            src={getOptimizedCldUrl(page.thumb, 96)}
+                            alt=""
+                            width="48"
+                            height="48"
+                            className="h-12 w-12 shrink-0 rounded-lg border border-white/60 object-cover shadow-sm transition-colors group-hover:border-green-300/60"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-medium text-gray-900">{page.label}</div>
+                            <div className="mt-0.5 text-xs text-gray-500">{page.desc}</div>
+                          </div>
+                          <ChevronRight className="h-3.5 w-3.5 shrink-0 text-gray-300 transition-colors group-hover:text-green-500" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="relative border-t border-white/30 px-2 py-2">
+                    <Link
+                      to="/services"
+                      className="flex min-h-[44px] items-center justify-between rounded-lg bg-green-700 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-800"
+                    >
+                      Voir tous nos services
+                      <ChevronRight className="h-4 w-4 text-white" />
+                    </Link>
                   </div>
-              </li>
-            </ul>
+                </div>
+              </div>
+            </div>
           </nav>
 
           {/* Desktop — téléphone + devis */}
@@ -515,30 +511,33 @@ export function Header() {
               </a>
             </div>
 
-            {/* ═══ Navigation mobile : Services directs en priorite ═══ */}
-            <ul className="p-4 space-y-1 list-none">
+            <div className="px-4 pt-2">
+              <AnimatedTabs
+                tabs={MOBILE_MENU_TABS}
+                activeTab={mobileMenuTab}
+                onTabChange={(tab) => setMobileMenuTab(tab as MobileMenuTab)}
+                layoutId="ncm-mobile-menu-tabs"
+                ariaLabel="Sections du menu"
+                className="w-full justify-center"
+              />
+            </div>
+
+            {/* ═══ Navigation mobile ═══ */}
+            <ul className="space-y-1 list-none p-4 pt-3">
               <li>
                 <Link
                   to="/"
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors min-h-[48px] ${
+                  className={`flex min-h-[48px] items-center gap-3 rounded-xl px-4 py-3 transition-colors ${
                     isActive('/') ? 'bg-green-50 text-green-700' : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
-                  <HomeIcon className="w-5 h-5" />
+                  <HomeIcon className="h-5 w-5" />
                   <span className="font-medium">Accueil</span>
                 </Link>
               </li>
 
-              {/* Titre section services */}
-              <li className="pt-3 pb-1 px-4">
-                <span className="flex items-center gap-1.5 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
-                  <Building2 className="w-3 h-3" aria-hidden="true" />
-                  Entreprise
-                </span>
-              </li>
-
-              {/* Services entreprise — liens directs */}
-              {entrepriseServices.map((s) => (
+              {mobileMenuTab === 'Entreprise' &&
+                entrepriseServices.map((s) => (
                 <li key={s.href}>
                   <Link
                     to={s.href}
@@ -569,16 +568,8 @@ export function Header() {
                 </li>
               ))}
 
-              {/* Titre section autres services */}
-              <li className="pt-3 pb-1 px-4">
-                <span className="flex items-center gap-1.5 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
-                  <Zap className="w-3 h-3" aria-hidden="true" />
-                  Autres Services
-                </span>
-              </li>
-
-              {/* Services individuels — liens directs */}
-              {individualServices.map((s) => (
+              {mobileMenuTab === 'Autres' &&
+                individualServices.map((s) => (
                 <li key={s.href}>
                   <Link
                     to={s.href}
@@ -592,54 +583,32 @@ export function Header() {
                 </li>
               ))}
 
-              {/* Lien tous les services */}
-              <li>
-                <Link
-                  to="/services"
-                  className="flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-green-700 rounded-xl hover:bg-green-50 transition-colors min-h-[44px]"
-                >
-                  Tous les services
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
-              </li>
+              {mobileMenuTab === 'Autres' && (
+                <li>
+                  <Link
+                    to="/services"
+                    className="flex min-h-[44px] items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-green-700 transition-colors hover:bg-green-50"
+                  >
+                    Tous les services
+                    <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </li>
+              )}
 
-              {/* Separateur */}
-              <li aria-hidden="true" className="mx-4 border-t border-gray-100 my-2" />
-
-              {/* Pages secondaires — Accordion "Plus" */}
-              <li>
-                <button
-                  onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-colors min-h-[48px] ${
-                    isSecondaryActive ? 'bg-green-50 text-green-700' : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                  aria-expanded={mobileMoreOpen}
-                >
-                  <span className="flex items-center gap-3">
-                    <MoreHorizontal className="w-5 h-5" />
-                    <span className="font-medium">Plus</span>
-                  </span>
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileMoreOpen ? 'rotate-180' : ''}`} />
-                </button>
-
-                {mobileMoreOpen && (
-                  <ul className="mt-1 ml-3 pl-4 border-l-2 border-green-200 space-y-0.5 list-none">
-                    {secondaryPages.map((page) => (
-                      <li key={page.href}>
-                        <Link
-                          to={page.href}
-                          className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors min-h-[44px] ${
-                            isActive(page.href) ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-600 hover:text-green-700 hover:bg-gray-50'
-                          }`}
-                        >
-                          <page.icon className="w-4 h-4 text-green-600 flex-shrink-0" />
-                          <span className="text-sm">{page.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
+              {mobileMenuTab === 'Plus' &&
+                secondaryPages.map((page) => (
+                  <li key={page.href}>
+                    <Link
+                      to={page.href}
+                      className={`flex min-h-[48px] items-center gap-3 rounded-xl px-4 py-3 transition-colors ${
+                        isActive(page.href) ? 'bg-green-50 font-medium text-green-700' : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      <page.icon className="h-5 w-5 shrink-0 text-green-600" />
+                      <span>{page.label}</span>
+                    </Link>
+                  </li>
+                ))}
             </ul>
 
             {/* Trust footer mobile */}

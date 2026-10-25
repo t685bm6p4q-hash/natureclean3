@@ -12,9 +12,8 @@
  *
  *  URL simple        → getOptimizedCldUrl(IMAGES.xxx)
  *  URL avec largeur  → getOptimizedCldUrl(IMAGES.xxx, 600)
- *  srcSet responsive → getResponsiveSrcSet(IMAGES.xxx)          ← 600w + 1200w
- *  srcSet custom     → getResponsiveSrcSet(IMAGES.xxx, [400, 800, 1200])
- *  Props <img> complets → cldImgAttrs(IMAGES.xxx, 'content')
+ *  srcSet responsive → cldSrcSet(IMAGES.xxx)                    ← 600w + 1200w
+ *  srcSet custom     → cldSrcSet(IMAGES.xxx, [400, 800, 1200])
  *
  * ────────────────────────────────────────────────────────────────────────────
  */
@@ -112,7 +111,7 @@ export function getOptimizedCldUrl(url: string, width: number = DEFAULT_WIDTH, q
  * // Hero large — 4 breakpoints
  * getResponsiveSrcSet(IMAGES.heroHome, [400, 800, 1200, 1920])
  */
-export function getResponsiveSrcSet(url: string, widths: number[] = [600, 1200], quality: string | number = 'auto', format: string = 'auto'): string {
+function getResponsiveSrcSet(url: string, widths: number[] = [600, 1200], quality: string | number = 'auto', format: string = 'auto'): string {
   if (!url) return '';
   const path = extractCloudinaryPath(url);
   if (!path) return '';
@@ -120,87 +119,6 @@ export function getResponsiveSrcSet(url: string, widths: number[] = [600, 1200],
   return widths
     .map(w => `${CLD_BASE}/f_${format},q_${quality},w_${w},c_limit/${path} ${w}w`)
     .join(', ');
-}
-
-// ═══════════════════════════════════════════════════════════════════
-// SYSTÈME DE PRESETS — Contextes d'affichage standards
-// ═══════════════════════════════════════════════════════════════════
-
-/**
- * Presets prêts à l'emploi — choisir selon le contexte visuel.
- *
- * | Preset    | src   | srcSet widths    | sizes attr                        |
- * |-----------|-------|------------------|------------------------------------|
- * | 'hero'    | 1200  | 400, 800, 1200   | 100vw                             |
- * | 'content' |  900  | 400, 600, 900    | 100vw mobile / 50vw desktop       |
- * | 'card'    |  600  | 300, 450, 600    | 100vw → 50vw → 33vw               |
- * | 'thumb'   |  200  | 100, 150, 200    | 200px                             |
- * | 'logo'    |  144  | 72, 144          | 72px (2× retina)                  |
- */
-export const CLD_PRESETS = {
-  hero:    { width: 1200, widths: [400,  800, 1200] as const, sizes: '100vw' },
-  content: { width:  900, widths: [400,  600,  900] as const, sizes: '(max-width: 768px) 100vw, 50vw' },
-  card:    { width:  600, widths: [300,  450,  600] as const, sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw' },
-  thumb:   { width:  200, widths: [100,  150,  200] as const, sizes: '200px' },
-  logo:    { width:  144, widths: [ 72,  144]        as const, sizes: '72px' },
-} as const;
-
-export type CldPreset = keyof typeof CLD_PRESETS;
-
-/** Props <img> prêts à être spreadés */
-export interface CldImgAttrs {
-  src: string;
-  srcSet: string;
-  sizes: string;
-}
-
-/**
- * cldImgAttrs — Retourne les 3 props critiques pour le responsive & LCP.
- * Spread directement sur votre <img> — aucun risque d'oubli de srcSet ou sizes.
- *
- * @example
- * // Fin de chantier — bloc contenu (50 % desktop)
- * <img
- *   alt="Fin de chantier Marseille"
- *   width={900} height={600}
- *   loading="lazy" decoding="async"
- *   className="w-full h-full object-cover"
- *   {...cldImgAttrs(IMAGES.finChantierMaison, 'content')}
- * />
- *
- * // Hero LCP — pleine largeur
- * <img
- *   alt="Nettoyage Marseille"
- *   width={1920} height={1080}
- *   // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
- *   fetchpriority="high" decoding="sync"
- *   className="absolute inset-0 w-full h-full object-cover"
- *   {...cldImgAttrs(IMAGES.heroHome, 'hero')}
- * />
- *
- * // Copropriété — carte carousel
- * <img
- *   alt="Entretien copropriété Marseille"
- *   width={600} height={400}
- *   loading="lazy" decoding="async"
- *   {...cldImgAttrs(IMAGES.hallMarbreAscenseurs, 'card')}
- * />
- */
-export function cldImgAttrs(url: string, preset: CldPreset, sizesOverride?: string): CldImgAttrs {
-  const { width, widths, sizes } = CLD_PRESETS[preset];
-  const path = extractCloudinaryPath(url);
-
-  const srcSet = path
-    ? (widths as readonly number[])
-        .map(w => `${CLD_BASE}/f_auto,q_auto,w_${w},c_limit/${path} ${w}w`)
-        .join(', ')
-    : '';
-
-  return {
-    src:    getOptimizedCldUrl(url, width),
-    srcSet,
-    sizes:  sizesOverride ?? sizes,
-  };
 }
 
 // ─────────────────────────────────────────────────────────────

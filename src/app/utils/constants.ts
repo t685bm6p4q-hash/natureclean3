@@ -15,7 +15,7 @@ export const PHONE_DISPLAY = '04 84 89 68 75';
 export const PHONE_HREF = 'tel:0484896875';
 
 /** Telephone WhatsApp (format international) */
-export const PHONE_WHATSAPP = '33783952804';
+const PHONE_WHATSAPP = '33783952804';
 
 /** Email de contact */
 export const EMAIL = 'contact@natureclean.fr';
@@ -40,9 +40,6 @@ export const FOUNDING_YEAR = '2021';
 export const SIRET = '89020726900022';
 
 // ─── Geographie ─────────────────────────────────────────
-export const PRIMARY_CITY = 'Marseille';
-export const REGION = 'Bouches-du-Rhône';
-export const DEPARTMENTS = ['13'] as const;
 export const ZONE_LABEL = 'Marseille et Bouches-du-Rhône';
 
 /** Adresse unique — site, JSON-LD, GBP, mentions légales */
@@ -52,7 +49,8 @@ export const OFFICE_ADDRESS_LINE = '22 Traverse Pupat, 13008 Marseille';
 export const GOOGLE_PROFILE_URL = 'https://share.google/LGuTIovk5ovTXGzuc';
 
 // ─── WhatsApp ───────────────────────────────────────────
-export const WHATSAPP_DEFAULT_MESSAGE = 'Bonjour, je souhaite obtenir un devis pour vos services de nettoyage a Marseille.';
+const WHATSAPP_DEFAULT_MESSAGE =
+  'Bonjour, je souhaite obtenir un devis pour vos services de nettoyage a Marseille.';
 export const WHATSAPP_URL = `https://wa.me/${PHONE_WHATSAPP}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
 
 // ─── Aria labels reutilisables ──────────────────────────
