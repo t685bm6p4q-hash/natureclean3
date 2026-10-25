@@ -448,7 +448,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           3. POURQUOI NOUS CHOISIR — 6 avantages
           ═══════════════════════════════════════════ */}
-      <section className="pt-12 pb-6 md:py-20 bg-white ncm-below-fold max-md:[contain-intrinsic-size:auto_520px]">
+      <section className="pt-12 pb-12 md:py-24 bg-white overflow-hidden ncm-below-fold max-md:[contain-intrinsic-size:auto_720px]">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
@@ -496,15 +496,11 @@ export function Home() {
               ))}
             </div>
           </ScrollReveal>
-        </div>
-      </section>
 
-      {/* ══════════════════════════════════════════
-          4. DUO DYNAMIQUE — Commerces/Santé × Fin de chantier
-          ══════════════════════════════════════════ */}
-      <section className="pt-6 pb-12 md:py-24 bg-white overflow-hidden ncm-below-fold max-md:[contain-intrinsic-size:auto_480px]">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          {/* ══════════════════════════════════════════
+              4. DUO DYNAMIQUE — même section (évite bande blanche doublon mobile)
+              ══════════════════════════════════════════ */}
+          <div className="max-w-6xl mx-auto mt-8 md:mt-20 pt-8 md:pt-0 border-t border-gray-100 md:border-0">
 
             {/* ── Titre éditorial ── */}
             <ScrollReveal>
