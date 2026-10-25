@@ -12,7 +12,9 @@ import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
+import { BRAND_SLOGAN_FULL } from '@/app/constants/brand';
 import { IMAGES, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
+import { BeforeAfterCompare } from '@/app/components/BeforeAfterCompare';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
 // ServiceCarousel : import EAGER (direct, non lazy).
@@ -301,20 +303,21 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
           ══════════════════════════════════════════ */}
-      <section className="relative bg-gray-900 text-white overflow-hidden min-h-[max(420px,58vh)] md:min-h-[36rem] md:pb-24">
+      <section className="relative min-h-[max(420px,58vh)] overflow-hidden bg-gray-900 text-white md:min-h-[36rem] md:pb-24">
         <img
           id="ncm-hero-react"
           src={getOptimizedCldUrl(IMAGES.heroHome, 850, 30, 'webp')}
           srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
           sizes="100vw"
           alt="Vue de Marseille et Notre-Dame de la Garde depuis une baie vitrée — Nature Clean"
-          width="1920"
-          height="1080"
+          width="850"
+          height="478"
+          loading="eager"
           // @ts-ignore — fetchpriority: attribut HTML valide, non typé en minuscules dans React 18
           fetchpriority="high"
           decoding="async"
           onLoad={dismissBootHero}
-          className="absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-center"
+          className="absolute inset-0 h-full w-full object-cover object-[center_30%] md:object-center"
         />
 
         <div
@@ -324,13 +327,17 @@ export function Home() {
 
         <div className="relative z-10 container mx-auto px-4 pt-6 pb-6 md:pt-28 md:pb-10">
           <div className="max-w-lg md:max-w-3xl lg:max-w-4xl ncm-hero-fade-in">
-            <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-4 md:mb-5">
+            <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-3 md:mb-4">
               <Leaf className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>
                 <strong className="font-bold text-white">Nature Clean</strong>
                 {' · '}Marseille depuis 2021
               </span>
             </div>
+
+            <p className="ncm-brand-signature ncm-brand-signature--on-dark mb-3 max-w-xl text-sm md:mb-4 md:text-base">
+              {BRAND_SLOGAN_FULL}
+            </p>
 
             <h1 className="ncm-display-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-4 md:mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
               Entreprise de nettoyage
@@ -858,19 +865,15 @@ export function Home() {
                   </div>
                 </ScrollReveal>
               </div>
-              <div className="relative min-h-[280px] lg:min-h-[420px]">
-                <ImageWithFallback
-                  src={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 700)}
-                  srcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [400, 700, 900])}
-                  sizes="(min-width: 1024px) 38vw, 100vw"
-                  alt="Façade d'un Carrefour à Marseille recouverte de graffitis, avant intervention"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  width={1200}
-                  height={500}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <BeforeAfterCompare
+                beforeSrc={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 700)}
+                beforeSrcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [400, 700, 900])}
+                afterSrc={getOptimizedCldUrl(IMAGES.effacementTagVitrine, 700)}
+                afterSrcSet={cldSrcSet(IMAGES.effacementTagVitrine, [400, 700, 900])}
+                sizes="(min-width: 1024px) 38vw, 100vw"
+                beforeAlt="Façade Carrefour à Marseille recouverte de graffitis, avant intervention Nature Clean"
+                afterAlt="Façade Carrefour à Marseille après effacement des tags — Nature Clean"
+              />
             </div>
           </div>
         </div>

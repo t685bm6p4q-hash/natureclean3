@@ -35,7 +35,7 @@ export function AnimatedTabs({
       role="tablist"
       aria-label={ariaLabel}
       className={cn(
-        'inline-flex max-w-full flex-wrap items-center gap-0.5 rounded-xl bg-gray-100/90 p-1',
+        'inline-flex max-w-full flex-wrap items-center gap-1 rounded-xl bg-gray-100/90 p-1',
         className,
       )}
     >
@@ -54,7 +54,7 @@ export function AnimatedTabs({
             aria-expanded={hasDropdown ? menuOpen : undefined}
             onClick={() => onTabChange(tab)}
             className={cn(
-              'relative z-10 rounded-lg px-2.5 py-2 text-[12px] font-medium whitespace-nowrap min-h-[44px] transition-colors xl:px-3 xl:text-sm',
+              'relative z-10 inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-lg px-3 py-2.5 text-[12px] font-medium whitespace-nowrap transition-colors xl:px-3.5 xl:text-sm',
               selected ? 'text-green-800' : 'text-gray-600 hover:text-green-700',
             )}
           >

@@ -17,8 +17,9 @@ function listIndexHtmlFiles(dir: string): string[] {
   return out;
 }
 
+/** Prerender Puppeteer émet souvent crossorigin="" — l’ancien motif ne matchait pas → CSS bloquant en prod */
 const STYLESHEET_RE =
-  /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/g;
+  /<link rel="stylesheet"[^>]*\shref="(\/assets\/[^"]+\.css)"[^>]*>/gi;
 
 const ENTRY_MODULE_RE =
   /<script type="module" crossorigin src="(\/assets\/index-[^"]+\.js)"><\/script>/;
@@ -31,7 +32,8 @@ export function patchDistHtmlAsyncCss(distDir: string): void {
     let html = readFileSync(file, 'utf8');
     let changed = false;
 
-    html = html.replace(STYLESHEET_RE, (_match, href: string) => {
+    html = html.replace(STYLESHEET_RE, (match, href: string) => {
+      if (html.includes(`as="style"`) && html.includes(href)) return match;
       changed = true;
       return [
         `<link rel="preload" href="${href}" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">`,

@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useFocusTrap } from '@/app/hooks/useFocusTrap';
 import { IMAGES } from '@/app/utils/images';
+import { BRAND_SLOGAN_FULL, BRAND_SLOGAN_HEADER } from '@/app/constants/brand';
 import { getOptimizedCldUrl } from '@/app/utils/cloudinaryHelper';
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, ARIA_EMAIL } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
@@ -291,29 +292,27 @@ export function Header() {
         {/* ═══ NAV PRINCIPALE ═══ */}
         <div className="container mx-auto px-4">
         <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:min-h-16 lg:py-2">
-          {/* Logo — hauteur texte calée sur l’icône (48 px mobile, 56 px desktop) */}
+          {/* Marque compacte : logo + titre alignés, baseline courte (1 ligne) */}
           <Link
             to="/"
-            className="flex min-w-0 max-w-[min(100%,17rem)] shrink-0 items-center gap-2 sm:max-w-[18rem] sm:gap-2.5 lg:max-w-[19rem]"
+            className="flex min-h-[48px] min-w-0 max-w-[min(100%,13.5rem)] shrink-0 items-center gap-3 py-1 sm:max-w-[15rem] lg:max-w-[16rem]"
+            aria-label={`Nature Clean — ${BRAND_SLOGAN_FULL}`}
           >
             <img
               src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_112,h_112,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
-              width="56"
-              height="56"
+              width="40"
+              height="40"
               decoding="async"
-              className="h-12 w-12 shrink-0 rounded-full bg-white object-cover shadow-md ring-2 ring-white lg:h-14 lg:w-14"
+              className="h-10 w-10 shrink-0 rounded-full bg-white object-cover shadow-md ring-2 ring-white lg:h-11 lg:w-11"
               aria-hidden="true"
             />
-            <div className="flex min-w-0 flex-col justify-center gap-0.5">
-              <span className="block text-base font-black leading-none tracking-tight text-gray-900 lg:text-[1.0625rem]">
+            <div className="min-w-0 flex flex-col justify-center gap-px">
+              <span className="truncate text-[0.9375rem] font-black leading-none tracking-tight text-gray-900 lg:text-base">
                 Nature Clean
               </span>
               <span className="ncm-brand-signature ncm-brand-signature--header">
-                <span className="ncm-brand-signature-line">Au-delà du nettoyage,</span>
-                <span className="ncm-brand-signature-line sm:whitespace-nowrap">
-                  un véritable entretien professionnel
-                </span>
+                {BRAND_SLOGAN_HEADER}
               </span>
             </div>
           </Link>
@@ -358,7 +357,7 @@ export function Header() {
                       <li key={s.href}>
                         <Link
                           to={s.href}
-                          className={`group flex min-h-[44px] items-center gap-3 rounded-lg px-2.5 py-2 transition-all ${
+                          className={`group flex min-h-[48px] items-center gap-3 rounded-lg px-2.5 py-2 transition-all ${
                             isActive(s.href) ? 'bg-green-500/15 text-green-700' : 'hover:bg-white/50'
                           }`}
                         >
@@ -389,7 +388,7 @@ export function Header() {
                   <div className="relative border-t border-white/30 px-2 py-2">
                     <Link
                       to="/services"
-                      className="flex min-h-[44px] items-center justify-between rounded-lg bg-green-700 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-800"
+                      className="flex min-h-[48px] items-center justify-between rounded-lg bg-green-700 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-800"
                     >
                       Tous nos services
                       <ChevronRight className="h-4 w-4 text-white" />
@@ -412,7 +411,7 @@ export function Header() {
                       <li key={page.href}>
                         <Link
                           to={page.href}
-                          className={`group flex min-h-[44px] items-center gap-3 rounded-lg px-2.5 py-2.5 transition-all ${
+                          className={`group flex min-h-[48px] items-center gap-3 rounded-lg px-2.5 py-2.5 transition-all ${
                             isActive(page.href) ? 'bg-green-500/15 text-green-700' : 'hover:bg-white/50'
                           }`}
                         >
@@ -437,7 +436,7 @@ export function Header() {
                   <div className="relative border-t border-white/30 px-2 py-2">
                     <Link
                       to="/services"
-                      className="flex min-h-[44px] items-center justify-between rounded-lg bg-green-700 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-800"
+                      className="flex min-h-[48px] items-center justify-between rounded-lg bg-green-700 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-800"
                     >
                       Voir tous nos services
                       <ChevronRight className="h-4 w-4 text-white" />
@@ -452,7 +451,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0 justify-self-end">
             <a
               href={PHONE_HREF}
-              className="inline-flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-bold text-green-800 border border-green-200 bg-green-50 hover:bg-green-100 transition-colors whitespace-nowrap min-h-[44px]"
+              className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center gap-1 rounded-lg border border-green-200 bg-green-50 px-2 py-2.5 text-xs font-bold text-green-800 transition-colors hover:bg-green-100 whitespace-nowrap xl:px-3 xl:text-sm"
               aria-label={ARIA_PHONE}
             >
               <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
@@ -462,7 +461,7 @@ export function Header() {
               asChild
               variant="shine"
               size="sm"
-              className="rounded-lg px-3 xl:px-4 text-xs xl:text-sm min-h-[44px] whitespace-nowrap"
+              className="min-h-[48px] min-w-[48px] rounded-lg px-3 py-2.5 text-xs whitespace-nowrap xl:px-4 xl:text-sm"
             >
               <Link to={smartDevisLink}>
                 <FileText className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
@@ -475,7 +474,7 @@ export function Header() {
           <div className="flex lg:hidden items-center shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 text-gray-700 hover:text-green-600 hover:bg-gray-100 rounded-xl transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="flex min-h-[48px] min-w-[48px] items-center justify-center rounded-xl p-3 text-gray-700 transition-colors hover:bg-gray-100 hover:text-green-600"
               aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -505,7 +504,7 @@ export function Header() {
               <span className="font-black text-gray-900">Menu</span>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-gray-500 hover:text-gray-700 rounded-lg min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="flex min-h-[48px] min-w-[48px] items-center justify-center rounded-lg p-3 text-gray-500 hover:text-gray-700"
                 aria-label="Fermer le menu"
               >
                 <X className="w-5 h-5" />
@@ -560,7 +559,7 @@ export function Header() {
               <li>
                 <Link
                   to="/services"
-                  className="flex min-h-[44px] items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-green-700 transition-colors hover:bg-green-50"
+                  className="flex min-h-[48px] items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-green-700 transition-colors hover:bg-green-50"
                 >
                   Tous les services
                   <ChevronRight className="h-4 w-4" />

@@ -191,7 +191,7 @@ function MobileServiceCard({ service, isFirstVisible }: { service: ServiceCard; 
         <Link
           to={service.link}
           aria-label={service.cta}
-          className="mt-auto inline-flex w-full min-h-[44px] items-center justify-center gap-2 rounded-xl bg-green-700 px-3 py-2.5 text-sm font-semibold text-white hover:bg-green-800 transition-colors"
+          className="mt-auto inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-green-700 px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-800"
         >
           {service.cta}
           <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -328,7 +328,7 @@ export function ServiceCarousel() {
           <button
             onClick={() => goTo(current - 1)}
             disabled={current === 0}
-            className="w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center disabled:opacity-30 hover:bg-gray-50 hover:shadow-lg transition-all border border-gray-100"
+            className="flex h-12 w-12 min-h-[48px] min-w-[48px] items-center justify-center rounded-full border border-gray-100 bg-white shadow-md transition-all hover:bg-gray-50 hover:shadow-lg disabled:opacity-30"
             aria-label="Services précédents"
           >
             <ChevronLeft className="w-5 h-5 text-gray-700" />
@@ -342,7 +342,7 @@ export function ServiceCarousel() {
                 aria-label={`Aller au groupe ${i + 1}`}
                 aria-current={i === current ? 'true' : undefined}
                 onClick={() => goTo(i)}
-                className="flex min-h-11 min-w-11 items-center justify-center rounded-full cursor-pointer group"
+                className="group flex min-h-[48px] min-w-[48px] cursor-pointer items-center justify-center rounded-full"
               >
                 <span
                   className={`block rounded-full transition-all ${
@@ -358,7 +358,7 @@ export function ServiceCarousel() {
           <button
             onClick={() => goTo(current + 1)}
             disabled={current === MAX_SLIDE}
-            className="w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center disabled:opacity-30 hover:bg-gray-50 hover:shadow-lg transition-all border border-gray-100"
+            className="flex h-12 w-12 min-h-[48px] min-w-[48px] items-center justify-center rounded-full border border-gray-100 bg-white shadow-md transition-all hover:bg-gray-50 hover:shadow-lg disabled:opacity-30"
             aria-label="Services suivants"
           >
             <ChevronRight className="w-5 h-5 text-gray-700" />
