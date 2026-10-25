@@ -21,9 +21,6 @@ const HEADER_MAIN_TABS = [
   'Plus',
 ] as const;
 
-const MOBILE_MENU_TABS = ['Entreprise', 'Autres', 'Plus'] as const;
-type MobileMenuTab = (typeof MOBILE_MENU_TABS)[number];
-
 /* ──────────────────────────────────────────────────────────
    SMART DEVIS — Mapping page service → ?service=xxx
    Permet au bouton "Devis gratuit" du header de pointer vers
@@ -105,6 +102,38 @@ const secondaryPages = [
   },
 ] as const;
 
+/** Menu mobile — une liste : copro → chantiers → gros chantiers → locaux pro → commerces → sols/vitres → événementiel */
+const MOBILE_SERVICE_NAV = [
+  entrepriseServices[0],
+  entrepriseServices[1],
+  {
+    icon: HardHat,
+    label: 'Gros chantiers',
+    href: '/services/nettoyage-gros-chantiers',
+    desc: 'Chantiers lourds & industriels',
+    thumb: IMAGES.finChantierMarseille,
+  },
+  entrepriseServices[2],
+  entrepriseServices[3],
+  {
+    icon: Store,
+    label: 'Commerces',
+    href: '/services/nettoyage-commerces',
+    desc: 'Boutiques & surfaces de vente',
+    thumb: IMAGES.magasinBoutiquePACA,
+  },
+  entrepriseServices[4],
+  entrepriseServices[5],
+  entrepriseServices[6],
+  {
+    icon: Sparkles,
+    label: 'Événementiel',
+    href: '/services/nettoyage-evenementiel',
+    desc: 'Salles & réceptions',
+    thumb: IMAGES.salleEvenementielle,
+  },
+] as const;
+
 /* ──────────────────────────────────────────────
    COMPOSANT HEADER
    ───────────────────────────────────────────── */
@@ -112,7 +141,6 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [plusOpen, setPlusOpen] = useState(false);
   const [entrepriseOpen, setEntrepriseOpen] = useState(false);
-  const [mobileMenuTab, setMobileMenuTab] = useState<MobileMenuTab>('Entreprise');
   const navMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useFocusTrap(mobileMenuOpen);
   const location = useLocation();
@@ -164,7 +192,6 @@ export function Header() {
 
   useEffect(() => {
     setMobileMenuOpen(false);
-    setMobileMenuTab('Entreprise');
   }, [location]);
 
   useEffect(() => {
@@ -494,34 +521,6 @@ export function Header() {
               </button>
             </div>
 
-            {/* CTA mobile prioritaire */}
-            <div className="p-4 bg-green-50 border-b border-green-100">
-              <Button asChild variant="shine" size="lg" className="w-full rounded-xl min-h-[48px] py-3.5 font-bold">
-                <Link to={smartDevisLink}>
-                  <FileText className="w-5 h-5" aria-hidden="true" />
-                  Demander un devis gratuit
-                </Link>
-              </Button>
-              <a
-                href={PHONE_HREF}
-                className="flex items-center justify-center gap-2 w-full mt-2 border-2 border-green-600 text-green-700 py-3 rounded-xl font-bold transition-colors hover:bg-green-50 min-h-[48px]"
-              >
-                <Phone className="w-5 h-5" />
-                {PHONE_DISPLAY}
-              </a>
-            </div>
-
-            <div className="px-4 pt-2">
-              <AnimatedTabs
-                tabs={MOBILE_MENU_TABS}
-                activeTab={mobileMenuTab}
-                onTabChange={(tab) => setMobileMenuTab(tab as MobileMenuTab)}
-                layoutId="ncm-mobile-menu-tabs"
-                ariaLabel="Sections du menu"
-                className="w-full justify-center"
-              />
-            </div>
-
             {/* ═══ Navigation mobile ═══ */}
             <ul className="space-y-1 list-none p-4 pt-3">
               <li>
@@ -536,8 +535,7 @@ export function Header() {
                 </Link>
               </li>
 
-              {mobileMenuTab === 'Entreprise' &&
-                entrepriseServices.map((s) => (
+              {MOBILE_SERVICE_NAV.map((s) => (
                 <li key={s.href}>
                   <Link
                     to={s.href}
@@ -545,7 +543,7 @@ export function Header() {
                       isActive(s.href) ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
-                    {s.thumb ? (
+                    {'thumb' in s && s.thumb ? (
                       <img
                         src={getOptimizedCldUrl(s.thumb, 72)}
                         alt=""
@@ -568,66 +566,48 @@ export function Header() {
                 </li>
               ))}
 
-              {mobileMenuTab === 'Autres' &&
-                individualServices.map((s) => (
-                <li key={s.href}>
+              <li>
+                <Link
+                  to="/services"
+                  className="flex min-h-[44px] items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-green-700 transition-colors hover:bg-green-50"
+                >
+                  Tous les services
+                  <ChevronRight className="h-4 w-4" />
+                </Link>
+              </li>
+
+              <li className="pt-3 pb-1" aria-hidden="true">
+                <div className="border-t border-gray-100" />
+              </li>
+              <li>
+                <p className="px-4 pb-1 text-[11px] font-bold uppercase tracking-wide text-gray-400">Plus</p>
+              </li>
+
+              {secondaryPages.map((page) => (
+                <li key={page.href}>
                   <Link
-                    to={s.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors min-h-[48px] ${
-                      isActive(s.href) ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-700 hover:bg-gray-50'
+                    to={page.href}
+                    className={`flex min-h-[48px] items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${
+                      isActive(page.href) ? 'bg-green-50 font-medium text-green-700' : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
-                    <s.icon className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span>{s.label}</span>
+                    <img
+                      src={getOptimizedCldUrl(page.thumb, 72)}
+                      alt=""
+                      width="32"
+                      height="32"
+                      className="w-8 h-8 rounded-lg object-cover flex-shrink-0 border border-gray-100"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-sm">{page.label}</span>
+                      <span className="block text-[11px] text-gray-500">{page.desc}</span>
+                    </div>
                   </Link>
                 </li>
               ))}
-
-              {mobileMenuTab === 'Autres' && (
-                <li>
-                  <Link
-                    to="/services"
-                    className="flex min-h-[44px] items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-green-700 transition-colors hover:bg-green-50"
-                  >
-                    Tous les services
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
-                </li>
-              )}
-
-              {mobileMenuTab === 'Plus' &&
-                secondaryPages.map((page) => (
-                  <li key={page.href}>
-                    <Link
-                      to={page.href}
-                      className={`flex min-h-[48px] items-center gap-3 rounded-xl px-4 py-3 transition-colors ${
-                        isActive(page.href) ? 'bg-green-50 font-medium text-green-700' : 'text-gray-700 hover:bg-gray-50'
-                      }`}
-                    >
-                      <page.icon className="h-5 w-5 shrink-0 text-green-600" />
-                      <span>{page.label}</span>
-                    </Link>
-                  </li>
-                ))}
             </ul>
-
-            {/* Trust footer mobile */}
-            <div className="p-4 mt-auto border-t border-gray-100 bg-gray-50">
-              <ul className="space-y-2 text-xs text-gray-600 list-none">
-                <li className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-green-600 flex-shrink-0" aria-hidden="true" />
-                  <span>Lun-Sam : 8h-18h | Dim : sur RDV</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-green-600 flex-shrink-0" aria-hidden="true" />
-                  <span>Marseille (13001-13016), Aix, Aubagne</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-green-600 flex-shrink-0" aria-hidden="true" />
-                  <span>Assurance RC Pro | SIRET 89020726900022</span>
-                </li>
-              </ul>
-            </div>
           </nav>
         </>
       )}
