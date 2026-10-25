@@ -523,9 +523,9 @@ export function Home() {
                   >
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl h-64 group">
                       <ImageWithFallback
-                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 640)}
-                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [320, 480, 640])}
-                        sizes="(max-width: 767px) 82vw, 100vw"
+                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
+                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
+                        sizes="90vw"
                         alt="Open space de bureaux nettoyé à Marseille"
                         className="w-full h-full object-cover"
                         width={600}
@@ -562,9 +562,9 @@ export function Home() {
                   <div className="hidden md:flex relative flex-col gap-3">
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
                       <ImageWithFallback
-                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 640)}
-                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [320, 480, 640, 800])}
-                        sizes="(max-width: 1023px) 100vw, 38vw"
+                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
+                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         alt="Open space de bureaux nettoyé à Marseille"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         width={600}
