@@ -10,6 +10,7 @@ import { useFocusTrap } from '@/app/hooks/useFocusTrap';
 import { IMAGES } from '@/app/utils/images';
 import { getOptimizedCldUrl } from '@/app/utils/cloudinaryHelper';
 import { PHONE_DISPLAY, PHONE_HREF, EMAIL, EMAIL_HREF, ARIA_PHONE, ARIA_EMAIL } from '@/app/utils/constants';
+import { Button } from '@/app/components/ui/button';
 
 /* ──────────────────────────────────────────────────────────
    SMART DEVIS — Mapping page service → ?service=xxx
@@ -441,13 +442,17 @@ export function Header() {
               <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
               {PHONE_DISPLAY}
             </a>
-            <Link
-              to={smartDevisLink}
-              className="inline-flex items-center gap-1 px-3 xl:px-4 py-2 rounded-lg text-xs xl:text-sm font-bold text-white bg-green-700 hover:bg-green-800 shadow-sm transition-colors whitespace-nowrap min-h-[44px]"
+            <Button
+              asChild
+              variant="shine"
+              size="sm"
+              className="rounded-lg px-3 xl:px-4 text-xs xl:text-sm min-h-[44px] whitespace-nowrap"
             >
-              <FileText className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-              Devis gratuit
-            </Link>
+              <Link to={smartDevisLink}>
+                <FileText className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                Devis gratuit
+              </Link>
+            </Button>
           </div>
 
           {/* Mobile : menu uniquement (CTA dans le panneau menu / footer) */}
@@ -492,13 +497,12 @@ export function Header() {
 
             {/* CTA mobile prioritaire */}
             <div className="p-4 bg-green-50 border-b border-green-100">
-              <Link
-                to={smartDevisLink}
-                className="flex items-center justify-center gap-2 w-full bg-green-700 hover:bg-green-800 text-white py-3.5 rounded-xl font-bold shadow-md transition-colors min-h-[48px]"
-              >
-                <FileText className="w-5 h-5" />
-                Demander un devis gratuit
-              </Link>
+              <Button asChild variant="shine" size="lg" className="w-full rounded-xl min-h-[48px] py-3.5 font-bold">
+                <Link to={smartDevisLink}>
+                  <FileText className="w-5 h-5" aria-hidden="true" />
+                  Demander un devis gratuit
+                </Link>
+              </Button>
               <a
                 href={PHONE_HREF}
                 className="flex items-center justify-center gap-2 w-full mt-2 border-2 border-green-600 text-green-700 py-3 rounded-xl font-bold transition-colors hover:bg-green-50 min-h-[48px]"

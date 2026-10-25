@@ -304,7 +304,12 @@ export function Home() {
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row md:gap-4">
-              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-base px-8 shadow-lg shadow-green-500/25 w-full sm:w-auto">
+              <Button
+                asChild
+                variant="shine"
+                size="lg"
+                className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-base px-8 shadow-lg shadow-green-500/25 w-full sm:w-auto border-green-400/40"
+              >
                 <Link to="/devis">
                   Obtenir mon devis gratuit
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -572,8 +577,8 @@ export function Home() {
 
             {/* ── Bande centrale — Citation clé ── */}
             <ScrollReveal>
-              <div className="relative rounded-2xl overflow-hidden bg-gray-900 py-10 px-8 text-center mb-20">
-                <div className="absolute inset-0 opacity-25 pointer-events-none">
+              <div className="ncm-shine ncm-shine--band relative z-0 rounded-2xl overflow-hidden bg-gray-900 py-10 px-8 text-center mb-20 border border-green-600/25 shadow-lg shadow-green-900/10">
+                <div className="absolute inset-0 z-0 opacity-25 pointer-events-none">
                   <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-green-500 rounded-full blur-[90px]" />
                   <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-amber-500 rounded-full blur-[90px]" />
                 </div>
@@ -946,76 +951,7 @@ export function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          7. SECTION EQUIPE — Confiance + chiffres
-          ═══════════════════════════════════════════ */}
-      <section className="relative py-16 md:py-20 bg-gray-50 overflow-hidden ncm-below-fold">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <ScrollReveal direction="left">
-                <div className="rounded-2xl overflow-hidden shadow-2xl">
-                  <ImageWithFallback
-                    src={getOptimizedCldUrl('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', 600)}
-                    srcSet={cldSrcSet('v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png', [350, 600, 900])}
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    alt="Équipe Nature Clean en intervention de nettoyage professionnel"
-                    className="w-full h-[380px] lg:h-[460px] object-cover"
-                    width={600}
-                    height={460}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal direction="right">
-                <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-                  Notre engagement
-                </span>
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">
-                  Une équipe formée et engagée
-                </h2>
-                <p className="text-gray-500 mb-8 leading-relaxed text-lg">
-                  Depuis 2021, Nature Clean réunit des professionnels qualifiés,
-                  équipés de matériels de pointe et formés aux dernières normes d&apos;hygiène.
-                </p>
-
-                <div className="grid grid-cols-3 gap-4 mb-8">
-                  <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-700">4+</div>
-                    <div className="text-xs text-gray-500 mt-1">Années d&apos;exp.</div>
-                  </div>
-                  <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-700">RC Pro</div>
-                    <div className="text-xs text-gray-500 mt-1">Assurance</div>
-                  </div>
-                  <div className="text-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                    <div className="text-2xl md:text-3xl font-black text-green-700">13</div>
-                    <div className="text-xs text-gray-500 mt-1">Bouches-du-Rhône</div>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <Button asChild className="bg-green-800 hover:bg-green-900 font-bold shadow-md">
-                    <Link to="/a-propos" className="text-white">
-                      Découvrir l&apos;équipe
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" className="border-gray-400 bg-white hover:border-green-400 hover:bg-green-50 font-bold">
-                    <Link to="/services/nettoyage-chantiers" className="text-green-900">
-                      <HardHat className="w-4 h-4 mr-1.5" aria-hidden="true" />
-                      Fin de chantier
-                    </Link>
-                  </Button>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          8. ENGAGEMENT ECO — Bande accent
+          7. ENGAGEMENT ECO — Bande accent
           ═══════════════════════════════════════════ */}
       <section className="py-14 md:py-16 bg-green-700 text-white overflow-hidden">
         <div className="container mx-auto px-4">

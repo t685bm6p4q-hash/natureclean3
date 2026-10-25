@@ -200,6 +200,65 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Bouton Devis — reflet animé (variant shine) */
+@keyframes ncm-btn-shine-kf {
+  0%, 72%, 100% {
+    transform: translateX(-130%) skewX(-16deg);
+  }
+  38% {
+    transform: translateX(330%) skewX(-16deg);
+  }
+}
+
+/* Reflet animé — boutons Devis (.ncm-btn-shine) et blocs (.ncm-shine) */
+.ncm-shine,
+.ncm-btn-shine {
+  isolation: isolate;
+}
+
+.ncm-shine::after,
+.ncm-btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 45%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 35%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.12) 65%,
+    transparent 100%
+  );
+  animation: ncm-btn-shine-kf 2.75s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Bandeau citation accueil — reflet plus large */
+.ncm-shine--band::after {
+  width: 65%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(74, 222, 128, 0.2) 55%,
+    rgba(255, 255, 255, 0.08) 70%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ncm-shine::after,
+  .ncm-btn-shine::after {
+    animation: none;
+    display: none;
+  }
+}
+
 .ncm-hero-fade-in {
   animation: ncm-hero-fade-in-kf 0.55s ease-out both;
   will-change: transform, opacity;
