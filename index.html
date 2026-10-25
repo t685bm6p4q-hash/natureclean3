@@ -11,14 +11,16 @@
          NE PAS ajouter box-sizing ni resets ici : Tailwind preflight les gère déjà
          et les dupliquer force des recalculs de style sur chaque élément du DOM. */
       html,body{background:#111827}
-      /* Hero bootstrap — uniquement accueil sans HTML SSG (voir script ncm-lcp-boot) */
-      #ncm-lcp-hero{position:fixed;top:0;left:0;width:100%;height:max(420px,58vh);object-fit:cover;object-position:center 30%;z-index:1;pointer-events:none}
-      .ncm-home-hero #ncm-lcp-hero{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+      .min-h-screen.bg-white{background:#fff}
+      header.sticky{position:sticky;top:0;z-index:50;width:100%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+      #root{position:relative;min-height:100vh}
       .ncm-home-hero{position:relative;min-height:max(420px,58vh);overflow:hidden;background-color:transparent;color:#fff}
       @media (min-width:768px){.ncm-home-hero{min-height:36rem;padding-bottom:6rem}}
-      #ncm-hero-react{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+      .ncm-home-hero #ncm-lcp-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}
+      @media (min-width:768px){.ncm-home-hero #ncm-lcp-hero{object-position:center}}
+      .ncm-home-hero .ncm-hero-overlay,.ncm-home-hero .ncm-hero-content{position:relative;z-index:1}
+      #ncm-hero-react{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}
       @media (min-width:768px){#ncm-hero-react{object-position:center}}
-      #root{position:relative;min-height:100vh}
     </style>
     <link rel="icon" type="image/png" sizes="64x64" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_64,h_64,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_32,h_32,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
@@ -51,20 +53,16 @@
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
     <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
-    <!-- Preload LCP Hero — démarre le téléchargement AVANT le JS bundle -->
-    <!-- f_webp : format explicite — élimine Vary:Accept cache-miss entre preload et <img>
-         q_30  : ultra-compressé, imperceptible sous dark overlay gray-900/80
-         850w  : couvre Moto G Power (412px × DPR 2 = 824px) — évite de charger 1200w
-         URLs alignées sur src/app/constants/lcpHero.ts (build prerender les régénère). -->
+    <!-- Preload LCP — src/app/constants/lcpHero.ts (dist régénéré au build) -->
     <link
       id="ncm-lcp-preload"
       rel="preload"
       as="image"
       fetchpriority="high"
-      href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
+      href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_20,w_600,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
       crossorigin="anonymous"
-      imagesrcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
-      imagesizes="100vw"
+      imagesrcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_20,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_20,w_600,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 600w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_20,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_20,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_20,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
+      imagesizes="(max-width:768px) 100vw, 100vw"
     />
     
     <!-- Meta description par défaut -->
@@ -92,60 +90,8 @@
     <meta name="theme-color" content="#15803d" />
   </head>
   <body>
-    <!--
-      HERO IMAGE — img réelle dans le HTML initial (hors React root).
-
-      Pourquoi cette img et pas seulement le <link rel="preload"> ?
-      ─────────────────────────────────────────────────────────────
-      Le preload <link> peut échouer à produire un cache HIT si :
-        • Cloudinary renvoie Vary:Accept → différence de headers entre preload et img
-        • La sélection du srcset diffère légèrement entre les deux contextes
-
-      Cette <img> est dans le HTML INITIAL → Chrome la télécharge dès le parse
-      (T≈75ms), AVANT que JavaScript évalue (T≈220ms) et AVANT que React rende (T≈1700ms).
-      Quand React ajoute la même <img src="f_webp,q_30,w_850,c_limit/..."> au DOM,
-      le navigateur trouve l'image en mémoire cache → cache HIT → LCP = FCP.
-
-      Règles de non-impact :
-        • opacity:0          → invisible (mais téléchargée — Chrome charge les ressources de tout
-                               élément non display:none, opacity:0 inclus)
-        • position:fixed     → hors du flux, zéro CLS
-        • pointer-events:none → non interactif
-        • z-index:-9999      → derrière tout
-        • aria-hidden="true" → ignorée par les lecteurs d'écran
-        • alt=""             → image décorative au sens WCAG
-
-      ⚠️  URLs = src/app/constants/lcpHero.ts (injectées au build prerender sur dist/).
-          Toute divergence = cache MISS = LCP dégradé.
-    -->
-    <img
-      id="ncm-lcp-hero"
-      src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
-      srcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
-      sizes="100vw"
-      width="850"
-      height="478"
-      fetchpriority="high"
-      loading="eager"
-      decoding="async"
-      alt=""
-      aria-hidden="true"
-    />
+    <!-- Accueil prod : #ncm-lcp-hero injecté in-section dans dist/index.html (build prerender). -->
     <div id="root"></div>
-    <script>
-      (function () {
-        var path = location.pathname;
-        var isHome = path === '/' || path === '';
-        var root = document.getElementById('root');
-        var hero = document.getElementById('ncm-lcp-hero');
-        var preload = document.getElementById('ncm-lcp-preload');
-        /* Accueil : garder #ncm-lcp-hero jusqu’à dismissBootHero (React) — LCP sur HTML prerender */
-        if (!isHome) {
-          if (hero) hero.remove();
-          if (preload) preload.remove();
-        }
-      })();
-    </script>
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Google Ads AW-18438425597 : gtag.js après interaction ou 4 s — /public/tracking.js -->

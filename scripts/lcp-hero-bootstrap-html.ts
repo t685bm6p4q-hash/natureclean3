@@ -8,6 +8,26 @@ import {
   LCP_HERO,
 } from '../src/app/constants/lcpHero';
 
+/** CSS critique above-the-fold (sans position:fixed — le hero reste dans .ncm-home-hero, sous le header). */
+export const HOME_HERO_CRITICAL_CSS =
+  '.ncm-home-hero{position:relative;min-height:max(420px,58vh);overflow:hidden;background-color:transparent;color:#fff}' +
+  '@media (min-width:768px){.ncm-home-hero{min-height:36rem;padding-bottom:6rem}}' +
+  '.ncm-home-hero #ncm-lcp-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}' +
+  '@media (min-width:768px){.ncm-home-hero #ncm-lcp-hero{object-position:center}}' +
+  '.ncm-home-hero .ncm-hero-overlay,.ncm-home-hero .ncm-hero-content{position:relative;z-index:1}' +
+  '#ncm-hero-react{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}' +
+  '@media (min-width:768px){#ncm-hero-react{object-position:center}}';
+
+export const LCP_CRITICAL_CSS =
+  'html,body{background:#111827}' +
+  '.min-h-screen.bg-white{background:#fff}' +
+  'header.sticky{position:sticky;top:0;z-index:50;width:100%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06)}' +
+  '#root{position:relative;min-height:100vh}' +
+  HOME_HERO_CRITICAL_CSS;
+
+/** @deprecated alias inject — plus de règle fixed */
+export const BOOTSTRAP_HERO_CSS = LCP_CRITICAL_CSS;
+
 export function buildBootstrapPreloadLink(): string {
   return `<link
       id="ncm-lcp-preload"
@@ -17,7 +37,7 @@ export function buildBootstrapPreloadLink(): string {
       href="${homeHeroLcpSrc()}"
       crossorigin="anonymous"
       imagesrcset="${homeHeroLcpSrcSet()}"
-      imagesizes="100vw"
+      imagesizes="${LCP_HERO.sizes}"
     />`;
 }
 
@@ -26,12 +46,12 @@ export function buildBootstrapHeroImgTag(): string {
       id="ncm-lcp-hero"
       src="${homeHeroLcpSrc()}"
       srcset="${homeHeroLcpSrcSet()}"
-      sizes="100vw"
+      sizes="${LCP_HERO.sizes}"
       width="${LCP_HERO.intrinsicWidth}"
       height="${LCP_HERO.intrinsicHeight}"
       fetchpriority="high"
       loading="eager"
-      decoding="async"
+      decoding="sync"
       alt=""
       aria-hidden="true"
     />`;
@@ -49,17 +69,3 @@ export const BOOTSTRAP_HERO_SCRIPT = `<script>
         }
       })();
     </script>`;
-
-/** CSS critique hero accueil — doublon volontaire des utilitaires Tailwind above-the-fold (FCP avant bundle CSS). */
-export const HOME_HERO_CRITICAL_CSS =
-  '.ncm-home-hero{position:relative;min-height:max(420px,58vh);overflow:hidden;background-color:transparent;color:#fff}' +
-  '@media (min-width:768px){.ncm-home-hero{min-height:36rem;padding-bottom:6rem}}' +
-  '.ncm-home-hero #ncm-lcp-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}' +
-  '@media (min-width:768px){.ncm-home-hero #ncm-lcp-hero{object-position:center}}' +
-  '#ncm-hero-react{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}' +
-  '@media (min-width:768px){#ncm-hero-react{object-position:center}}';
-
-/** Dev (index.html) : fixed fallback avant hydratation React. Prod : img dans .ncm-home-hero (inject). */
-export const BOOTSTRAP_HERO_CSS =
-  '#ncm-lcp-hero{position:fixed;top:0;left:0;width:100%;height:max(420px,58vh);object-fit:cover;object-position:center 30%;z-index:1;pointer-events:none}' +
-  HOME_HERO_CRITICAL_CSS;

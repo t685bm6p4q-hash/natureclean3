@@ -6,9 +6,9 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
-  BOOTSTRAP_HERO_CSS,
   buildBootstrapHeroImgTag,
   buildBootstrapPreloadLink,
+  LCP_CRITICAL_CSS,
 } from './lcp-hero-bootstrap-html';
 
 const HERO_SECTION_RE = /(<section[^>]*\bncm-home-hero\b[^>]*>)/i;
@@ -57,26 +57,25 @@ function injectBootstrapInsideHeroSection(html: string): string {
   );
 }
 
+function replaceInlineCriticalCss(html: string): string {
+  const block = `<style>${LCP_CRITICAL_CSS}</style>`;
+  if (/<style>[\s\S]*?html,body\{background:#111827[\s\S]*?<\/style>/.test(html)) {
+    return html.replace(/<style>[\s\S]*?html,body\{background:#111827[\s\S]*?<\/style>/, block);
+  }
+  return html.replace('</head>', `    ${block}\n  </head>`);
+}
+
+function replacePreloadLink(html: string): string {
+  const link = buildBootstrapPreloadLink();
+  if (html.includes('id="ncm-lcp-preload"')) {
+    return html.replace(/<link[\s\S]*?id="ncm-lcp-preload"[\s\S]*?\/>/i, link);
+  }
+  return html.replace('</head>', `    ${link}\n  </head>`);
+}
+
 function ensureHeadHints(html: string): string {
-  if (!html.includes('id="ncm-lcp-preload"')) {
-    html = html.replace('</head>', `    ${buildBootstrapPreloadLink()}\n  </head>`);
-  }
-
-  if (!html.includes('.ncm-home-hero #ncm-lcp-hero{')) {
-    if (html.includes('html,body{background:#111827}')) {
-      html = html.replace(
-        'html,body{background:#111827}',
-        `html,body{background:#111827}${BOOTSTRAP_HERO_CSS}`,
-      );
-    } else if (html.includes('</head>')) {
-      html = html.replace(
-        '</head>',
-        `    <style>${BOOTSTRAP_HERO_CSS}#root{position:relative;min-height:100vh}</style>\n  </head>`,
-      );
-    }
-  }
-
-  return html;
+  html = replaceInlineCriticalCss(html);
+  return replacePreloadLink(html);
 }
 
 /** Retire le bootstrap fixed du template Vite (invisible sous bg-white du layout). */

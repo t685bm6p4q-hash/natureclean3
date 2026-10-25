@@ -301,7 +301,7 @@ export function Home() {
             id="ncm-hero-react"
             src={homeHeroLcpSrc()}
             srcSet={homeHeroLcpSrcSet()}
-            sizes="100vw"
+            sizes={LCP_HERO.sizes}
             alt="Vue de Marseille et Notre-Dame de la Garde depuis une baie vitrée — Nature Clean"
             width={LCP_HERO.intrinsicWidth}
             height={LCP_HERO.intrinsicHeight}
@@ -315,11 +315,11 @@ export function Home() {
         ) : null}
 
         <div
-          className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/50 to-gray-900/15 md:bg-gradient-to-r md:from-gray-950/88 md:via-gray-900/45 md:to-transparent"
+          className="ncm-hero-overlay absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/50 to-gray-900/15 md:bg-gradient-to-r md:from-gray-950/88 md:via-gray-900/45 md:to-transparent"
           aria-hidden="true"
         />
 
-        <div className="relative z-10 container mx-auto px-4 pt-6 pb-6 md:pt-28 md:pb-10">
+        <div className="ncm-hero-content relative z-10 container mx-auto px-4 pt-6 pb-6 md:pt-28 md:pb-10">
           <div className="max-w-lg md:max-w-3xl lg:max-w-4xl ncm-hero-fade-in">
             <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-3 md:mb-4">
               <Leaf className="w-4 h-4 shrink-0" aria-hidden="true" />
