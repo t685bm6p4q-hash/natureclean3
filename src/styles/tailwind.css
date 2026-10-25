@@ -26,4 +26,10 @@
     content-visibility: auto;
     contain-intrinsic-size: auto 800px;
   }
+
+  @media (max-width: 767px) {
+    .ncm-below-fold {
+      contain-intrinsic-size: auto 420px;
+    }
+  }
 }

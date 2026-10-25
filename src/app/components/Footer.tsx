@@ -23,7 +23,7 @@ export function Footer() {
     <footer className="bg-gray-900 text-gray-300">
       {/* ═══ ACCROCHE — promesse (CTA devis : colonne contact + barre mobile) ═══ */}
       <div className="bg-gradient-to-r from-green-700 to-green-600">
-        <div className="container mx-auto px-4 py-8 md:py-10">
+        <div className="container mx-auto px-4 py-5 md:py-10">
           <p className="ncm-brand-signature ncm-brand-signature--on-green mx-auto max-w-3xl text-center text-base md:text-xl leading-relaxed">
             Au-delà du nettoyage, un véritable entretien professionnel
             <span className="ncm-brand-signature-sub mt-2 block not-italic font-sans text-sm md:text-base font-normal normal-case tracking-normal text-green-50/95">

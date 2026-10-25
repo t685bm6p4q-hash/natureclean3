@@ -413,10 +413,10 @@ export function Home() {
       {/* ══════════════════════════════════════════
           2. CARROUSEL DES 9 SERVICES
           ══════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-gray-50 overflow-x-clip ncm-below-fold">
+      <section className="pt-10 pb-5 md:py-20 bg-gray-50 overflow-x-clip ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal eager>
-            <div className="text-center mb-12">
+            <div className="text-center mb-6 md:mb-12">
               <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 <Sparkles className="w-4 h-4" aria-hidden="true" />
                 9 spécialités
@@ -433,7 +433,7 @@ export function Home() {
           <ServiceCarousel />
 
           <ScrollReveal delay={0.3}>
-            <div className="text-center mt-12">
+            <div className="text-center mt-5 md:mt-12">
               <Button asChild size="lg" className="bg-gray-900 hover:bg-gray-800 text-white font-bold">
                 <Link to="/services">
                   Découvrir tous nos services
@@ -448,10 +448,10 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           3. POURQUOI NOUS CHOISIR — 6 avantages
           ═══════════════════════════════════════════ */}
-      <section className="pt-12 pb-12 md:py-24 bg-white overflow-hidden ncm-below-fold max-md:[contain-intrinsic-size:auto_720px]">
+      <section className="pt-5 pb-10 md:py-24 bg-white overflow-hidden ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
+            <div className="text-center mb-6 md:mb-12 max-w-3xl mx-auto">
               <span className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
                 Nos engagements
@@ -500,12 +500,12 @@ export function Home() {
           {/* ══════════════════════════════════════════
               4. DUO DYNAMIQUE — même section (évite bande blanche doublon mobile)
               ══════════════════════════════════════════ */}
-          <div className="max-w-6xl mx-auto mt-8 md:mt-20 pt-8 md:pt-0 border-t border-gray-100 md:border-0">
+          <div className="max-w-6xl mx-auto mt-6 md:mt-20 pt-5 md:pt-0 border-t border-gray-100 md:border-0">
 
             {/* ── Titre éditorial ── */}
             <ScrollReveal>
-              <div className="text-center mb-8 md:mb-16 max-w-3xl mx-auto">
-                <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+              <div className="text-center mb-6 md:mb-16 max-w-3xl mx-auto">
+                <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-3 md:mb-4">
                   <Sparkles className="w-4 h-4" aria-hidden="true" />
                   Expert multi-spécialités à Marseille
                 </span>
@@ -522,7 +522,7 @@ export function Home() {
             </ScrollReveal>
 
             {/* ── BLOC 1 — Commerces & Santé ── */}
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-20">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 md:mb-20">
 
               {/* Duo d'images — gauche */}
               <ScrollReveal direction="left">
@@ -659,7 +659,7 @@ export function Home() {
 
             {/* ── Bande centrale — Citation clé ── */}
             <ScrollReveal>
-              <div className="ncm-shine ncm-shine--band relative z-0 rounded-2xl overflow-hidden bg-gray-900 py-10 px-8 text-center mb-20 border border-green-600/25 shadow-lg shadow-green-900/10">
+              <div className="ncm-shine ncm-shine--band relative z-0 rounded-2xl overflow-hidden bg-gray-900 py-8 px-6 md:py-10 md:px-8 text-center mb-10 md:mb-20 border border-green-600/25 shadow-lg shadow-green-900/10">
                 <div className="absolute inset-0 z-0 opacity-25 pointer-events-none">
                   <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-green-500 rounded-full blur-[90px]" />
                   <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-amber-500 rounded-full blur-[90px]" />
@@ -1331,14 +1331,14 @@ export function Home() {
           11. CTA FINAL — Photo + conversion
           ══════════════════════════════════════════ */}
       {/* content-visibility: auto — dernier bloc, ~3600px sous le fold mobile */}
-      <section className="py-20 md:py-24 bg-gray-900 ncm-below-fold">
+      <section className="py-12 md:py-24 bg-gray-900 max-md:content-visibility-visible max-md:[contain-intrinsic-size:auto_0px]">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-3 md:mb-4">
                 Prêt à transformer vos locaux ?
               </h2>
-              <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-10 max-w-2xl mx-auto">
                 Contactez-nous pour un devis gratuit et personnalisé.
                 Réponse sous 2 h, devis sous 24 h — Marseille et Bouches-du-Rhône.
               </p>

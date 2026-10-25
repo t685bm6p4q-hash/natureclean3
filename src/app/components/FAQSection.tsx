@@ -61,7 +61,7 @@ export function FAQSection({
   footer,
 }: FAQSectionProps) {
   return (
-    <section className="py-16 md:py-20 bg-gray-50">
+    <section className="py-10 md:py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
