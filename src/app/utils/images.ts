@@ -18,10 +18,10 @@
  *   import { IMAGES, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
  */
 
-import { getOptimizedCldUrl } from '@/app/utils/cloudinaryHelper';
+import { getOptimizedCldUrl } from './cloudinaryHelper';
 
 // Re-exports complets — les composants n'importent QUE depuis ces deux fichiers
-export { getOptimizedCldUrl, cldResize, cldSrcSet } from '@/app/utils/cloudinaryHelper';
+export { getOptimizedCldUrl, cldResize, cldSrcSet } from './cloudinaryHelper';
 
 // ─────────────────────────────────────────────────────────────
 // PATHS BRUTS (privés) — jamais utilisés directement

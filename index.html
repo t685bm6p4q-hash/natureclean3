@@ -12,8 +12,12 @@
          et les dupliquer force des recalculs de style sur chaque élément du DOM. */
       html,body{background:#111827}
       /* Hero bootstrap — uniquement accueil sans HTML SSG (voir script ncm-lcp-boot) */
-      #ncm-lcp-hero{position:fixed;top:0;left:0;width:100%;height:max(420px,58vh);object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}
-      #root{position:relative;z-index:1;min-height:100vh}
+      #ncm-lcp-hero{position:fixed;top:0;left:0;width:100%;height:max(420px,58vh);object-fit:cover;object-position:center 30%;z-index:1;pointer-events:none}
+      .ncm-home-hero{position:relative;min-height:max(420px,58vh);overflow:hidden;background-color:transparent;color:#fff}
+      @media (min-width:768px){.ncm-home-hero{min-height:36rem;padding-bottom:6rem}}
+      #ncm-hero-react{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+      @media (min-width:768px){#ncm-hero-react{object-position:center}}
+      #root{position:relative;min-height:100vh}
     </style>
     <link rel="icon" type="image/png" sizes="64x64" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_64,h_64,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_32,h_32,c_fill/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png" />
@@ -50,9 +54,7 @@
     <!-- f_webp : format explicite — élimine Vary:Accept cache-miss entre preload et <img>
          q_30  : ultra-compressé, imperceptible sous dark overlay gray-900/80
          850w  : couvre Moto G Power (412px × DPR 2 = 824px) — évite de charger 1200w
-         URLs DOIVENT correspondre exactement à celles de Home.tsx :
-           getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')
-           cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp') -->
+         URLs alignées sur src/app/constants/lcpHero.ts (build prerender les régénère). -->
     <link
       id="ncm-lcp-preload"
       rel="preload"
@@ -112,10 +114,8 @@
         • aria-hidden="true" → ignorée par les lecteurs d'écran
         • alt=""             → image décorative au sens WCAG
 
-      ⚠️  URLs DOIVENT correspondre EXACTEMENT à celles de Home.tsx :
-            src  → getOptimizedCldUrl(IMAGES.heroHome, 1200, 30, 'webp')
-            srcset → cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')
-          Toute divergence de format/qualité/largeur = cache MISS = LCP inchangé.
+      ⚠️  URLs = src/app/constants/lcpHero.ts (injectées au build prerender sur dist/).
+          Toute divergence = cache MISS = LCP dégradé.
     -->
     <img
       id="ncm-lcp-hero"

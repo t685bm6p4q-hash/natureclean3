@@ -33,7 +33,7 @@ export function vitePrerenderPlugin(): Plugin {
         await runPrerender({ distDir });
       }
 
-      injectLcpBootstrapIntoHome(distDir, resolve(process.cwd(), 'index.html'));
+      injectLcpBootstrapIntoHome(distDir);
     },
   };
 }

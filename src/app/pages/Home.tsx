@@ -1,5 +1,3 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
-import { dismissNcmLcpBoot } from '@/app/utils/dismissNcmLcpBoot';
 import { Link } from 'react-router';
 import { BulletList } from '@/app/components/BulletList';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
@@ -13,6 +11,8 @@ import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { BRAND_SLOGAN_FULL } from '@/app/constants/brand';
+import { homeHeroLcpSrc, homeHeroLcpSrcSet, LCP_HERO } from '@/app/constants/lcpHero';
+import { useLcpHeroBoot } from '@/app/hooks/useLcpHeroBoot';
 import { IMAGES, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
 import { BeforeAfterCompare } from '@/app/components/BeforeAfterCompare';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
@@ -272,34 +272,7 @@ const cardBgs = [
 ];
 
 export function Home() {
-  const [heroReady, setHeroReady] = useState(false);
-
-  const dismissBootHero = useCallback(() => {
-    requestAnimationFrame(() => dismissNcmLcpBoot());
-  }, []);
-
-  const onHeroReady = useCallback(() => {
-    setHeroReady(true);
-    dismissBootHero();
-  }, [dismissBootHero]);
-
-  useLayoutEffect(() => {
-    const hero = document.getElementById('ncm-hero-react') as HTMLImageElement | null;
-    if (!hero) {
-      dismissNcmLcpBoot();
-      return;
-    }
-    if (hero.complete && hero.naturalWidth > 0) {
-      onHeroReady();
-      return;
-    }
-    hero.addEventListener('load', onHeroReady, { once: true });
-    hero.addEventListener('error', onHeroReady, { once: true });
-    return () => {
-      hero.removeEventListener('load', onHeroReady);
-      hero.removeEventListener('error', onHeroReady);
-    };
-  }, [onHeroReady]);
+  const { heroReady, onHeroReady } = useLcpHeroBoot();
 
   return (
     <>
@@ -315,18 +288,18 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
           ══════════════════════════════════════════ */}
-      <section className="relative min-h-[max(420px,58vh)] overflow-hidden bg-gray-900 text-white md:min-h-[36rem] md:pb-24">
+      <section className="ncm-home-hero relative min-h-[max(420px,58vh)] overflow-hidden text-white md:min-h-[36rem] md:pb-24">
         <img
           id="ncm-hero-react"
-          src={getOptimizedCldUrl(IMAGES.heroHome, 850, 30, 'webp')}
-          srcSet={cldSrcSet(IMAGES.heroHome, [400, 850, 1200, 1920], 30, 'webp')}
+          src={homeHeroLcpSrc()}
+          srcSet={homeHeroLcpSrcSet()}
           sizes="100vw"
           alt="Vue de Marseille et Notre-Dame de la Garde depuis une baie vitrée — Nature Clean"
-          width="850"
-          height="478"
+          width={LCP_HERO.intrinsicWidth}
+          height={LCP_HERO.intrinsicHeight}
           loading="eager"
-          // @ts-ignore — LCP porté par #ncm-lcp-hero ; priorité basse ici
-          fetchpriority="low"
+          // @ts-ignore — attribut HTML valide (React 18 typings)
+          fetchpriority="high"
           decoding="async"
           onLoad={onHeroReady}
           className={`absolute inset-0 h-full w-full object-cover object-[center_30%] md:object-center ${heroReady ? 'opacity-100' : 'opacity-0'}`}
