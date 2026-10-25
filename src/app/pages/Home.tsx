@@ -448,10 +448,10 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           3. POURQUOI NOUS CHOISIR — 6 avantages
           ═══════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-white ncm-below-fold">
+      <section className="pt-12 pb-6 md:py-20 bg-white ncm-below-fold max-md:[contain-intrinsic-size:auto_520px]">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <div className="text-center mb-12 max-w-3xl mx-auto">
+            <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
               <span className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
                 Nos engagements
@@ -467,7 +467,7 @@ export function Home() {
 
           <ScrollReveal>
             {/* Mobile : scroll horizontal — Desktop : grille 3 colonnes */}
-            <div className="-mx-4 px-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-4 md:mx-auto md:px-0 md:pb-0 md:grid md:grid-cols-2 md:overflow-visible md:snap-none md:gap-6 lg:grid-cols-3 max-w-5xl">
+            <div className="-mx-4 px-4 pb-1 md:pb-0 flex overflow-x-auto snap-x snap-mandatory gap-4 md:mx-auto md:px-0 md:grid md:grid-cols-2 md:overflow-visible md:snap-none md:gap-6 lg:grid-cols-3 max-w-5xl">
               {whyUs.map((item, i) => (
                 <div
                   key={item.title}
@@ -502,13 +502,13 @@ export function Home() {
       {/* ══════════════════════════════════════════
           4. DUO DYNAMIQUE — Commerces/Santé × Fin de chantier
           ══════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white overflow-hidden ncm-below-fold">
+      <section className="pt-6 pb-12 md:py-24 bg-white overflow-hidden ncm-below-fold max-md:[contain-intrinsic-size:auto_480px]">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
 
             {/* ── Titre éditorial ── */}
             <ScrollReveal>
-              <div className="text-center mb-16 max-w-3xl mx-auto">
+              <div className="text-center mb-8 md:mb-16 max-w-3xl mx-auto">
                 <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                   <Sparkles className="w-4 h-4" aria-hidden="true" />
                   Expert multi-spécialités à Marseille
