@@ -282,11 +282,17 @@ export function Home() {
       dismissNcmLcpBoot();
       return;
     }
-    // Retire l’image bootstrap dès que le héros React est dans le DOM (évite l’écran coupé au refresh).
-    dismissNcmLcpBoot();
-    if (hero.complete && hero.naturalWidth > 0) return;
-    hero.addEventListener('load', dismissBootHero, { once: true });
-    return () => hero.removeEventListener('load', dismissBootHero);
+    const finish = () => dismissBootHero();
+    if (hero.complete && hero.naturalWidth > 0) {
+      finish();
+      return;
+    }
+    hero.addEventListener('load', finish, { once: true });
+    hero.addEventListener('error', finish, { once: true });
+    return () => {
+      hero.removeEventListener('load', finish);
+      hero.removeEventListener('error', finish);
+    };
   }, [dismissBootHero]);
 
   return (

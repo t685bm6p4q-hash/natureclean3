@@ -12,6 +12,7 @@
 
 import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
+import { injectLcpBootstrapIntoHome } from './inject-lcp-bootstrap';
 import { runPrerender } from './prerender-engine';
 
 export function vitePrerenderPlugin(): Plugin {
@@ -32,6 +33,7 @@ export function vitePrerenderPlugin(): Plugin {
         await runPrerender({ distDir });
       }
 
+      injectLcpBootstrapIntoHome(distDir, resolve(process.cwd(), 'index.html'));
     },
   };
 }
