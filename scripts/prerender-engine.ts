@@ -203,10 +203,11 @@ async function prerenderRoute(
     });
     await waitForPrerenderReady(page, route);
 
-    await page.evaluate(() => {
+    await page.evaluate((homePath: boolean) => {
+      if (homePath) return;
       document.getElementById('ncm-lcp-hero')?.remove();
       document.getElementById('ncm-lcp-preload')?.remove();
-    });
+    }, route === '/' || route === '');
 
     const html = await page.content();
     const outFile = routeToOutputFile(distDir, route);

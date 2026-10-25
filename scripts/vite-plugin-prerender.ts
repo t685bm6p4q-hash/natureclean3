@@ -13,7 +13,6 @@
 import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { runPrerender } from './prerender-engine';
-import { patchDistHtmlAsyncCss } from './patch-async-css';
 
 export function vitePrerenderPlugin(): Plugin {
   let outDir = 'dist';
@@ -33,7 +32,6 @@ export function vitePrerenderPlugin(): Plugin {
         await runPrerender({ distDir });
       }
 
-      patchDistHtmlAsyncCss(distDir);
     },
   };
 }

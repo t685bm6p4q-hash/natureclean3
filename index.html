@@ -138,8 +138,8 @@
         var root = document.getElementById('root');
         var hero = document.getElementById('ncm-lcp-hero');
         var preload = document.getElementById('ncm-lcp-preload');
-        var hasPrerender = root && root.childElementCount > 0;
-        if (!isHome || hasPrerender) {
+        /* Accueil : garder #ncm-lcp-hero jusqu’à dismissBootHero (React) — LCP sur HTML prerender */
+        if (!isHome) {
           if (hero) hero.remove();
           if (preload) preload.remove();
         }
