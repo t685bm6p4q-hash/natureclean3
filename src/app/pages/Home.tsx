@@ -146,6 +146,23 @@ const HOME_FAQ: FAQItem[] = [
   },
 ];
 
+/** FAQ accueil — hors questions tarifs (déjà couvertes par le devis / page services). */
+const HOME_FAQ_ON_PAGE_ORDER = [
+  'Dans quelles zones intervenez-vous ?',
+  'Qui fournit les produits et le matériel ?',
+  'Intervenez-vous en dehors des horaires de bureau, le week-end ?',
+  'Êtes-vous assurés ?',
+  'Comment se passe un nettoyage de fin de chantier ?',
+  'Proposez-vous des contrats récurrents ?',
+  'Faites-vous le nettoyage de copropriétés et d’immeubles ?',
+  'Vos produits sont-ils écologiques ?',
+] as const;
+
+function homeFaqForDisplay(maxCount: number): FAQItem[] {
+  const byQuestion = new Map(HOME_FAQ.map((item) => [item.question, item]));
+  return HOME_FAQ_ON_PAGE_ORDER.map((q) => byQuestion.get(q)).filter((item): item is FAQItem => item != null).slice(0, maxCount);
+}
+
 const DIOGENE_HOME_FAQ: FAQItem[] = [
   {
     question: 'Peut-on intervenir si la personne n’est pas d’accord ?',
@@ -237,7 +254,7 @@ const realisationsPreview = [
 
 /** Home version courte — `git revert` du commit « version courte » ou `HOME_SHORT = false` pour la home longue. */
 const HOME_SHORT = true;
-const HOME_FAQ_VISIBLE_COUNT = HOME_SHORT ? 3 : 5;
+const HOME_FAQ_VISIBLE_COUNT = 5;
 const HOME_REALISATIONS_PREVIEW_COUNT = HOME_SHORT ? 4 : realisationsPreview.length;
 const HOME_EXPERTISE_VISIBLE_COUNT = HOME_SHORT ? 4 : localExpertisePages.length;
 const HOME_WHY_US_VISIBLE_COUNT = HOME_SHORT ? 4 : whyUs.length;
@@ -275,8 +292,8 @@ export function Home() {
         currentSection="home"
         faqItems={
           HOME_SHORT
-            ? HOME_FAQ.slice(0, HOME_FAQ_VISIBLE_COUNT)
-            : [...HOME_FAQ, ...DIOGENE_HOME_FAQ]
+            ? homeFaqForDisplay(HOME_FAQ_VISIBLE_COUNT)
+            : [...homeFaqForDisplay(HOME_FAQ_VISIBLE_COUNT), ...DIOGENE_HOME_FAQ]
         }
       />
 
@@ -1288,9 +1305,9 @@ export function Home() {
       </section>
 
       <FAQSection
-        items={HOME_FAQ.slice(0, HOME_FAQ_VISIBLE_COUNT)}
+        items={homeFaqForDisplay(HOME_FAQ_VISIBLE_COUNT)}
         title="Questions fréquentes sur nos services de nettoyage à Marseille"
-        subtitle="Tarifs, délais, produits fournis, horaires et zones d’intervention"
+        subtitle="Zones d’intervention, prestations, horaires flexibles et assurance"
         defaultOpenFirst={false}
         footer={
           <span className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
