@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
-import { CheckCircle2 } from 'lucide-react';
+import { BulletList } from '@/app/components/BulletList';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
 interface ServiceFeatureCardItem {
@@ -21,11 +21,13 @@ interface ServiceShowcaseCardProps {
   src: string;
   alt: string;
   title: string;
-  subtitle: string;
+  /** Ligne unique (legacy) — préférer `bullets` pour une liste à puces serrées */
+  subtitle?: string;
+  bullets?: readonly string[];
 }
 
 /** Grande vignette — photo entière + texte sous l'image. */
-export function ServiceShowcaseCard({ src, alt, title, subtitle }: ServiceShowcaseCardProps) {
+export function ServiceShowcaseCard({ src, alt, title, subtitle, bullets }: ServiceShowcaseCardProps) {
   return (
     <div className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900 h-full">
       <div className="relative aspect-[16/10] bg-gray-900">
@@ -40,8 +42,12 @@ export function ServiceShowcaseCard({ src, alt, title, subtitle }: ServiceShowca
         />
       </div>
       <div className="p-4 bg-white">
-        <h3 className="text-lg font-bold text-gray-900 mb-1">{title}</h3>
-        <p className="text-sm text-gray-600">{subtitle}</p>
+        <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
+        {bullets && bullets.length > 0 ? (
+          <BulletList lines={bullets} />
+        ) : (
+          subtitle && <p className="text-sm text-gray-600 leading-snug">{subtitle}</p>
+        )}
       </div>
     </div>
   );
@@ -81,19 +87,10 @@ export function ServiceFeatureCard({
       </div>
       {(description || (items && items.length > 0)) && (
         <div className="p-5">
-          {description && <p className="text-sm text-gray-600 mb-3 leading-relaxed">{description}</p>}
-          {items && items.length > 0 && (
-            <ul className="space-y-2">
-              {items.map((item) => (
-                <li key={item.bold} className="flex items-start gap-2 text-sm text-gray-700">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  <span>
-                    <strong>{item.bold}</strong> {item.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          {description && (
+            <BulletList lines={[description]} itemClassName="text-gray-600" className="mb-0" />
           )}
+          {items && items.length > 0 && <BulletList lines={items} className={description ? 'mt-2' : undefined} />}
         </div>
       )}
     </div>

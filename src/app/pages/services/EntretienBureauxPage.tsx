@@ -2,7 +2,6 @@ import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
 import {
-  CheckCircle2,
   Briefcase,
   Trash2,
   Sparkles,
@@ -16,6 +15,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { BulletList } from '@/app/components/BulletList';
 import { ServiceFeatureCard } from '@/app/components/ServiceFeatureCard';
 import { IMAGES } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
@@ -225,27 +225,16 @@ export function EntretienBureauxPage() {
 
               <div className="bg-green-50 p-8 rounded-lg border-2 border-green-200">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Le + Nature Clean</h2>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <span className="text-gray-700">
-                      <strong>Horaires décalés</strong> — 6 h à 22 h, sans bloquer vos équipes
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <span className="text-gray-700">
-                      <strong>Produits et matériel fournis</strong> — 50 % éco-labellisés, rien à
-                      stocker
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <span className="text-gray-700">
-                      <strong>RC Pro</strong> — un référent de site, un numéro direct
-                    </span>
-                  </li>
-                </ul>
+                <BulletList
+                  lines={[
+                    { bold: 'Horaires décalés', text: '— 6 h à 22 h, sans bloquer vos équipes' },
+                    {
+                      bold: 'Produits et matériel fournis',
+                      text: '— 50 % éco-labellisés, rien à stocker',
+                    },
+                    { bold: 'RC Pro', text: '— un référent de site, un numéro direct' },
+                  ]}
+                />
               </div>
             </div>
           </div>
@@ -446,14 +435,7 @@ export function EntretienBureauxPage() {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
                     <p className="text-gray-600 mb-4 text-sm">{service.description}</p>
-                    <ul className="space-y-2">
-                      {service.features.map((feature) => (
-                        <li key={feature} className="flex items-start text-sm text-gray-700">
-                          <span className="text-green-600 mr-2">•</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <BulletList lines={service.features} />
                   </CardContent>
                 </Card>
               );

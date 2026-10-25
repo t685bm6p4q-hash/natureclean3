@@ -4,6 +4,7 @@ import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
+import { BulletList } from '@/app/components/BulletList';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { useArticleJsonLd } from '@/app/hooks/useArticleJsonLd';
 import { IMAGES } from '@/app/utils/images';
@@ -161,13 +162,16 @@ export function DevisNettoyageMarseille() {
                 <FileCheck className="w-6 h-6 text-green-600" aria-hidden="true" />
                 Ce que doit contenir un bon devis
               </h2>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700 mb-10">
-                <li>Prestations détaillées (sol, sanitaires, vitres, poubelles, parties communes…)</li>
-                <li>Fréquence et plages horaires (avant ouverture, après fermeture, week-end)</li>
-                <li>Prix mensuel ou forfait chantier, hors taxes, sans frais cachés</li>
-                <li>Assurance RC Pro et coordonnées d’un interlocuteur unique</li>
-                <li>Délai de validité et conditions de démarrage</li>
-              </ul>
+              <BulletList
+                className="mb-10"
+                lines={[
+                  'Prestations détaillées (sol, sanitaires, vitres, poubelles, parties communes…)',
+                  'Fréquence et plages horaires (avant ouverture, après fermeture, week-end)',
+                  'Prix mensuel ou forfait chantier, hors taxes, sans frais cachés',
+                  'Assurance RC Pro et coordonnées d’un interlocuteur unique',
+                  'Délai de validité et conditions de démarrage',
+                ]}
+              />
               <p className="text-gray-600 text-sm mb-10">
                 Pour les budgets indicatifs bureaux, consultez aussi notre{' '}
                 <Link to="/blog/budget-nettoyage-bureaux-marseille-2026" className="text-green-700 font-semibold underline">

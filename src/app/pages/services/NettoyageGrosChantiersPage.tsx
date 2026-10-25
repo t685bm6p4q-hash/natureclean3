@@ -2,6 +2,7 @@ import { IMAGES } from '@/app/utils/images';
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
+import { BulletList } from '@/app/components/BulletList';
 import { Sparkles, Construction, CheckCircle2, Phone, Calendar, Ruler, Box, Key } from 'lucide-react';
 import { Link } from 'react-router';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
@@ -164,26 +165,29 @@ export function NettoyageGrosChantiersPage() {
                 </div>
               </div>
               <div className="md:col-span-3 p-12">
-                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-                  {[
-                    'Dépoussiérage intégral sols, murs, plafonds',
-                    'Lessivage des plinthes et prises',
-                    'Détartrage complet des sanitaires',
-                    'Nettoyage intérieur/extérieur placards',
-                    'Dégraissage cuisine et électroménager',
-                    'Nettoyage des rails de fenêtres',
-                    'Nettoyage des luminaires et radiateurs',
-                    'Désinfection des poignées et points de contact',
-                    'Lavage des vitres (recto/verso)',
-                    'Nettoyage des encadrements de portes',
-                    'Shampooing moquette (sur demande)',
-                    'Cristallisation du marbre (sur demande)'
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 text-sm text-gray-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
+                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-0">
+                  <BulletList
+                    bulletClassName="text-emerald-600"
+                    lines={[
+                      'Dépoussiérage intégral sols, murs, plafonds',
+                      'Lessivage des plinthes et prises',
+                      'Détartrage complet des sanitaires',
+                      'Nettoyage intérieur/extérieur placards',
+                      'Dégraissage cuisine et électroménager',
+                      'Nettoyage des rails de fenêtres',
+                    ]}
+                  />
+                  <BulletList
+                    bulletClassName="text-emerald-600"
+                    lines={[
+                      'Nettoyage des luminaires et radiateurs',
+                      'Désinfection des poignées et points de contact',
+                      'Lavage des vitres (recto/verso)',
+                      'Nettoyage des encadrements de portes',
+                      'Shampooing moquette (sur demande)',
+                      'Cristallisation du marbre (sur demande)',
+                    ]}
+                  />
                 </div>
               </div>
             </div>

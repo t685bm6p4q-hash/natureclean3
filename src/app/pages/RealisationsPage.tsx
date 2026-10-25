@@ -273,8 +273,12 @@ const SERVICE_LINKS = [
   { icon: Heart, title: 'Nettoyage syndrome de Diogène', link: '/services/nettoyage-diogene' },
 ] as const;
 
+const REALISATIONS_INITIAL_VISIBLE = 6;
+const REALISATIONS_LOAD_MORE_STEP = 6;
+
 export function RealisationsPage() {
   const [activeFilter, setActiveFilter] = useState<string>(FILTER_ALL);
+  const [visibleCount, setVisibleCount] = useState(REALISATIONS_INITIAL_VISIBLE);
 
   const filtered = useMemo(
     () =>
@@ -282,6 +286,11 @@ export function RealisationsPage() {
         ? realisations
         : realisations.filter((r) => r.category === activeFilter),
     [activeFilter],
+  );
+
+  const visibleItems = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount],
   );
 
   return (
@@ -343,7 +352,10 @@ export function RealisationsPage() {
                 <button
                   key={cat}
                   type="button"
-                  onClick={() => setActiveFilter(cat)}
+                  onClick={() => {
+                    setActiveFilter(cat);
+                    setVisibleCount(REALISATIONS_INITIAL_VISIBLE);
+                  }}
                   className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
                     isActive
                       ? 'bg-green-700 text-white shadow-md shadow-green-700/20'
@@ -369,7 +381,7 @@ export function RealisationsPage() {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {filtered.map((real, i) => (
+            {visibleItems.map((real, i) => (
               <article
                 key={real.id}
                 className="ncm-grid-item-appear bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md flex flex-col"
@@ -413,6 +425,23 @@ export function RealisationsPage() {
               </article>
             ))}
           </div>
+
+          {visibleCount < filtered.length ? (
+            <div className="text-center mt-10">
+              <Button
+                type="button"
+                variant="outline"
+                className="border-green-600 text-green-800 font-bold"
+                onClick={() =>
+                  setVisibleCount((n) =>
+                    Math.min(n + REALISATIONS_LOAD_MORE_STEP, filtered.length),
+                  )
+                }
+              >
+                Afficher plus de réalisations ({filtered.length - visibleCount} restantes)
+              </Button>
+            </div>
+          ) : null}
         </div>
       </section>
 

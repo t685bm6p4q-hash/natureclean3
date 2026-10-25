@@ -3,6 +3,7 @@ import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
+import { BulletList } from '@/app/components/BulletList';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { Button } from '@/app/components/ui/button';
 import {
@@ -338,16 +339,7 @@ export function ServicesPage() {
                     </Link>
                   </h2>
                   <p className="text-gray-700 leading-relaxed mb-4">{service.intro}</p>
-                  <ul className="space-y-2 mb-5 list-none p-0 m-0">
-                    {service.bullets.map((line) => (
-                      <li key={line} className="flex items-start gap-2 text-sm text-gray-700">
-                        <span className="text-green-600 mt-0.5" aria-hidden="true">
-                          •
-                        </span>
-                        <span>{line}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <BulletList lines={service.bullets} className="mb-5" />
                   <Link
                     to={service.href}
                     className="inline-flex items-center gap-2 text-green-700 font-bold hover:text-green-800 group"

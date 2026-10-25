@@ -1,8 +1,9 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
-import { Store, ArrowRight, CheckCircle2, Clock, Sparkles, Square } from 'lucide-react';
+import { Store, ArrowRight, Clock, Sparkles, Square } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { BulletList } from '@/app/components/BulletList';
 import { ServiceFeatureCard, ServiceShowcaseCard } from '@/app/components/ServiceFeatureCard';
 import { IMAGES } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
@@ -196,7 +197,7 @@ export function NettoyageCommercesPage() {
                   src={IMAGES.vitrinesBoutiqueCentreCommercialMarseille}
                   alt="Vitrine et entrée d'une boutique de sport en centre commercial, vitres propres et cadre noir nettoyé"
                   title="Boutiques & magasins"
-                  subtitle="Vitrines, entrée, sols — retail, sport, jeux vidéo, prêt-à-porter"
+                  bullets={['Vitrines, entrée, sols', 'Retail, sport, jeux vidéo, prêt-à-porter']}
                 />
               </ScrollReveal>
               <ScrollReveal delay={0.16}>
@@ -204,7 +205,7 @@ export function NettoyageCommercesPage() {
                   src={IMAGES.nettoyageVitresPro}
                   alt="Salle et vitrage d'un café, côté rue"
                   title="Cafés & salles"
-                  subtitle="Salle, sanitaires, terrasse — pas les hottes"
+                  bullets={['Salle, sanitaires, terrasse', 'Pas les hottes de cuisine pro']}
                 />
               </ScrollReveal>
               <ScrollReveal delay={0.24}>
@@ -212,7 +213,7 @@ export function NettoyageCommercesPage() {
                   src={IMAGES.galerieArtMarseille}
                   alt="Galerie d'art avec sol propre après entretien"
                   title="Galeries & espaces culturels"
-                  subtitle="Sols, vitrines, salles d'exposition — produits adaptés aux œuvres"
+                  bullets={['Sols, vitrines, salles d\'exposition', 'Produits adaptés aux œuvres']}
                 />
               </ScrollReveal>
             </div>
@@ -311,20 +312,21 @@ export function NettoyageCommercesPage() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                {[
-                  'Entretien courant avant ouverture',
-                  'Ménage des espaces administratifs',
-                  'Lavage des vitrines et façades accessibles',
-                  'Hygiène des sols et sanitaires',
-                  'Plan de propreté après visite',
-                  '50 % de produits éco-labellisés',
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <span className="text-gray-700 text-sm">{item}</span>
-                  </div>
-                ))}
+              <div className="grid md:grid-cols-2 gap-x-6 gap-y-0">
+                <BulletList
+                  lines={[
+                    'Entretien courant avant ouverture',
+                    'Ménage des espaces administratifs',
+                    'Lavage des vitrines et façades accessibles',
+                  ]}
+                />
+                <BulletList
+                  lines={[
+                    'Hygiène des sols et sanitaires',
+                    'Plan de propreté après visite',
+                    '50 % de produits éco-labellisés',
+                  ]}
+                />
               </div>
             </div>
           </div>

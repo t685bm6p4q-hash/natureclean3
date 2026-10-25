@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
-import { CheckCircle2, Eraser } from 'lucide-react';
+import { BulletList } from '@/app/components/BulletList';
+import { Eraser } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
@@ -63,21 +64,15 @@ export function NettoyageGraffitisPage() {
                 <p className="text-lg text-slate-600 mb-8">
                   Le vrai problème, c'est la pénétration. En 48 à 72h, les pigments acryliques d'un tag pénètrent dans la porosité de la pierre calcaire — courante sur les façades marseillaises — et le dégraffitage chimique seul ne suffit plus. On doit passer à l'aérogommage. Agir vite, c'est éviter d'abîmer le support.
                 </p>
-                <ul className="space-y-4">
-                  {[
+                <BulletList
+                  itemClassName="text-slate-700 font-medium"
+                  lines={[
                     'Intervention sous 24/48h — diagnostic offert',
                     'Traitement adapté à chaque support (pierre calcaire, brique, verre, métal)',
                     'Produits biodégradables conformes à la réglementation REACH',
-                    'Application d\'une couche anti-graffiti sacrificielle (en option)',
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="mt-1 bg-green-100 p-1 rounded-full">
-                        <CheckCircle2 className="w-4 h-4 text-green-600" />
-                      </div>
-                      <span className="text-slate-700 font-medium">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                    "Application d'une couche anti-graffiti sacrificielle (en option)",
+                  ]}
+                />
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 text-white rounded-xl shadow-lg">
                     <Link to="/devis?service=graffitis">

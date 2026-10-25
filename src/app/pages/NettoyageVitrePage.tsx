@@ -1,7 +1,8 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
 import { Card, CardContent } from '@/app/components/ui/card';
-import { Square, Sparkles, Shield, CheckCircle2, ArrowRight, Wind, MapPin } from 'lucide-react';
+import { BulletList } from '@/app/components/BulletList';
+import { Square, Sparkles, Shield, ArrowRight, Wind, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
@@ -116,20 +117,13 @@ export function NettoyageVitrePage() {
                   <p className="text-gray-600 text-sm mb-4">
                     Bureaux, salles de réunion, halls. Horaires décalés si vos équipes sont sur place.
                   </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Bureaux et locaux professionnels</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Copropriétés (parties communes)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Double vitrage, films, teintes : geste adapté</span>
-                    </li>
-                  </ul>
+                  <BulletList
+                    lines={[
+                      'Bureaux et locaux professionnels',
+                      'Copropriétés (parties communes)',
+                      'Double vitrage, films, teintes : geste adapté',
+                    ]}
+                  />
                 </CardContent>
               </Card>
 
@@ -140,20 +134,13 @@ export function NettoyageVitrePage() {
                   <p className="text-gray-600 text-sm mb-4">
                     Vitrines et façades. Eau déminéralisée contre le calcaire marseillais.
                   </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Vitrines de commerces</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Baies vitrées, verrières, vérandas</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Cadres et joints</span>
-                    </li>
-                  </ul>
+                  <BulletList
+                    lines={[
+                      'Vitrines de commerces',
+                      'Baies vitrées, verrières, vérandas',
+                      'Cadres et joints',
+                    ]}
+                  />
                 </CardContent>
               </Card>
 
@@ -165,20 +152,13 @@ export function NettoyageVitrePage() {
                     Perche depuis le sol ou un balcon. Nacelle seulement si l&apos;accès et la voirie
                     le permettent.
                   </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Perche télescopique, formation et EPI</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Autorisation de voirie si nacelle sur trottoir</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Pas de travail sur cordes</span>
-                    </li>
-                  </ul>
+                  <BulletList
+                    lines={[
+                      'Perche télescopique, formation et EPI',
+                      'Autorisation de voirie si nacelle sur trottoir',
+                      'Pas de travail sur cordes',
+                    ]}
+                  />
                 </CardContent>
               </Card>
             </div>

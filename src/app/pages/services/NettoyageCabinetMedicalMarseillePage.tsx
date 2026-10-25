@@ -2,7 +2,6 @@ import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
 import {
   ArrowRight,
-  CheckCircle2,
   ClipboardList,
   Clock,
   Shield,
@@ -12,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { BulletList } from '@/app/components/BulletList';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
@@ -185,11 +185,7 @@ export function NettoyageCabinetMedicalMarseillePage() {
             ].map((block, i) => (
               <ScrollReveal key={block.title} delay={i * 0.05}>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{block.title}</h3>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm leading-relaxed">
-                  {block.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <BulletList lines={block.items} />
               </ScrollReveal>
             ))}
           </div>
@@ -277,20 +273,21 @@ export function NettoyageCabinetMedicalMarseillePage() {
           </ScrollReveal>
           <ScrollReveal delay={0.08}>
             <h2 className="text-2xl font-black text-gray-900 mb-4">Notre engagement</h2>
-            <ul className="grid sm:grid-cols-2 gap-3">
-              {[
-                'Équipe déclarée, assurance RC Pro',
-                'Discrétion : intervention hors présence des patients',
-                'Interlocuteur dédié au contrat',
-                'Remplacement en cas d\'absence d\'un agent lorsque c\'est prévu',
-                'Contrat sur mesure : fréquence quotidienne, hebdomadaire ou ponctuelle',
-              ].map((item) => (
-                <li key={item} className="flex gap-2 text-sm text-gray-700">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div className="grid sm:grid-cols-2 gap-x-4 gap-y-0">
+              <BulletList
+                lines={[
+                  'Équipe déclarée, assurance RC Pro',
+                  'Discrétion : intervention hors présence des patients',
+                  'Interlocuteur dédié au contrat',
+                ]}
+              />
+              <BulletList
+                lines={[
+                  "Remplacement en cas d'absence d'un agent lorsque c'est prévu",
+                  'Contrat sur mesure : fréquence quotidienne, hebdomadaire ou ponctuelle',
+                ]}
+              />
+            </div>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <h2 className="text-xl font-bold text-gray-900 mb-2">Ce qui fait varier le devis</h2>

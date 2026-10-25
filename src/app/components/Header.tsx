@@ -234,7 +234,7 @@ export function Header() {
   const smartDevisLink = SERVICE_PAGE_DEVIS_MAP[location.pathname] ?? '/devis';
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-white shadow-sm isolate">
       <div className="pt-[env(safe-area-inset-top,0px)]">
         <div className="ncm-liseré-fin" aria-hidden="true" />
         {/* ═══ TOP BAR : Confiance & Contact rapide ═══ */}

@@ -5,6 +5,8 @@ import {
   ARIA_PHONE,
   ZONE_LABEL,
 } from '@/app/utils/constants';
+import { BulletList } from '@/app/components/BulletList';
+import { MobileSnapRail } from '@/app/components/MobileSnapRail';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
 import {
@@ -238,14 +240,7 @@ export function NettoyageDiogenePage() {
               <Users className="w-7 h-7 text-emerald-600" aria-hidden="true" />
               Qui peut demander une intervention ?
             </h2>
-            <ul className="space-y-3 mb-6">
-              {WHO_CAN_REQUEST.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-gray-700">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <BulletList lines={WHO_CAN_REQUEST} bulletClassName="text-emerald-600" className="mb-6" />
             <p className="text-sm text-gray-700 leading-relaxed bg-amber-50 border border-amber-100 rounded-xl p-5">
               <strong className="text-gray-900">Nous n’intervenons pas</strong> sans l’accord de
               l’occupant ou de son représentant légal. Si la situation est bloquée, tournez-vous
@@ -261,11 +256,15 @@ export function NettoyageDiogenePage() {
             <h2 className="text-3xl font-black text-gray-900 mb-8 text-center">
               Comment se déroule une intervention
             </h2>
-            <div className="space-y-4">
+            <MobileSnapRail
+              ariaLabel="Étapes d'une intervention"
+              className="md:mx-0 md:px-0 md:flex md:flex-col md:gap-4 md:overflow-visible md:snap-none md:max-w-none"
+              slideClassName="w-[88%] snap-center md:w-full"
+            >
               {PROCESS_STEPS.map((step) => (
                 <div
                   key={step.title}
-                  className="flex gap-4 p-5 bg-white rounded-xl border border-gray-100 shadow-sm"
+                  className="flex gap-4 p-5 bg-white rounded-xl border border-gray-100 shadow-sm h-full"
                 >
                   <ClipboardList className="w-8 h-8 text-emerald-600 flex-shrink-0" aria-hidden="true" />
                   <div>
@@ -274,7 +273,8 @@ export function NettoyageDiogenePage() {
                   </div>
                 </div>
               ))}
-            </div>
+            </MobileSnapRail>
+            <p className="text-center text-xs text-gray-400 mt-3 md:hidden">Glissez pour voir toutes les étapes</p>
           </ScrollReveal>
         </div>
       </section>
@@ -333,24 +333,27 @@ export function NettoyageDiogenePage() {
             <div className="grid md:grid-cols-2 gap-8 text-sm text-gray-700 leading-relaxed">
               <div>
                 <h3 className="font-bold text-gray-900 mb-2">Nous faisons</h3>
-                <ul className="space-y-2 list-disc pl-5">
-                  <li>Tri et évacuation, nettoyage approfondi, désinfection</li>
-                  <li>Remise en état de propreté des sols, murs, sanitaires et cuisine</li>
-                </ul>
+                <BulletList
+                  bulletClassName="text-emerald-600"
+                  lines={[
+                    'Tri et évacuation, nettoyage approfondi, désinfection',
+                    'Remise en état de propreté des sols, murs, sanitaires et cuisine',
+                  ]}
+                />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-amber-600" aria-hidden="true" />
                   Nous ne faisons pas
                 </h3>
-                <ul className="space-y-2 list-disc pl-5">
-                  <li>
-                    Constater l’insalubrité ou la salubrité d’un logement (autorités compétentes :
-                    mairie, ARS)
-                  </li>
-                  <li>Travaux de rénovation (peinture, plomberie, électricité)</li>
-                  <li>Suivi médical ou social — le nettoyage ne traite pas la cause</li>
-                </ul>
+                <BulletList
+                  bulletClassName="text-amber-600"
+                  lines={[
+                    'Constater l’insalubrité ou la salubrité d’un logement (autorités compétentes : mairie, ARS)',
+                    'Travaux de rénovation (peinture, plomberie, électricité)',
+                    'Suivi médical ou social — le nettoyage ne traite pas la cause',
+                  ]}
+                />
               </div>
             </div>
           </ScrollReveal>
@@ -377,14 +380,7 @@ export function NettoyageDiogenePage() {
               comptez aussi les étages sans ascenseur, les couloirs étroits et l’organisation de la
               benne.
             </p>
-            <ul className="space-y-2">
-              {QUOTE_FACTORS.map((factor) => (
-                <li key={factor} className="flex items-start gap-2 text-gray-700 text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  {factor}
-                </li>
-              ))}
-            </ul>
+            <BulletList lines={QUOTE_FACTORS} bulletClassName="text-emerald-600" />
           </ScrollReveal>
         </div>
       </section>

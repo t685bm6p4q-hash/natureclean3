@@ -52,7 +52,7 @@ export function RootLayout() {
   return (
     <AuthProvider>
       <SkipToContent />
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white overflow-x-clip">
         {isDevis ? <DevisHeader /> : <Header />}
         <main
           id="main-content"

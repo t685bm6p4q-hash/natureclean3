@@ -12,7 +12,7 @@ import { FAQSection } from '@/app/components/FAQSection';
 import { Button } from '@/app/components/ui/button';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { Link } from 'react-router';
-import { CheckCircle2, ArrowRight, Phone, MapPin, Leaf, Shield } from 'lucide-react';
+import { ArrowRight, Phone, MapPin, Leaf, Shield } from 'lucide-react';
 import type { GeoPageData } from '@/app/utils/geoData';
 import { GEO_PAGES } from '@/app/utils/geoData';
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
@@ -135,9 +135,13 @@ export function GeoLandingPage({ data }: GeoLandingPageProps) {
             <div className="grid md:grid-cols-2 gap-4">
               {data.highlights.map((highlight, i) => (
                 <ScrollReveal key={highlight} delay={i * 0.06}>
-                  <div className="flex items-start gap-3 bg-white p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-green-200 transition-all">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <span className="text-gray-700">{highlight}</span>
+                  <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-green-200 transition-all">
+                    <p className="text-sm text-gray-700 leading-snug">
+                      <span className="text-green-600 mr-1.5" aria-hidden="true">
+                        •
+                      </span>
+                      {highlight}
+                    </p>
                   </div>
                 </ScrollReveal>
               ))}

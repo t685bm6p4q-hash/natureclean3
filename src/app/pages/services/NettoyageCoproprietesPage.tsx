@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { BulletList } from '@/app/components/BulletList';
 import { ServiceFeatureCard } from '@/app/components/ServiceFeatureCard';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
@@ -223,20 +224,13 @@ export function NettoyageCoproprietesPage() {
             <ScrollReveal delay={0.1}>
               <div className="bg-green-50 p-8 rounded-xl border border-green-200">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Ce qu&apos;on cadre au contrat</h2>
-                <ul className="space-y-3 text-sm text-gray-700">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    Fréquences par zone (hall, escaliers, parking, poubelles)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    Désinfection des points de contact (poignées, ascenseur) à chaque passage prévu
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    Référent identifié quand la taille du site le permet
-                  </li>
-                </ul>
+                <BulletList
+                  lines={[
+                    'Fréquences par zone (hall, escaliers, parking, poubelles)',
+                    'Désinfection des points de contact (poignées, ascenseur) à chaque passage prévu',
+                    'Référent identifié quand la taille du site le permet',
+                  ]}
+                />
               </div>
             </ScrollReveal>
           </div>

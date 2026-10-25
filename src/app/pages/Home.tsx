@@ -1,6 +1,7 @@
 import { useCallback, useLayoutEffect } from 'react';
 import { dismissNcmLcpBoot } from '@/app/utils/dismissNcmLcpBoot';
 import { Link } from 'react-router';
+import { BulletList } from '@/app/components/BulletList';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import {
   Leaf, ArrowRight, Phone, Sparkles, CheckCircle2,
@@ -27,6 +28,7 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 // Coût : +~6KB dans index.js (39.83 → ~46KB).
 //   → Desktop TBT : +~12ms (110ms → ~122ms) — même bande de score, desktop reste 98.
 //   → Mobile SI : 4.5s → ~2.0s → score mobile 90 → ~94.
+import { MobileSnapRail } from '@/app/components/MobileSnapRail';
 import { ServiceCarousel } from '@/app/components/ServiceCarousel';
 import { RealisationsSlider } from '@/app/components/RealisationsSlider';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
@@ -493,40 +495,88 @@ export function Home() {
 
               {/* Duo d'images — gauche */}
               <ScrollReveal direction="left">
-                <div className="relative flex flex-col gap-3">
-                  <div className="absolute -top-3 -left-3 w-16 h-16 bg-green-100 rounded-2xl -z-10" />
+                <div className="relative">
+                  <div className="absolute -top-3 -left-3 w-16 h-16 bg-green-100 rounded-2xl -z-10 hidden md:block" />
 
-                  {/* Image principale */}
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
-                    <ImageWithFallback
-                      src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
-                      srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Open space de bureaux nettoyé à Marseille"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      width={600} height={320} loading="lazy" decoding="async"
-                    />
-                    <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                      <span className="bg-green-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                        Commerces & magasins · Marseille
-                      </span>
+                  <MobileSnapRail
+                    ariaLabel="Photos — locaux professionnels"
+                    className="md:hidden"
+                    slideClassName="w-[90%] snap-center"
+                  >
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl h-64 group">
+                      <ImageWithFallback
+                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
+                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
+                        sizes="90vw"
+                        alt="Open space de bureaux nettoyé à Marseille"
+                        className="w-full h-full object-cover"
+                        width={600}
+                        height={320}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-4 left-4">
+                        <span className="bg-green-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                          Commerces & magasins · Marseille
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                    <div className="relative rounded-2xl overflow-hidden shadow-xl h-64 group">
+                      <ImageWithFallback
+                        src={getOptimizedCldUrl(IMAGES.cabinetMedical, 600)}
+                        srcSet={cldSrcSet(IMAGES.cabinetMedical, [300, 500, 700])}
+                        sizes="90vw"
+                        alt="Agent désinfectant un cabinet médical à Marseille"
+                        className="w-full h-full object-cover"
+                        width={600}
+                        height={256}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-3 left-3">
+                        <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                          Cabinets médicaux · Normes sanitaires
+                        </span>
+                      </div>
+                    </div>
+                  </MobileSnapRail>
 
-                  {/* Image secondaire */}
-                  <div className="relative rounded-xl overflow-hidden shadow-xl h-56 lg:h-64 group">
-                    <ImageWithFallback
-                      src={getOptimizedCldUrl(IMAGES.cabinetMedical, 600)}
-                      srcSet={cldSrcSet(IMAGES.cabinetMedical, [300, 500, 700])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Agent désinfectant un cabinet médical à Marseille"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      width={600} height={256} loading="lazy" decoding="async"
-                    />
-                    <div className="absolute bottom-3 left-3">
-                      <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                        Cabinets médicaux · Normes sanitaires
-                      </span>
+                  <div className="hidden md:flex relative flex-col gap-3">
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
+                      <ImageWithFallback
+                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
+                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        alt="Open space de bureaux nettoyé à Marseille"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        width={600}
+                        height={320}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                        <span className="bg-green-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                          Commerces & magasins · Marseille
+                        </span>
+                      </div>
+                    </div>
+                    <div className="relative rounded-xl overflow-hidden shadow-xl h-56 lg:h-64 group">
+                      <ImageWithFallback
+                        src={getOptimizedCldUrl(IMAGES.cabinetMedical, 600)}
+                        srcSet={cldSrcSet(IMAGES.cabinetMedical, [300, 500, 700])}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        alt="Agent désinfectant un cabinet médical à Marseille"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        width={600}
+                        height={256}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-3 left-3">
+                        <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                          Cabinets médicaux · Normes sanitaires
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -546,19 +596,16 @@ export function Home() {
                   reflètent votre image. Nos équipes assurent une <strong>propreté irréprochable
                   de vos locaux à Marseille</strong>, en horaires décalés, sans interrompre votre activité.
                 </p>
-                <ul className="space-y-2.5 mb-8">
-                  {[
+                <BulletList
+                  className="mb-8"
+                  itemClassName="text-gray-600"
+                  lines={[
                     'Entretien régulier magasins & boutiques Marseille',
                     'Entretien et désinfection des locaux — cabinets médicaux',
                     'Vitres, sols, sanitaires & espaces de vente',
-                    'Contrats sur mesure, intervention hors heures d\'ouverture',
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
-                      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                    "Contrats sur mesure, intervention hors heures d'ouverture",
+                  ]}
+                />
                 <div className="flex flex-wrap gap-3">
                   <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
                     <Link to="/services/nettoyage-commerces">
@@ -621,19 +668,17 @@ export function Home() {
                   intervient sur <strong>Marseille et les Bouches-du-Rhône</strong> pour une livraison propre,
                   conforme et dans les délais impartis.
                 </p>
-                <ul className="space-y-2.5 mb-8">
-                  {[
+                <BulletList
+                  className="mb-8"
+                  bulletClassName="text-amber-600"
+                  itemClassName="text-gray-600"
+                  lines={[
                     'Nettoyage fin de chantier maison & appartement Marseille',
                     'Remise en état après travaux — fin de bail, locaux pros',
                     'Terrasses, extérieurs & façades professionnels',
                     'Débarras, évacuation gravats, restitution locaux',
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
-                      <CheckCircle2 className="w-4 h-4 text-amber-500 flex-shrink-0" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                  ]}
+                />
                 <div className="flex flex-wrap gap-3">
                   <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white font-bold shadow-md">
                     <Link to="/services/nettoyage-chantiers">
@@ -650,40 +695,88 @@ export function Home() {
 
               {/* Duo d'images — droite */}
               <ScrollReveal direction="right">
-                <div className="relative flex flex-col gap-3">
-                  <div className="absolute -bottom-3 -right-3 w-16 h-16 bg-amber-100 rounded-2xl -z-10" />
+                <div className="relative">
+                  <div className="absolute -bottom-3 -right-3 w-16 h-16 bg-amber-100 rounded-2xl -z-10 hidden md:block" />
 
-                  {/* Image principale */}
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
-                    <ImageWithFallback
-                      src={IMAGES.finChantierMaison}
-                      srcSet={cldSrcSet(IMAGES.finChantierMaison, [350, 600, 900])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Équipe Nature Clean en remise en état après travaux à Marseille"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      width={600} height={320} loading="lazy" decoding="async"
-                    />
-                    <div className="absolute bottom-4 left-4">
-                      <span className="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                        Fin de chantier maison · Marseille
-                      </span>
+                  <MobileSnapRail
+                    ariaLabel="Photos — fin de chantier et extérieurs"
+                    className="md:hidden"
+                    slideClassName="w-[90%] snap-center"
+                  >
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl h-64 group">
+                      <ImageWithFallback
+                        src={IMAGES.finChantierMaison}
+                        srcSet={cldSrcSet(IMAGES.finChantierMaison, [350, 600, 900])}
+                        sizes="90vw"
+                        alt="Équipe Nature Clean en remise en état après travaux à Marseille"
+                        className="w-full h-full object-cover"
+                        width={600}
+                        height={320}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-4 left-4">
+                        <span className="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                          Fin de chantier maison · Marseille
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                    <div className="relative rounded-2xl overflow-hidden shadow-xl h-64 group">
+                      <ImageWithFallback
+                        src={IMAGES.nettoyageTerrassePro}
+                        srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [350, 600, 900])}
+                        sizes="90vw"
+                        alt="Terrasse professionnelle nettoyée à haute pression à Marseille"
+                        className="w-full h-full object-cover"
+                        width={600}
+                        height={256}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-3 left-3">
+                        <span className="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                          Terrasses & extérieurs pro
+                        </span>
+                      </div>
+                    </div>
+                  </MobileSnapRail>
 
-                  {/* Image secondaire */}
-                  <div className="relative rounded-xl overflow-hidden shadow-xl h-56 lg:h-64 group">
-                    <ImageWithFallback
-                      src={IMAGES.nettoyageTerrassePro}
-                      srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [350, 600, 900])}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt="Terrasse professionnelle nettoyée à haute pression à Marseille"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      width={600} height={256} loading="lazy" decoding="async"
-                    />
-                    <div className="absolute bottom-3 left-3">
-                      <span className="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                        Terrasses & extérieurs pro
-                      </span>
+                  <div className="hidden md:flex relative flex-col gap-3">
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
+                      <ImageWithFallback
+                        src={IMAGES.finChantierMaison}
+                        srcSet={cldSrcSet(IMAGES.finChantierMaison, [350, 600, 900])}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        alt="Équipe Nature Clean en remise en état après travaux à Marseille"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        width={600}
+                        height={320}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-4 left-4">
+                        <span className="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                          Fin de chantier maison · Marseille
+                        </span>
+                      </div>
+                    </div>
+                    <div className="relative rounded-xl overflow-hidden shadow-xl h-56 lg:h-64 group">
+                      <ImageWithFallback
+                        src={IMAGES.nettoyageTerrassePro}
+                        srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [350, 600, 900])}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        alt="Terrasse professionnelle nettoyée à haute pression à Marseille"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        width={600}
+                        height={256}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute bottom-3 left-3">
+                        <span className="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                          Terrasses & extérieurs pro
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -716,19 +809,17 @@ export function Home() {
                       Effacement rapide de tags et graffitis sur tous supports — façades, murs, portails, vitres.
                       Intervention sous 48h, aérogommage ou traitement chimique respectueux des matériaux.
                     </p>
-                    <ul className="space-y-2.5 mb-8">
-                      {[
+                    <BulletList
+                      className="mb-8"
+                      bulletClassName="text-green-400"
+                      itemClassName="text-gray-200"
+                      lines={[
                         'Tous supports : pierre, béton, métal, verre',
                         'Aérogommage doux ou nettoyage chimique',
                         'Application de protection anti-graffiti',
                         'Devis gratuit sous 24h',
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2.5 text-sm text-gray-200">
-                          <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" aria-hidden="true" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                      ]}
+                    />
                     <div className="flex flex-col sm:flex-row gap-3">
                       <Button asChild className="bg-green-500 hover:bg-green-400 text-gray-900 font-black shadow-lg shadow-green-500/20">
                         <Link to="/services/nettoyage-graffitis">
@@ -825,19 +916,14 @@ export function Home() {
                   <p>
                     Notre équipe déclarée s’occupe du tri, de l’évacuation, du nettoyage en profondeur et de la remise en état de propreté du logement. Nous travaillons avec les familles, les syndics, les bailleurs, les mandataires judiciaires et les services sociaux — avec l’accord de l’occupant ou de son représentant légal.
                   </p>
-                  <ul className="space-y-2.5">
-                    {[
+                  <BulletList
+                    lines={[
                       'Discrétion : véhicule banalisé sur demande, horaires adaptés',
                       'Personnel déclaré, assurance RC Pro',
                       'Visite et devis gratuits sous 24 h — sans engagement',
                       'Évacuation vers filières adaptées (benne ou déchetterie)',
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                    ]}
+                  />
                 </div>
               </ScrollReveal>
             </div>
@@ -846,17 +932,25 @@ export function Home() {
               <h3 className="text-2xl font-black text-gray-900 mb-6">
                 Comment se déroule une intervention
               </h3>
-              <ol className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
+              <MobileSnapRail
+                ariaLabel="Étapes d'une intervention Diogène"
+                className="mb-3 md:mx-0 md:px-0 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-5 md:gap-4 md:overflow-visible md:snap-none md:max-w-none"
+                slideClassName="w-[85%] max-w-md snap-center md:w-auto"
+              >
                 {DIOGENE_STEPS.map((step, index) => (
-                  <li key={step.title} className="bg-white rounded-2xl border border-gray-200 p-5">
+                  <article
+                    key={step.title}
+                    className="bg-white rounded-2xl border border-gray-200 p-5 h-full"
+                  >
                     <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-700 font-black text-sm mb-3">
                       {index + 1}
                     </span>
                     <p className="font-bold text-gray-900 mb-1.5">{step.title}</p>
                     <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
-                  </li>
+                  </article>
                 ))}
-              </ol>
+              </MobileSnapRail>
+              <p className="text-center text-xs text-gray-400 mb-8 md:hidden">Glissez pour voir les 5 étapes</p>
             </ScrollReveal>
 
             <ScrollReveal>
@@ -1035,29 +1129,37 @@ export function Home() {
               <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4 text-center">
                 Nos expertises locales
               </h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <MobileSnapRail
+                ariaLabel="Nos expertises locales"
+                className="md:mx-0 md:px-0 md:pb-0 md:grid sm:grid-cols-2 lg:grid-cols-3 md:gap-3 md:overflow-visible md:snap-none md:max-w-none"
+                slideClassName="w-[82%] snap-start md:w-auto"
+              >
                 {localExpertisePages.map((item) => {
                   const Icon = item.icon;
                   return (
                     <Link
                       key={item.to}
                       to={item.to}
-                      className="group flex items-start gap-3 bg-white border border-gray-200 rounded-xl px-4 py-4 hover:border-green-400 hover:shadow-md transition-all"
+                      className="group flex items-start gap-3 bg-white border border-gray-200 rounded-xl px-4 py-4 hover:border-green-400 hover:shadow-md transition-all h-full"
                     >
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50 text-green-700 group-hover:bg-green-100">
                         <Icon className="w-5 h-5" aria-hidden="true" />
                       </span>
-                      <span>
+                      <span className="min-w-0 flex-1">
                         <span className="block font-bold text-gray-900 group-hover:text-green-800">
                           {item.title}
                         </span>
                         <span className="text-sm text-gray-500">{item.subtitle}</span>
                       </span>
-                      <ArrowRight className="w-4 h-4 text-green-600 ml-auto mt-1 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                      <ArrowRight
+                        className="w-4 h-4 text-green-600 shrink-0 mt-1 opacity-60 md:opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-hidden="true"
+                      />
                     </Link>
                   );
                 })}
-              </div>
+              </MobileSnapRail>
+              <p className="text-center text-xs text-gray-400 mt-2 md:hidden">Glissez pour parcourir les expertises</p>
               <p className="text-center mt-4">
                 <Link
                   to="/devis"
@@ -1104,9 +1206,18 @@ export function Home() {
       </section>
 
       <FAQSection
-        items={HOME_FAQ}
+        items={HOME_FAQ.slice(0, 5)}
         title="Questions fréquentes sur nos services de nettoyage à Marseille"
         subtitle="Tarifs, délais, produits fournis, horaires et zones d’intervention"
+        defaultOpenFirst={false}
+        footer={
+          <Link
+            to="/services"
+            className="text-sm font-semibold text-green-700 hover:text-green-800 underline underline-offset-4"
+          >
+            Voir nos services et demander un devis
+          </Link>
+        }
       />
 
       {/* ═══════════════════════════════════════════

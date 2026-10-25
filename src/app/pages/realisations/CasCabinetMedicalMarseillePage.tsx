@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { BulletList } from '@/app/components/BulletList';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
@@ -42,11 +43,13 @@ export function CasCabinetMedicalMarseillePage() {
 
           <ScrollReveal delay={0.05}>
             <h2 className="text-xl font-bold text-gray-900 mb-2">Intervention</h2>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>Salle d&apos;attente et salles de consultation</li>
-              <li>Surfaces de contact et poignées</li>
-              <li>Produits professionnels adaptés aux supports du cabinet</li>
-            </ul>
+            <BulletList
+              lines={[
+                "Salle d'attente et salles de consultation",
+                'Surfaces de contact et poignées',
+                'Produits professionnels adaptés aux supports du cabinet',
+              ]}
+            />
             <p className="text-sm mt-4 text-gray-600">
               Nous n&apos;effectuons pas la stérilisation des instruments ni la gestion des DASRI :
               le périmètre est défini au devis avec le praticien ou le gestionnaire de site.

@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { BulletList } from '@/app/components/BulletList';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
@@ -42,11 +43,13 @@ export function CasMagasinCentreVillePage() {
 
           <ScrollReveal delay={0.05}>
             <h2 className="text-xl font-bold text-gray-900 mb-2">Intervention</h2>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>Passage autolaveuse sur les zones de circulation</li>
-              <li>Créneau avant l&apos;ouverture pour ne pas gêner la clientèle</li>
-              <li>Matériel et produits fournis par Nature Clean</li>
-            </ul>
+            <BulletList
+              lines={[
+                'Passage autolaveuse sur les zones de circulation',
+                "Créneau avant l'ouverture pour ne pas gêner la clientèle",
+                'Matériel et produits fournis par Nature Clean',
+              ]}
+            />
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>

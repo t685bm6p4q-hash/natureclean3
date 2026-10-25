@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import {
   Accordion,
@@ -48,12 +49,16 @@ interface FAQSectionProps {
   items: FAQItem[];
   title?: string;
   subtitle?: string;
+  defaultOpenFirst?: boolean;
+  footer?: ReactNode;
 }
 
 export function FAQSection({
   items,
   title = 'Questions fréquentes',
   subtitle,
+  defaultOpenFirst = false,
+  footer,
 }: FAQSectionProps) {
   return (
     <section className="py-16 md:py-20 bg-gray-50">
@@ -71,7 +76,8 @@ export function FAQSection({
           </ScrollReveal>
 
           <ScrollReveal delay={0.05}>
-            <FAQAccordionList items={items} />
+            <FAQAccordionList items={items} defaultOpenFirst={defaultOpenFirst} />
+            {footer ? <div className="mt-6 text-center">{footer}</div> : null}
           </ScrollReveal>
         </div>
       </div>
