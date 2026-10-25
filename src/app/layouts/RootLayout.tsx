@@ -59,8 +59,8 @@ export function RootLayout() {
           tabIndex={-1}
           className={
             mobileDevisBar
-              ? 'max-md:pb-[calc(5.75rem+env(safe-area-inset-bottom,0px))]'
-              : undefined
+              ? 'ncm-site-type max-md:pb-[calc(5.75rem+env(safe-area-inset-bottom,0px))]'
+              : 'ncm-site-type'
           }
         >
           <Suspense fallback={<LoadingFallback />}>

@@ -77,7 +77,7 @@ export function GeoLandingPage({ data }: GeoLandingPageProps) {
                     <MapPin className="w-3 h-3" aria-hidden="true" />
                     {data.city} ({data.postalCode})
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">
+                  <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-6">
                     {data.service} professionnel à {data.city}
                   </h2>
                   <p className="text-gray-700 leading-relaxed mb-6">
@@ -124,7 +124,7 @@ export function GeoLandingPage({ data }: GeoLandingPageProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
+              <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-4 text-center">
                 Pourquoi choisir Nature Clean à {data.city} ?
               </h2>
               <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">

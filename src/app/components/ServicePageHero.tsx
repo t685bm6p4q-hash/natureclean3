@@ -100,7 +100,7 @@ export function ServicePageHero({
           )}
 
           <h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 md:mb-4 tracking-tight leading-[1.12] ${HERO_TEXT_SHADOW}`}
+            className={`ncm-display-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 md:mb-4 ${HERO_TEXT_SHADOW}`}
           >
             {title}
           </h1>

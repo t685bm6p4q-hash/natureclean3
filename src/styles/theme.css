@@ -131,55 +131,84 @@
   }
 
   /**
-  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
-  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
-  */
+   * Typo de base — les utilitaires Tailwind (text-*, leading-*, font-*) priment sur les pages.
+   * Cible surtout le contenu sans classe explicite et le prérendu.
+   */
 
   html {
     font-size: var(--font-size);
   }
 
+  p {
+    line-height: var(--ncm-leading-body);
+  }
+
   h1 {
     font-size: var(--text-2xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 800;
+    line-height: var(--ncm-leading-display);
+    letter-spacing: var(--ncm-tracking-heading);
   }
 
   h2 {
     font-size: var(--text-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 800;
+    line-height: var(--ncm-leading-heading);
+    letter-spacing: var(--ncm-tracking-heading);
   }
 
   h3 {
     font-size: var(--text-lg);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 700;
+    line-height: var(--ncm-leading-heading);
   }
 
   h4 {
     font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: var(--ncm-leading-ui);
   }
 
   label {
     font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 500;
+    line-height: var(--ncm-leading-ui);
   }
 
   button {
     font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: var(--ncm-leading-ui);
   }
 
-  input {
+  input,
+  textarea {
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
-    line-height: 1.5;
+    line-height: var(--ncm-leading-ui);
   }
+}
+
+/* Contenu principal — interligne corps de texte homogène */
+.ncm-site-type :where(p, li, dd) {
+  line-height: var(--ncm-leading-body);
+}
+
+.ncm-site-type :where(.text-sm, .text-xs) {
+  line-height: 1.5;
+}
+
+/* Grands titres marketing (utilitaire optionnel) */
+.ncm-display-title {
+  font-weight: 800;
+  letter-spacing: var(--ncm-tracking-heading);
+  line-height: var(--ncm-leading-display);
+}
+
+.ncm-section-title {
+  font-weight: 800;
+  letter-spacing: var(--ncm-tracking-heading);
+  line-height: var(--ncm-leading-heading);
 }
 
 /* Slick Carousel Custom Styles */
@@ -254,31 +283,34 @@
   }
 }
 
-/* Header — même sans que le site, lisible, sans italique synthétique */
+/* Header — sans système, interligne aéré entre les deux lignes du slogan */
 .ncm-brand-signature--header {
   font-family: var(--font-system, ui-sans-serif, system-ui, sans-serif);
   font-style: normal;
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 1.45;
-  letter-spacing: 0.02em;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  letter-spacing: 0;
   color: #065f46;
   display: block;
-  max-width: 15rem;
-  text-wrap: pretty;
+  margin: 0;
+  max-width: 12.75rem;
+  text-wrap: balance;
 }
 
 @media (min-width: 640px) {
   .ncm-brand-signature--header {
     font-size: 0.8125rem;
-    max-width: 16.5rem;
+    line-height: 1.62;
+    max-width: 13.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .ncm-brand-signature--header {
-    max-width: 17.5rem;
-    line-height: 1.5;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    max-width: 14.25rem;
   }
 }
 

@@ -65,7 +65,7 @@ export function FAQSection({
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-3 text-center">
+            <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-3 text-center">
               {title}
             </h2>
             {subtitle && (

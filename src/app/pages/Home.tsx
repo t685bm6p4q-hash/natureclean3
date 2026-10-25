@@ -332,7 +332,7 @@ export function Home() {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6 tracking-tight leading-[1.1] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+            <h1 className="ncm-display-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-4 md:mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
               Entreprise de nettoyage
               <span className="block text-green-400">professionnel à Marseille</span>
             </h1>
@@ -395,7 +395,7 @@ export function Home() {
                 <Sparkles className="w-4 h-4" aria-hidden="true" />
                 9 spécialités
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+              <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-4">
                 Nos services d'entretien et de nettoyage
               </h2>
               <p className="text-lg text-gray-500 max-w-2xl mx-auto">
@@ -430,7 +430,7 @@ export function Home() {
                 <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
                 Nos engagements
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+              <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-4">
                 Pourquoi choisir Nature Clean ?
               </h2>
               <p className="text-lg text-gray-500">
@@ -483,7 +483,7 @@ export function Home() {
                   <Sparkles className="w-4 h-4" aria-hidden="true" />
                   Expert multi-spécialités à Marseille
                 </span>
-                <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-5 leading-tight">
+                <h2 className="ncm-section-title text-3xl md:text-5xl text-gray-900 mb-5">
                   De l'entretien de vos locaux
                   <span className="block text-green-700">à la remise en état après travaux</span>
                 </h2>
@@ -592,7 +592,7 @@ export function Home() {
                 <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
                   <Store className="w-3 h-3" aria-hidden="true" /> Locaux professionnels
                 </span>
-                <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">
+                <h3 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-4">
                   Vos locaux professionnels
                   <span className="block text-green-600">toujours impeccables</span>
                 </h3>
@@ -663,7 +663,7 @@ export function Home() {
                 <span className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
                   <HardHat className="w-3 h-3" aria-hidden="true" /> Fin de chantier & remise en état
                 </span>
-                <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">
+                <h3 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-4">
                   Après travaux, fin de bail
                   <span className="block text-amber-600">ou remise en état des sols</span>
                 </h3>
@@ -806,7 +806,7 @@ export function Home() {
                       <Zap className="w-3.5 h-3.5" aria-hidden="true" />
                       Intervention d'urgence
                     </span>
-                    <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+                    <h2 className="ncm-section-title text-3xl md:text-4xl text-white mb-4">
                       Nettoyage de Graffitis
                       <span className="block text-green-400">& Tags à Marseille</span>
                     </h2>
@@ -940,7 +940,7 @@ export function Home() {
                       <Heart className="w-4 h-4" aria-hidden="true" />
                       Discrétion & accompagnement
                     </span>
-                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                    <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-4">
                       Nettoyage syndrome de Diogène à Marseille
                     </h2>
                     <p className="text-lg text-gray-500">
@@ -1073,7 +1073,7 @@ export function Home() {
                 <Star className="w-4 h-4" aria-hidden="true" />
                 Portfolio
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+              <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-4">
                 Nos dernières réalisations
               </h2>
               <p className="text-lg text-gray-500 max-w-2xl mx-auto">
@@ -1172,7 +1172,7 @@ export function Home() {
                 <MapPin className="w-4 h-4" aria-hidden="true" />
                 Zone d'intervention
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-3">
+              <h2 className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-3">
                 Entretien professionnel à Marseille et dans le 13
               </h2>
               <p className="text-lg text-gray-500">

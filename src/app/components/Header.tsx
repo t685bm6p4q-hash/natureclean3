@@ -290,9 +290,9 @@ export function Header() {
 
         {/* ═══ NAV PRINCIPALE ═══ */}
         <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:h-[68px] lg:py-0">
+        <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:min-h-[4.25rem] lg:py-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,280px)] lg:max-w-[320px]">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,17rem)] lg:max-w-[18rem]">
             <img
               src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_144,h_144,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
@@ -301,9 +301,11 @@ export function Header() {
               className="w-14 h-14 lg:w-[72px] lg:h-[72px] shrink-0 rounded-full shadow-md group-hover:shadow-lg transition-shadow object-cover bg-white ring-2 ring-white"
               aria-hidden="true"
             />
-            <div className="min-w-0 leading-tight">
-              <span className="text-base sm:text-lg font-black text-gray-900 block truncate">Nature Clean</span>
-              <span className="ncm-brand-signature ncm-brand-signature--header mt-1.5">
+            <div className="flex min-w-0 flex-col gap-1.5 py-px">
+              <span className="block text-base font-black leading-none tracking-tight text-gray-900 sm:text-lg">
+                Nature Clean
+              </span>
+              <span className="ncm-brand-signature ncm-brand-signature--header">
                 Au-delà du nettoyage, un véritable entretien professionnel
               </span>
             </div>

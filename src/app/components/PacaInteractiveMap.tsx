@@ -83,7 +83,7 @@ export function PacaInteractiveMap() {
               <MapPin className="w-3 h-3" aria-hidden="true" />
               Bouches-du-Rhône (13)
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">Carte des villes desservies</h2>
+            <h2 className="ncm-section-title text-3xl md:text-4xl text-white mb-3">Carte des villes desservies</h2>
             <p className="text-gray-400 max-w-xl mx-auto">
               Survolez un marqueur ou utilisez la liste de liens ci-dessous.
             </p>

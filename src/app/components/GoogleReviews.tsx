@@ -224,7 +224,7 @@ export function GoogleReviews({ spacing = 'default' }: GoogleReviewsProps) {
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
               Témoignages clients
             </div>
-            <h2 id="reviews-heading" className="text-3xl md:text-4xl font-black text-gray-900 mb-3">
+            <h2 id="reviews-heading" className="ncm-section-title text-3xl md:text-4xl text-gray-900 mb-3">
               Nos clients témoignent
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">

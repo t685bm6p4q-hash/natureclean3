@@ -62,7 +62,7 @@ export function ConversionBreak({
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-3 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+          <h2 className="ncm-section-title text-2xl sm:text-3xl md:text-4xl text-white mb-3 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
             {title}
           </h2>
           {subtitle && (
