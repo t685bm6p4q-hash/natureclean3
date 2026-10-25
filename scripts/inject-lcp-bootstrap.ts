@@ -1,6 +1,5 @@
 /**
- * Post-prerender — LCP accueil : #ncm-lcp-hero dans .ncm-home-hero (visible sans React).
- * Retire #ncm-hero-react du HTML statique pour que Lighthouse ne lie pas le LCP à l’hydratation.
+ * Post-prerender — accueil : hints LCP + réglage #ncm-lcp-hero (HTML SSG = React prerender).
  */
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -37,26 +36,6 @@ function dedupePreloadById(html: string, id: string): string {
   });
 }
 
-function stripAllLcpHeroNodes(html: string): string {
-  return html
-    .replace(/<img[^>]*\sid="ncm-lcp-hero"[^>]*>\s*/gi, '')
-    .replace(/<img[^>]*\sid="ncm-hero-react"[^>]*>\s*/gi, '');
-}
-
-function injectBootstrapInsideHeroSection(html: string): string {
-  if (!HERO_SECTION_RE.test(html)) {
-    console.warn('⚠ inject LCP — section .ncm-home-hero introuvable');
-    return html;
-  }
-
-  html = stripAllLcpHeroNodes(html);
-
-  return html.replace(
-    HERO_SECTION_RE,
-    `$1\n        ${buildBootstrapHeroImgTag().replace(/\n/g, '\n        ')}\n`,
-  );
-}
-
 function replaceInlineCriticalCss(html: string): string {
   const block = `<style>${LCP_CRITICAL_CSS}</style>`;
   if (/<style>[\s\S]*?html,body\{background:#111827[\s\S]*?<\/style>/.test(html)) {
@@ -73,19 +52,43 @@ function replacePreloadLink(html: string): string {
   return html.replace('</head>', `    ${link}\n  </head>`);
 }
 
-function ensureHeadHints(html: string): string {
-  html = replaceInlineCriticalCss(html);
-  return replacePreloadLink(html);
+/** Hero React prerender — priorité haute, visible (pas opacity-0). */
+function tuneLcpHeroImg(html: string): string {
+  html = html.replace(/<img[^>]*\sid="ncm-hero-react"[^>]*>\s*/gi, '');
+
+  return html.replace(/<img([^>]*\sid="ncm-lcp-hero"[^>]*)>/gi, (_full, attrs: string) => {
+    let next = attrs
+      .replace(/\bfetchpriority="low"/gi, '')
+      .replace(/\bopacity-0\b/g, '')
+      .replace(/\bclass="([^"]*)"/, (_m, cls: string) => {
+        const cleaned = cls.replace(/\bopacity-0\b/g, '').trim();
+        return cleaned ? ` class="${cleaned}"` : '';
+      });
+    if (!/\bfetchpriority="/i.test(next)) {
+      next += ' fetchpriority="high"';
+    }
+    if (!/\bloading="/i.test(next)) {
+      next += ' loading="eager"';
+    }
+    if (!/\bdecoding="/i.test(next)) {
+      next += ' decoding="sync"';
+    }
+    return `<img${next}>`;
+  });
 }
 
-/** Retire le bootstrap fixed du template Vite (invisible sous bg-white du layout). */
-function stripDevBootstrapBeforeRoot(html: string): string {
-  return html
-    .replace(/<img[^>]*\sid="ncm-lcp-hero"[^>]*>\s*/gi, '')
-    .replace(
-      /<script>\s*\(function \(\) \{\s*var path = location\.pathname;[\s\S]*?ncm-lcp-preload[\s\S]*?\}\)\(\);\s*<\/script>\s*/gi,
-      '',
-    );
+function ensureLcpHeroInSection(html: string): string {
+  if (html.includes('id="ncm-lcp-hero"')) {
+    return tuneLcpHeroImg(html);
+  }
+  if (!HERO_SECTION_RE.test(html)) {
+    console.warn('⚠ inject LCP — section .ncm-home-hero introuvable');
+    return html;
+  }
+  return html.replace(
+    HERO_SECTION_RE,
+    `$1\n        ${buildBootstrapHeroImgTag().replace(/\n/g, '\n        ')}\n`,
+  );
 }
 
 export function injectLcpBootstrapIntoHome(distDir: string): void {
@@ -96,13 +99,12 @@ export function injectLcpBootstrapIntoHome(distDir: string): void {
   }
 
   let html = readFileSync(homePath, 'utf8');
-
-  html = stripDevBootstrapBeforeRoot(html);
-  html = ensureHeadHints(html);
-  html = injectBootstrapInsideHeroSection(html);
+  html = replaceInlineCriticalCss(html);
+  html = replacePreloadLink(html);
+  html = ensureLcpHeroInSection(html);
   html = dedupeCloudinaryHints(html);
   html = dedupePreloadById(html, 'ncm-lcp-preload');
 
   writeFileSync(homePath, html, 'utf8');
-  console.log('✓ inject LCP — #ncm-lcp-hero in-section, sans #ncm-hero-react statique');
+  console.log('✓ inject LCP — #ncm-lcp-hero aligné prerender + hints');
 }

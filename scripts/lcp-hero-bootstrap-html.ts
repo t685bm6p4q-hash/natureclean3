@@ -14,9 +14,7 @@ export const HOME_HERO_CRITICAL_CSS =
   '@media (min-width:768px){.ncm-home-hero{min-height:36rem;padding-bottom:6rem}}' +
   '.ncm-home-hero #ncm-lcp-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}' +
   '@media (min-width:768px){.ncm-home-hero #ncm-lcp-hero{object-position:center}}' +
-  '.ncm-home-hero .ncm-hero-overlay,.ncm-home-hero .ncm-hero-content{position:relative;z-index:1}' +
-  '#ncm-hero-react{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}' +
-  '@media (min-width:768px){#ncm-hero-react{object-position:center}}';
+  '.ncm-home-hero .ncm-hero-overlay,.ncm-home-hero .ncm-hero-content{position:relative;z-index:1}';
 
 export const LCP_CRITICAL_CSS =
   'html,body{background:#111827}' +
