@@ -510,9 +510,9 @@ export function Home() {
                   >
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl h-64 group">
                       <ImageWithFallback
-                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
-                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
-                        sizes="90vw"
+                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 640)}
+                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [320, 480, 640])}
+                        sizes="(max-width: 767px) 82vw, 100vw"
                         alt="Open space de bureaux nettoyé à Marseille"
                         className="w-full h-full object-cover"
                         width={600}
@@ -549,9 +549,9 @@ export function Home() {
                   <div className="hidden md:flex relative flex-col gap-3">
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
                       <ImageWithFallback
-                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 700)}
-                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [350, 600, 900])}
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        src={getOptimizedCldUrl(IMAGES.entrepriseBureauxMarseille, 640)}
+                        srcSet={cldSrcSet(IMAGES.entrepriseBureauxMarseille, [320, 480, 640, 800])}
+                        sizes="(max-width: 1023px) 100vw, 38vw"
                         alt="Open space de bureaux nettoyé à Marseille"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         width={600}
@@ -710,9 +710,9 @@ export function Home() {
                   >
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl h-64 group">
                       <ImageWithFallback
-                        src={IMAGES.finChantierMaison}
-                        srcSet={cldSrcSet(IMAGES.finChantierMaison, [350, 600, 900])}
-                        sizes="90vw"
+                        src={getOptimizedCldUrl(IMAGES.finChantierMaison, 640)}
+                        srcSet={cldSrcSet(IMAGES.finChantierMaison, [320, 480, 640])}
+                        sizes="(max-width: 767px) 82vw, 100vw"
                         alt="Équipe Nature Clean en remise en état après travaux à Marseille"
                         className="w-full h-full object-cover"
                         width={600}
@@ -728,9 +728,9 @@ export function Home() {
                     </div>
                     <div className="relative rounded-2xl overflow-hidden shadow-xl h-64 group">
                       <ImageWithFallback
-                        src={IMAGES.nettoyageTerrassePro}
-                        srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [350, 600, 900])}
-                        sizes="90vw"
+                        src={getOptimizedCldUrl(IMAGES.nettoyageTerrassePro, 640)}
+                        srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [320, 480, 640])}
+                        sizes="(max-width: 767px) 82vw, 100vw"
                         alt="Terrasse professionnelle nettoyée à haute pression à Marseille"
                         className="w-full h-full object-cover"
                         width={600}
@@ -749,9 +749,9 @@ export function Home() {
                   <div className="hidden md:flex relative flex-col gap-3">
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 lg:h-80 group">
                       <ImageWithFallback
-                        src={IMAGES.finChantierMaison}
-                        srcSet={cldSrcSet(IMAGES.finChantierMaison, [350, 600, 900])}
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        src={getOptimizedCldUrl(IMAGES.finChantierMaison, 640)}
+                        srcSet={cldSrcSet(IMAGES.finChantierMaison, [320, 480, 640, 800])}
+                        sizes="(max-width: 1023px) 100vw, 38vw"
                         alt="Équipe Nature Clean en remise en état après travaux à Marseille"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         width={600}
@@ -767,9 +767,9 @@ export function Home() {
                     </div>
                     <div className="relative rounded-xl overflow-hidden shadow-xl h-56 lg:h-64 group">
                       <ImageWithFallback
-                        src={IMAGES.nettoyageTerrassePro}
-                        srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [350, 600, 900])}
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        src={getOptimizedCldUrl(IMAGES.nettoyageTerrassePro, 640)}
+                        srcSet={cldSrcSet(IMAGES.nettoyageTerrassePro, [320, 480, 640, 800])}
+                        sizes="(max-width: 1023px) 100vw, 38vw"
                         alt="Terrasse professionnelle nettoyée à haute pression à Marseille"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         width={600}
@@ -860,9 +860,9 @@ export function Home() {
               </div>
               <div className="relative min-h-[280px] lg:min-h-[420px]">
                 <ImageWithFallback
-                  src={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 1200)}
-                  srcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [600, 1200])}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  src={getOptimizedCldUrl(IMAGES.graffitiCarrefourAvant, 700)}
+                  srcSet={cldSrcSet(IMAGES.graffitiCarrefourAvant, [400, 700, 900])}
+                  sizes="(min-width: 1024px) 38vw, 100vw"
                   alt="Façade d'un Carrefour à Marseille recouverte de graffitis, avant intervention"
                   className="absolute inset-0 w-full h-full object-cover"
                   width={1200}

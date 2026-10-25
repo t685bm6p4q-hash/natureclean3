@@ -119,7 +119,6 @@
     -->
     <img
       id="ncm-lcp-hero"
-      hidden
       src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg"
       srcset="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_400,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 400w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_850,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 850w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1200,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1200w, https://res.cloudinary.com/dc9xmxpvv/image/upload/f_webp,q_30,w_1920,c_limit/v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg 1920w"
       sizes="100vw"
@@ -141,8 +140,6 @@
         if (!isHome || hasPrerender) {
           if (hero) hero.remove();
           if (preload) preload.remove();
-        } else if (hero) {
-          hero.hidden = false;
         }
       })();
     </script>

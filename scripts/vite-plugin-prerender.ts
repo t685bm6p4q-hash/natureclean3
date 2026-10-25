@@ -13,6 +13,7 @@
 import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { runPrerender } from './prerender-engine';
+import { patchDistHtmlAsyncCss } from './patch-async-css';
 
 export function vitePrerenderPlugin(): Plugin {
   let outDir = 'dist';
@@ -24,14 +25,15 @@ export function vitePrerenderPlugin(): Plugin {
       outDir = config.build.outDir;
     },
     async closeBundle() {
+      const distDir = resolve(process.cwd(), outDir);
+
       if (process.env.PRERENDER_SKIP === '1') {
         console.log('⏭  Prerender ignoré (PRERENDER_SKIP=1)');
-        return;
+      } else {
+        await runPrerender({ distDir });
       }
 
-      await runPrerender({
-        distDir: resolve(process.cwd(), outDir),
-      });
+      patchDistHtmlAsyncCss(distDir);
     },
   };
 }

@@ -283,34 +283,34 @@
   }
 }
 
-/* Header — sans système, interligne aéré entre les deux lignes du slogan */
+/* Header — 2 lignes fixes, ≥12 px (lisibilité / SEO), pile système 0 requête */
 .ncm-brand-signature--header {
   font-family: var(--font-system, ui-sans-serif, system-ui, sans-serif);
   font-style: normal;
-  font-weight: 500;
-  font-size: 0.8125rem;
-  line-height: 1.6;
-  letter-spacing: 0;
-  color: #065f46;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.34;
+  letter-spacing: 0.01em;
+  color: #064e3b;
   display: block;
   margin: 0;
-  max-width: 12.75rem;
-  text-wrap: balance;
+}
+
+.ncm-brand-signature--header .ncm-brand-signature-line {
+  display: block;
 }
 
 @media (min-width: 640px) {
   .ncm-brand-signature--header {
     font-size: 0.8125rem;
-    line-height: 1.62;
-    max-width: 13.5rem;
+    line-height: 1.36;
   }
 }
 
 @media (min-width: 1024px) {
   .ncm-brand-signature--header {
-    font-size: 0.875rem;
-    line-height: 1.65;
-    max-width: 14.25rem;
+    font-size: 0.8125rem;
+    line-height: 1.38;
   }
 }
 

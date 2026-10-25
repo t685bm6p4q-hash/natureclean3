@@ -290,23 +290,30 @@ export function Header() {
 
         {/* ═══ NAV PRINCIPALE ═══ */}
         <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:min-h-[4.25rem] lg:py-2">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0 max-w-[min(100%,17rem)] lg:max-w-[18rem]">
+        <div className="flex items-center justify-between min-h-16 py-2 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:min-h-16 lg:py-2">
+          {/* Logo — hauteur texte calée sur l’icône (48 px mobile, 56 px desktop) */}
+          <Link
+            to="/"
+            className="flex min-w-0 max-w-[min(100%,17rem)] shrink-0 items-center gap-2 sm:max-w-[18rem] sm:gap-2.5 lg:max-w-[19rem]"
+          >
             <img
-              src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_144,h_144,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
+              src="https://res.cloudinary.com/dc9xmxpvv/image/upload/f_auto,q_auto,w_112,h_112,c_thumb,g_center/v1773953029/Capture_d_e%CC%81cran_2026-03-19_a%CC%80_21.43.35_zqhtvo.png"
               alt=""
               width="56"
               height="56"
-              className="w-14 h-14 lg:w-[72px] lg:h-[72px] shrink-0 rounded-full shadow-md group-hover:shadow-lg transition-shadow object-cover bg-white ring-2 ring-white"
+              decoding="async"
+              className="h-12 w-12 shrink-0 rounded-full bg-white object-cover shadow-md ring-2 ring-white lg:h-14 lg:w-14"
               aria-hidden="true"
             />
-            <div className="flex min-w-0 flex-col gap-1.5 py-px">
-              <span className="block text-base font-black leading-none tracking-tight text-gray-900 sm:text-lg">
+            <div className="flex min-w-0 flex-col justify-center gap-0.5">
+              <span className="block text-base font-black leading-none tracking-tight text-gray-900 lg:text-[1.0625rem]">
                 Nature Clean
               </span>
               <span className="ncm-brand-signature ncm-brand-signature--header">
-                Au-delà du nettoyage, un véritable entretien professionnel
+                <span className="ncm-brand-signature-line">Au-delà du nettoyage,</span>
+                <span className="ncm-brand-signature-line sm:whitespace-nowrap">
+                  un véritable entretien professionnel
+                </span>
               </span>
             </div>
           </Link>
