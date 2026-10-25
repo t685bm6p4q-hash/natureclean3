@@ -205,9 +205,9 @@ export function ChecklistCoproSyndic() {
                   <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
                     <Link to="/devis?service=coproprietes">Demander un devis gratuit</Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-bold">
-                    <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
-                      <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
+                  <Button asChild size="lg" variant="outlineOnDark">
+                    <a href={PHONE_HREF} className="flex items-center justify-center gap-2" aria-label={ARIA_PHONE}>
+                      <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
                       {PHONE_DISPLAY}
                     </a>
                   </Button>

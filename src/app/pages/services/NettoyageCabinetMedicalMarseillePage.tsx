@@ -399,8 +399,8 @@ export function NettoyageCabinetMedicalMarseillePage() {
                   <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-bold">
-                <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
+              <Button asChild size="lg" variant="outlineOnDark">
+                <a href={PHONE_HREF} className="flex items-center justify-center gap-2" aria-label={ARIA_PHONE}>
                   {PHONE_DISPLAY}
                 </a>
               </Button>

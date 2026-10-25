@@ -425,9 +425,9 @@ export function ServicesPage() {
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
-              <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
-                <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
+            <Button asChild size="lg" variant="outlineOnDark">
+              <a href={PHONE_HREF} className="flex items-center justify-center gap-2" aria-label={ARIA_PHONE}>
+                <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
                 {PHONE_DISPLAY}
               </a>
             </Button>
