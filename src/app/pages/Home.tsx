@@ -235,6 +235,13 @@ const realisationsPreview = [
   },
 ];
 
+/** Home version courte — `git revert` du commit « version courte » ou `HOME_SHORT = false` pour la home longue. */
+const HOME_SHORT = true;
+const HOME_FAQ_VISIBLE_COUNT = HOME_SHORT ? 3 : 5;
+const HOME_REALISATIONS_PREVIEW_COUNT = HOME_SHORT ? 4 : realisationsPreview.length;
+const HOME_EXPERTISE_VISIBLE_COUNT = HOME_SHORT ? 4 : localExpertisePages.length;
+const HOME_WHY_US_VISIBLE_COUNT = HOME_SHORT ? 4 : whyUs.length;
+
 const cardBgs = [
   IMAGES.openSpaceBureaux,
   IMAGES.openSpaceIndustrielNuit,
@@ -264,7 +271,14 @@ export function Home() {
 
   return (
     <>
-      <SEO_Guardian currentSection="home" faqItems={[...HOME_FAQ, ...DIOGENE_HOME_FAQ]} />
+      <SEO_Guardian
+        currentSection="home"
+        faqItems={
+          HOME_SHORT
+            ? HOME_FAQ.slice(0, HOME_FAQ_VISIBLE_COUNT)
+            : [...HOME_FAQ, ...DIOGENE_HOME_FAQ]
+        }
+      />
 
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
@@ -436,7 +450,7 @@ export function Home() {
           <ScrollReveal>
             {/* Mobile : scroll horizontal — Desktop : grille 3 colonnes */}
             <div className="-mx-4 px-4 pb-4 flex overflow-x-auto snap-x snap-mandatory gap-4 md:mx-auto md:px-0 md:pb-0 md:grid md:grid-cols-2 md:overflow-visible md:snap-none md:gap-6 lg:grid-cols-3 max-w-5xl">
-              {whyUs.map((item, i) => (
+              {whyUs.slice(0, HOME_WHY_US_VISIBLE_COUNT).map((item, i) => (
                 <div key={item.title} className="flex-shrink-0 w-[82vw] snap-start md:w-auto group relative overflow-hidden p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:bg-green-50/50 transition-all">
                   {/* Ambient background — ultra-light, masqué sur mobile */}
                   <img
@@ -832,22 +846,24 @@ export function Home() {
                         <Link to="/devis" className="!border-white !bg-white/20 !text-white">Demander un devis</Link>
                       </Button>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 mt-10">
-                      {[
-                        { value: '48h', label: "Délai d'intervention" },
-                        { value: '100%', label: 'Garantie effacement' },
-                        { value: '0', label: 'Trace résiduelle' },
-                        { value: '13', label: 'Dép. Bouches-du-Rhône' },
-                      ].map((stat) => (
-                        <div
-                          key={stat.label}
-                          className="bg-white/10 border border-white/20 rounded-2xl p-4 text-center"
-                        >
-                          <div className="text-2xl md:text-3xl font-black text-green-400 mb-1">{stat.value}</div>
-                          <div className="text-xs text-gray-300 leading-tight">{stat.label}</div>
-                        </div>
-                      ))}
-                    </div>
+                    {!HOME_SHORT && (
+                      <div className="grid grid-cols-2 gap-4 mt-10">
+                        {[
+                          { value: '48h', label: "Délai d'intervention" },
+                          { value: '100%', label: 'Garantie effacement' },
+                          { value: '0', label: 'Trace résiduelle' },
+                          { value: '13', label: 'Dép. Bouches-du-Rhône' },
+                        ].map((stat) => (
+                          <div
+                            key={stat.label}
+                            className="bg-white/10 border border-white/20 rounded-2xl p-4 text-center"
+                          >
+                            <div className="text-2xl md:text-3xl font-black text-green-400 mb-1">{stat.value}</div>
+                            <div className="text-xs text-gray-300 leading-tight">{stat.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </ScrollReveal>
               </div>
@@ -870,122 +886,176 @@ export function Home() {
       </section>
 
       {/* ══════════════════════════════════════════
-          4c. DIOGÈNE — Section dédiée accueil
+          4c. DIOGÈNE — Teaser (version courte) ou section complète
           ═══════════════════════════════════════════ */}
-      <section className="py-16 md:py-20 bg-gray-50 overflow-hidden ncm-below-fold">
+      <section className="py-12 md:py-16 bg-gray-50 overflow-hidden ncm-below-fold">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <ScrollReveal>
-              <div className="text-center mb-12 max-w-3xl mx-auto">
-                <span className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-                  <Heart className="w-4 h-4" aria-hidden="true" />
-                  Discrétion & accompagnement
-                </span>
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                  Nettoyage syndrome de Diogène à Marseille
-                </h2>
-                <p className="text-lg text-gray-500">
-                  Une intervention discrète et encadrée, pour remettre le logement en propreté et en hygiène.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-12">
-              <ScrollReveal direction="left">
-                <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <ImageWithFallback
-                    src={getOptimizedCldUrl(IMAGES.appartVideLumineux, 800)}
-                    srcSet={cldSrcSet(IMAGES.appartVideLumineux, [400, 700, 1000])}
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    alt="Intérieur de logement lumineux après remise en propreté"
-                    className="w-full h-[280px] lg:h-[420px] object-cover"
-                    width={800}
-                    height={420}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal direction="right">
-                <div className="space-y-5 text-gray-600 leading-relaxed">
-                  <p>
-                    Un logement encombré à l’extrême, des accumulations qui s’étendent depuis des mois ou des années : le syndrome de Diogène touche des personnes de tous profils, et leurs proches se sentent souvent démunis. Chez Nature Clean, nous intervenons à Marseille et dans les Bouches-du-Rhône avec une règle simple :{' '}
-                    <strong className="text-gray-800">faire le travail sans jugement, avec discrétion et dans le respect de la personne</strong>.
-                  </p>
-                  <p>
-                    Notre équipe déclarée s’occupe du tri, de l’évacuation, du nettoyage en profondeur et de la remise en état de propreté du logement. Nous travaillons avec les familles, les syndics, les bailleurs, les mandataires judiciaires et les services sociaux — avec l’accord de l’occupant ou de son représentant légal.
+            {HOME_SHORT ? (
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <ScrollReveal direction="left">
+                  <div className="rounded-2xl overflow-hidden shadow-xl">
+                    <ImageWithFallback
+                      src={getOptimizedCldUrl(IMAGES.appartVideLumineux, 800)}
+                      srcSet={cldSrcSet(IMAGES.appartVideLumineux, [400, 700, 1000])}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      alt="Intérieur de logement lumineux après remise en propreté"
+                      className="w-full h-[240px] lg:h-[320px] object-cover"
+                      width={800}
+                      height={320}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </ScrollReveal>
+                <ScrollReveal direction="right">
+                  <span className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+                    <Heart className="w-4 h-4" aria-hidden="true" />
+                    Discrétion & accompagnement
+                  </span>
+                  <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
+                    Nettoyage syndrome de Diogène à Marseille
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Tri, évacuation et remise en propreté du logement —{' '}
+                    <strong className="text-gray-800">sans jugement</strong>, avec l’accord de l’occupant ou de son représentant légal.
                   </p>
                   <BulletList
+                    className="mb-6"
                     lines={[
-                      'Discrétion : véhicule banalisé sur demande, horaires adaptés',
-                      'Personnel déclaré, assurance RC Pro',
-                      'Visite et devis gratuits sous 24 h — sans engagement',
-                      'Évacuation vers filières adaptées (benne ou déchetterie)',
+                      'Personnel déclaré, RC Pro, véhicule banalisé sur demande',
+                      'Visite et devis gratuits sous 24 h',
+                      'Étapes détaillées et FAQ sur la fiche Diogène',
                     ]}
                   />
-                </div>
-              </ScrollReveal>
-            </div>
-
-            <ScrollReveal>
-              <h3 className="text-2xl font-black text-gray-900 mb-6">
-                Comment se déroule une intervention
-              </h3>
-              <MobileSnapRail
-                ariaLabel="Étapes d'une intervention Diogène"
-                className="mb-3 md:mx-0 md:px-0 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-5 md:gap-4 md:overflow-visible md:snap-none md:max-w-none"
-                slideClassName="w-[85%] max-w-md snap-center md:w-auto"
-              >
-                {DIOGENE_STEPS.map((step, index) => (
-                  <article
-                    key={step.title}
-                    className="bg-white rounded-2xl border border-gray-200 p-5 h-full"
-                  >
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-700 font-black text-sm mb-3">
-                      {index + 1}
-                    </span>
-                    <p className="font-bold text-gray-900 mb-1.5">{step.title}</p>
-                    <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
-                  </article>
-                ))}
-              </MobileSnapRail>
-              <p className="text-center text-xs text-gray-400 mb-8 md:hidden">Glissez pour voir les 5 étapes</p>
-            </ScrollReveal>
-
-            <ScrollReveal>
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 mb-10">
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  <strong className="text-gray-900">Un devis adapté à chaque situation</strong> : chaque logement est différent, donc nous ne proposons pas de tarif standard. Après une visite gratuite, nous vous remettons un devis détaillé, clair et sans engagement, avant toute intervention.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
-                    <Link to="/devis?service=diogene">
-                      Demander un devis confidentiel
-                      <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
-                    <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
-                      <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
-                      {PHONE_DISPLAY}
-                    </a>
-                  </Button>
-                </div>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
+                      <Link to="/services/nettoyage-diogene">
+                        Fiche Diogène complète
+                        <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                      </Link>
+                    </Button>
+                    <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
+                      <Link to="/devis?service=diogene">Devis confidentiel</Link>
+                    </Button>
+                  </div>
+                </ScrollReveal>
               </div>
-            </ScrollReveal>
+            ) : (
+              <>
+                <ScrollReveal>
+                  <div className="text-center mb-12 max-w-3xl mx-auto">
+                    <span className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+                      <Heart className="w-4 h-4" aria-hidden="true" />
+                      Discrétion & accompagnement
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                      Nettoyage syndrome de Diogène à Marseille
+                    </h2>
+                    <p className="text-lg text-gray-500">
+                      Une intervention discrète et encadrée, pour remettre le logement en propreté et en hygiène.
+                    </p>
+                  </div>
+                </ScrollReveal>
 
-            <ScrollReveal>
-              <FAQAccordionList items={DIOGENE_HOME_FAQ} defaultOpenFirst={false} />
-              <p className="text-center mt-6">
-                <Link
-                  to="/services/nettoyage-diogene"
-                  className="text-sm font-semibold text-green-700 hover:text-green-800 underline underline-offset-4"
-                >
-                  Voir la page dédiée au nettoyage Diogène à Marseille
-                </Link>
-              </p>
-            </ScrollReveal>
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-12">
+                  <ScrollReveal direction="left">
+                    <div className="rounded-2xl overflow-hidden shadow-xl">
+                      <ImageWithFallback
+                        src={getOptimizedCldUrl(IMAGES.appartVideLumineux, 800)}
+                        srcSet={cldSrcSet(IMAGES.appartVideLumineux, [400, 700, 1000])}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        alt="Intérieur de logement lumineux après remise en propreté"
+                        className="w-full h-[280px] lg:h-[420px] object-cover"
+                        width={800}
+                        height={420}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </ScrollReveal>
+
+                  <ScrollReveal direction="right">
+                    <div className="space-y-5 text-gray-600 leading-relaxed">
+                      <p>
+                        Un logement encombré à l’extrême, des accumulations qui s’étendent depuis des mois ou des années : le syndrome de Diogène touche des personnes de tous profils, et leurs proches se sentent souvent démunis. Chez Nature Clean, nous intervenons à Marseille et dans les Bouches-du-Rhône avec une règle simple :{' '}
+                        <strong className="text-gray-800">faire le travail sans jugement, avec discrétion et dans le respect de la personne</strong>.
+                      </p>
+                      <p>
+                        Notre équipe déclarée s’occupe du tri, de l’évacuation, du nettoyage en profondeur et de la remise en état de propreté du logement. Nous travaillons avec les familles, les syndics, les bailleurs, les mandataires judiciaires et les services sociaux — avec l’accord de l’occupant ou de son représentant légal.
+                      </p>
+                      <BulletList
+                        lines={[
+                          'Discrétion : véhicule banalisé sur demande, horaires adaptés',
+                          'Personnel déclaré, assurance RC Pro',
+                          'Visite et devis gratuits sous 24 h — sans engagement',
+                          'Évacuation vers filières adaptées (benne ou déchetterie)',
+                        ]}
+                      />
+                    </div>
+                  </ScrollReveal>
+                </div>
+
+                <ScrollReveal>
+                  <h3 className="text-2xl font-black text-gray-900 mb-6">
+                    Comment se déroule une intervention
+                  </h3>
+                  <MobileSnapRail
+                    ariaLabel="Étapes d'une intervention Diogène"
+                    className="mb-3 md:mx-0 md:px-0 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-5 md:gap-4 md:overflow-visible md:snap-none md:max-w-none"
+                    slideClassName="w-[85%] max-w-md snap-center md:w-auto"
+                  >
+                    {DIOGENE_STEPS.map((step, index) => (
+                      <article
+                        key={step.title}
+                        className="bg-white rounded-2xl border border-gray-200 p-5 h-full"
+                      >
+                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-700 font-black text-sm mb-3">
+                          {index + 1}
+                        </span>
+                        <p className="font-bold text-gray-900 mb-1.5">{step.title}</p>
+                        <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+                      </article>
+                    ))}
+                  </MobileSnapRail>
+                  <p className="text-center text-xs text-gray-400 mb-8 md:hidden">Glissez pour voir les 5 étapes</p>
+                </ScrollReveal>
+
+                <ScrollReveal>
+                  <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 mb-10">
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      <strong className="text-gray-900">Un devis adapté à chaque situation</strong> : chaque logement est différent, donc nous ne proposons pas de tarif standard. Après une visite gratuite, nous vous remettons un devis détaillé, clair et sans engagement, avant toute intervention.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Button asChild className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
+                        <Link to="/devis?service=diogene">
+                          Demander un devis confidentiel
+                          <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                        </Link>
+                      </Button>
+                      <Button asChild variant="outline" className="border-gray-300 hover:border-green-300 hover:bg-green-50 font-bold">
+                        <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
+                          <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
+                          {PHONE_DISPLAY}
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+                <ScrollReveal>
+                  <FAQAccordionList items={DIOGENE_HOME_FAQ} defaultOpenFirst={false} />
+                  <p className="text-center mt-6">
+                    <Link
+                      to="/services/nettoyage-diogene"
+                      className="text-sm font-semibold text-green-700 hover:text-green-800 underline underline-offset-4"
+                    >
+                      Voir la page dédiée au nettoyage Diogène à Marseille
+                    </Link>
+                  </p>
+                </ScrollReveal>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -1022,7 +1092,7 @@ export function Home() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} className="px-6 md:px-8">
-            <RealisationsSlider items={realisationsPreview} />
+            <RealisationsSlider items={realisationsPreview.slice(0, HOME_REALISATIONS_PREVIEW_COUNT)} />
           </ScrollReveal>
 
           <ScrollReveal delay={0.35}>
@@ -1041,10 +1111,10 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           7. ENGAGEMENT ECO — Bande accent
           ═══════════════════════════════════════════ */}
-      <section className="py-14 md:py-16 bg-green-700 text-white overflow-hidden">
+      <section className={`${HOME_SHORT ? 'py-10 md:py-12' : 'py-14 md:py-16'} bg-green-700 text-white overflow-hidden`}>
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className={`grid ${HOME_SHORT ? 'gap-4' : 'md:grid-cols-2 gap-8'} items-center`}>
               <ScrollReveal direction="left">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
@@ -1067,26 +1137,28 @@ export function Home() {
                 </Button>
               </ScrollReveal>
 
-              <ScrollReveal direction="right">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">50 %</div>
-                    <div className="text-sm text-white/80 mt-1">Éco-labellisés</div>
+              {!HOME_SHORT && (
+                <ScrollReveal direction="right">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                      <div className="text-3xl font-black">50 %</div>
+                      <div className="text-sm text-white/80 mt-1">Éco-labellisés</div>
+                    </div>
+                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                      <div className="text-3xl font-black">Ecolabel</div>
+                      <div className="text-sm text-white/80 mt-1">Ecover Pro</div>
+                    </div>
+                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                      <div className="text-3xl font-black">Inclus</div>
+                      <div className="text-sm text-white/80 mt-1">Produits fournis</div>
+                    </div>
+                    <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
+                      <div className="text-3xl font-black">RC Pro</div>
+                      <div className="text-sm text-white/80 mt-1">Assurance</div>
+                    </div>
                   </div>
-                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">Ecolabel</div>
-                    <div className="text-sm text-white/80 mt-1">Ecover Pro</div>
-                  </div>
-                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">Inclus</div>
-                    <div className="text-sm text-white/80 mt-1">Produits fournis</div>
-                  </div>
-                  <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">RC Pro</div>
-                    <div className="text-sm text-white/80 mt-1">Assurance</div>
-                  </div>
-                </div>
-              </ScrollReveal>
+                </ScrollReveal>
+              )}
             </div>
           </div>
         </div>
@@ -1134,7 +1206,7 @@ export function Home() {
                 className="md:mx-0 md:px-0 md:pb-0 md:grid sm:grid-cols-2 lg:grid-cols-3 md:gap-3 md:overflow-visible md:snap-none md:max-w-none"
                 slideClassName="w-[82%] snap-start md:w-auto"
               >
-                {localExpertisePages.map((item) => {
+                {localExpertisePages.slice(0, HOME_EXPERTISE_VISIBLE_COUNT).map((item) => {
                   const Icon = item.icon;
                   return (
                     <Link
@@ -1188,35 +1260,60 @@ export function Home() {
               ))}
             </div>
 
-            <div className="mt-8">
-              <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-center">
-                Quartiers de Marseille desservis
-              </h3>
-              <div className="flex flex-wrap justify-center gap-2">
-                {quartiersMarseille.map((q) => (
-                  <span key={q} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-600 hover:border-green-300 hover:text-green-700 transition-colors">
-                    <MapPin className="w-3 h-3 text-green-400 flex-shrink-0" aria-hidden="true" />
-                    {q}
-                  </span>
-                ))}
+            {HOME_SHORT ? (
+              <p className="mt-8 text-center text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">
+                Tous les arrondissements de Marseille (13001 à 13016) et le détail par quartier sont sur la{' '}
+                <Link to="/zones-intervention" className="font-semibold text-green-700 hover:text-green-800 underline underline-offset-4">
+                  page zones d’intervention
+                </Link>
+                .
+              </p>
+            ) : (
+              <div className="mt-8">
+                <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-center">
+                  Quartiers de Marseille desservis
+                </h3>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {quartiersMarseille.map((q) => (
+                    <span key={q} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-600 hover:border-green-300 hover:text-green-700 transition-colors">
+                      <MapPin className="w-3 h-3 text-green-400 flex-shrink-0" aria-hidden="true" />
+                      {q}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
 
       <FAQSection
-        items={HOME_FAQ.slice(0, 5)}
+        items={HOME_FAQ.slice(0, HOME_FAQ_VISIBLE_COUNT)}
         title="Questions fréquentes sur nos services de nettoyage à Marseille"
         subtitle="Tarifs, délais, produits fournis, horaires et zones d’intervention"
         defaultOpenFirst={false}
         footer={
-          <Link
-            to="/services"
-            className="text-sm font-semibold text-green-700 hover:text-green-800 underline underline-offset-4"
-          >
-            Voir nos services et demander un devis
-          </Link>
+          <span className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+            <Link
+              to="/services"
+              className="text-sm font-semibold text-green-700 hover:text-green-800 underline underline-offset-4"
+            >
+              Voir nos services et demander un devis
+            </Link>
+            {HOME_SHORT && (
+              <>
+                <span className="hidden sm:inline text-gray-300" aria-hidden="true">
+                  ·
+                </span>
+                <Link
+                  to="/services/nettoyage-diogene"
+                  className="text-sm font-semibold text-gray-600 hover:text-green-700 underline underline-offset-4"
+                >
+                  FAQ nettoyage Diogène
+                </Link>
+              </>
+            )}
+          </span>
         }
       />
 
