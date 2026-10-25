@@ -170,7 +170,7 @@ export function NettoyageApresSinistre() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-orange-600 shrink-0">4.</span>
-                      <span><strong>Traitement odeurs</strong> : Ozonation + neutralisants professionnels pour éliminer 100% des odeurs de fumée</span>
+                      <span><strong>Traitement odeurs</strong> : Ozonation et neutralisants professionnels pour réduire fortement les odeurs de fumée</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-orange-600 shrink-0">5.</span>
@@ -308,7 +308,7 @@ export function NettoyageApresSinistre() {
                 </Button>
               </div>
               <p className="mt-4 text-sm opacity-75">
-                Disponible 24h/24 • 7j/7 • Intervention sous 2-4h sur Marseille
+                Réponse sous 2 h en horaires d&apos;ouverture • Devis sous 24 h • Marseille et Bouches-du-Rhône
               </p>
             </div>
 

@@ -115,7 +115,7 @@ export function ContactPage() {
                     <a href={PHONE_HREF} className="text-green-600 hover:text-green-700 text-lg font-semibold" aria-label={ARIA_PHONE}>
                       {PHONE_DISPLAY}
                     </a>
-                    <p className="text-sm text-gray-600 mt-1">Disponible 7j/7</p>
+                    <p className="text-sm text-gray-600 mt-1">Standard lun–sam, 8 h–18 h</p>
                   </div>
                 </div>
 
@@ -149,8 +149,10 @@ export function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Horaires</h3>
-                    <p className="text-gray-700">Lundi - Dimanche</p>
-                    <p className="text-sm text-gray-600 mt-1">7h00 - 20h00</p>
+                    <p className="text-gray-700">Lundi – samedi, 8 h – 18 h</p>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Interventions en horaires décalés (6 h–22 h) sur contrat — confirmées au devis
+                    </p>
                   </div>
                 </div>
               </div>

@@ -69,20 +69,20 @@ export function NettoyageGrosChantiersPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold mb-1">100%</div>
-              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Satisfaction</div>
+              <div className="text-3xl font-bold mb-1">2021</div>
+              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Création</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">48h</div>
-              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Délai Max</div>
+              <div className="text-3xl font-bold mb-1">24h</div>
+              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Devis gratuit</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">ECO</div>
-              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Responsable</div>
+              <div className="text-3xl font-bold mb-1">RC Pro</div>
+              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Assurance</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">PRO</div>
-              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Équipements</div>
+              <div className="text-3xl font-bold mb-1">13</div>
+              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Bouches-du-Rhône</div>
             </div>
           </div>
         </div>

@@ -323,7 +323,7 @@ export function Home() {
         />
 
         <div className="relative z-10 container mx-auto px-4 pt-6 pb-6 md:pt-28 md:pb-10">
-          <div className="max-w-lg md:max-w-2xl ncm-hero-fade-in">
+          <div className="max-w-lg md:max-w-3xl lg:max-w-4xl ncm-hero-fade-in">
             <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-4 md:mb-5">
               <Leaf className="w-4 h-4 shrink-0" aria-hidden="true" />
               <span>
@@ -841,8 +841,8 @@ export function Home() {
                       <div className="grid grid-cols-2 gap-4 mt-10">
                         {[
                           { value: '48h', label: "Délai d'intervention" },
-                          { value: '100%', label: 'Garantie effacement' },
-                          { value: '0', label: 'Trace résiduelle' },
+                          { value: '24h', label: 'Devis gratuit' },
+                          { value: 'RC Pro', label: 'Assurance' },
                           { value: '13', label: 'Dép. Bouches-du-Rhône' },
                         ].map((stat) => (
                           <div
@@ -1138,8 +1138,8 @@ export function Home() {
                     <div className="text-sm text-white/80 mt-1">Éco-labellisés</div>
                   </div>
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">Ecolabel</div>
-                    <div className="text-sm text-white/80 mt-1">Ecover Pro</div>
+                    <div className="text-3xl font-black">Mix</div>
+                    <div className="text-sm text-white/80 mt-1">Marques pro éco</div>
                   </div>
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
                     <div className="text-3xl font-black">Inclus</div>

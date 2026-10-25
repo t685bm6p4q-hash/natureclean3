@@ -303,7 +303,7 @@ export function Header() {
             />
             <div className="min-w-0 leading-tight">
               <span className="text-base sm:text-lg font-black text-gray-900 block truncate">Nature Clean</span>
-              <span className="ncm-brand-signature mt-0.5 block line-clamp-2">
+              <span className="ncm-brand-signature ncm-brand-signature--header mt-1.5">
                 Au-delà du nettoyage, un véritable entretien professionnel
               </span>
             </div>

@@ -254,6 +254,34 @@
   }
 }
 
+/* Header — même sans que le site, lisible, sans italique synthétique */
+.ncm-brand-signature--header {
+  font-family: var(--font-system, ui-sans-serif, system-ui, sans-serif);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: #065f46;
+  display: block;
+  max-width: 15rem;
+  text-wrap: pretty;
+}
+
+@media (min-width: 640px) {
+  .ncm-brand-signature--header {
+    font-size: 0.8125rem;
+    max-width: 16.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ncm-brand-signature--header {
+    max-width: 17.5rem;
+    line-height: 1.5;
+  }
+}
+
 .ncm-brand-signature--on-green {
   font-size: 1.125rem;
   line-height: 1.45;
