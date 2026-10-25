@@ -166,7 +166,13 @@ function ReviewCard({ review }: { review: GoogleReview }) {
 /* ────────────────────────────────────────────
    COMPOSANT PRINCIPAL
    ────────────────────────────────────────────── */
-export function GoogleReviews() {
+interface GoogleReviewsProps {
+  /** Moins de marge basse (ex. avant « Zone d’intervention » sur l’accueil). */
+  spacing?: 'default' | 'compactBottom';
+}
+
+export function GoogleReviews({ spacing = 'default' }: GoogleReviewsProps) {
+  const compactBottom = spacing === 'compactBottom';
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -202,12 +208,19 @@ export function GoogleReviews() {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-white" aria-labelledby="reviews-heading">
+    <section
+      className={
+        compactBottom
+          ? 'pt-12 md:pt-16 pb-6 md:pb-8 bg-white'
+          : 'py-16 md:py-20 bg-white'
+      }
+      aria-labelledby="reviews-heading"
+    >
       <div className="container mx-auto px-4">
 
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-12">
+          <div className={`text-center ${compactBottom ? 'mb-8 md:mb-10' : 'mb-12'}`}>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
               Témoignages clients
             </div>
@@ -258,7 +271,11 @@ export function GoogleReviews() {
         </ScrollReveal>
 
         {/* Points de navigation (desktop uniquement) */}
-        <div className="hidden md:flex items-center justify-center gap-2 mt-8" role="group" aria-label="Navigation des avis">
+        <div
+          className={`hidden md:flex items-center justify-center gap-2 ${compactBottom ? 'mt-5' : 'mt-8'}`}
+          role="group"
+          aria-label="Navigation des avis"
+        >
           {reviews.map((_, index) => (
             <button
               key={index}
@@ -283,7 +300,7 @@ export function GoogleReviews() {
         </div>
 
         {/* Lien Google */}
-        <div className="text-center mt-6">
+        <div className={`text-center ${compactBottom ? 'mt-4' : 'mt-6'}`}>
           <a
             href={GOOGLE_PROFILE_URL}
             target="_blank"

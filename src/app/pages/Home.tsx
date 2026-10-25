@@ -1193,7 +1193,7 @@ export function Home() {
           contain-intrinsic-size: auto 400px correspond au fallback Suspense h-[400px]
           → zéro CLS : le navigateur réserve 400px avant de rendre le composant */}
       <div className="[content-visibility:auto] [contain-intrinsic-size:auto_400px] ncm-below-fold">
-        <GoogleReviews />
+        <GoogleReviews spacing="compactBottom" />
       </div>
 
       {/* ═══════════════════════════════════════════
@@ -1201,10 +1201,10 @@ export function Home() {
           ═══════════════════════════════════════════ */}
       {/* content-visibility: auto — section ~3000px sous le fold mobile
           contain-intrinsic-size: auto 520px — hauteur estimée (titre + grille zones + quartiers) */}
-      <section className="py-16 md:py-20 bg-gray-50 ncm-below-fold">
+      <section className="pt-6 md:pt-8 pb-14 md:pb-16 bg-gray-50 ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <div className="text-center mb-10 max-w-3xl mx-auto">
+            <div className="text-center mb-8 max-w-3xl mx-auto">
               <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 <MapPin className="w-4 h-4" aria-hidden="true" />
                 Zone d'intervention
