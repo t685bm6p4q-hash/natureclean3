@@ -285,7 +285,7 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           1. HERO — Impact visuel + CTA
           ══════════════════════════════════════════ */}
-      <section className="ncm-home-hero relative min-h-[max(420px,58vh)] overflow-hidden text-white md:min-h-[36rem] md:pb-24">
+      <section className="ncm-home-hero relative min-h-[max(420px,58vh)] overflow-hidden bg-gray-900 text-white md:min-h-[36rem] md:pb-24">
         <img
           id="ncm-lcp-hero"
           src={homeHeroLcpSrc()}
@@ -302,7 +302,7 @@ export function Home() {
         />
 
         <div
-          className="ncm-hero-overlay absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/50 to-gray-900/15 md:bg-gradient-to-r md:from-gray-950/88 md:via-gray-900/45 md:to-transparent"
+          className="ncm-hero-overlay absolute inset-0 z-[1] pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/60 to-gray-900/25 md:bg-gradient-to-r md:from-gray-950/90 md:via-gray-900/50 md:to-transparent"
           aria-hidden="true"
         />
 

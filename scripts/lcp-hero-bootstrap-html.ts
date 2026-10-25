@@ -10,11 +10,17 @@ import {
 
 /** CSS critique above-the-fold (sans position:fixed — le hero reste dans .ncm-home-hero, sous le header). */
 export const HOME_HERO_CRITICAL_CSS =
-  '.ncm-home-hero{position:relative;min-height:max(420px,58vh);overflow:hidden;background-color:transparent;color:#fff}' +
+  '.ncm-home-hero{position:relative;min-height:max(420px,58vh);overflow:hidden;background-color:#111827;color:#fff}' +
   '@media (min-width:768px){.ncm-home-hero{min-height:36rem;padding-bottom:6rem}}' +
   '.ncm-home-hero #ncm-lcp-hero{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;pointer-events:none}' +
   '@media (min-width:768px){.ncm-home-hero #ncm-lcp-hero{object-position:center}}' +
-  '.ncm-home-hero .ncm-hero-overlay,.ncm-home-hero .ncm-hero-content{position:relative;z-index:1}';
+  '.ncm-home-hero .ncm-hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(3,7,18,.94),rgba(17,24,39,.58) 42%,rgba(17,24,39,.22))}' +
+  '@media (min-width:768px){.ncm-home-hero .ncm-hero-overlay{background:linear-gradient(to right,rgba(3,7,18,.9),rgba(17,24,39,.48) 52%,transparent)}}' +
+  '.ncm-home-hero .ncm-hero-content{position:relative;z-index:2;color:#fff}' +
+  '.ncm-home-hero .ncm-brand-signature--on-dark{color:#a7f3d0;font-style:italic;font-weight:500}' +
+  '.ncm-home-hero .ncm-display-title{color:#fff;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,.85)}' +
+  '.ncm-home-hero .ncm-hero-content .text-green-400{color:#4ade80}' +
+  '.ncm-home-hero .ncm-hero-content .text-gray-100{color:#f3f4f6;text-shadow:0 2px 10px rgba(0,0,0,.8)}';
 
 export const LCP_CRITICAL_CSS =
   'html,body{background:#111827}' +
