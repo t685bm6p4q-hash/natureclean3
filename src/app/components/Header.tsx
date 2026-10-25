@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import {
   Phone, Menu, X, ChevronRight,
   Building2, Store, HardHat, Layers, Droplet,
-  Clock, Mail, FileText, MapPin, Shield, Eraser,
+  Clock, Mail, FileText, MapPin, Eraser,
   Home as HomeIcon, ImageIcon, Info, BookOpen, Sparkles, Stethoscope
 } from 'lucide-react';
 import { useFocusTrap } from '@/app/hooks/useFocusTrap';
@@ -272,14 +272,6 @@ export function Header() {
               <Clock className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
               Lun-Sam : 8h-18h
             </li>
-            <li className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-              Marseille et Bouches-du-Rhône
-            </li>
-            <li className="flex items-center gap-1.5">
-              <Shield className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-              Assurance RC Pro
-            </li>
           </ul>
           <ul className="flex items-center gap-5 list-none" aria-label="Contact rapide">
             <li>
@@ -290,16 +282,6 @@ export function Header() {
               >
                 <Mail className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
                 {EMAIL}
-              </a>
-            </li>
-            <li>
-              <a
-                href={PHONE_HREF}
-                className="flex items-center gap-1.5 hover:text-white transition-colors"
-                aria-label={ARIA_PHONE}
-              >
-                <Phone className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-                {PHONE_DISPLAY}
               </a>
             </li>
           </ul>

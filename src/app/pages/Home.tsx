@@ -384,32 +384,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════
-          1b. PREUVE SOCIALE — Barre Google compacte
-          ═══════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-4 md:py-5">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Shield className="w-4 h-4 text-green-500" aria-hidden="true" />
-              <span>Assurance RC Pro</span>
-            </div>
-            <span className="hidden md:block w-px h-5 bg-gray-200" aria-hidden="true" />
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Leaf className="w-4 h-4 text-green-500" aria-hidden="true" />
-              <span>50 % produits éco-labellisés</span>
-            </div>
-            <span className="hidden md:block w-px h-5 bg-gray-200" aria-hidden="true" />
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <MapPin className="w-4 h-4 text-green-500" aria-hidden="true" />
-              <Link to="/zones-intervention" className="hover:text-green-700 hover:underline">
-                Marseille et Bouches-du-Rhône
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ══════════════════════════════════════════
           2. CARROUSEL DES 9 SERVICES
           ══════════════════════════════════════════ */}
