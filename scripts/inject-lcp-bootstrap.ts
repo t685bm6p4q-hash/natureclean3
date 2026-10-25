@@ -1,15 +1,17 @@
 /**
- * Post-prerender — LCP mobile accueil : bootstrap hero + allègement du doublon React.
+ * Post-prerender — LCP accueil : #ncm-lcp-hero dans .ncm-home-hero (visible sans React).
+ * Retire #ncm-hero-react du HTML statique pour que Lighthouse ne lie pas le LCP à l’hydratation.
  */
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   BOOTSTRAP_HERO_CSS,
-  BOOTSTRAP_HERO_SCRIPT,
   buildBootstrapHeroImgTag,
   buildBootstrapPreloadLink,
 } from './lcp-hero-bootstrap-html';
+
+const HERO_SECTION_RE = /(<section[^>]*\bncm-home-hero\b[^>]*>)/i;
 
 function dedupeCloudinaryHints(html: string): string {
   let preconnectKept = false;
@@ -35,35 +37,24 @@ function dedupePreloadById(html: string, id: string): string {
   });
 }
 
-function deferReactHeroInStaticHtml(html: string): string {
-  return html.replace(/<img([^>]*\sid="ncm-hero-react"[^>]*)>/gi, (_full, attrs: string) => {
-    let next = attrs.replace(/\bfetchpriority="low"/gi, 'fetchpriority="high"');
-    next = next.replace(/\bopacity-100\b/g, '');
-    if (!/\bclass="/.test(next)) {
-      next += ' class="opacity-0"';
-    } else if (!next.includes('opacity-0')) {
-      next = next.replace(/\bclass="/, 'class="opacity-0 ');
-    }
-    return `<img${next}>`;
-  });
-}
-
-function stripExistingBootstrap(html: string): string {
+function stripAllLcpHeroNodes(html: string): string {
   return html
     .replace(/<img[^>]*\sid="ncm-lcp-hero"[^>]*>\s*/gi, '')
-    .replace(/<script>\s*\(function \(\) \{\s*var path = location\.pathname;[\s\S]*?ncm-lcp-preload[\s\S]*?\}\)\(\);\s*<\/script>\s*/gi, '');
+    .replace(/<img[^>]*\sid="ncm-hero-react"[^>]*>\s*/gi, '');
 }
 
-function ensureBootstrapBeforeRoot(html: string): string {
-  const rootOpen = html.match(/<div id="root"[^>]*>/);
-  if (!rootOpen) {
-    console.warn('⚠ inject LCP — #root introuvable');
+function injectBootstrapInsideHeroSection(html: string): string {
+  if (!HERO_SECTION_RE.test(html)) {
+    console.warn('⚠ inject LCP — section .ncm-home-hero introuvable');
     return html;
   }
 
-  html = stripExistingBootstrap(html);
-  const injection = `    ${buildBootstrapHeroImgTag()}\n    ${BOOTSTRAP_HERO_SCRIPT}\n    ${rootOpen[0]}`;
-  return html.replace(rootOpen[0], injection);
+  html = stripAllLcpHeroNodes(html);
+
+  return html.replace(
+    HERO_SECTION_RE,
+    `$1\n        ${buildBootstrapHeroImgTag().replace(/\n/g, '\n        ')}\n`,
+  );
 }
 
 function ensureHeadHints(html: string): string {
@@ -71,7 +62,7 @@ function ensureHeadHints(html: string): string {
     html = html.replace('</head>', `    ${buildBootstrapPreloadLink()}\n  </head>`);
   }
 
-  if (!html.includes('#ncm-lcp-hero{')) {
+  if (!html.includes('.ncm-home-hero #ncm-lcp-hero{')) {
     if (html.includes('html,body{background:#111827}')) {
       html = html.replace(
         'html,body{background:#111827}',
@@ -88,6 +79,16 @@ function ensureHeadHints(html: string): string {
   return html;
 }
 
+/** Retire le bootstrap fixed du template Vite (invisible sous bg-white du layout). */
+function stripDevBootstrapBeforeRoot(html: string): string {
+  return html
+    .replace(/<img[^>]*\sid="ncm-lcp-hero"[^>]*>\s*/gi, '')
+    .replace(
+      /<script>\s*\(function \(\) \{\s*var path = location\.pathname;[\s\S]*?ncm-lcp-preload[\s\S]*?\}\)\(\);\s*<\/script>\s*/gi,
+      '',
+    );
+}
+
 export function injectLcpBootstrapIntoHome(distDir: string): void {
   const homePath = join(distDir, 'index.html');
   if (!existsSync(homePath)) {
@@ -97,12 +98,12 @@ export function injectLcpBootstrapIntoHome(distDir: string): void {
 
   let html = readFileSync(homePath, 'utf8');
 
+  html = stripDevBootstrapBeforeRoot(html);
   html = ensureHeadHints(html);
-  html = ensureBootstrapBeforeRoot(html);
+  html = injectBootstrapInsideHeroSection(html);
   html = dedupeCloudinaryHints(html);
   html = dedupePreloadById(html, 'ncm-lcp-preload');
-  html = deferReactHeroInStaticHtml(html);
 
   writeFileSync(homePath, html, 'utf8');
-  console.log('✓ inject LCP — bootstrap HTML + hero React différé (dist/index.html)');
+  console.log('✓ inject LCP — #ncm-lcp-hero in-section, sans #ncm-hero-react statique');
 }

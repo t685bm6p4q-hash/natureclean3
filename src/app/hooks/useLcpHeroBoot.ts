@@ -3,8 +3,8 @@ import { dismissNcmLcpBoot } from '@/app/utils/dismissNcmLcpBoot';
 
 const REACT_HERO_ID = 'ncm-hero-react';
 
-/** Retire #ncm-lcp-hero après load de #ncm-hero-react (transition sans flash). */
-export function useLcpHeroBoot() {
+/** Retire #ncm-lcp-hero après load de l’img React (montée client uniquement). */
+export function useLcpHeroBoot(reactHeroMounted: boolean) {
   const [heroReady, setHeroReady] = useState(false);
 
   const dismissBoot = useCallback(() => {
@@ -20,13 +20,10 @@ export function useLcpHeroBoot() {
   }, [dismissBoot]);
 
   useLayoutEffect(() => {
+    if (!reactHeroMounted) return;
+
     const hero = document.getElementById(REACT_HERO_ID) as HTMLImageElement | null;
-    if (!hero) {
-      if (!(window as Window & { __NC_PRERENDER?: boolean }).__NC_PRERENDER) {
-        dismissNcmLcpBoot();
-      }
-      return;
-    }
+    if (!hero) return;
     if (hero.complete && hero.naturalWidth > 0) {
       onHeroReady();
       return;
@@ -37,7 +34,7 @@ export function useLcpHeroBoot() {
       hero.removeEventListener('load', onHeroReady);
       hero.removeEventListener('error', onHeroReady);
     };
-  }, [onHeroReady]);
+  }, [onHeroReady, reactHeroMounted]);
 
   return { heroReady, onHeroReady };
 }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { BulletList } from '@/app/components/BulletList';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
@@ -272,7 +273,13 @@ const cardBgs = [
 ];
 
 export function Home() {
-  const { heroReady, onHeroReady } = useLcpHeroBoot();
+  /** Pas d’<img> hero dans le HTML SSG → LCP = #ncm-lcp-hero (inject build). */
+  const [reactHeroMounted, setReactHeroMounted] = useState(false);
+  useEffect(() => {
+    setReactHeroMounted(true);
+  }, []);
+
+  const { heroReady, onHeroReady } = useLcpHeroBoot(reactHeroMounted);
 
   return (
     <>
@@ -289,21 +296,23 @@ export function Home() {
           1. HERO — Impact visuel + CTA
           ══════════════════════════════════════════ */}
       <section className="ncm-home-hero relative min-h-[max(420px,58vh)] overflow-hidden text-white md:min-h-[36rem] md:pb-24">
-        <img
-          id="ncm-hero-react"
-          src={homeHeroLcpSrc()}
-          srcSet={homeHeroLcpSrcSet()}
-          sizes="100vw"
-          alt="Vue de Marseille et Notre-Dame de la Garde depuis une baie vitrée — Nature Clean"
-          width={LCP_HERO.intrinsicWidth}
-          height={LCP_HERO.intrinsicHeight}
-          loading="eager"
-          // @ts-ignore — attribut HTML valide (React 18 typings)
-          fetchpriority="high"
-          decoding="async"
-          onLoad={onHeroReady}
-          className={`absolute inset-0 h-full w-full object-cover object-[center_30%] md:object-center ${heroReady ? 'opacity-100' : 'opacity-0'}`}
-        />
+        {reactHeroMounted ? (
+          <img
+            id="ncm-hero-react"
+            src={homeHeroLcpSrc()}
+            srcSet={homeHeroLcpSrcSet()}
+            sizes="100vw"
+            alt="Vue de Marseille et Notre-Dame de la Garde depuis une baie vitrée — Nature Clean"
+            width={LCP_HERO.intrinsicWidth}
+            height={LCP_HERO.intrinsicHeight}
+            loading="lazy"
+            // @ts-ignore — LCP = #ncm-lcp-hero statique ; priorité basse pour le doublon client
+            fetchpriority="low"
+            decoding="async"
+            onLoad={onHeroReady}
+            className={`absolute inset-0 z-[1] h-full w-full object-cover object-[center_30%] md:object-center ${heroReady ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ) : null}
 
         <div
           className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-950/95 via-gray-900/50 to-gray-900/15 md:bg-gradient-to-r md:from-gray-950/88 md:via-gray-900/45 md:to-transparent"
