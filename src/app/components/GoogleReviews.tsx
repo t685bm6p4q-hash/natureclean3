@@ -211,7 +211,7 @@ export function GoogleReviews({ spacing = 'default' }: GoogleReviewsProps) {
     <section
       className={
         compactBottom
-          ? 'pt-12 md:pt-16 pb-6 md:pb-8 bg-white'
+          ? 'pt-10 md:pt-12 pb-2 md:pb-3 bg-white'
           : 'py-16 md:py-20 bg-white'
       }
       aria-labelledby="reviews-heading"
@@ -220,7 +220,7 @@ export function GoogleReviews({ spacing = 'default' }: GoogleReviewsProps) {
 
         {/* Header */}
         <ScrollReveal>
-          <div className={`text-center ${compactBottom ? 'mb-8 md:mb-10' : 'mb-12'}`}>
+          <div className={`text-center ${compactBottom ? 'mb-6 md:mb-8' : 'mb-12'}`}>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
               Témoignages clients
             </div>
@@ -272,7 +272,7 @@ export function GoogleReviews({ spacing = 'default' }: GoogleReviewsProps) {
 
         {/* Points de navigation (desktop uniquement) */}
         <div
-          className={`hidden md:flex items-center justify-center gap-2 ${compactBottom ? 'mt-5' : 'mt-8'}`}
+          className={`hidden md:flex items-center justify-center gap-1 ${compactBottom ? 'mt-3' : 'mt-8'}`}
           role="group"
           aria-label="Navigation des avis"
         >
@@ -280,7 +280,7 @@ export function GoogleReviews({ spacing = 'default' }: GoogleReviewsProps) {
             <button
               key={index}
               onClick={() => { setCurrentIndex(index); handleInteraction(); }}
-              className={`flex min-h-11 min-w-11 items-center justify-center rounded-full p-1.5 transition-all duration-300 ${
+              className={`flex ${compactBottom ? 'min-h-9 min-w-9' : 'min-h-11 min-w-11'} items-center justify-center rounded-full p-1.5 transition-all duration-300 ${
                 index === currentIndex
                   ? 'bg-green-600'
                   : 'bg-transparent hover:bg-gray-100'
@@ -300,7 +300,7 @@ export function GoogleReviews({ spacing = 'default' }: GoogleReviewsProps) {
         </div>
 
         {/* Lien Google */}
-        <div className={`text-center ${compactBottom ? 'mt-4' : 'mt-6'}`}>
+        <div className={`text-center ${compactBottom ? 'mt-2 md:mt-3' : 'mt-6'}`}>
           <a
             href={GOOGLE_PROFILE_URL}
             target="_blank"

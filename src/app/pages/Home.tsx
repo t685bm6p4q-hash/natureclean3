@@ -1189,27 +1189,20 @@ export function Home() {
       {/* ═══════════════════════════════════════════
           10. AVIS GOOGLE — Preuve sociale
           ═══════════════════════════════════════════ */}
-      {/* content-visibility: auto — section ~2500px sous le fold mobile
-          contain-intrinsic-size: auto 400px correspond au fallback Suspense h-[400px]
-          → zéro CLS : le navigateur réserve 400px avant de rendre le composant */}
-      <div className="[content-visibility:auto] [contain-intrinsic-size:auto_400px] ncm-below-fold">
-        <GoogleReviews spacing="compactBottom" />
-      </div>
+      <GoogleReviews spacing="compactBottom" />
 
       {/* ═══════════════════════════════════════════
           10. ZONE D'INTERVENTION — SEO local
           ═══════════════════════════════════════════ */}
-      {/* content-visibility: auto — section ~3000px sous le fold mobile
-          contain-intrinsic-size: auto 520px — hauteur estimée (titre + grille zones + quartiers) */}
-      <section className="pt-6 md:pt-8 pb-14 md:pb-16 bg-gray-50 ncm-below-fold">
+      <section className="pt-3 md:pt-4 pb-14 md:pb-16 bg-gray-50 ncm-below-fold">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <div className="text-center mb-8 max-w-3xl mx-auto">
-              <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+            <div className="text-center mb-6 max-w-3xl mx-auto">
+              <span className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-3">
                 <MapPin className="w-4 h-4" aria-hidden="true" />
                 Zone d'intervention
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-3">
                 Entretien professionnel à Marseille et dans le 13
               </h2>
               <p className="text-lg text-gray-500">
