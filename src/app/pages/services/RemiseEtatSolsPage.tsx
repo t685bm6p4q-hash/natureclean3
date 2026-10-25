@@ -214,24 +214,44 @@ export function RemiseEtatSolsPage() {
                 {
                   icon: Layers,
                   title: 'Parquet',
-                  image: IMAGES.solsBureauxPro,
+                  image: IMAGES.jdSportMarseilleFloor,
                   items: [
                     { bold: 'Ponçage', text: 'si le bois a encore de l\'épaisseur' },
                     { bold: 'Finition', text: 'huile, cire ou vitrificateur' },
                     { bold: 'Limite', text: 'un parqueteur parfois plus adapté' },
                   ],
                   desc: 'Occasionnel. On le dit à la visite si le chantier relève plutôt d\'un spécialiste bois.',
+                  footer: undefined,
                 },
                 {
                   icon: Sparkles,
                   title: 'Ce que ce n\'est pas',
-                  image: IMAGES.solsBureauxPro,
+                  image: IMAGES.entrepriseBureauxMarseille,
                   items: [
                     { bold: 'Moquette', text: 'entretien, fiche bureaux' },
                     { bold: 'Linoléum', text: 'pas de ponçage' },
                     { bold: 'Ménage à domicile', text: 'ce n\'est pas cette page' },
                   ],
                   desc: 'On ne mélange pas rénovation de sol et ménage courant.',
+                  footer: (
+                    <p className="text-gray-600 leading-relaxed">
+                      <Link
+                        to="/services/entretien-bureaux"
+                        className="font-semibold text-green-800 underline underline-offset-2 hover:text-green-900"
+                      >
+                        Entretien bureaux (moquette)
+                      </Link>
+                      <span className="text-gray-400 mx-2" aria-hidden="true">
+                        ·
+                      </span>
+                      <Link
+                        to="/services/nettoyage-diogene"
+                        className="font-semibold text-green-800 underline underline-offset-2 hover:text-green-900"
+                      >
+                        Ménage logement / Diogène
+                      </Link>
+                    </p>
+                  ),
                 },
               ] as const
             ).map((card, i) => (
@@ -242,6 +262,7 @@ export function RemiseEtatSolsPage() {
                   icon={card.icon}
                   items={card.items}
                   description={card.desc}
+                  footer={'footer' in card ? card.footer : undefined}
                 />
               </ScrollReveal>
             ))}

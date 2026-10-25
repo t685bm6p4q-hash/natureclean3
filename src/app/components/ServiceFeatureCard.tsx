@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
+import type { ReactNode } from 'react';
 import { BulletList } from '@/app/components/BulletList';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
@@ -15,6 +16,7 @@ interface ServiceFeatureCardProps {
   items?: readonly ServiceFeatureCardItem[];
   imageHeightClass?: string;
   description?: string;
+  footer?: ReactNode;
 }
 
 interface ServiceShowcaseCardProps {
@@ -62,6 +64,7 @@ export function ServiceFeatureCard({
   items,
   imageHeightClass = 'aspect-[16/10]',
   description,
+  footer,
 }: ServiceFeatureCardProps) {
   return (
     <div className="relative bg-white rounded-2xl border border-gray-200 hover:border-green-200 transition-colors h-full overflow-hidden">
@@ -85,12 +88,13 @@ export function ServiceFeatureCard({
           </div>
         </div>
       </div>
-      {(description || (items && items.length > 0)) && (
+      {(description || (items && items.length > 0) || footer) && (
         <div className="p-5">
           {description && (
-            <BulletList lines={[description]} itemClassName="text-gray-600" className="mb-0" />
+            <p className="text-sm text-gray-600 leading-snug mb-3">{description}</p>
           )}
-          {items && items.length > 0 && <BulletList lines={items} className={description ? 'mt-2' : undefined} />}
+          {items && items.length > 0 && <BulletList lines={items} />}
+          {footer && <div className="mt-3 pt-3 border-t border-gray-100 text-sm">{footer}</div>}
         </div>
       )}
     </div>
