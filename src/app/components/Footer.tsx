@@ -203,7 +203,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-gray-300 hover:text-pink-400 transition-colors group"
-                aria-label="Suivre Nature Clean sur Instagram"
+                aria-label="Instagram @natureclean13 — Nature Clean Marseille"
               >
                 <span className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
                   <svg className="w-4 h-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -217,7 +217,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-gray-300 hover:text-blue-400 transition-colors group"
-                aria-label="Suivre Nature Clean sur LinkedIn"
+                aria-label="LinkedIn — Nature Clean Marseille"
               >
                 <span className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
                   <svg className="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -231,7 +231,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-gray-300 hover:text-yellow-400 transition-colors group"
-                aria-label="Fiche Nature Clean sur Pages Jaunes"
+                aria-label="Pages Jaunes — Nature Clean Marseille"
               >
                 <span className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
                   <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -245,7 +245,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-gray-300 hover:text-blue-400 transition-colors group"
-                aria-label="Avis Nature Clean sur Google"
+                aria-label="Google — avis Nature Clean Marseille"
               >
                 <span className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true">

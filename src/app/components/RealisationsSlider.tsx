@@ -86,7 +86,7 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
       </button>
 
       {/* Points de navigation — zone tactile ≥24px, sans role=tab (pas de tablist parent) */}
-      <div className="flex items-center justify-center gap-2 mt-6" aria-label="Pagination des réalisations">
+      <div className="flex items-center justify-center gap-2 mt-6" role="group" aria-label="Pagination des réalisations">
         {items.map((_, i) => (
           <button
             key={i}
@@ -94,12 +94,12 @@ export function RealisationsSlider({ items }: RealisationsSliderProps) {
             onClick={() => setCurrent(i)}
             aria-label={`Aller à la réalisation ${i + 1}`}
             aria-current={i === current ? 'true' : undefined}
-            className="p-2 -m-2 flex items-center justify-center cursor-pointer group"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full cursor-pointer group"
           >
             <span
-              className={`rounded-full transition-all duration-300 ${
+              className={`block rounded-full transition-all duration-300 ${
                 i === current
-                  ? 'w-6 h-2 bg-green-700'
+                  ? 'w-8 h-2.5 bg-green-700'
                   : 'w-2.5 h-2.5 bg-gray-300 group-hover:bg-green-400'
               }`}
             />

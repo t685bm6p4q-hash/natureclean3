@@ -30,8 +30,12 @@ if (!container) {
 
 const app = <App />;
 
-// Prérendu SSG : conserver le HTML (héros, H1) au lieu de le remplacer — réduit le render delay LCP.
-if (container.hasChildNodes()) {
+const path = window.location.pathname;
+const isHome = path === '/' || path === '';
+
+// Accueil : createRoot (pas d’hydrate) — le prerender reste pour SEO/LCP avant JS ; zéro #418/#423 en console.
+// Autres routes SSG : hydrateRoot pour réutiliser le DOM prerender sans flash.
+if (container.hasChildNodes() && !isHome) {
   hydrateRoot(container, app);
 } else {
   createRoot(container).render(app);

@@ -334,21 +334,20 @@ export function ServiceCarousel() {
             <ChevronLeft className="w-5 h-5 text-gray-700" />
           </button>
 
-          <div className="flex gap-2" role="tablist" aria-label="Navigation des services">
+          <div className="flex gap-2" role="group" aria-label="Navigation des services">
             {Array.from({ length: MAX_SLIDE + 1 }).map((_, i) => (
               <button
                 key={i}
                 type="button"
-                role="tab"
-                aria-selected={i === current}
                 aria-label={`Aller au groupe ${i + 1}`}
+                aria-current={i === current ? 'true' : undefined}
                 onClick={() => goTo(i)}
-                className="p-2 -m-2 flex items-center justify-center cursor-pointer group"
+                className="flex min-h-11 min-w-11 items-center justify-center rounded-full cursor-pointer group"
               >
                 <span
-                  className={`rounded-full transition-all ${
+                  className={`block rounded-full transition-all ${
                     i === current
-                      ? 'w-6 h-2 bg-green-700'
+                      ? 'w-8 h-2.5 bg-green-700'
                       : 'w-2.5 h-2.5 bg-gray-300 group-hover:bg-gray-400'
                   }`}
                 />
