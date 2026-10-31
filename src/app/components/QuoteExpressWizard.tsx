@@ -24,6 +24,7 @@ import {
   Camera,
   X,
 } from 'lucide-react';
+import { TURNSTILE_SITE_KEY, TurnstileField } from '@/app/components/TurnstileField';
 import { storeDevisLeadForMerci } from '@/app/utils/devisLeadSession';
 import { PHONE_DISPLAY } from '@/app/utils/constants';
 import { getPageJourney, formatJourneyForWhatsApp } from '@/app/hooks/usePageJourney';
@@ -137,6 +138,8 @@ export function QuoteExpressWizard() {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoError, setPhotoError] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -191,8 +194,14 @@ export function QuoteExpressWizard() {
     setStep((s) => (s < 3 ? ((s + 1) as 1 | 2 | 3) : s));
   };
 
+  const resetTurnstile = () => {
+    setTurnstileToken('');
+    setTurnstileResetKey((key) => key + 1);
+  };
+
   const goBack = () => {
     setErrors({});
+    setTurnstileToken('');
     setStep((s) => (s > 1 ? ((s - 1) as 1 | 2 | 3) : s));
   };
 
@@ -251,6 +260,11 @@ export function QuoteExpressWizard() {
       return;
     }
 
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setErrors({ submit: 'Confirmez le contrôle anti-robot, puis renvoyez la demande.' });
+      return;
+    }
+
     const data = validation.data!;
     const { codePostal, adresse } = splitLocalisation(data.localisation);
     const freqApi =
@@ -285,6 +299,7 @@ export function QuoteExpressWizard() {
         journey: formatJourneyForWhatsApp(getPageJourney()),
         timestamp: new Date().toISOString(),
         ...(photoBase64 ? { photoBase64, photoName } : {}),
+        ...(turnstileToken ? { turnstileToken } : {}),
       };
 
       const response = await fetch('/api/send-quote', {
@@ -295,6 +310,9 @@ export function QuoteExpressWizard() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
+        if (response.status === 403) {
+          throw new Error('TURNSTILE');
+        }
         if (response.status === 429) {
           const s = (errorData as { retryAfter?: number }).retryAfter ?? 60;
           throw new Error(`RATE_LIMITED:${s}`);
@@ -322,8 +340,13 @@ export function QuoteExpressWizard() {
       const qs = serviceLabel ? `?service=${encodeURIComponent(serviceLabel)}` : '';
       navigate(`/merci${qs}`, { replace: true });
     } catch (error: unknown) {
+      resetTurnstile();
       const msg = error instanceof Error ? error.message : '';
-      if (msg.startsWith('RATE_LIMITED:')) {
+      if (msg === 'TURNSTILE') {
+        setErrors({
+          submit: 'Le contrôle anti-robot a expiré. Validez-le à nouveau, puis renvoyez la demande.',
+        });
+      } else if (msg.startsWith('RATE_LIMITED:')) {
         const s = parseInt(msg.split(':')[1] || '60', 10);
         setErrors({
           submit: `Trop de demandes. Réessayez dans ${Math.ceil(s / 60)} min ou appelez-nous.`,
@@ -638,6 +661,8 @@ export function QuoteExpressWizard() {
               </span>
             </label>
             {errors.rgpd && <p className="text-xs text-red-500">{errors.rgpd}</p>}
+
+            <TurnstileField resetKey={turnstileResetKey} onToken={setTurnstileToken} />
           </div>
         )}
 
@@ -668,7 +693,7 @@ export function QuoteExpressWizard() {
           ) : (
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || (Boolean(TURNSTILE_SITE_KEY) && !turnstileToken)}
               className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-white font-bold text-sm bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:ring-emerald-500/25 transition-all disabled:opacity-70 shadow-lg shadow-emerald-600/20"
             >
               {isSubmitting ? (

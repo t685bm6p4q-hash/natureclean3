@@ -129,6 +129,7 @@
     { "source": "/nettoyage-bureaux-antibes", "destination": "/services/entretien-bureaux", "permanent": true },
     { "source": "/nettoyage-bureaux-grasse", "destination": "/services/entretien-bureaux", "permanent": true },
     { "source": "/nettoyage-open-space-nice", "destination": "/services/entretien-bureaux", "permanent": true },
+    { "source": "/nettoyage-industriel-marseille", "destination": "/services/nettoyage-chantiers", "permanent": true },
     { "source": "/nettoyage-fin-chantier-marseille", "destination": "/services/nettoyage-chantiers", "permanent": true },
     { "source": "/nettoyage-fin-chantier-marignane", "destination": "/services/nettoyage-chantiers", "permanent": true },
     { "source": "/nettoyage-fin-chantier-aubagne", "destination": "/services/nettoyage-chantiers", "permanent": true },
@@ -152,7 +153,7 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://res.cloudinary.com https://www.facebook.com https://www.google-analytics.com https://www.google.com https://googleads.g.doubleclick.net https://www.googletagmanager.com; connect-src 'self' https://res.cloudinary.com https://api.resend.com https://api.callmebot.com https://gate.whapi.cloud https://www.google-analytics.com https://stats.g.doubleclick.net https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://res.cloudinary.com https://www.facebook.com https://www.google-analytics.com https://www.google.com https://googleads.g.doubleclick.net https://www.googletagmanager.com; connect-src 'self' https://res.cloudinary.com https://api.resend.com https://api.callmebot.com https://gate.whapi.cloud https://www.google-analytics.com https://stats.g.doubleclick.net https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" },
         { "key": "X-Powered-By", "value": "Nature Clean" }
       ]
     },

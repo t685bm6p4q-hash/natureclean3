@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { EMAIL, EMAIL_HREF, PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE, ARIA_EMAIL } from '@/app/utils/constants';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
+import { TURNSTILE_SITE_KEY, TurnstileField } from '@/app/components/TurnstileField';
 import { Phone, Mail, MapPin, Clock, CheckCircle2, Loader2 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Link } from 'react-router';
@@ -10,10 +11,23 @@ export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+
+  const resetTurnstile = () => {
+    setTurnstileToken('');
+    setTurnstileResetKey((key) => key + 1);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitError(null);
+
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setSubmitError('Confirmez le contrôle anti-robot, puis renvoyez le message.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     const form = e.currentTarget;
@@ -38,6 +52,7 @@ export function ContactPage() {
       sourcePage: '/contact',
       referrer: typeof document !== 'undefined' ? document.referrer || 'Direct' : 'Direct',
       journey: 'Contact — formulaire page /contact',
+      ...(turnstileToken ? { turnstileToken } : {}),
     };
 
     try {
@@ -47,13 +62,23 @@ export function ContactPage() {
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
+        if (response.status === 403) {
+          throw new Error('TURNSTILE');
+        }
         throw new Error('Envoi impossible');
       }
       setIsSubmitted(true);
       form.reset();
+      resetTurnstile();
     } catch (error) {
       console.error('Erreur lors de l\'envoi du message', error);
-      setSubmitError('L\'envoi a échoué. Appelez-nous au 04 84 89 68 75 ou réessayez dans quelques minutes.');
+      resetTurnstile();
+      const rejected = error instanceof Error && error.message === 'TURNSTILE';
+      setSubmitError(
+        rejected
+          ? 'Le contrôle anti-robot a expiré. Validez-le à nouveau, puis renvoyez le message.'
+          : 'L\'envoi a échoué. Appelez-nous au 04 84 89 68 75 ou réessayez dans quelques minutes.',
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -103,7 +128,7 @@ export function ContactPage() {
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Informations de contact */}
-              <div className="bg-white rounded-lg shadow-lg p-8 space-y-6">
+              <div className="bg-white rounded-lg shadow-lg p-8 space-y-6 min-w-0">
                 <h2 className="text-2xl font-bold text-green-700 mb-6">Nos coordonnées</h2>
                 
                 <div className="flex items-start gap-4">
@@ -158,7 +183,7 @@ export function ContactPage() {
               </div>
 
               {/* Formulaire de contact rapide */}
-              <div className="bg-white rounded-lg shadow-lg p-8">
+              <div className="bg-white rounded-lg shadow-lg p-8 min-w-0">
                 <h2 className="text-2xl font-bold text-green-700 mb-6">Envoyez-nous un message</h2>
                 
                 {isSubmitted ? (
@@ -260,9 +285,14 @@ export function ContactPage() {
                       </label>
                     </div>
 
+                    <TurnstileField
+                      resetKey={turnstileResetKey}
+                      onToken={setTurnstileToken}
+                    />
+
                     <Button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || (Boolean(TURNSTILE_SITE_KEY) && !turnstileToken)}
                       className="w-full bg-green-700 hover:bg-green-800 text-white py-3 shadow-md hover:shadow-lg transition-all"
                     >
                       {isSubmitting ? (

@@ -3,9 +3,10 @@
  * ✅ FICHIER AUTO-SUFFISANT — aucun import depuis _utils/
  *
  * Variables d'environnement Vercel requises :
- *   RESEND_API_KEY     → clé API Resend  (re_xxxxxxxxxxxx)
- *   RESEND_FROM_EMAIL  → expéditeur vérifié (ex: Devis Nature Clean <devis@natureclean.fr>)
- *   CONTACT_EMAIL      → destinataire des devis (ex: contact@natureclean.fr)
+ *   RESEND_API_KEY        → clé API Resend  (re_xxxxxxxxxxxx)
+ *   RESEND_FROM_EMAIL     → expéditeur vérifié (ex: Devis Nature Clean <devis@natureclean.fr>)
+ *   CONTACT_EMAIL         → destinataire des devis (ex: contact@natureclean.fr)
+ *   TURNSTILE_SECRET_KEY  → clé secrète Cloudflare Turnstile (vérifie le jeton client)
  */
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
@@ -115,6 +116,39 @@ const quotePayloadSchema = z
   });
 
 type ValidatedQuotePayload = z.infer<typeof quotePayloadSchema>;
+
+async function verifyTurnstileToken(
+  token: string,
+  ip: string,
+): Promise<{ ok: boolean; skipped: boolean }> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.warn('[send-quote][TURNSTILE] TURNSTILE_SECRET_KEY absente — jeton non vérifié.');
+    return { ok: true, skipped: true };
+  }
+  if (!token || token.length > 2048) return { ok: false, skipped: false };
+
+  const body = new URLSearchParams();
+  body.set('secret', secret);
+  body.set('response', token);
+  if (ip && ip !== 'unknown') body.set('remoteip', ip);
+
+  const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body,
+  });
+  if (!verifyRes.ok) {
+    console.error('[send-quote][TURNSTILE] siteverify HTTP', verifyRes.status);
+    return { ok: false, skipped: false };
+  }
+
+  const data = (await verifyRes.json()) as { success?: boolean; 'error-codes'?: string[] };
+  if (!data.success) {
+    console.warn('[send-quote][TURNSTILE] rejeté', data['error-codes'] ?? []);
+  }
+  return { ok: data.success === true, skipped: false };
+}
 
 // ═══════════════════════════════════════════════════════════════
 // LABELS LISIBLES POUR L'EMAIL
@@ -297,8 +331,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST')    return res.status(405).json({ error: 'Method Not Allowed' });
 
-    // ── Rate limiting ─────────────────────────────────────────
     const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || 'unknown';
+    const rawBody = req.body && typeof req.body === 'object' ? (req.body as Record<string, unknown>) : {};
+    const turnstileToken = typeof rawBody.turnstileToken === 'string' ? rawBody.turnstileToken : '';
+
+    // ── Turnstile (avant le rate limit : un bot rejeté ne consomme pas le quota) ──
+    const turnstile = await verifyTurnstileToken(turnstileToken, ip);
+    if (!turnstile.ok) {
+      return res.status(403).json({
+        error: 'Vérification anti-robot échouée. Rechargez la page et réessayez.',
+      });
+    }
+
+    // ── Rate limiting ─────────────────────────────────────────
     const rl = checkRateLimit(ip, 5, 60_000); // 5 req / 1 min
     if (rl.limited) {
       return res.status(429).json({ error: 'Trop de demandes. Réessayez dans une minute.', retryAfter: rl.retryAfter });
