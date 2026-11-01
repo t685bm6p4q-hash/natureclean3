@@ -147,7 +147,7 @@ export const SEO_DATA: Record<string, SEOEntry> = {
   'zones-intervention': {
     title: 'Zones d\'Intervention Nettoyage | Marseille et Bouches-du-Rhône',
     description:
-      'Nature Clean intervient à Marseille (13001-13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres et Martigues. Devis sous 24 h.',
+      'Nature Clean intervient à Marseille (13001-13016), Aix-en-Provence, Aubagne, La Ciotat et dans les Bouches-du-Rhône. Réponse sous 2 h, devis gratuit sous 24 h.',
     keywords:
       'zones intervention Marseille, arrondissements Marseille, Aubagne, Aix-en-Provence, La Ciotat, devis gratuit nettoyage',
   },

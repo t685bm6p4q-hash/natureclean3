@@ -160,7 +160,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     slug: 'nettoyage-medical-marseille',
     city: 'Marseille',
     department: 'Bouches-du-Rhône',
-    postalCode: '13000',
+    postalCode: '13001–13016',
     service: 'Nettoyage médical et locaux de santé',
     serviceSlug: '/services/entretien-bureaux',
     heroImage: IMAGES.cabinetMedical,
@@ -178,21 +178,21 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
       'Intervention après fermeture ou entre créneaux de consultation',
       'Protocoles adaptés : DPS (désinfection des points de contact) systématique',
       'Traçabilité des interventions disponible sur demande pour vos audits',
-      'Zone couverte : tous arrondissements de Marseille, Aubagne, Cassis, La Ciotat',
+      'Zone couverte : Marseille (13001 à 13016) et communes du 13 sur devis',
     ],
     secondaryImage: IMAGES.hygieneLocauxSante,
     secondaryImageAlt: 'Hygiène locaux de santé Marseille — protocole renforcé Nature Clean',
     conversionTitle: 'Professionnels de santé à Marseille : un prestataire qui parle votre langue',
     conversionSubtitle: 'Devis gratuit sous 4h — premier passage d\'essai offert',
     faqItems: FAQ_MEDICAL_MARSEILLE,
-    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
+    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-coproprietes-aubagne'],
   },
 
   'nettoyage-bureaux-marseille': {
     slug: 'nettoyage-bureaux-marseille',
     city: 'Marseille',
     department: 'Bouches-du-Rhône',
-    postalCode: '13000',
+    postalCode: '13001–13016',
     service: 'Nettoyage de bureaux',
     serviceSlug: '/services/entretien-bureaux',
     heroImage: IMAGES.grandOpenSpaceModerne,
@@ -305,7 +305,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     slug: 'nettoyage-industriel-marseille',
     city: 'Marseille',
     department: 'Bouches-du-Rhône',
-    postalCode: '13000',
+    postalCode: '13001–13016',
     service: 'Nettoyage industriel',
     serviceSlug: '/services/nettoyage-chantiers',
     heroImage: IMAGES.openSpaceIndustrielNuit,
@@ -315,7 +315,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
       description:
         'Nettoyage industriel à Marseille : entrepôts, logistique, ateliers, dégraissage sols béton. Nuit & week-end · Protocoles HSE · Devis 24 h · 04 84 89 68 75',
       keywords:
-        'nettoyage industriel marseille, nettoyage industriel paca, nettoyage entrepot marseille, nettoyage atelier 13, dégraissage industriel marseille, société nettoyage industriel bouches-du-rhône',
+        'nettoyage industriel marseille, nettoyage entrepot marseille, nettoyage atelier 13, dégraissage industriel marseille, société nettoyage industriel bouches-du-rhône',
     },
     intro: 'Nature Clean est une entreprise marseillaise specialisee dans le nettoyage industriel. Nous intervenons dans les entrepots logistiques, ateliers de production, plateformes de stockage et sites industriels de Marseille et sa metropole — du port de la Joliette aux zones d\'activites d\'Arnavant, de la Cabucelle a Saint-Menet, en passant par les Aygalades, La Valentine et Vitrolles. Sols beton, machines, structures metalliques, zones de production : nos equipes disposent du materiel professionnel et des protocoles adaptes aux environnements industriels exigeants.',
     highlights: [
@@ -332,7 +332,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     conversionTitle: 'Sites industriels a Marseille : une proprete a la hauteur de vos enjeux',
     conversionSubtitle: 'Devis gratuit et audit technique sous 48h — intervention sur toute la metropole',
     faqItems: FAQ_INDUSTRIEL_MARSEILLE,
-    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-industriel-marseille'],
+    relatedGeoPages: ['nettoyage-bureaux-marseille', 'nettoyage-coproprietes-aubagne'],
     serviceDifferentiator:
       'Page locale « industriel + Marseille » : entrepôts, dégraissage et horaires de nuit. La fiche service chantiers couvre aussi les remises en état après travaux.',
     localProof: [

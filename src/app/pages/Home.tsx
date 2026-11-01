@@ -10,7 +10,6 @@ import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
-import { BRAND_SLOGAN_FULL } from '@/app/constants/brand';
 import { homeHeroLcpSrc, homeHeroLcpSrcSet, LCP_HERO } from '@/app/constants/lcpHero';
 import { IMAGES, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
 import { BeforeAfterCompare } from '@/app/components/BeforeAfterCompare';
@@ -308,18 +307,6 @@ export function Home() {
 
         <div className="ncm-hero-content relative z-10 container mx-auto px-4 pt-6 pb-6 md:pt-28 md:pb-10">
           <div className="max-w-lg md:max-w-3xl lg:max-w-4xl ncm-hero-fade-in">
-            <div className="inline-flex items-center gap-2 bg-black/35 backdrop-blur-sm border border-white/20 text-green-100 px-3 py-1 rounded-full text-xs md:text-sm mb-3 md:mb-4">
-              <Leaf className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>
-                <strong className="font-bold text-white">Nature Clean</strong>
-                {' · '}Marseille depuis 2021
-              </span>
-            </div>
-
-            <p className="ncm-brand-signature ncm-brand-signature--on-dark mb-3 max-w-xl text-sm md:mb-4 md:text-base">
-              {BRAND_SLOGAN_FULL}
-            </p>
-
             <h1 className="ncm-display-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-4 md:mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
               Entreprise de nettoyage
               <span className="block text-green-400">professionnel à Marseille</span>

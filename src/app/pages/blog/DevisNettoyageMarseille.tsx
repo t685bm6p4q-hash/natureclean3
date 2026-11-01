@@ -57,7 +57,7 @@ const prestations = [
   { label: 'Bureaux & open spaces', href: '/nettoyage-bureaux-marseille' },
   { label: 'Copropriétés & syndics', href: '/services/nettoyage-coproprietes' },
   { label: 'Fin de chantier', href: '/services/nettoyage-chantiers' },
-  { label: 'Industriel & entrepôts', href: '/nettoyage-industriel-marseille' },
+  { label: 'Industriel & entrepôts', href: '/services/nettoyage-chantiers' },
   { label: 'Cabinets médicaux', href: '/services/nettoyage-cabinet-medical-marseille' },
 ];
 

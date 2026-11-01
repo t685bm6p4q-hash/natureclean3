@@ -70,8 +70,14 @@ export const router = createBrowserRouter([
       // Geo landing pages
       // ⚠️ MARSEILLE — mot-clé principal
       { path: 'nettoyage-bureaux-marseille', lazy: () => import('@/app/pages/geo/NettoyageBureauxMarseillePage').then(m => ({ Component: m.NettoyageBureauxMarseillePage })) },
-      { path: 'nettoyage-industriel-marseille', lazy: () => import('@/app/pages/geo/NettoyageIndustrielMarseillePage').then(m => ({ Component: m.NettoyageIndustrielMarseillePage })) },
-      { path: 'nettoyage-fin-chantier-marseille', lazy: () => import('@/app/pages/geo/NettoyageFinChantierMarseillePage').then(m => ({ Component: m.NettoyageFinChantierMarseillePage })) },
+      {
+        path: 'nettoyage-industriel-marseille',
+        Component: () => createElement(Navigate, { to: '/services/nettoyage-chantiers', replace: true }),
+      },
+      {
+        path: 'nettoyage-fin-chantier-marseille',
+        Component: () => createElement(Navigate, { to: '/services/nettoyage-chantiers', replace: true }),
+      },
       { path: 'nettoyage-medical-marseille', Component: () => createElement(Navigate, { to: '/services/nettoyage-cabinet-medical-marseille', replace: true }) },
       { path: 'nettoyage-bureaux-aix-en-provence', lazy: () => import('@/app/pages/geo/NettoyageBureauxAixPage').then(m => ({ Component: m.NettoyageBureauxAixPage })) },
       { path: 'nettoyage-coproprietes-aubagne', lazy: () => import('@/app/pages/geo/NettoyageCoproprietesAubagnePage').then(m => ({ Component: m.NettoyageCoproprietesAubagnePage })) },

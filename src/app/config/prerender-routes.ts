@@ -52,9 +52,8 @@ export const PRERENDER_ROUTES: readonly string[] = [
   '/blog/nettoyage-graffitis-grande-surface-marseille',
   '/blog/nettoyage-galerie-art-marseille',
 
-  // ── 7 landing pages geo (Bouches-du-Rhône) ──
+  // ── 4 landing pages geo (contenu terrain) ──
   '/nettoyage-bureaux-marseille',
-  '/nettoyage-industriel-marseille',
   '/nettoyage-bureaux-aix-en-provence',
   '/nettoyage-coproprietes-aubagne',
   '/nettoyage-coproprietes-la-ciotat',

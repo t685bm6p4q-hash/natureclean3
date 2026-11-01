@@ -9,7 +9,7 @@ export const FAQ_MEDICAL_MARSEILLE: FAQItem[] = [
   {
     question: 'Quels produits utilisez-vous pour la désinfection médicale ?',
     answer:
-      'On utilise des produits bactéricides, virucides et fongicides adaptés aux surfaces médicales : désinfectants de surfaces norme EN 14476 (actifs sur les virus enveloppés et non enveloppés), lingettes imprégnées pour les points de contact, et produits de sol compatibles avec les revêtements vinyle et linoléum des cabinets. Tout est en conformité avec les recommandations de la HAS et de l\'ARS PACA.',
+      'Produits bactéricides, virucides et fongicides adaptés aux surfaces du cabinet, lingettes pour les points de contact, produits de sol compatibles vinyle et linoléum. Le protocole (zones, fréquences, temps de contact) est défini avec vous au devis — pas de stérilisation d\'instruments ni gestion des DASRI.',
   },
   {
     question: 'Pouvez-vous intervenir entre deux consultations à Marseille ?',

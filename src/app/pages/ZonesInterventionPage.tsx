@@ -38,12 +38,13 @@ import {
   MARSEILLE_QUARTIERS,
   CITY_SECTORS,
   LOCAL_GEO_PAGE_SLUGS,
+  ZONE_CASE_EXAMPLES,
 } from '@/app/config/zone-data';
 
 const MARSEILLE_GEO_LINKS = [
-  { label: 'Nettoyage de bureaux à Marseille', href: '/nettoyage-bureaux-marseille' },
+  { label: 'Entretien de bureaux — Prado, Joliette, Euromed', href: '/nettoyage-bureaux-marseille' },
   { label: 'Nettoyage de copropriétés à Marseille', href: '/services/nettoyage-coproprietes' },
-  { label: 'Nettoyage de fin de chantier à Marseille', href: '/nettoyage-fin-chantier-marseille' },
+  { label: 'Nettoyage de fin de chantier à Marseille', href: '/services/nettoyage-chantiers' },
 ] as const;
 
 const ZONE_SERVICE_LINKS = [
@@ -51,7 +52,7 @@ const ZONE_SERVICE_LINKS = [
   { icon: Stethoscope, label: 'Nettoyage de cabinets médicaux à Marseille', href: '/services/nettoyage-cabinet-medical-marseille' },
   { icon: Store, label: 'Nettoyage de commerces à Marseille', href: '/services/nettoyage-commerces' },
   { icon: HomeIcon, label: 'Nettoyage de copropriétés à Marseille', href: '/services/nettoyage-coproprietes' },
-  { icon: HardHat, label: 'Nettoyage de fin de chantier à Marseille', href: '/nettoyage-fin-chantier-marseille' },
+  { icon: HardHat, label: 'Nettoyage de fin de chantier à Marseille', href: '/services/nettoyage-chantiers' },
   { icon: HomeIcon, label: 'Remise en état des sols à Marseille', href: '/services/remise-etat-sols' },
   { icon: GlassWater, label: 'Nettoyage de vitres à Marseille', href: '/services/nettoyage-vitre' },
   { icon: Eraser, label: 'Enlèvement de graffitis à Marseille', href: '/services/nettoyage-graffitis' },
@@ -97,7 +98,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Proposez-vous les mêmes services dans toutes les villes ?',
     answer:
-      'Nos neuf services sont disponibles dans les zones desservies. Certaines prestations demandant un matériel spécifique peuvent être limitées selon l\'accès ou la distance. Nous vous le disons dès le devis.',
+      'Nos dix prestations (fiches services) sont disponibles dans les zones desservies. Certaines interventions demandant un matériel spécifique peuvent être limitées selon l\'accès ou la distance. Nous vous le disons dès le devis.',
   },
   {
     question: 'Où êtes-vous basés ?',
@@ -159,7 +160,7 @@ export function ZonesInterventionPage() {
 
       <section className="py-12 bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto text-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto text-center">
             <div>
               <p className="text-3xl font-black text-green-600">1</p>
               <p className="text-sm font-bold text-gray-900">Département</p>
@@ -175,13 +176,19 @@ export function ZonesInterventionPage() {
               <p className="text-xs text-gray-500">Détaillés ci-dessous</p>
             </div>
             <div>
-              <p className="text-3xl font-black text-green-600">9</p>
-              <p className="text-sm font-bold text-gray-900">Services</p>
-              <p className="text-xs text-gray-500">Bureaux à Diogène</p>
+              <p className="text-3xl font-black text-green-600">{LOCAL_GEO_PAGE_SLUGS.length}</p>
+              <p className="text-sm font-bold text-gray-900">Pages locales</p>
+              <p className="text-xs text-gray-500">Contenu terrain ville × métier</p>
+            </div>
+            <div>
+              <p className="text-3xl font-black text-green-600">{ZONE_SERVICE_LINKS.length}</p>
+              <p className="text-sm font-bold text-gray-900">Prestations</p>
+              <p className="text-xs text-gray-500">Fiches services détaillées</p>
             </div>
             <div className="col-span-2 md:col-span-1">
               <p className="text-3xl font-black text-green-600">{FOUNDING_YEAR}</p>
               <p className="text-sm font-bold text-gray-900">Depuis</p>
+              <p className="text-xs text-gray-500">Marseille 8e</p>
             </div>
           </div>
         </div>
@@ -241,7 +248,7 @@ export function ZonesInterventionPage() {
                     <tr key={row.sector} className="border-t border-gray-100">
                       <td className="p-3 font-medium text-gray-900">{row.sector}</td>
                       <td className="p-3 text-gray-700">{row.cities}</td>
-                      <td className="p-3 text-gray-600">Annoncé au devis (trajet depuis Marseille 8e)</td>
+                      <td className="p-3 text-gray-600">{row.travel}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -270,8 +277,9 @@ export function ZonesInterventionPage() {
           <ScrollReveal>
             <h2 className="text-3xl font-black text-gray-900 mb-4 text-center">Nos services dans ces zones</h2>
             <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto text-sm leading-relaxed">
-              Tous nos services sont proposés sur les zones desservies. Certains équipements lourds (nacelle,
-              marbre) peuvent être limités selon l&apos;accès : nous vous le précisons au devis :
+              Toutes nos prestations sont chiffrées au devis sur les zones desservies. Vitres en grande
+              hauteur ou sols marbre : on indique au devis si l&apos;accès (perche, nacelle, voirie) le
+              permet :
             </p>
           </ScrollReveal>
           <ul className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
@@ -319,8 +327,8 @@ export function ZonesInterventionPage() {
                       {page.city} — {page.postalCode}
                     </span>
                     <h3 className="font-bold text-gray-900 text-sm mb-2">{geoAnchor(page.slug)}</h3>
-                    <p className="text-xs text-gray-600 leading-relaxed flex-1 mb-4 line-clamp-4">
-                      {page.intro}
+                    <p className="text-xs text-gray-600 leading-relaxed flex-1 mb-4">
+                      {page.intro.length > 280 ? `${page.intro.slice(0, 280).trim()}…` : page.intro}
                     </p>
                     <Link
                       to={`/${page.slug}`}
@@ -353,6 +361,22 @@ export function ZonesInterventionPage() {
       </section>
 
       <section className="py-16 bg-white border-y border-gray-100">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-2xl font-black text-gray-900 mb-6 text-center">Exemples par zone</h2>
+          <ul className="grid sm:grid-cols-2 gap-3 mb-12">
+            {ZONE_CASE_EXAMPLES.map((ex) => (
+              <li key={ex.href + ex.label}>
+                <Link
+                  to={ex.href}
+                  className="block p-4 rounded-xl border border-gray-200 hover:border-green-300 hover:bg-green-50/50 transition-colors"
+                >
+                  <span className="text-xs font-bold text-green-700 uppercase">{ex.zone}</span>
+                  <span className="block text-sm font-semibold text-gray-900 mt-1">{ex.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="container mx-auto px-4 max-w-2xl text-center">
           <h2 className="text-2xl font-black text-gray-900 mb-4">Votre commune n&apos;est pas dans la liste ?</h2>
           <p className="text-gray-600 leading-relaxed mb-6">
