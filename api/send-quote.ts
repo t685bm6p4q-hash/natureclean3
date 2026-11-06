@@ -1,6 +1,5 @@
 /**
  * Vercel Serverless Function — SOUMISSION DE DEVIS
- * ✅ FICHIER AUTO-SUFFISANT — aucun import depuis _utils/
  *
  * Variables d'environnement Vercel requises :
  *   RESEND_API_KEY        → clé API Resend  (re_xxxxxxxxxxxx)
@@ -11,6 +10,7 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { z } from 'zod';
+import { verifyTurnstileToken } from './_utils/turnstile';
 
 // ═══════════════════════════════════════════════════════════════
 // UTILITAIRES INLINÉS (ex-_utils/sanitize)
@@ -116,39 +116,6 @@ const quotePayloadSchema = z
   });
 
 type ValidatedQuotePayload = z.infer<typeof quotePayloadSchema>;
-
-async function verifyTurnstileToken(
-  token: string,
-  ip: string,
-): Promise<{ ok: boolean; skipped: boolean }> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) {
-    console.warn('[send-quote][TURNSTILE] TURNSTILE_SECRET_KEY absente — jeton non vérifié.');
-    return { ok: true, skipped: true };
-  }
-  if (!token || token.length > 2048) return { ok: false, skipped: false };
-
-  const body = new URLSearchParams();
-  body.set('secret', secret);
-  body.set('response', token);
-  if (ip && ip !== 'unknown') body.set('remoteip', ip);
-
-  const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body,
-  });
-  if (!verifyRes.ok) {
-    console.error('[send-quote][TURNSTILE] siteverify HTTP', verifyRes.status);
-    return { ok: false, skipped: false };
-  }
-
-  const data = (await verifyRes.json()) as { success?: boolean; 'error-codes'?: string[] };
-  if (!data.success) {
-    console.warn('[send-quote][TURNSTILE] rejeté', data['error-codes'] ?? []);
-  }
-  return { ok: data.success === true, skipped: false };
-}
 
 // ═══════════════════════════════════════════════════════════════
 // LABELS LISIBLES POUR L'EMAIL

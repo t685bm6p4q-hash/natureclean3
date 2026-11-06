@@ -61,7 +61,7 @@
 │   │   │   └── RootLayout.tsx    # Header + Outlet + Footer (barre mobile devis/tel)
 │   │   ├── pages/                # Home eager, reste lazy (30+ routes)
 │   │   │   ├── Home.tsx
-│   │   │   ├── QuotePage.tsx     # Devis → POST /api/forward-quote
+│   │   │   ├── QuotePage.tsx     # Devis express → QuoteExpressWizard → POST /api/send-quote
 │   │   │   ├── geo/              # 6 landings SEO locales (geoData.ts)
 │   │   │   ├── admin/AdminAuditsPage.tsx  # Hub audits site + securite
 │   │   │   ├── services/         # Fiches prestations
@@ -433,6 +433,8 @@ A configurer dans **Vercel Dashboard** → **Settings** → **Environment Variab
 
 | Variable | Obligatoire | Description |
 |---|---|---|
+| `VITE_TURNSTILE_SITE_KEY` | Prod recommandé | Clé publique Turnstile (widget) — **local** : `.env.local` ; **Vercel** : env identique pour le build front |
+| `TURNSTILE_SECRET_KEY` | Prod recommandé | Clé secrète Turnstile (**Vercel uniquement**, sans préfixe `VITE_`) — vérifie le jeton dans `/api/send-quote` et `/api/forward-quote` |
 | `CALLMEBOT_PHONE` | Oui | Numero WhatsApp format international (`+33612345678`) |
 | `CALLMEBOT_APIKEY` | Oui | Cle API CallMeBot |
 | `WHAPI_TOKEN` | Non | Token Whapi.cloud (fallback) |

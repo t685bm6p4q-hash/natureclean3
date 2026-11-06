@@ -18,6 +18,7 @@ import { z } from 'zod';
 import { sanitize, maskEmail, maskPhone } from './_utils/sanitize';
 import { sendWhatsApp } from './_utils/whatsapp';
 import { checkRateLimit } from './_utils/ratelimit';
+import { verifyTurnstileToken } from './_utils/turnstile';
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 
@@ -127,6 +128,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
     req.socket?.remoteAddress ||
     'unknown';
+
+  const rawBody = req.body && typeof req.body === 'object' ? (req.body as Record<string, unknown>) : {};
+  const turnstileToken = typeof rawBody.turnstileToken === 'string' ? rawBody.turnstileToken : '';
+
+  const turnstile = await verifyTurnstileToken(turnstileToken, clientIp);
+  if (!turnstile.ok) {
+    return res.status(403).json({
+      error: 'Vérification anti-robot échouée. Rechargez la page et réessayez.',
+    });
+  }
 
   // Rate limiting (même algo Redis que send-quote.ts)
   const rateResult = await checkRateLimit(clientIp, RATE_FORWARD);

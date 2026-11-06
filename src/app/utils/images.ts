@@ -105,6 +105,12 @@ const P_solsBureauxPro          = 'v1779387123/nettoyage-sol-magasin-paca_lofuw8
 const P_nettoyageVitresPro      = 'v1777419398/nettoyege-vitres-marseille-nature-clean_o9zclc.jpg';
 const P_vitrineCommercePro      = 'v1778546887/nettoyage-vitres-professionnel-marseille_gvljrn.jpg';
 const P_facadeVitreeImmeuble    = 'v1773950694/nettoyage-vitres-marseille-cannes-allentours_-_01_qifmli.jpg';
+const P_lavageVitrineBoutiqueRaclette =
+  'v1793948413/05f438ec-cd28-41b6-a8bb-647637a44cb4_2_vnvbu0.jpg';
+const P_tagVitrineAvantMarseille =
+  'v1793948413/7ffb27b7-190c-41f8-a9ff-06524e507e76_aqdyvm.jpg';
+const P_tagVitrineApresMarseille =
+  'v1793948412/7e13a304-2b58-4dba-bb8a-d55a7651ed64_asajup.jpg';
 
 // ── BLOG ──
 const P_carnetBlog              = 'v1773950694/nettoyage-vitres-prope-marseille_-_01_jznc7i.jpg';
@@ -215,6 +221,9 @@ export const IMAGES = {
   nettoyageVitresPro:     O(P_nettoyageVitresPro),
   facadeVitreeImmeuble:   O(P_facadeVitreeImmeuble),
   lavageVitrine:          O(P_vitrineCommercePro),
+  lavageVitrineBoutiqueRaclette: O(P_lavageVitrineBoutiqueRaclette),
+  tagVitrineAvantMarseille: O(P_tagVitrineAvantMarseille),
+  tagVitrineApresMarseille: O(P_tagVitrineApresMarseille),
   laveurNacelle:          O(P_facadeVitreeImmeuble),
 
   // ── ECO / PRODUITS (alias) ──
