@@ -140,7 +140,7 @@ export function ContactPage() {
                     <a href={PHONE_HREF} className="text-green-600 hover:text-green-700 text-lg font-semibold" aria-label={ARIA_PHONE}>
                       {PHONE_DISPLAY}
                     </a>
-                    <p className="text-sm text-gray-600 mt-1">Standard lun–sam, 8 h–18 h</p>
+                    <p className="text-sm text-gray-600 mt-1">Standard lun–ven, 9 h–18 h</p>
                   </div>
                 </div>
 
@@ -153,7 +153,7 @@ export function ContactPage() {
                     <a href={EMAIL_HREF} className="text-green-600 hover:text-green-700" aria-label={ARIA_EMAIL}>
                       {EMAIL}
                     </a>
-                    <p className="text-sm text-gray-600 mt-1">Réponse sous 24h</p>
+                    <p className="text-sm text-gray-600 mt-1">Prise en charge sous 4 h ouvrées (lun–ven 9 h–18 h)</p>
                   </div>
                 </div>
 
@@ -192,7 +192,9 @@ export function ContactPage() {
                       <CheckCircle2 className="w-10 h-10 text-green-600" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Message envoyé !</h3>
-                    <p className="text-gray-600 mb-6">Merci pour votre message. Notre équipe vous répondra sous 24h.</p>
+                    <p className="text-gray-600 mb-6">
+                      Merci pour votre message. Prise en charge sous 4 h ouvrées (lun–ven 9 h–18 h).
+                    </p>
                     <Button 
                       onClick={() => setIsSubmitted(false)}
                       variant="outline"

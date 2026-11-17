@@ -6,6 +6,7 @@ import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { FAQSection } from '@/app/components/FAQSection';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 import { PacaInteractiveMap } from '@/app/components/PacaInteractiveMap';
 import { Button } from '@/app/components/ui/button';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
@@ -31,7 +32,7 @@ import {
   PHONE_DISPLAY,
   PHONE_HREF,
   ARIA_PHONE,
-  FOUNDING_YEAR,
+  TEAM_SIZE,
 } from '@/app/utils/constants';
 import {
   SERVED_CITIES_LABELS,
@@ -63,11 +64,11 @@ const ZONE_SERVICE_LINKS = [
 const PROCESS_STEPS = [
   {
     title: 'Vous nous contactez',
-    desc: 'Réponse sous 2 h en horaires d\'ouverture (lundi–samedi, 8 h–18 h).',
+    desc: 'Prise en charge sous 4 h ouvrées en horaires d\'ouverture (lundi–vendredi, 9 h–18 h).',
   },
   {
     title: 'Nous évaluons',
-    desc: 'Votre site et vos contraintes, puis envoi d\'un devis gratuit et détaillé sous 24 h.',
+    desc: 'Votre site et vos contraintes, photos ou visite si besoin, puis devis détaillé après étude.',
   },
   {
     title: 'Nous intervenons',
@@ -93,7 +94,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Quel est votre délai d\'intervention ?',
     answer:
-      'Réponse sous 2 h en horaires d\'ouverture et devis sous 24 h. Le délai d\'intervention dépend du service, de la zone et du planning : nous vous annonçons une date au devis.',
+      'Prise en charge sous 4 h ouvrées en horaires d\'ouverture et devis détaillé après étude. Le délai d\'intervention dépend du service, de la zone et du planning : nous vous annonçons une date au devis.',
   },
   {
     question: 'Proposez-vous les mêmes services dans toutes les villes ?',
@@ -103,11 +104,11 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Où êtes-vous basés ?',
     answer:
-      'À Marseille 8e (22 Traverse Pupat). Nos horaires d\'accueil sont du lundi au samedi, de 8 h à 18 h. Les créneaux d\'intervention sur site (6 h–22 h, week-end possible) se définissent au contrat.',
+      'À Marseille 8e (22 Traverse Pupat). Nos horaires d\'accueil sont du lundi au vendredi, de 9 h à 18 h. Les créneaux d\'intervention sur site (6 h–22 h, week-end possible) se définissent au contrat.',
   },
   {
     question: 'Comment demander un devis pour ma ville ?',
-    answer: `Appelez le ${PHONE_DISPLAY} ou remplissez le formulaire en ligne. Nous répondons sous 2 h en horaires d'ouverture, avec un devis gratuit sous 24 h.`,
+    answer: `Appelez le ${PHONE_DISPLAY} ou remplissez le formulaire en ligne. Nous répondons sous 4 h ouvrées d'ouverture, avec un devis détaillé après étude.`,
   },
 ];
 
@@ -126,7 +127,7 @@ export function ZonesInterventionPage() {
 
       <ServicePageHero
         title="Zones d'intervention : Marseille et Bouches-du-Rhône"
-        subtitle="Basés à Marseille 8e — 9 villes du 13, devis gratuit sous 24 h"
+        subtitle="Basés à Marseille 8e — 9 villes du 13, devis détaillé après étude"
         badge="Département 13"
         badgeIcon={<MapPin className="w-4 h-4" aria-hidden="true" />}
         imageSrc={IMAGES.vueMarseilleBasin}
@@ -141,8 +142,8 @@ export function ZonesInterventionPage() {
         <div className="container mx-auto px-4 max-w-3xl text-center">
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
             Basés à Marseille 8e, nous intervenons chez les syndics, entreprises, commerçants et promoteurs de
-            Marseille et de huit autres villes des Bouches-du-Rhône. Réponse sous 2 h en horaires d&apos;ouverture
-            (lundi–samedi, 8 h–18 h), devis gratuit sous 24 h.
+            Marseille et de huit autres villes des Bouches-du-Rhône. Prise en charge sous 4 h ouvrées en horaires d&apos;ouverture
+            (lundi–vendredi, 9 h–18 h), devis détaillé après étude.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 text-white font-bold">
@@ -186,8 +187,8 @@ export function ZonesInterventionPage() {
               <p className="text-xs text-gray-500">Fiches services détaillées</p>
             </div>
             <div className="col-span-2 md:col-span-1">
-              <p className="text-3xl font-black text-green-600">{FOUNDING_YEAR}</p>
-              <p className="text-sm font-bold text-gray-900">Depuis</p>
+              <p className="text-3xl font-black text-green-600">{TEAM_SIZE}</p>
+              <p className="text-sm font-bold text-gray-900">En équipe</p>
               <p className="text-xs text-gray-500">Marseille 8e</p>
             </div>
           </div>
@@ -278,7 +279,7 @@ export function ZonesInterventionPage() {
             <h2 className="text-3xl font-black text-gray-900 mb-4 text-center">Nos services dans ces zones</h2>
             <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto text-sm leading-relaxed">
               Toutes nos prestations sont chiffrées au devis sur les zones desservies. Vitres en grande
-              hauteur ou sols marbre : on indique au devis si l&apos;accès (perche, nacelle, voirie) le
+              hauteur ou sols marbre : on indique au devis si l&apos;accès (perche, partenaire cordes) le
               permet :
             </p>
           </ScrollReveal>
@@ -410,6 +411,31 @@ export function ZonesInterventionPage() {
         </div>
       </section>
 
+      <ServiceSeoContentSection
+        title="Entreprise de nettoyage à Marseille et dans le 13 : où nous intervenons"
+        lead="Siège au 8e arrondissement, équipes mobiles sur neuf villes des Bouches-du-Rhône."
+      >
+        <p>
+          Nature Clean est basée au <strong>22 Traverse Pupat (13008)</strong>. Depuis ce point d&apos;ancrage, nous
+          organisons l&apos;entretien de bureaux, le nettoyage de copropriétés, les fins de chantier, le retrait de
+          graffitis et les prestations spécialisées (vitres, sols, Diogène, événementiel) à{' '}
+          <strong>Marseille intra-muros</strong>, puis vers les communes limitrophes du département.
+        </p>
+        <p>
+          Chaque demande est prise en charge sous <strong>4 h ouvrées</strong> (lun–ven, 9 h–18 h). Le{' '}
+          <strong>devis détaillé</strong> suit une étude : type de locaux, surface, fréquence, accès et contraintes
+          horaires. Les pages géolocalisées (Aix, Aubagne, La Ciotat…) reprennent les mêmes prestations avec des
+          exemples de quartiers ou de zones d&apos;activité.
+        </p>
+        <p>
+          Vous pilotez un syndic, une PME ou un chantier en cours ? Consultez nos{' '}
+          <Link to="/services" className="text-green-700 font-semibold underline">
+            fiches services
+          </Link>{' '}
+          ou appelez le {PHONE_DISPLAY} pour cadrer une intervention sur votre commune.
+        </p>
+      </ServiceSeoContentSection>
+
       <FAQSection
         items={FAQ_ITEMS}
         title="Questions fréquentes"
@@ -418,13 +444,13 @@ export function ZonesInterventionPage() {
 
       <section className="py-16 md:py-20 bg-gray-900">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Un devis gratuit sous 24 h</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Un devis détaillé après étude</h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Marseille et Bouches-du-Rhône. Réponse sous 2 h en horaires d&apos;ouverture.
+            Marseille et Bouches-du-Rhône. Prise en charge sous 4 h ouvrées en horaires d&apos;ouverture.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
-              <Link to="/devis">Demander un devis</Link>
+            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
+              <Link to="/devis">Demander un devis gratuit</Link>
             </Button>
             <Button asChild size="lg" variant="outlineOnDark">
               <a href={PHONE_HREF} className="flex items-center justify-center gap-2" aria-label={ARIA_PHONE}>

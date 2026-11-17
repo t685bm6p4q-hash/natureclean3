@@ -1,7 +1,7 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE, FOUNDING_YEAR } from '@/app/utils/constants';
+import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
 import { Phone, Calendar, Music, Users, ArrowRight, Sparkles, Building2 } from 'lucide-react';
 import { Link } from 'react-router';
@@ -33,7 +33,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Fournissez-vous le matériel et les produits ?',
     answer:
-      'Oui, matériel et produits professionnels sont inclus. Environ 50 % de produits éco-labellisés. Vous n\'avez rien à fournir côté matériel d\'entretien.',
+      'Oui, matériel et produits professionnels sont inclus. Produits professionnels adaptés à chaque chantier. Vous n\'avez rien à fournir côté matériel d\'entretien.',
   },
   {
     question: 'Intervenez-vous aussi en dehors de Marseille pour les événements ?',
@@ -54,7 +54,7 @@ export function NettoyageEvenementielPage() {
             '@type': 'Service',
             name: 'Nettoyage événementiel à Marseille',
             description:
-              'Nettoyage avant, pendant et après événement à Marseille depuis 2021. Séminaires, salons, concerts. Réponse sous 2 h, devis sous 24 h.',
+              'Nettoyage avant, pendant et après événement à Marseille. Séminaires, salons, concerts. Prise en charge sous 4 h ouvrées, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'AdministrativeArea', name: 'Bouches-du-Rhône' },
             serviceType: 'Nettoyage événementiel',
@@ -95,7 +95,7 @@ export function NettoyageEvenementielPage() {
               <p className="text-lg">
                 Un événement, c&apos;est aussi des sanitaires, des sols et des espaces communs à tenir pendant
                 que le public est là. Nature Clean intervient en <strong>nettoyage événementiel</strong> à
-                Marseille depuis {FOUNDING_YEAR}, pour des lieux et des organisateurs professionnels.
+                Marseille, pour des lieux et des organisateurs professionnels.
               </p>
               <p>
                 Cette page décrit le protocole avant / pendant / après. L&apos;entretien régulier de bureaux ou
@@ -107,7 +107,7 @@ export function NettoyageEvenementielPage() {
                 planning le prévoit au devis.
               </p>
               <p className="font-semibold text-green-700">
-                Réponse sous 2 h, devis sous 24 h — 50 % de produits éco-labellisés
+                Prise en charge sous 4 h ouvrées, devis détaillé après étude — Produits professionnels adaptés à chaque chantier
               </p>
             </ScrollReveal>
           </div>
@@ -317,12 +317,12 @@ export function NettoyageEvenementielPage() {
               Propreté avant et après la manifestation
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Marseille et Bouches-du-Rhône — réponse sous 2 h, devis sous 24 h
+              Marseille et Bouches-du-Rhône — prise en charge sous 4 h ouvrées, devis détaillé après étude
             </p>
             <Button
               asChild
               size="lg"
-              className="bg-green-500 hover:bg-green-400 text-gray-900 font-black shadow-lg shadow-green-500/20"
+              className="bg-green-500 hover:bg-green-400 text-white font-black shadow-lg shadow-green-500/20"
             >
               <Link to="/devis?service=evenementiel">
                 Demander un devis gratuit

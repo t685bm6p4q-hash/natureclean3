@@ -66,7 +66,7 @@ const SERVICE_PARAM_MAP: Record<string, string> = {
 const STEPS = [
   { n: 1, title: 'Votre besoin', subtitle: 'Type de prestation' },
   { n: 2, title: 'Lieu & volume', subtitle: 'Ville, surface, fréquence' },
-  { n: 3, title: 'Vos coordonnées', subtitle: 'Estimation sous 24 h' },
+  { n: 3, title: 'Vos coordonnées', subtitle: 'Devis gratuit, détaillé après étude' },
 ] as const;
 
 const MAX_PHOTO_BYTES = 800_000;
@@ -541,7 +541,7 @@ export function QuoteExpressWizard() {
         {step === 3 && (
           <div className="space-y-4">
             <div>
-              <h3 className="text-base font-bold text-gray-900">Recevoir votre estimation sous 24 h</h3>
+              <h3 className="text-base font-bold text-gray-900">Recevoir votre devis gratuit</h3>
               <p className="text-xs text-gray-500 mt-0.5">Nous vous rappelons en priorité sur le mobile.</p>
             </div>
 

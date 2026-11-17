@@ -9,11 +9,12 @@ import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { IMAGES, getOptimizedCldUrl, cldSrcSet } from '@/app/utils/images';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
-import { FOUNDING_YEAR } from '@/app/utils/constants';
 import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
 import { BeforeAfterCompare } from '@/app/components/BeforeAfterCompare';
+import { MOBILIZATION_AFTER_QUOTE, ZONE_LABEL } from '@/app/utils/constants';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 
 const FAQ_VITRE: FAQItem[] = [
   {
@@ -34,7 +35,7 @@ const FAQ_VITRE: FAQItem[] = [
   {
     question: 'Jusqu\'à quelle hauteur intervenez-vous ?',
     answer:
-      'La base, c\'est la perche télescopique et l\'eau déminéralisée, pour les étages accessibles depuis le sol ou un balcon. Une nacelle, seulement si l\'accès et l\'autorisation de voirie le permettent. On ne promet pas le travail sur cordes.',
+      'Perches et échelles télescopiques, eau déminéralisée, pour les hauteurs accessibles depuis le sol ou un balcon. Pour les accès complexes sur cordes ou très grande hauteur : partenaire spécialisé, organisé sur étude.',
   },
   {
     question: 'Pouvez-vous enlever un tag ou un adhésif sur une vitre ?',
@@ -44,7 +45,7 @@ const FAQ_VITRE: FAQItem[] = [
   {
     question: 'Combien coûte le nettoyage de vitres ?',
     answer:
-      'Le prix dépend du nombre de vitres, de leur taille, de l\'accès et de la fréquence. Le devis est gratuit, détaillé et sans engagement — réponse sous 2 h.',
+      'Le prix dépend du nombre de vitres, de leur taille, de l\'accès et de la fréquence. Devis détaillé après étude — prise en charge sous 4 h ouvrées.',
   },
   {
     question: 'À quelle fréquence faut-il nettoyer les vitres professionnelles ?',
@@ -54,7 +55,7 @@ const FAQ_VITRE: FAQItem[] = [
   {
     question: 'Proposez-vous un contrat d\'entretien régulier pour les vitres ?',
     answer:
-      'Oui. Fréquence écrite au devis, planning calé, pas besoin de rappeler à chaque fois. Réponse sous 2 h, devis sous 24 h.',
+      'Oui. Fréquence écrite au devis, planning calé, pas besoin de rappeler à chaque fois. Prise en charge sous 4 h ouvrées, devis détaillé après étude.',
   },
 ];
 
@@ -100,7 +101,7 @@ const CONTRAINTES_VITRES = [
   {
     icon: Square,
     title: 'Accès et hauteur',
-    text: 'Trottoir, devanture ou étage déterminent le matériel : raclette à main, perche télescopique, ou nacelle si la voirie le permet. Pas de travail sur cordes.',
+    text: 'Trottoir, devanture ou étage déterminent le matériel : raclette, perche ou échelle télescopique. Accès complexes : partenaire spécialisé sur cordes.',
   },
   {
     icon: Sparkles,
@@ -121,7 +122,7 @@ export function NettoyageVitrePage() {
             '@type': 'Service',
             name: 'Nettoyage de vitres professionnel à Marseille',
             description:
-              'Nettoyage de vitres à Marseille depuis 2021 : vitrines, bureaux, façades vitrées. Perche, eau déminéralisée, RC Pro. Réponse sous 2 h, devis sous 24 h.',
+              'Nettoyage de vitres à Marseille : vitrines, bureaux, façades vitrées. Perche, eau déminéralisée, RC Pro. Prise en charge sous 4 h ouvrées, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'City', name: 'Marseille' },
             serviceType: 'Nettoyage de vitres',
@@ -132,7 +133,7 @@ export function NettoyageVitrePage() {
 
       <ServicePageHero
         title="Nettoyage de vitres professionnel à Marseille"
-        subtitle="Vitrines, bureaux, façades — perche, eau déminéralisée, depuis 2021"
+        subtitle="Vitrines, bureaux, façades — perche, eau déminéralisée, à Marseille"
         badge="Lavage de vitres"
         badgeIcon={<Square className="w-4 h-4" />}
         imageSrc={IMAGES.facadeVitreeImmeuble}
@@ -150,7 +151,7 @@ export function NettoyageVitrePage() {
           <div className="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
             <p className="text-lg">
               La vitrine est la première chose que voit un client. Nature Clean lave les vitres à
-              Marseille depuis {FOUNDING_YEAR} : commerces, bureaux, copropriétés. Zone : Marseille
+              Marseille : commerces, bureaux, copropriétés. Zone : Marseille
               et Bouches-du-Rhône.
             </p>
             <p>
@@ -158,11 +159,38 @@ export function NettoyageVitrePage() {
               commerces en parlent en passant ; le détail (hauteur, voirie, calcaire) est ici.
             </p>
             <p className="font-semibold text-green-700">
-              Réponse sous 2 h, devis sous 24 h — 50 % de produits éco-labellisés
+              Prise en charge sous 4 h ouvrées, devis détaillé après étude.
             </p>
           </div>
         </div>
       </section>
+
+      <ServiceSeoContentSection title="Lavage de vitres à Marseille : commerces, bureaux, copropriétés">
+        <p>
+          Chercher un <strong>nettoyage de vitres à Marseille</strong>, c&apos;est souvent chercher la transparence
+          retrouvée — vitrine de boutique, baie vitrée de bureau, vitrage de hall d&apos;immeuble. Nature Clean utilise
+          <strong> eau déminéralisée</strong> et <strong>perches télescopiques</strong> pour les hauteurs
+          accessibles depuis le sol ou un balcon. Pour les accès complexes (cordes, très grande hauteur), nous faisons
+          appel à un <strong>partenaire spécialisé</strong>, annoncé au devis — pas de nacelle ou CACES systématique
+          en promesse.
+        </p>
+        <p>
+          Le mistral, le calcaire et les dépôts urbains marquent vite les vitrages en rez-de-chaussée. La fréquence
+          (hebdomadaire, bimensuelle, ponctuelle) se fixe à la visite, surtout pour les enseignes en rue passante.
+          {` ${MOBILIZATION_AFTER_QUOTE}.`} Zone : {ZONE_LABEL}.
+        </p>
+        <p>
+          Les contrats récurrents vitrines + bureaux sont courants : détail des prestations sur les fiches{' '}
+          <Link to="/services/entretien-bureaux" className="text-green-800 font-semibold underline">
+            entretien de bureaux
+          </Link>{' '}
+          et{' '}
+          <Link to="/services/nettoyage-commerces" className="text-green-800 font-semibold underline">
+            commerces
+          </Link>
+          ; ici, toute la méthode (raclette, contrôle, reprise sur place).
+        </p>
+      </ServiceSeoContentSection>
 
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -212,7 +240,7 @@ export function NettoyageVitrePage() {
             </h3>
             <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
               Photos de chantiers à Marseille et environs. Logos recadrés ou génériques lorsque
-              l&apos;accord écrit de l&apos;enseigne n&apos;est pas affiché.
+              les logos sont floutés sur les visuels publiés lorsque c&apos;est nécessaire.
             </p>
 
             <div className="space-y-16">
@@ -362,12 +390,12 @@ export function NettoyageVitrePage() {
               <div className="bg-green-50 p-6 rounded-xl border border-green-100">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Devis et délais</h3>
                 <p className="text-sm text-gray-700 leading-relaxed mb-4">
-                  Réponse sous 2 h en horaires d&apos;ouverture, devis gratuit et sans engagement,
-                  intervention sous 24 à 48 h selon la demande. Pas de tarif fixe affiché : le prix
+                  Prise en charge sous 4 h ouvrées en horaires d&apos;ouverture, devis détaillé après étude.
+                  {` ${MOBILIZATION_AFTER_QUOTE}.`} Pas de tarif fixe affiché : le prix
                   dépend du nombre de vitres, de leur taille, de l&apos;accès et de la fréquence.
                 </p>
                 <Button asChild size="sm" className="bg-green-600 hover:bg-green-700">
-                  <Link to="/devis?service=vitres">Demander un devis</Link>
+                  <Link to="/devis?service=vitres">Demander un devis gratuit</Link>
                 </Button>
               </div>
             </div>
@@ -422,14 +450,13 @@ export function NettoyageVitrePage() {
                   <Shield className="w-12 h-12 text-green-600 mb-4" />
                   <h3 className="text-xl font-bold text-gray-900 mb-3">Hauteur accessible</h3>
                   <p className="text-gray-600 text-sm mb-4">
-                    Perche depuis le sol ou un balcon. Nacelle seulement si l&apos;accès et la voirie
-                    le permettent.
+                    Perches et échelles télescopiques depuis le sol ou un balcon. Eau déminéralisée.
                   </p>
                   <BulletList
                     lines={[
-                      'Perche télescopique, formation et EPI',
-                      'Autorisation de voirie si nacelle sur trottoir',
-                      'Pas de travail sur cordes',
+                      'Raclette professionnelle et contrôle multi-angles',
+                      'Accès complexes ou grande hauteur : partenaire sur cordes',
+                      'Pas de pose ni remplacement de vitrage',
                     ]}
                   />
                 </CardContent>
@@ -443,7 +470,7 @@ export function NettoyageVitrePage() {
         image={IMAGES.lavageVitrineBoutiqueRaclette}
         imageAlt="Agent Nature Clean lavant une vitrine de boutique à la raclette, gant bleu et lame inox"
         title="Un passage calé sur vos horaires et la voirie"
-        subtitle="Réponse sous 2 h, devis sous 24 h — retouches si un défaut est constaté à la fin"
+        subtitle="Prise en charge sous 4 h ouvrées, devis détaillé après étude — retouches si un défaut est constaté à la fin"
         devisLink="/devis?service=vitres"
       />
 
@@ -461,9 +488,9 @@ export function NettoyageVitrePage() {
             Nettoyage de vitres à Marseille
           </h2>
           <p className="text-gray-300 mb-8">
-            Marseille et Bouches-du-Rhône — réponse sous 2 h, devis sous 24 h
+            Marseille et Bouches-du-Rhône — prise en charge sous 4 h ouvrées, devis détaillé après étude
           </p>
-          <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+          <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
             <Link to="/devis?service=vitres">
               Demander un devis gratuit
               <ArrowRight className="w-5 h-5 ml-2" />

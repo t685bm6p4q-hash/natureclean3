@@ -18,6 +18,7 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
 import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE, ZONE_LABEL } from '@/app/utils/constants';
 import { IMAGES, cldSrcSet, getOptimizedCldUrl } from '@/app/utils/images';
@@ -57,12 +58,17 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Combien coûte l\'entretien d\'un cabinet ?',
     answer:
-      'Le prix dépend de la surface, du nombre de salles, de la fréquence et des horaires. Devis gratuit et détaillé sous 24 h, sans engagement.',
+      'Le prix dépend de la surface, du nombre de salles, de la fréquence et des horaires. Devis détaillé après étude, sans engagement.',
   },
   {
     question: 'Intervenez-vous dans tout Marseille ?',
     answer:
       'Oui, dans les 16 arrondissements, ainsi qu\'à Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres et Martigues.',
+  },
+  {
+    question: 'Intervenez-vous en bloc opératoire ou en zone stérile ?',
+    answer:
+      'Non. Nous entretiens les locaux de consultation, l\'accueil, les sanitaires et les surfaces définies au devis — pas les blocs opératoires, pas les zones stériles ni la stérilisation d\'instruments.',
   },
 ];
 
@@ -123,8 +129,10 @@ const WORK_STEPS = [
 ] as const;
 
 const LIMITES_LINES = [
+  'Blocs opératoires, zones stériles et salles de soins lourdes : hors périmètre — nous entretiens locaux, mobilier et surfaces définies au devis.',
   'La stérilisation et la désinfection des instruments et dispositifs médicaux : elles restent sous la responsabilité du cabinet.',
   'La collecte et l\'élimination des déchets de soins (DASRI) : elles relèvent d\'un prestataire spécialisé.',
+  'Nous ne promettons pas de conformité « normes ARS » en marketing : le protocole (zones, fréquences, produits) est écrit au devis.',
   'Nous ne manipulons pas les dossiers, les ordonnances ni les données des patients, et nous respectons la confidentialité des lieux.',
 ] as const;
 
@@ -140,7 +148,7 @@ export function NettoyageCabinetMedicalMarseillePage() {
             '@type': 'Service',
             name: 'Nettoyage de cabinets médicaux à Marseille',
             description:
-              'Nettoyage et désinfection de cabinets médicaux et paramédicaux à Marseille : salles de consultation, accueil, sanitaires. Hors heures de soins, devis gratuit sous 24 h.',
+              'Nettoyage et désinfection de cabinets médicaux et paramédicaux à Marseille : salles de consultation, accueil, sanitaires. Hors heures de soins, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: AREA_SERVED,
             serviceType: 'Entretien de cabinets médicaux et paramédicaux',
@@ -161,7 +169,7 @@ export function NettoyageCabinetMedicalMarseillePage() {
           { label: 'Services', to: '/services' },
           { label: 'Nettoyage de cabinets médicaux' },
         ]}
-        devisLink="/devis?service=bureaux"
+        devisLink="/devis?service=medical"
       />
 
       <div className="bg-slate-50 min-h-screen">
@@ -177,11 +185,11 @@ export function NettoyageCabinetMedicalMarseillePage() {
                     heures de soins, avec produits et matériel fournis et une assurance RC Pro.
                   </p>
                   <p className="font-semibold text-green-700">
-                    Réponse sous 2 h en horaires d&apos;ouverture (lundi–samedi, 8 h–18 h), devis gratuit sous 24 h
+                    Prise en charge sous 4 h ouvrées en horaires d&apos;ouverture (lundi–vendredi, 9 h–18 h), devis détaillé après étude
                   </p>
                   <div className="flex flex-wrap gap-3 pt-1">
                     <Button asChild className="bg-green-700 hover:bg-green-800 font-bold">
-                      <Link to="/devis?service=bureaux">Demander un devis gratuit</Link>
+                      <Link to="/devis?service=medical">Demander un devis gratuit</Link>
                     </Button>
                     <Button asChild variant="outline" className="font-bold border-green-600 text-green-800">
                       <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
@@ -250,7 +258,7 @@ export function NettoyageCabinetMedicalMarseillePage() {
           imageAlt="Locaux de santé entretenus par Nature Clean à Marseille"
           title="Intervention hors consultation"
           subtitle="Planning calé sur votre activité — discrétion et respect des lieux."
-          devisLink="/devis?service=bureaux"
+          devisLink="/devis?service=medical"
           objectPosition="object-center"
         />
 
@@ -287,7 +295,7 @@ export function NettoyageCabinetMedicalMarseillePage() {
                   <h2 className="text-2xl font-black text-gray-900 mb-4">Produits et désinfection</h2>
                   <p>
                     Nous utilisons des produits professionnels adaptés aux surfaces et aux zones de contact.
-                    Environ 50 % de nos produits d&apos;entretien courant sont éco-labellisés. Pour la
+                    Pour l&apos;entretien courant, pas de promesse de stérilisation d&apos;instruments ni de gestion DASRI. Pour la
                     désinfection des locaux, nous utilisons des produits conventionnels lorsque la
                     situation l&apos;exige. Fiches de données de sécurité disponibles sur demande.
                   </p>
@@ -328,7 +336,7 @@ export function NettoyageCabinetMedicalMarseillePage() {
                 <h2 className="text-xl font-bold text-gray-900 mb-2 mt-6">Ce qui fait varier le devis</h2>
                 <p className="text-sm">
                   La surface, le nombre de salles de consultation, la fréquence des passages, les horaires
-                  (soir, week-end) et les besoins de désinfection. Devis gratuit, détaillé et sans
+                  (soir, week-end) et les besoins de désinfection. Devis détaillé après étude, sans
                   engagement.
                 </p>
               </div>
@@ -375,6 +383,33 @@ export function NettoyageCabinetMedicalMarseillePage() {
         </div>
         </section>
 
+        <ServiceSeoContentSection
+          title="Nettoyage de cabinet médical à Marseille : locaux et surfaces"
+          lead="Hors heures de consultation : entretien courant et désinfection des surfaces de contact, sans empiéter sur le soin."
+        >
+          <p>
+            Le <strong>nettoyage de cabinets médicaux à Marseille</strong> concerne les locaux où l&apos;hygiène
+            visible rassure les patients — salle d&apos;attente, consultation, sanitaires — sans confondre nettoyage
+            et <strong>stérilisation d&apos;instruments</strong>. Nature Clean intervient pour médecins, dentistes,
+            kinésithérapeutes, infirmiers libéraux, pharmacies et cabinets de groupe sur {ZONE_LABEL}, en
+            créneaux tôt le matin, en soirée ou le week-end.
+          </p>
+          <p>
+            Nous n&apos;intervenons pas en <strong>bloc opératoire</strong> ni en <strong>zone stérile</strong>, ne
+            gérons pas les <strong>DASRI</strong> et ne promettons pas une conformité « normes ARS » en marketing :
+            le protocole (zones, fréquences, temps de contact des produits) est écrit au devis avec vous.
+          </p>
+          <p>
+            Fiche de passage sur demande, produits et matériel fournis, assurance RC Pro. Prise en charge sous 4 h
+            ouvrées (lun–ven 9 h–18 h). Pour l&apos;entretien de locaux de santé dans d&apos;autres types de bâtiments
+            (plateaux tertiaires), voir aussi l&apos;
+            <Link to="/services/entretien-bureaux" className="text-green-800 font-semibold underline">
+              entretien de bureaux
+            </Link>
+            .
+          </p>
+        </ServiceSeoContentSection>
+
         <GoogleReviews />
 
         <FAQSection
@@ -390,12 +425,12 @@ export function NettoyageCabinetMedicalMarseillePage() {
               Un cabinet à entretenir ?
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Visite et devis gratuits sous 24 h. {ZONE_LABEL}.
+              Visite et devis détaillés après étude. {ZONE_LABEL}.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
-                <Link to="/devis?service=bureaux">
-                  Demander un devis
+              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
+                <Link to="/devis?service=medical">
+                  Demander un devis gratuit
                   <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
                 </Link>
               </Button>

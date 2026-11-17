@@ -1,6 +1,13 @@
 import { Link, useLocation } from 'react-router';
 import { IMAGES, cldResize } from '@/app/utils/images';
-import { PHONE_HREF, FOUNDING_YEAR } from '@/app/utils/constants';
+import {
+  PHONE_HREF,
+  PHONE_RECEPTION_HOURS,
+  OFFICE_ADDRESS_LINE,
+  RESPONSIBLE_PRACTICES_LINE,
+  TEAM_SIZE,
+  GOOGLE_RATING_DISPLAY,
+} from '@/app/utils/constants';
 import {
   Phone, Leaf,
   Shield, Star, FileText,
@@ -54,8 +61,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed text-gray-300 mb-5">
-              Entreprise d'entretien et de nettoyage professionnel à Marseille.
-              50 % de produits éco-labellisés pour un résultat impeccable et respectueux de l'environnement.
+              Entreprise d&apos;entretien et de nettoyage professionnel à Marseille — professionnels et
+              particuliers. {RESPONSIBLE_PRACTICES_LINE}
             </p>
             {/* Trust badges */}
             <div className="flex flex-wrap gap-2">
@@ -65,11 +72,14 @@ export function Footer() {
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 rounded-lg text-xs text-gray-300">
                 <Leaf className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-                50 % éco-labellisés
+                Pratiques responsables
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 rounded-lg text-xs text-gray-300">
                 <Star className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-                Depuis {FOUNDING_YEAR}
+                Google {GOOGLE_RATING_DISPLAY}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 rounded-lg text-xs text-gray-300">
+                Équipe de {TEAM_SIZE} personnes
               </span>
             </div>
           </div>
@@ -155,7 +165,7 @@ export function Footer() {
               </Link>
               <span className="text-gray-700 text-xs hidden md:inline" aria-hidden="true">·</span>
               <p className="text-xs text-gray-400 text-center md:text-right">
-                22 Traverse Pupat, 13008 Marseille — Lun–Sam 8h–18h
+                {OFFICE_ADDRESS_LINE} — {PHONE_RECEPTION_HOURS}
               </p>
             </div>
           </div>

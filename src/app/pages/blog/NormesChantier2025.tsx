@@ -23,7 +23,7 @@ export function NormesChantier2025() {
     <>
       <SEO_Guardian
         title="Nettoyage Fin de Chantier Marseille | Obligations & Bonnes Pratiques"
-        description="Propreté avant réception de travaux à Marseille : points de contrôle, bonnes pratiques et protocole Nature Clean. Devis gratuit sous 24 h."
+        description="Propreté avant réception de travaux à Marseille : points de contrôle, bonnes pratiques et protocole Nature Clean. Devis détaillé après étude."
         keywords="nettoyage fin de chantier marseille, réception travaux propreté, livraison chantier propre 13"
         currentSection="blog"
       />
@@ -310,7 +310,7 @@ export function NormesChantier2025() {
                 <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-green-900 mb-3">🔧 Équipement pro</h3>
                   <p className="text-gray-700">
-                    Mono-brosses, injecteur-extracteur, nacelle vitres, produits spécialisés laitance/ciment.
+                    Mono-brosses, injecteur-extracteur, perches vitres, produits spécialisés laitance/ciment.
                   </p>
                 </div>
               </div>
@@ -339,7 +339,7 @@ export function NormesChantier2025() {
                 🏗️ Devis Nettoyage Chantier Express
               </h3>
               <p className="text-xl mb-6 opacity-90">
-                Réponse sous 2 h • Devis sous 24 h • Marseille et Bouches-du-Rhône
+                Prise en charge sous 4 h ouvrées • Devis détaillé après étude • Marseille et Bouches-du-Rhône
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-white text-green-700 hover:bg-gray-100 font-bold">

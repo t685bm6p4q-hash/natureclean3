@@ -24,7 +24,7 @@ interface ServicePageHeroProps {
   imageAlt: string;
   breadcrumbs: Breadcrumb[];
   /**
-   * Lien du bouton CTA "Devis gratuit" dans le hero.
+   * Lien du bouton CTA devis dans le hero.
    * Si fourni, affiche deux boutons CTA (devis + téléphone) en bas du hero.
    * Passez `?service=xxx` pour pré-sélectionner le formulaire intelligent.
    * Ex : "/devis?service=diogene"
@@ -112,7 +112,7 @@ export function ServicePageHero({
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-6 md:mt-8">
               <Link
                 to={devisLink}
-                className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-gray-900 font-black px-6 py-3 rounded-full shadow-lg shadow-green-500/25 transition-colors text-sm md:text-base"
+                className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-white font-black px-6 py-3 rounded-full shadow-lg shadow-green-500/25 transition-colors text-sm md:text-base"
               >
                 Devis gratuit
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />

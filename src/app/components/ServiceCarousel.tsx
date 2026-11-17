@@ -40,7 +40,7 @@ const services: ServiceCard[] = [
     features: [
       'Promoteurs, artisans, locataires sortants',
       'Matériel fourni, RC Pro',
-      'Devis sous 24 h',
+      'Devis détaillé après étude',
     ],
     link: '/services/nettoyage-chantiers',
     cta: 'Nettoyage de fin de chantier à Marseille',
@@ -76,7 +76,7 @@ const services: ServiceCard[] = [
     features: [
       'Contrats réguliers',
       'Horaires décalés',
-      'Depuis 2021',
+      'À Marseille',
     ],
     link: '/services/entretien-bureaux',
     cta: 'Nettoyage de bureaux à Marseille',
@@ -88,7 +88,7 @@ const services: ServiceCard[] = [
     features: [
       'Intérieur / extérieur',
       'Calcaire marseillais',
-      'Voirie si nacelle',
+      'Hauteur : perche & échelle',
     ],
     link: '/services/nettoyage-vitre',
     cta: 'Nettoyage de vitres à Marseille',
@@ -96,10 +96,10 @@ const services: ServiceCard[] = [
   {
     icon: CircleDot,
     title: 'Remise en état sols',
-    description: 'Marbre, pierre, béton ciré — décapage et cristallisation.',
+    description: 'Marbre, pierre, béton ciré — décapage à la monobrosse.',
     features: [
       'Visite avant devis',
-      'Polissage marbre',
+      'Tommettes & marbre',
       'Commerces et halls',
     ],
     link: '/services/remise-etat-sols',

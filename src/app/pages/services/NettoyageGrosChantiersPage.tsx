@@ -1,5 +1,14 @@
 import { IMAGES } from '@/app/utils/images';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
+import {
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  ARIA_PHONE,
+  LEAD_RESPONSE_SLA_SHORT,
+  MOBILIZATION_AFTER_QUOTE,
+  RESPONSIBLE_PRACTICES_LINE,
+  ZONE_LABEL,
+} from '@/app/utils/constants';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
 import { BulletList } from '@/app/components/BulletList';
@@ -13,10 +22,25 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
 const FAQ_CHANTIERS: FAQItem[] = [
-  { question: 'Qu\'est-ce qu\'un nettoyage "gros chantier" pour un particulier ?', answer: 'C\'est une intervention lourde qui va au-delà du ménage classique. Elle concerne le nettoyage après des travaux de rénovation (élimination du voile de ciment, poussière fine), une remise en état complète avant une vente immobilière, ou un nettoyage de printemps extrême (incluant intérieur de placards, lavage de vitres, lessivage murs).' },
-  { question: 'Intervenez-vous pour les états des lieux de sortie ?', answer: 'Oui, nous proposons une formule "Garantie Caution" pour les locataires sortants. Nous effectuons une remise au propre intégrale du logement pour vous assurer de récupérer l\'intégralité de votre dépôt de garantie.' },
-  { question: 'Fournissez-vous le matériel et les produits ?', answer: 'Absolument. Nos équipes arrivent avec tout le matériel nécessaire : aspirateurs industriels HEPA, monobrosses pour sols, nettoyeurs vapeur haute pression et l\'intégralité des produits professionnels éco-responsables.' },
-  { question: 'Comment obtenir un devis pour un grand nettoyage ?', answer: 'Vous pouvez nous appeler directement ou remplir notre formulaire en ligne. Pour les gros volumes, nous pouvons nous déplacer gratuitement pour évaluer précisément le travail à effectuer et vous remettre un devis ferme sous 24h.' },
+  {
+    question: 'Qu’est-ce qu’un nettoyage « gros chantier » pour un particulier ?',
+    answer:
+      'Nettoyage lourd après rénovation (voile de ciment, poussière fine), remise en état avant vente ou location, ou grand ménage ponctuel. Le périmètre est détaillé au devis après visite ou photos.',
+  },
+  {
+    question: 'Intervenez-vous pour les états des lieux de sortie ?',
+    answer:
+      'Oui, en prestation ponctuelle. Nous ne garantissons pas la récupération d’une caution : nous remettons un logement nettoyé selon le devis, sans promettre le résultat de l’état des lieux.',
+  },
+  {
+    question: 'Fournissez-vous le matériel et les produits ?',
+    answer:
+      'Oui. Aspirateurs, monobrosses, matériel adapté et produits professionnels inclus. ' + RESPONSIBLE_PRACTICES_LINE,
+  },
+  {
+    question: 'Comment obtenir un devis pour un grand nettoyage ?',
+    answer: `${LEAD_RESPONSE_SLA_SHORT}. ${MOBILIZATION_AFTER_QUOTE} après validation. Visite sur place si le volume ou l’accès le justifie.`,
+  },
 ];
 
 const features = [
@@ -51,8 +75,8 @@ export function NettoyageGrosChantiersPage() {
 
       <ServicePageHero
         title="Gros Chantiers & Remise en État Marseille"
-        subtitle="Nettoyage après travaux, fin de bail et grands projets résidentiels haute performance"
-        badge="Performance & Résultat"
+        subtitle="Après travaux, fin de bail ou remise en état résidentielle lourde — Marseille et 13"
+        badge="Volume & remise en état"
         badgeIcon={<Sparkles className="w-4 h-4" />}
         imageSrc={IMAGES.remiseEtatAppartMarseille}
         imageAlt="Remise en état appartement Marseille — nettoyage après travaux Nature Clean"
@@ -69,12 +93,12 @@ export function NettoyageGrosChantiersPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold mb-1">2021</div>
-              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Création</div>
+              <div className="text-3xl font-bold mb-1">4 h</div>
+              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Prise en charge ouvrée</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">24h</div>
-              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Devis gratuit</div>
+              <div className="text-3xl font-bold mb-1">48 h</div>
+              <div className="text-sm opacity-80 text-emerald-100 uppercase tracking-widest">Mobilisation courante</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-1">RC Pro</div>
@@ -100,26 +124,33 @@ export function NettoyageGrosChantiersPage() {
                 Vous venez de terminer des travaux de rénovation ? Vous déménagez et voulez laisser votre appartement impeccable ? Ou vous souhaitez simplement offrir une nouvelle jeunesse à votre maison ?
               </p>
               <p className="text-gray-700 leading-relaxed">
-                Nature Clean Marseille déploie des équipes spécialisées dans les <strong>interventions lourdes</strong>. Nous utilisons des techniques de nettoyage industrielles adaptées au résidentiel pour un résultat <strong>immédiat et spectaculaire</strong>.
+                Nature Clean intervient sur les <strong>gros volumes</strong> et les remises en état lourdes : après travaux, avant vente ou sortie de bail. Méthode et matériel adaptés au logement — résultat réaliste annoncé au devis.
+              </p>
+              <p className="text-gray-700 leading-relaxed border-l-4 border-emerald-600 pl-4">
+                Ce n&apos;est pas la même prestation que la{' '}
+                <Link to="/services/nettoyage-chantiers" className="font-semibold text-emerald-800 underline">
+                  fin de chantier livraison
+                </Link>
+                : ici volumes importants, remise en état résidentielle lourde ou chantier étendu — durée, équipes et matériel dimensionnés au projet.
               </p>
               <div className="space-y-4 pt-4">
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <span className="font-semibold text-gray-900">Aspiration HEPA (anti-poussière fine)</span>
+                  <span className="font-semibold text-gray-900">Aspiration poussières fines après travaux</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <span className="font-semibold text-gray-900">Nettoyage vapeur 150°C (désinfection)</span>
+                  <span className="font-semibold text-gray-900">Monobrosse et matériel professionnel</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <span className="font-semibold text-gray-900">Produits dégraissants professionnels bio</span>
+                  <span className="font-semibold text-gray-900">Produits professionnels adaptés au chantier</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -185,7 +216,7 @@ export function NettoyageGrosChantiersPage() {
                       'Lavage des vitres (recto/verso)',
                       'Nettoyage des encadrements de portes',
                       'Shampooing moquette (sur demande)',
-                      'Cristallisation du marbre (sur demande)',
+                      'Remise en état de sol (sur demande, étude du support)',
                     ]}
                   />
                 </div>
@@ -209,19 +240,24 @@ export function NettoyageGrosChantiersPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row-reverse gap-16 items-center">
             <ScrollReveal direction="right" className="lg:w-1/2 space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight">Valorisez votre bien <span className="text-emerald-700 italic">instantanément</span></h2>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight">
+                Remise en état <span className="text-emerald-700 italic">lourde</span>, pas livraison clés en main
+              </h2>
               <p className="text-gray-700 leading-relaxed">
-                Une maison qui brille, c'est un bien qui se vend plus vite ou une caution récupérée sans stress. Notre expertise en <strong>gros chantiers</strong> transforme radicalement l'aspect de votre intérieur.
+                Après rénovation lourde, sortie de bail ou grand ménage : volumes, durée et équipes
+                dimensionnés au logement. Pour une <strong>livraison de chantier</strong> type promoteur
+                ou artisan, voir la fiche{' '}
+                <Link to="/services/nettoyage-chantiers" className="font-semibold text-emerald-800 underline">
+                  fin de chantier
+                </Link>
+                .
               </p>
-              <div className="bg-emerald-50 p-6 rounded-2xl border-l-4 border-emerald-600">
-                <p className="text-emerald-900 font-medium italic">
-                  "Après 6 mois de travaux, nous pensions ne jamais nous débarrasser de cette fine poussière blanche. L'équipe de Nature Clean a rendu notre maison étincelante en une seule journée. Magique !"
-                </p>
-                <p className="text-emerald-700 text-sm mt-3 font-bold">— Sophie D., Marseille 8ème</p>
-              </div>
+              <p className="text-gray-600 text-sm">
+                Chiffrage après visite ou photos : surface, état, accès et délai souhaité.
+              </p>
               <div className="flex gap-4">
                 <Button asChild className="bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-6 rounded-full">
-                  <Link to="/devis">Calculer mon tarif</Link>
+                  <Link to="/devis?service=gros-chantier">Demander un devis gratuit</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-emerald-700 text-emerald-700 px-8 py-6 rounded-full hover:bg-emerald-50">
                   <Link to="/realisations">Voir nos résultats</Link>
@@ -281,6 +317,33 @@ export function NettoyageGrosChantiersPage() {
           </ScrollReveal>
         </div>
       </section>
+
+      <ServiceSeoContentSection
+        title="Remise en état et gros chantier à Marseille"
+        lead="Après rénovation lourde, sortie de bail ou logement longtemps inoccupé : autre échelle que la fin de chantier « livraison clés »."
+        className="bg-white border-t border-gray-100"
+      >
+        <p>
+          Le <strong>nettoyage gros chantier à Marseille</strong> (ou remise en état résidentielle lourde) vise les
+          logements et maisons qui nécessitent plusieurs journées, du matériel adapté et parfois une équipe
+          renforcée : poussières fines après rénovation, cuisine et sanitaires encrassés, placards, vitres, sols.
+          C&apos;est distinct de la{' '}
+          <Link to="/services/nettoyage-chantiers" className="text-emerald-800 font-semibold underline">
+            fin de chantier livraison
+          </Link>{' '}
+          pour promoteur ou artisan.
+        </p>
+        <p>
+          Chaque projet est chiffré après <strong>visite ou photos</strong> : surface, état de départ, accès
+          (étage, ascenseur, stationnement) et délai souhaité. {MOBILIZATION_AFTER_QUOTE} Intervention sur{' '}
+          {ZONE_LABEL} et communes du 13.
+        </p>
+        <p>
+          Monobrosse, aspiration fine, produits professionnels adaptés au support — pas de promesse de vapeur à
+          150 °C, de cristallisation marbre ni de « garantie caution » : des prestations listées au devis, avec un
+          résultat réaliste annoncé avant engagement.
+        </p>
+      </ServiceSeoContentSection>
 
       <FAQSection items={FAQ_CHANTIERS} title="Questions fréquentes sur nos grands nettoyages" />
     </>

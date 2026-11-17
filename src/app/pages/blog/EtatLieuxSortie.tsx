@@ -251,7 +251,7 @@ export function EtatLieuxSortie() {
                   🎯 Offre Spéciale "État des Lieux Sortie"
                 </h3>
                 <p className="text-lg mb-6 opacity-90">
-                  Devis gratuit sous 24h + intervention express sur Marseille et les Bouches-du-Rhône
+                  Prise en charge sous 4 h ouvrées, devis détaillé après étude — intervention express sur Marseille et les Bouches-du-Rhône
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-white text-green-700 hover:bg-gray-100">

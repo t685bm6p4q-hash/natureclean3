@@ -86,7 +86,7 @@ export function GeoLandingPage({ data }: GeoLandingPageProps) {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 font-bold shadow-md">
                       <Link to={devisLink}>
-                        Devis gratuit
+                        Demander un devis gratuit
                         <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                       </Link>
                     </Button>
@@ -152,7 +152,7 @@ export function GeoLandingPage({ data }: GeoLandingPageProps) {
               <div className="flex flex-wrap justify-center gap-6 mt-12">
                 <div className="flex items-center gap-2 text-sm text-gray-500">
                   <Leaf className="w-4 h-4 text-green-500" aria-hidden="true" />
-                  50 % produits éco-labellisés
+                  Produits professionnels adaptés
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-500">
                   <Shield className="w-4 h-4 text-green-500" aria-hidden="true" />

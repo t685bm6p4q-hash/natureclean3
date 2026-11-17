@@ -16,6 +16,7 @@ import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { FAQSection } from '@/app/components/FAQSection';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import {
   PHONE_DISPLAY,
@@ -23,31 +24,34 @@ import {
   ARIA_PHONE,
   EMAIL,
   EMAIL_HREF,
-  FOUNDING_YEAR,
   SIRET,
   ZONE_LABEL,
   OFFICE_ADDRESS_LINE,
+  TEAM_SIZE,
+  RESPONSIBLE_PRACTICES_LINE,
+  RESPONSIBLE_PRACTICES_SHORT,
+  PHONE_RECEPTION_HOURS,
 } from '@/app/utils/constants';
 import { SERVED_CITIES_SHORT } from '@/app/config/zone-data';
 
 const PRACTICES: { title: string; body: ReactNode }[] = [
   {
-    title: 'Produits d\'entretien courant',
+    title: 'Pratiques responsables',
     body: (
       <>
-        Environ 50 % de nos produits pour l&apos;entretien régulier sont éco-labellisés (Ecolabel européen, Ecocert,
-        Nature &amp; Progrès selon les références). Les fiches de données de sécurité peuvent être communiquées sur
-        demande.
+        {RESPONSIBLE_PRACTICES_LINE} Nous ne publions pas de pourcentage fixe de produits éco-labellisés : nous
+        ne parlons de labels qu&apos;avec les fiches et références en main, communiquées au devis si vous le
+        demandez.
       </>
     ),
   },
   {
     title: 'Dosage et microfibres',
-    body: 'Dosage contrôlé selon les surfaces, chiffons microfibres réutilisables et entretien du matériel pour limiter le gaspillage.',
+    body: RESPONSIBLE_PRACTICES_SHORT,
   },
   {
     title: 'Désinfection et réglementation',
-    body: 'Lorsque l\'activité l\'exige (restauration, médical, copropriété après sinistre), nous utilisons des désinfectants conventionnels conformes aux normes en vigueur — ce n\'est pas le même périmètre que le « 50 % » éco-labellisé.',
+    body: 'Lorsque l\'activité l\'exige (restauration, locaux de santé, copropriété après sinistre), nous utilisons des désinfectants professionnels adaptés à l\'usage — distincts de l\'entretien courant.',
   },
   {
     title: 'Déchets de nettoyage',
@@ -77,9 +81,9 @@ const SPECIAL_SERVICES = [
 
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: 'Que signifie « environ 50 % de produits éco-labellisés » ?',
+    question: 'Quelle est votre démarche « éco » ?',
     answer:
-      'Il s\'agit des produits utilisés pour l\'entretien courant (sols, surfaces, vitrerie légère), pas des désinfectants réglementés. La liste précise des marques et labels est communiquée au devis.',
+      'Microfibres réutilisables, dosage adapté, tri des déchets et eau limitée lorsque c\'est possible. Produits professionnels adaptés à chaque chantier ; labels et marques précisés au devis sur demande.',
   },
   {
     question: 'Intervenez-vous où ?',
@@ -88,7 +92,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Quels délais pour un devis ?',
     answer:
-      'Réponse sous 2 h en horaires d\'ouverture (lundi–samedi, 8 h–18 h), devis gratuit sous 24 h. La date d\'intervention dépend du service et du planning.',
+      'Prise en charge sous 4 h ouvrées en horaires d\'ouverture (lundi–vendredi, 9 h–18 h), devis détaillé après étude. La date d\'intervention dépend du service et du planning.',
   },
 ];
 
@@ -98,8 +102,8 @@ export function NatureCleanEcoPage() {
       <SEO_Guardian
         currentSection="about"
         title="Notre démarche éco-responsable | Nettoyage Marseille – Nature Clean"
-        description="Produits d'entretien éco-labellisés, matériel professionnel et pratiques de nettoyage de Nature Clean à Marseille depuis 2021. Devis gratuit sous 24 h."
-        keywords="nettoyage écologique Marseille, entreprise nettoyage éco-responsable 13, produits entretien éco-labellisés, Nature Clean Marseille"
+        description="Pratiques responsables de Nature Clean à Marseille : microfibres, dosage, tri. Matériel professionnel. 22 Traverse Pupat, 13008. Devis détaillé après étude."
+        keywords="nettoyage responsable Marseille, entreprise nettoyage 13, pratiques entretien professionnel, Nature Clean Marseille"
         faqItems={FAQ_ITEMS}
       />
 
@@ -126,8 +130,8 @@ export function NatureCleanEcoPage() {
             Notre démarche éco-responsable à Marseille
           </h1>
           <p className="text-lg md:text-xl text-green-50 max-w-2xl leading-relaxed">
-            Depuis {FOUNDING_YEAR}, Nature Clean accompagne syndics, entreprises, commerçants et promoteurs dans le{' '}
-            {ZONE_LABEL}. Nous privilégions des faits mesurables plutôt que des slogans.
+            Nature Clean accompagne syndics, entreprises, commerçants et particuliers dans le{' '}
+            {ZONE_LABEL}. {RESPONSIBLE_PRACTICES_LINE}
           </p>
         </div>
       </section>
@@ -137,10 +141,10 @@ export function NatureCleanEcoPage() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <ScrollReveal>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Notre siège est à Marseille 8e ({OFFICE_ADDRESS_LINE}). Une équipe de{' '}
-                <strong>trois professionnels</strong> assure le suivi des contrats et des interventions — interlocuteur
-                direct, équipe stable. Nous ne promettons pas une certification environnementale générique : nous
-                détaillons les produits, les usages et les limites au devis.
+                Notre siège est à Marseille 8e ({OFFICE_ADDRESS_LINE}). Équipe de{' '}
+                <strong>{TEAM_SIZE} personnes</strong>. Nous ne promettons pas de certification environnementale
+                générique, ni d&apos;objectif chiffré type « 80 % en 2027 » : nous détaillons produits, usages et
+                limites au devis.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 Zone desservie :{' '}
@@ -261,10 +265,10 @@ export function NatureCleanEcoPage() {
               <li className="flex items-start gap-3">
                 <Recycle className="w-5 h-5 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
                 <span>
-                  Accueil téléphonique : <strong>lundi–samedi, 8 h–18 h</strong>
+                  Accueil téléphonique : <strong>lundi–vendredi, 9 h–18 h</strong>
                   <br />
                   <span className="text-sm text-gray-600">
-                    Interventions en horaires décalés (6 h–22 h, 7 j/7) selon contrat — créneaux confirmés au devis
+                    Interventions en horaires décalés (6 h–22 h, créneaux sur organisation spécifique) selon contrat — créneaux confirmés au devis
                   </span>
                 </span>
               </li>
@@ -282,6 +286,34 @@ export function NatureCleanEcoPage() {
         </div>
       </section>
 
+      <ServiceSeoContentSection
+        title="Nettoyage professionnel responsable à Marseille : ce que promet Nature Clean"
+        lead="Pas de pourcentage « éco » marketing : des gestes concrets, des produits adaptés au chantier."
+        className="bg-white border-y border-gray-100"
+      >
+        <p>
+          Sur le marché marseillais, beaucoup d&apos;offres affichent un label ou un taux de produits « verts » sans
+          préciser l&apos;usage réel. Chez Nature Clean, la démarche repose sur {RESPONSIBLE_PRACTICES_SHORT} Nous
+          n&apos;affichons pas de ratio fixe : les références et fiches techniques sont communiquées au{' '}
+          <strong>devis</strong> lorsque vous le demandez.
+        </p>
+        <p>
+          L&apos;entretien courant (bureaux, copropriétés, commerces) privilégie le <strong>dosage maîtrisé</strong> et
+          les <strong>microfibres réutilisables</strong> pour limiter l&apos;eau et les résidus chimiques. Lorsque la
+          réglementation l&apos;impose — restauration, locaux de santé, remise en état après sinistre — nous mobilisons
+          des <strong>désinfectants professionnels</strong> distincts du nettoyage standard, en respectant les protocoles
+          du site.
+        </p>
+        <p>
+          Tri des emballages et déchets générés en intervention, selon vos consignes et le filière locale. Zone
+          d&apos;intervention : {ZONE_LABEL}.{' '}
+          <Link to="/zones-intervention" className="text-green-700 font-semibold underline">
+            Voir toutes les communes desservies
+          </Link>
+          .
+        </p>
+      </ServiceSeoContentSection>
+
       <FAQSection
         items={FAQ_ITEMS}
         title="Questions fréquentes"
@@ -290,13 +322,13 @@ export function NatureCleanEcoPage() {
 
       <section className="py-16 md:py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-black mb-4">Un devis gratuit sous 24 h</h2>
+          <h2 className="text-3xl font-black mb-4">Un devis détaillé après étude</h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-            {ZONE_LABEL}. Réponse sous 2 h en horaires d&apos;ouverture.
+            {ZONE_LABEL}. Prise en charge sous 4 h ouvrées en horaires d&apos;ouverture.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
-              <Link to="/devis">Demander un devis</Link>
+            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
+              <Link to="/devis">Demander un devis gratuit</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
               <Link to="/services">Voir nos services</Link>
@@ -309,11 +341,11 @@ export function NatureCleanEcoPage() {
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-green-400" aria-hidden="true" />
-              Depuis {FOUNDING_YEAR}
+              {PHONE_RECEPTION_HOURS}
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-green-400" aria-hidden="true" />
-              Équipe de 3 professionnels
+              Équipe de {TEAM_SIZE} personnes
             </li>
           </ul>
         </div>

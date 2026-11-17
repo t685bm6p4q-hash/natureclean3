@@ -27,11 +27,11 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 import {
   PHONE_DISPLAY,
   PHONE_HREF,
   ARIA_PHONE,
-  FOUNDING_YEAR,
   ZONE_LABEL,
   GOOGLE_PROFILE_URL,
 } from '@/app/utils/constants';
@@ -73,7 +73,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Comment fonctionne le contrat avec le syndic ?',
     answer:
-      'Visite, cahier des charges (zones, fréquences, horaires), devis détaillé sous 24 h. Durée, reconduction et préavis de résiliation sont écrits au contrat — rien n\'est imposé en dehors du document signé.',
+      'Visite, cahier des charges (zones, fréquences, horaires), devis détaillé après étude de votre besoin. Durée, reconduction et préavis de résiliation sont écrits au contrat — rien n\'est imposé en dehors du document signé.',
   },
   {
     question: 'Le devis peut-il être présenté en assemblée générale ?',
@@ -110,7 +110,7 @@ const CONTRACT_STEPS = [
   {
     icon: PhoneCall,
     title: '1. Demande',
-    text: 'Appel ou formulaire. Réponse sous 2 h aux heures d\'ouverture (lun–sam, 8 h–18 h).',
+    text: 'Appel ou formulaire. Prise en charge sous 4 h ouvrées aux heures d\'ouverture (lun–ven, 9 h–18 h).',
   },
   {
     icon: ClipboardList,
@@ -120,7 +120,7 @@ const CONTRACT_STEPS = [
   {
     icon: CalendarCheck,
     title: '3. Cahier des charges + devis',
-    text: 'Zones, passages, créneaux. Devis gratuit sous 24 h, lisible pour le conseil syndical ou l’AG.',
+    text: 'Zones, passages, créneaux. Devis détaillé après étude, lisible pour le conseil syndical ou l’AG.',
   },
   {
     icon: UserCheck,
@@ -141,7 +141,7 @@ export function NettoyageCoproprietesPage() {
             '@type': 'Service',
             name: 'Nettoyage de copropriétés à Marseille',
             description:
-              'Entretien des parties communes à Marseille depuis 2021 : halls, escaliers, parkings. Contrats syndic. RC Pro, devis sous 24 h.',
+              'Entretien des parties communes à Marseille : halls, escaliers, parkings. Contrats syndic. RC Pro, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'AdministrativeArea', name: 'Bouches-du-Rhône' },
             serviceType: 'Nettoyage de copropriétés',
@@ -187,9 +187,9 @@ export function NettoyageCoproprietesPage() {
                   voient tout de suite.
                 </p>
                 <p>
-                  Nature Clean entretient des copropriétés à Marseille depuis {FOUNDING_YEAR}. Zone :{' '}
-                  {ZONE_LABEL} ({ZONE_COMMUNES}). Matériel et produits fournis — environ 50 %
-                  éco-labellisés sur l&apos;entretien courant.
+                  Nature Clean entretient des copropriétés à Marseille. Zone :{' '}
+                  {ZONE_LABEL} ({ZONE_COMMUNES}). Matériel et produits professionnels fournis.
+                  Références : 5 immeubles entretenus pour 2 agences de syndic (détail sur demande).
                 </p>
                 <p>
                   À Marseille, le parc mélange immeubles anciens sans ascenseur, halls de grande
@@ -197,7 +197,7 @@ export function NettoyageCoproprietesPage() {
                   aux odeurs : le planning doit en tenir compte, pas un protocole « catalogue ».
                 </p>
                 <p className="font-semibold text-green-700">
-                  Réponse sous 2 h, devis sous 24 h — RC Pro
+                  Prise en charge sous 4 h ouvrées, devis détaillé après étude — RC Pro
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 font-bold">
@@ -319,7 +319,7 @@ export function NettoyageCoproprietesPage() {
         image={IMAGES.hallCoproBoites}
         imageAlt="Hall de copropriété avec boîtes aux lettres à Marseille"
         title="Un contrat syndic clair, pas une promesse floue"
-        subtitle="Réponse sous 2 h, devis sous 24 h — Marseille et Bouches-du-Rhône"
+        subtitle="Prise en charge sous 4 h ouvrées, devis détaillé après étude — Marseille et Bouches-du-Rhône"
         devisLink="/devis?service=coproprietes"
       />
 
@@ -397,7 +397,7 @@ export function NettoyageCoproprietesPage() {
                   },
                   {
                     icon: Leaf,
-                    title: '50 % éco-labellisés',
+                    title: 'Pratiques responsables',
                     desc: 'Sur l\'entretien courant, lorsque le support le permet.',
                   },
                 ].map((item) => (
@@ -486,6 +486,44 @@ export function NettoyageCoproprietesPage() {
         </div>
       </section>
 
+      <ServiceSeoContentSection
+        title="Nettoyage de copropriété à Marseille : pour les syndics et conseils syndicaux"
+        lead="Hall, cage d’escalier, ascenseur, parking : une résidence se juge à la propreté des parties communes."
+      >
+        <p>
+          Le <strong>nettoyage de copropriété à Marseille</strong> ne se résume pas à passer la serpillière
+          dans le hall. Entre les immeubles haussmanniens sans ascenseur, les résidences des années 1970 avec
+          parkings souterrains et les halls vitrés des quartiers récents, le planning doit coller au bâti — pas
+          à un catalogue national. Nature Clean travaille avec des <strong>syndics</strong>, des{' '}
+          <strong>conseils syndicaux</strong> et des gestionnaires sur {ZONE_LABEL}.
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Parties communes couvertes par le contrat</h3>
+        <p>
+          Halls et paliers, cages d&apos;escalier, gaines d&apos;ascenseur (selon cahier des charges), parkings,
+          caves si prévus au devis, locaux poubelles et sanitaires communs. Les vitrines de commerces en RDC
+          relèvent plutôt de la fiche{' '}
+          <Link to="/services/nettoyage-commerces" className="text-green-800 font-semibold underline">
+            entretien de commerces
+          </Link>
+          ; les façades vitrées en hauteur de la fiche{' '}
+          <Link to="/services/nettoyage-vitre" className="text-green-800 font-semibold underline">
+            nettoyage de vitres
+          </Link>
+          .
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Un dossier présentable en assemblée générale</h3>
+        <p>
+          Le devis détaillé après visite liste zones, fréquences et montants. Sur demande, nous pouvons fournir
+          une synthèse d&apos;une page pour faciliter la comparaison des offres en conseil syndical ou en AG.
+          Références terrain : <strong>5 immeubles entretenus pour 2 agences de syndic</strong> (détail sur
+          demande). Registre ou <strong>fiche de passage</strong> si votre contrat l&apos;exige.
+        </p>
+        <p>
+          Prise en charge d&apos;une demande sous 4 h ouvrées (lundi–vendredi 9 h–18 h). Mobilisation en
+          général sous 48 h après validation du devis, selon disponibilités.
+        </p>
+      </ServiceSeoContentSection>
+
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-xl font-bold text-gray-900 mb-3">Zones desservies</h2>
@@ -551,9 +589,9 @@ export function NettoyageCoproprietesPage() {
             Entretien de copropriétés à Marseille
           </h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            {ZONE_LABEL} — réponse sous 2 h, devis sous 24 h
+            {ZONE_LABEL} — prise en charge sous 4 h ouvrées, devis détaillé après étude
           </p>
-          <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+          <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
             <Link to="/devis?service=coproprietes">
               Demander un devis gratuit
               <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />

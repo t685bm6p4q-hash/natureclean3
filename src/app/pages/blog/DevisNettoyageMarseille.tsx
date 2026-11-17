@@ -15,7 +15,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Le devis de nettoyage à Marseille est-il gratuit chez Nature Clean ?',
     answer:
-      'Oui, le devis est gratuit et sans engagement. Après votre demande (formulaire, téléphone ou WhatsApp), nous vous répondons sous 2 h en horaires d\'ouverture, puis un devis écrit sous 24 h après cadrage du besoin.',
+      'Oui : devis gratuit et sans engagement. Après votre demande (formulaire, téléphone ou WhatsApp), prise en charge sous 4 h ouvrées en horaires d\'ouverture, puis devis détaillé après cadrage du besoin (échanges, visite si nécessaire).',
   },
   {
     question: 'Quelles informations faut-il pour obtenir un devis nettoyage à Marseille ?',
@@ -25,7 +25,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'En combien de temps recevez-vous un devis pour un nettoyage professionnel ?',
     answer:
-      'Réponse sous 2 h en horaires d\'ouverture (lun–sam 8h–18h), devis écrit sous 24 h pour la majorité des demandes dans le 13. Les urgences fin de chantier peuvent être traitées le jour même si vous appelez tôt.',
+      'Prise en charge sous 4 h ouvrées (lun–ven 9 h–18 h), devis gratuit et détaillé après étude. Les urgences fin de chantier peuvent être traitées le jour même si vous appelez tôt en journée.',
   },
   {
     question: 'Intervenez-vous uniquement à Marseille intra-muros ?',
@@ -40,7 +40,7 @@ const steps = [
     detail: 'Bureaux, copropriété, fin de chantier, industriel ou particulier — indiquez la ville et la surface si vous la connaissez.',
   },
   {
-    title: '2. Réponse sous 2 h',
+    title: '2. Prise en charge sous 4 h ouvrées',
     detail: 'Un conseiller Nature Clean vous contacte en horaires d\'ouverture pour affiner le périmètre (fréquence, horaires, protocoles).',
   },
   {
@@ -63,7 +63,7 @@ const prestations = [
 
 export function DevisNettoyageMarseille() {
   useArticleJsonLd({
-    headline: 'Devis nettoyage Marseille : guide gratuit et réponse sous 2 h',
+    headline: 'Devis nettoyage Marseille : guide gratuit et prise en charge sous 4 h ouvrées',
     description:
       'Comment obtenir un devis de nettoyage professionnel à Marseille : informations à préparer, délais, types de prestations. Nature Clean, entreprise locale 8e.',
     image: IMAGES.poigneeMainDevis,
@@ -71,7 +71,7 @@ export function DevisNettoyageMarseille() {
     dateModified: '2026-10-05',
     slug: 'devis-nettoyage-marseille-guide',
     keywords:
-      'devis nettoyage marseille, entreprise nettoyage marseille devis, devis gratuit nettoyage professionnel 13, demande devis entretien locaux marseille',
+      'devis nettoyage marseille, entreprise nettoyage marseille devis, devis nettoyage professionnel 13, demande devis entretien locaux marseille',
     articleSection: 'Guides pratiques',
     wordCount: 1100,
   });
@@ -79,8 +79,8 @@ export function DevisNettoyageMarseille() {
   return (
     <>
       <SEO_Guardian
-        title="Devis Nettoyage Marseille Gratuit | Réponse 2 h | Nature Clean"
-        description="Comment obtenir un devis nettoyage à Marseille ? Guide gratuit : infos à préparer, réponse 2 h / devis 24 h, bureaux, copros, chantiers. Entreprise locale · 04 84 89 68 75."
+        title="Devis Nettoyage Marseille Gratuit | Prise en charge 4 h ouvrées | Nature Clean"
+        description="Comment obtenir un devis nettoyage gratuit à Marseille ? Infos à préparer, prise en charge 4 h ouvrées, devis détaillé après étude — bureaux, copros, chantiers. Entreprise locale · 04 84 89 68 75."
         keywords="devis nettoyage marseille, devis gratuit nettoyage marseille, entreprise nettoyage marseille devis, nettoyage professionnel marseille prix, demande devis 13"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
@@ -118,7 +118,7 @@ export function DevisNettoyageMarseille() {
                 <span>5 octobre 2026</span>
               </div>
               <h1 className="text-3xl md:text-4xl font-black text-white max-w-3xl">
-                Devis nettoyage Marseille : réponse sous 2 h, devis sous 24 h
+                Devis nettoyage Marseille : prise en charge sous 4 h ouvrées, devis détaillé après étude
               </h1>
             </div>
           </div>
@@ -200,10 +200,10 @@ export function DevisNettoyageMarseille() {
               <div className="bg-gray-900 rounded-2xl p-8 text-center">
                 <h2 className="text-2xl font-black text-white mb-3">Demandez votre devis express</h2>
                 <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-                  Formulaire en 1 minute — réponse sous 2 h, devis sous 24 h. Ou appelez-nous pour une urgence chantier.
+                  Formulaire en 1 minute — prise en charge sous 4 h ouvrées, devis détaillé après étude. Ou appelez-nous pour une urgence chantier.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
                     <Link to="/devis">Demander un devis gratuit</Link>
                   </Button>
                   <Button asChild size="lg" variant="outlineOnDark">

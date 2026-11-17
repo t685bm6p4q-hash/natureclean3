@@ -22,9 +22,9 @@ interface BlogArticle {
 const articles: BlogArticle[] = [
   {
     id: '10',
-    title: 'Devis nettoyage Marseille : guide gratuit et réponse sous 2 h',
+    title: 'Devis nettoyage Marseille : guide gratuit et prise en charge sous 4 h ouvrées',
     excerpt:
-      'Comment obtenir un devis de nettoyage professionnel à Marseille ? Infos à préparer, délais (réponse 2 h, devis 24 h), contenu d\'un bon devis.',
+      'Comment obtenir un devis de nettoyage professionnel à Marseille ? Infos à préparer, délais (prise en charge 4 h ouvrées, devis détaillé après étude), contenu d\'un bon devis.',
     image: IMAGES.poigneeMainDevis,
     date: '5 octobre 2026',
     dateIso: '2026-10-05',
@@ -85,9 +85,9 @@ const articles: BlogArticle[] = [
   },
   {
     id: '6',
-    title: 'Nettoyage éco-responsable en entreprise : produits éco-labellisés',
+    title: 'Nettoyage éco-responsable en entreprise : labels et pratiques',
     excerpt:
-      'Pourquoi choisir des produits éco-labellisés pour l\'entretien courant, ce que recouvre notre « environ 50 % », et les limites (désinfection réglementée).',
+      'Pourquoi choisir des produits eco-labellises pour l\'entretien courant, ce que recouvre notre démarche responsable, et les limites (désinfection réglementée).',
     image: IMAGES.produitsEcoHero,
     date: '20 février 2026',
     dateIso: '2026-02-20',
@@ -266,7 +266,7 @@ export function Blog() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Une question sur nos services ?</h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Réponse sous 2 h en horaires d&apos;ouverture, devis gratuit sous 24 h.
+            Devis gratuit — prise en charge sous 4 h ouvrées, détaillé après étude.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-green-700 hover:bg-green-800">

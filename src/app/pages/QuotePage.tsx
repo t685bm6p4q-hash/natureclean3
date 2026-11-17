@@ -17,6 +17,10 @@ interface CtxInfo {
 
 const PARAM_CONTEXT: Record<string, CtxInfo> = {
   bureaux: { label: 'Bureaux & Entreprises', subtitle: 'Des locaux impeccables, des collaborateurs sereins.' },
+  medical: {
+    label: 'Cabinets médicaux',
+    subtitle: 'Locaux de consultation et surfaces — hors bloc opératoire et DASRI.',
+  },
   coproprietes: { label: 'Copropriétés', subtitle: 'Des parties communes soignées pour une résidence valorisée.' },
   'fin-chantier': { label: 'Fin de Chantier', subtitle: 'Remise en état express avant livraison.' },
   'gros-chantier': { label: 'Gros Chantiers', subtitle: "Chantiers d'envergure traités avec rigueur." },
@@ -26,7 +30,7 @@ const PARAM_CONTEXT: Record<string, CtxInfo> = {
   graffitis: { label: 'Dégraffitage', subtitle: 'Effacement rapide et restauration de votre bien.' },
   commerces: { label: 'Commerces & Retail', subtitle: 'Un espace de vente propre booste votre chiffre.' },
   vitres: { label: 'Nettoyage de Vitres', subtitle: 'Vitrines, bureaux, façades — perche et eau déminéralisée.' },
-  sols: { label: 'Remise en état sols', subtitle: 'Lustrage et nettoyage profond de vos sols.' },
+  sols: { label: 'Remise en état sols', subtitle: 'Décapage, monobrosse et nettoyage profond de vos sols.' },
 };
 
 export function QuotePage() {
@@ -99,7 +103,7 @@ export function QuotePage() {
             </h1>
 
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-              Besoin → lieu & volume → coordonnées. Notre équipe vous rappelle sous 24 h avec une proposition
+              Besoin → lieu & volume → coordonnées. Devis gratuit — prise en charge sous 4 h ouvrées, puis proposition détaillée après étude
               personnalisée.
             </p>
 
@@ -135,7 +139,7 @@ export function QuotePage() {
           <div className="flex-shrink-0 px-5 sm:px-7 pt-6 pb-3 border-b border-gray-100">
             <h2 className="text-lg font-bold text-gray-900">Devis express en 3 étapes</h2>
             <p className="text-gray-400 text-xs mt-0.5">
-              Estimation sous 24 h · Préférez le téléphone ? Utilisez les boutons ci-dessus.
+              Devis gratuit, détaillé après étude · Préférez le téléphone ? Utilisez les boutons ci-dessus.
             </p>
           </div>
 

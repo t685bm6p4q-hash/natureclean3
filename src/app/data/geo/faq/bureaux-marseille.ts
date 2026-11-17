@@ -24,6 +24,6 @@ export const FAQ_BUREAUX_MARSEILLE: FAQItem[] = [
   {
     question: 'Les horaires 6 h–22 h sont-ils ceux du standard ?',
     answer:
-      'Non. 6 h–22 h = fenêtre d\'intervention sur site. Le standard répond du lundi au samedi, 8 h–18 h. Réponse sous 2 h, devis sous 24 h.',
+      'Non. 6 h–22 h = fenêtre d\'intervention sur site. Le standard répond du lundi au vendredi, 9 h–18 h. Prise en charge sous 4 h ouvrées, devis détaillé après étude.',
   },
 ];

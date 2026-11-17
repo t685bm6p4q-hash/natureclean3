@@ -1,72 +1,83 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
-import { PHONE_HREF, ARIA_PHONE, FOUNDING_YEAR } from '@/app/utils/constants';
+import {
+  PHONE_HREF,
+  ARIA_PHONE,
+  PHONE_DISPLAY,
+  LEAD_RESPONSE_SLA_SHORT,
+  MOBILIZATION_AFTER_QUOTE,
+  ZONE_LABEL,
+} from '@/app/utils/constants';
 import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
 import { Button } from '@/app/components/ui/button';
-import { Phone, Layers, Grid3x3, ArrowRight, Clock, Volume2, ShieldAlert, Sparkles } from 'lucide-react';
+import { BulletList } from '@/app/components/BulletList';
+import { Phone, Layers, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { ServiceFeatureCard } from '@/app/components/ServiceFeatureCard';
 import { IMAGES } from '@/app/utils/images';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: 'Quels types de sols traitez-vous à Marseille ?',
+    question: 'Quels sols traitez-vous ?',
     answer:
-      'En priorité : marbre, pierre, granit, béton ciré, carrelage et sols de commerces à décaper. Le parquet, on le fait quand le support s\'y prête — un parqueteur reste parfois plus adapté, on le dit à la visite. La moquette, c\'est de l\'entretien, pas une remise en état : voir la fiche bureaux.',
+      'Carrelage, parquet, béton ciré, marbre, tommettes, PVC et autres supports, selon la compatibilité technique.',
   },
   {
-    question: 'Combien de temps dure une remise en état de sol ?',
+    question: 'Combien de temps dure une remise en état ?',
     answer:
-      'Ça dépend de la surface, de l\'état et du traitement. On ne publie pas de durée type. Le planning est dans le devis, après visite ou photos. Réponse sous 2 h, devis sous 24 h.',
+      'Cela dépend de la surface, du revêtement et de la technique. Nous vous donnons une estimation après étude.',
   },
   {
-    question: 'Le polissage de marbre est-il bruyant ? Peut-on rester dans les locaux ?',
+    question: 'Pouvez-vous intervenir sans arrêter mon activité ?',
     answer:
-      'Le diamantage et le polissage font du bruit. En copropriété, on cale la journée avec le syndic. En commerce ou bureau, soir ou week-end si besoin. Rester sur place : possible selon le traitement et la poussière, on le tranche à la visite.',
+      'Nous organisons le chantier selon vos contraintes d’exploitation, par zones ou en horaires adaptés — à confirmer au devis.',
   },
   {
-    question: 'Quelle est la durée de vie d\'une cristallisation de marbre ?',
+    question: 'Intervenez-vous sur des sols en marbre ?',
     answer:
-      'Elle dépend du trafic et de l\'entretien ensuite. Un hall d\'immeuble s\'use plus vite qu\'un palier peu passé. On ne promet pas un nombre d\'années : on dit comment entretenir pour que le rendu tienne.',
+      'Oui, nous avons une expérience sur le marbre. Nous examinons l’état du support avant de choisir la méthode.',
   },
   {
-    question: 'Intervenez-vous en dehors de Marseille pour les sols ?',
+    question: 'Combien coûte une remise en état de sol ?',
     answer:
-      'Oui, dans les Bouches-du-Rhône : Aix-en-Provence, Aubagne, Salon-de-Provence, La Ciotat. Zone : Marseille et le 13.',
+      'Le prix dépend de la surface, du revêtement, de l’état et de l’accès. Le devis est détaillé et établi sur étude.',
   },
   {
-    question: 'Quels sols refusez-vous ou testez-vous d\'abord ?',
+    question: 'Proposez-vous un décapage de sol pour un commerce ou une copropriété à Marseille ?',
     answer:
-      'Un support fissuré, une résine douteuse, un marbre trop usé : on teste ou on refuse. Mieux vaut le dire avant que de promettre un rendu uniforme.',
+      `Oui, sur carrelage, marbre, tommettes, béton ciré ou PVC selon faisabilité technique. Intervention en zones ou horaires adaptés sur ${ZONE_LABEL}. ${LEAD_RESPONSE_SLA_SHORT}, ${MOBILIZATION_AFTER_QUOTE.toLowerCase()}.`,
   },
 ];
 
-const CONSTRAINTS = [
-  {
-    icon: Clock,
-    title: 'Séchage et circulation',
-    text: 'Certains traitements demandent un délai avant de marcher dessus. On l\'écrit au devis, on ne l\'invente pas ici.',
-  },
-  {
-    icon: Volume2,
-    title: 'Bruit et horaires',
-    text: 'Machines bruyantes. Soir, week-end ou journée syndic : on cale avant de venir.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Poussière',
-    text: 'Protection du mobilier, aspiration. Un hall occupé n\'est pas un atelier : on le prévoit.',
-  },
-  {
-    icon: ShieldAlert,
-    title: 'Après le traitement',
-    text: 'Paillassons, produits adaptés, passages d\'entretien. Sans ça, le rendu ne tient pas.',
-  },
+const FLOORS_TREATED = [
+  'Carrelage, parquet, béton ciré, marbre, tommettes, PVC et autres supports',
+  'Sous réserve de compatibilité technique',
+  'Expérience particulière sur le marbre et les tommettes',
+];
+
+const WHAT_WE_DO = [
+  'Décapage de l’ancienne protection ou des couches d’émulsion accumulées',
+  'Traitement mécanisé à la monobrosse, disques et produits choisis selon le revêtement',
+  'Nettoyage de remise en état après travaux, avant location ou vente, ou pour redonner de l’uniformité à un sol usé',
+  'Produits professionnels adaptés au support — méthode déterminée après examen',
+];
+
+const BEFORE_WE_START = [
+  'Nature exacte du revêtement et son état (fissures, joints, anciennes protections)',
+  'Accès et manutention du matériel',
+  'Ce qu’il faut protéger (plinthes, mobilier, menuiseries)',
+  'Contraintes d’exploitation : horaires, circulation pendant le séchage',
+];
+
+const WHAT_WE_DONT_PROMISE = [
+  'Un sol « comme neuf » : le résultat dépend de l’état de départ',
+  'Délai universel de remise en circulation ou durée de vie du traitement : précisés pour votre sol après étude',
+  'Cristallisation, métallisation ou anti-dérapant sans validation technique du support au préalable',
 ];
 
 export function RemiseEtatSolsPage() {
@@ -79,9 +90,9 @@ export function RemiseEtatSolsPage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: 'Remise en état et rénovation de sols à Marseille',
+            name: 'Remise en état de sols à Marseille',
             description:
-              'Polissage, cristallisation, décapage et lustrage de sols à Marseille depuis 2021 : marbre, béton ciré, parquet. Réponse sous 2 h, devis sous 24 h.',
+              'Décapage et remise en état de sols : carrelage, parquet, béton ciré, marbre, tommettes. Traitement à la monobrosse.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'City', name: 'Marseille' },
             serviceType: 'Remise en état de sols',
@@ -91,12 +102,12 @@ export function RemiseEtatSolsPage() {
       />
 
       <ServicePageHero
-        title="Remise en état et rénovation de sols à Marseille"
-        subtitle="Marbre, pierre, béton ciré, décapage de locaux — depuis 2021"
-        badge="Marbre et pierre"
-        badgeIcon={<Layers className="w-4 h-4" />}
+        title="Remise en état de sols à Marseille"
+        subtitle="Décapage et traitement mécanisé de vos sols, adaptés à chaque revêtement."
+        badge="Monobrosse & décapage"
+        badgeIcon={<Layers className="w-4 h-4" aria-hidden="true" />}
         imageSrc={IMAGES.solMarbrePoli}
-        imageAlt="Hall en marbre à Marseille, sol lustré devant les ascenseurs"
+        imageAlt="Sol en marbre après remise en état"
         breadcrumbs={[
           { label: 'Accueil', to: '/' },
           { label: 'Services', to: '/services' },
@@ -105,313 +116,155 @@ export function RemiseEtatSolsPage() {
         devisLink="/devis?service=sols"
       />
 
-      <section className="relative py-16 bg-white overflow-hidden">
-        <ImageWithFallback
-          src={IMAGES.solMarbrePoli}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.04] hidden md:block"
-          loading="lazy"
-          decoding="async"
-          width={800}
-          height={450}
-        />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
-            <ScrollReveal>
-              <p className="text-lg">
-                Un hall de copropriété terni, un sol de commerce encraissé, un béton ciré qui a perdu
-                son film : Nature Clean remet en état des sols à Marseille depuis {FOUNDING_YEAR},
-                depuis le 8e.
-              </p>
-              <p>
-                On est une société de nettoyage, pas un parqueteur. Notre terrain, c&apos;est le{' '}
-                <strong>marbre et la pierre</strong>, le <strong>béton ciré</strong>, le{' '}
-                <strong>décapage de locaux</strong>. Le parquet, si le support le permet. Zone :
-                Marseille et Bouches-du-Rhône.
-              </p>
-              <p className="font-semibold text-green-700">
-                Réponse sous 2 h, devis sous 24 h — visite ou photos du support
-              </p>
-            </ScrollReveal>
-          </div>
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Un sol terni, encrassé ou recouvert de plusieurs couches d&apos;ancien produit se voit
+              dès l&apos;entrée. Nature Clean remet en état les sols des commerces, bureaux,
+              copropriétés et logements de Marseille et des Bouches-du-Rhône, avec un{' '}
+              <strong>traitement mécanisé à la monobrosse</strong>, des disques et des produits adaptés
+              à chaque support.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 font-bold">
+                <Link to="/devis?service=sols">Demander un devis gratuit</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-green-600 text-green-700">
+                <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
+                  <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
+                  {PHONE_DISPLAY}
+                </a>
+              </Button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
-                Marbre et pierre : polissage, puis cristallisation
-              </h2>
-              <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
-                On ne « ponce » pas le marbre comme un parquet. Diamantage, polissage, cristallisation
-                — dans cet ordre, si le support le permet.
-              </p>
-            </ScrollReveal>
-            <div className="grid md:grid-cols-2 gap-8 items-center mb-10">
-              <ScrollReveal>
-                <ImageWithFallback
-                  src={IMAGES.hallMarbreSale}
-                  alt="Hall en marbre d'un immeuble, avant ou après lustrage"
-                  className="w-full h-72 object-cover rounded-2xl border border-gray-200"
-                  loading="lazy"
-                  decoding="async"
-                  width={800}
-                  height={450}
-                />
-              </ScrollReveal>
-              <ScrollReveal delay={0.08}>
-                <ul className="space-y-3 text-gray-700">
-                  <li>
-                    <strong>Diagnostic :</strong> nature de la pierre, usure, joints, trafic.
-                  </li>
-                  <li>
-                    <strong>Diamantage / polissage :</strong> pour rouvrir le grain et uniformiser.
-                  </li>
-                  <li>
-                    <strong>Cristallisation :</strong> pour durcir et faire briller la surface, pas
-                    pour « faire comme neuf » un sol trop usé.
-                  </li>
-                  <li>
-                    <strong>Résultat visé :</strong> un rendu uniforme et protégé, adapté à l&apos;état
-                    du support.
-                  </li>
-                </ul>
-              </ScrollReveal>
-            </div>
-          </div>
+        <div className="container mx-auto px-4 max-w-6xl grid md:grid-cols-2 gap-12 items-start">
+          <ScrollReveal>
+            <h2 className="text-3xl font-black text-gray-900 mb-4">Les sols que nous traitons</h2>
+            <BulletList lines={FLOORS_TREATED} bulletClassName="text-green-600" />
+          </ScrollReveal>
+          <ScrollReveal delay={0.08}>
+            <ImageWithFallback
+              src={IMAGES.monobrosseAction}
+              alt="Traitement de sol à la monobrosse"
+              className="w-full h-64 object-cover rounded-2xl border border-gray-200"
+              loading="lazy"
+              decoding="async"
+              width={600}
+              height={256}
+            />
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-4xl">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
-              Les autres supports
+            <h2 className="text-3xl font-black text-gray-900 mb-6">Ce que nous faisons</h2>
+            <BulletList lines={WHAT_WE_DO} bulletClassName="text-green-600" />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section className="py-16 bg-green-50 border-y border-green-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <h2 className="text-2xl font-black text-gray-900 mb-4">
+              Organisation dès la validation du devis
             </h2>
-            <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">
-              Un geste par matériau. On ne ponce pas le linoléum. La moquette n&apos;est pas une
-              rénovation de sol.
+            <p className="text-gray-700 leading-relaxed mb-4">
+              La date et la durée dépendent de la surface, du revêtement, de la technique, du
+              matériel et des contraintes d&apos;accès. {MOBILIZATION_AFTER_QUOTE}, selon
+              disponibilités.
+            </p>
+            <p className="text-sm text-gray-600">
+              {LEAD_RESPONSE_SLA_SHORT} pour toute nouvelle demande — {ZONE_LABEL}.
             </p>
           </ScrollReveal>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
-            {(
-              [
-                {
-                  icon: Grid3x3,
-                  title: 'Béton ciré, carrelage, locaux',
-                  image: IMAGES.decapageSolEco,
-                  items: [
-                    { bold: 'Décapage', text: 'de sols de commerces et de halls' },
-                    { bold: 'Béton ciré et résine', text: 'si le film le permet' },
-                    { bold: 'Carrelage', text: 'lessivage, joints, protection' },
-                  ],
-                  desc: 'L\'entretien lourd : enlever les couches, dégraisser, protéger. Produits à faible impact lorsque le support le permet.',
-                },
-                {
-                  icon: Layers,
-                  title: 'Parquet',
-                  image: IMAGES.jdSportMarseilleFloor,
-                  items: [
-                    { bold: 'Ponçage', text: 'si le bois a encore de l\'épaisseur' },
-                    { bold: 'Finition', text: 'huile, cire ou vitrificateur' },
-                    { bold: 'Limite', text: 'un parqueteur parfois plus adapté' },
-                  ],
-                  desc: 'Occasionnel. On le dit à la visite si le chantier relève plutôt d\'un spécialiste bois.',
-                  footer: undefined,
-                },
-                {
-                  icon: Sparkles,
-                  title: 'Ce que ce n\'est pas',
-                  image: IMAGES.entrepriseBureauxMarseille,
-                  items: [
-                    { bold: 'Moquette', text: 'entretien, fiche bureaux' },
-                    { bold: 'Linoléum', text: 'pas de ponçage' },
-                    { bold: 'Ménage à domicile', text: 'ce n\'est pas cette page' },
-                  ],
-                  desc: 'On ne mélange pas rénovation de sol et ménage courant.',
-                  footer: (
-                    <p className="text-gray-600 leading-relaxed">
-                      <Link
-                        to="/services/entretien-bureaux"
-                        className="font-semibold text-green-800 underline underline-offset-2 hover:text-green-900"
-                      >
-                        Entretien bureaux (moquette)
-                      </Link>
-                      <span className="text-gray-400 mx-2" aria-hidden="true">
-                        ·
-                      </span>
-                      <Link
-                        to="/services/nettoyage-diogene"
-                        className="font-semibold text-green-800 underline underline-offset-2 hover:text-green-900"
-                      >
-                        Ménage logement / Diogène
-                      </Link>
-                    </p>
-                  ),
-                },
-              ] as const
-            ).map((card, i) => (
-              <ScrollReveal key={card.title} delay={i * 0.1}>
-                <ServiceFeatureCard
-                  title={card.title}
-                  image={card.image}
-                  icon={card.icon}
-                  items={card.items}
-                  description={card.desc}
-                  footer={'footer' in card ? card.footer : undefined}
-                />
-              </ScrollReveal>
-            ))}
-          </div>
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <h2 className="text-3xl font-black text-gray-900 mb-6">
+              Ce que nous vérifions avant d&apos;intervenir
+            </h2>
+            <BulletList lines={BEFORE_WE_START} bulletClassName="text-green-600" />
+          </ScrollReveal>
+        </div>
+      </section>
 
-          <ScrollReveal delay={0.15}>
-            <div className="max-w-3xl mx-auto bg-green-50 p-8 rounded-2xl border border-green-200">
-              <div className="grid md:grid-cols-2 gap-6 items-center">
-                <div>
-                  <h3 className="text-xl font-black text-gray-900 mb-2">Besoin d&apos;un devis ?</h3>
-                  <p className="text-sm text-gray-600">
-                    Réponse sous 2 h, devis sous 24 h — photos du sol bienvenues
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="bg-green-700 hover:bg-green-800 font-bold flex-1">
-                    <Link to="/devis?service=sols">Devis gratuit</Link>
-                  </Button>
-                  <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50 font-bold flex-1">
-                    <a href={PHONE_HREF} aria-label={ARIA_PHONE}>
-                      <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
-                      Appeler
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
+      <section className="py-16 bg-amber-50 border-y border-amber-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <h2 className="text-2xl font-black text-gray-900 mb-6">Ce que nous ne promettons pas</h2>
+            <BulletList lines={WHAT_WE_DONT_PROMISE} bulletClassName="text-amber-700" />
           </ScrollReveal>
         </div>
       </section>
 
       <ConversionBreak
         image={IMAGES.decapageSolEco}
-        imageAlt="Décapage d'un sol de local à Marseille, monobrosse au travail"
-        title="Un sol terne n'est pas forcément à changer"
-        subtitle="Visite ou photos. On dit ce qu'on peut faire — et ce qu'on ne peut pas."
+        imageAlt="Décapage d'un sol professionnel"
+        title="Photos ou visite du sol"
+        subtitle="Nous vous disons ce qui est réaliste sur votre support."
         devisLink="/devis?service=sols"
       />
 
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
-                Contraintes de terrain
-              </h2>
-              <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
-                C&apos;est ça qui décide si on peut intervenir, pas une promesse « écologique » ou
-                « comme neuf ».
-              </p>
-            </ScrollReveal>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {CONSTRAINTS.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <ScrollReveal key={item.title} delay={i * 0.06}>
-                    <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm h-full">
-                      <Icon className="w-7 h-7 text-green-600 mb-3" aria-hidden="true" />
-                      <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">{item.text}</p>
-                    </div>
-                  </ScrollReveal>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal>
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
-                Sols sur lesquels on intervient
-              </h2>
-              <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
-                Halls en marbre et décapage de locaux. Pas de cuisine « après travaux » déguisée en
-                avant/après.
-              </p>
-            </ScrollReveal>
-            <div className="grid md:grid-cols-3 gap-6">
-              {(
-                [
-                  {
-                    src: IMAGES.solMarbrePoli,
-                    alt: 'Sol en marbre d\'un hall d\'immeuble à Marseille',
-                    title: 'Hall marbre',
-                    sub: 'Polissage / lustrage',
-                  },
-                  {
-                    src: IMAGES.hallMarbreSale,
-                    alt: 'Hall en marbre, circulation et paliers',
-                    title: 'Pierre en copropriété',
-                    sub: 'Cristallisation si le support tient',
-                  },
-                  {
-                    src: IMAGES.decapageSolEco,
-                    alt: 'Décapage d\'un sol de commerce à Marseille',
-                    title: 'Décapage local',
-                    sub: 'Commerces et halls',
-                  },
-                ] as const
-              ).map((photo, i) => (
-                <ScrollReveal key={photo.title} delay={i * 0.08}>
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                    <ImageWithFallback
-                      src={photo.src}
-                      alt={photo.alt}
-                      className="w-full h-[280px] object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      width={400}
-                      height={300}
-                    />
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent px-4 py-3 text-white">
-                      <p className="font-bold text-sm">{photo.title}</p>
-                      <p className="text-xs text-white/80">{photo.sub}</p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ServiceSeoContentSection
+        title="Décapage et remise en état de sols à Marseille"
+        lead="Monobrosse, disques et produits adaptés — pas de promesse de sol « comme neuf » sans voir le support."
+      >
+        <p>
+          La <strong>remise en état de sols à Marseille</strong> concerne les revêtements ternis par
+          l&apos;usage, plusieurs couches d&apos;ancien produit ou les salissures de fin de chantier.
+          Nature Clean travaille en <strong>décapage et traitement mécanisé à la monobrosse</strong> sur
+          carrelage, parquet, béton ciré, marbre, tommettes et PVC — après examen du support dans le{' '}
+          {ZONE_LABEL}.
+        </p>
+        <p>
+          Nous ne vendons pas de cristallisation, métallisation ou anti-dérapant sans validation
+          technique préalable. Résultat et délai de remise en circulation : annoncés pour <em>votre</em>{' '}
+          sol au devis, pas en généralités.
+        </p>
+        <p>
+          Souvent demandé en complément d&apos;une{' '}
+          <Link to="/services/nettoyage-chantiers" className="text-green-800 font-semibold underline">
+            fin de chantier
+          </Link>{' '}
+          ou d&apos;un{' '}
+          <Link to="/services/entretien-bureaux" className="text-green-800 font-semibold underline">
+            contrat bureaux
+          </Link>
+          . Photos ou visite obligatoires avant engagement.
+        </p>
+      </ServiceSeoContentSection>
 
       <FAQSection
         items={FAQ_ITEMS}
         title="Questions fréquentes — Remise en état des sols"
-        subtitle="Marbre, bruit, délais, ce qu'on ne traite pas"
+        subtitle="Supports, durée, marbre, tarifs"
       />
 
       <section className="py-16 md:py-20 bg-gray-900">
         <div className="container mx-auto px-4 text-center">
-          <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              Un rendu uniforme et protégé, adapté à l&apos;état du support
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Marseille et Bouches-du-Rhône — réponse sous 2 h, devis sous 24 h
-            </p>
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black shadow-lg shadow-green-500/20">
-              <Link to="/devis?service=sols">
-                Demander un devis gratuit
-                <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
-              </Link>
-            </Button>
-          </ScrollReveal>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            Demander une étude de sol
+          </h2>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            {ZONE_LABEL} — {LEAD_RESPONSE_SLA_SHORT}, devis détaillé après étude.
+          </p>
+          <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
+            <Link to="/devis?service=sols">
+              Demander un devis gratuit
+              <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
+            </Link>
+          </Button>
         </div>
       </section>
 

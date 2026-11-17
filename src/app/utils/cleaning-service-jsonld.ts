@@ -8,7 +8,6 @@ import {
   COMPANY_FULL_NAME,
   COMPANY_NAME,
   EMAIL,
-  FOUNDING_YEAR,
   LOGO_URL,
   SIRET,
 } from '@/app/utils/constants';
@@ -50,7 +49,7 @@ export function buildCleaningServiceJsonLd(): Record<string, unknown> {
     image: LOGO_URL,
     logo: LOGO_URL,
     description:
-      "Entreprise d'entretien et de nettoyage professionnel à Marseille. Bureaux, copropriétés, fin de chantier et Diogène. 50 % de produits éco-labellisés. Intervention à Marseille (13001-13016) et dans les Bouches-du-Rhône.",
+      "Entreprise d'entretien et de nettoyage professionnel à Marseille. Bureaux, copropriétés, fin de chantier et Diogène. Professionnels et particuliers. Intervention à Marseille et dans les Bouches-du-Rhône.",
     url: BASE_URL,
     telephone: '+33484896875',
     email: EMAIL,
@@ -73,8 +72,8 @@ export function buildCleaningServiceJsonLd(): Record<string, unknown> {
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '08:00',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
         closes: '18:00',
       },
     ],
@@ -142,8 +141,7 @@ export function buildCleaningServiceJsonLd(): Record<string, unknown> {
       propertyID: 'SIRET',
       value: SIRET,
     },
-    foundingDate: FOUNDING_YEAR,
-    slogan: 'Entretien et nettoyage éco-responsable à Marseille',
+    slogan: 'Au-delà du nettoyage, un véritable entretien professionnel',
     sameAs: [
       'https://share.google/LGuTIovk5ovTXGzuc',
       'https://www.pagesjaunes.fr/pros/61828182',

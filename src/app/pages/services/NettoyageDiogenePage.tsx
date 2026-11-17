@@ -4,6 +4,13 @@ import {
   PHONE_HREF,
   ARIA_PHONE,
   ZONE_LABEL,
+  LEAD_RESPONSE_SLA,
+  MOBILIZATION_AFTER_QUOTE,
+  WASTE_BORDEREAU_LINE,
+  DIOGENE_VOIAGE_LINE,
+  DIOGENE_DISCRETION_LINE,
+  RC_PRO_SHORT_LINE,
+  RC_PRO_FAQ_ANSWER,
 } from '@/app/utils/constants';
 import { BulletList } from '@/app/components/BulletList';
 import { MobileSnapRail } from '@/app/components/MobileSnapRail';
@@ -13,7 +20,6 @@ import {
   Heart,
   ShieldCheck,
   Trash2,
-  Sparkles,
   Phone,
   CheckCircle2,
   ArrowRight,
@@ -29,98 +35,87 @@ import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 
 const PROCESS_STEPS = [
   {
-    title: '1. Appel confidentiel',
-    text: 'Vous décrivez la situation. Réponse sous 2 h aux heures d’ouverture (lundi–samedi, 8 h–18 h).',
+    title: '1. Prise en charge de votre demande',
+    text: `${LEAD_RESPONSE_SLA}. Vous nous décrivez la situation, avec des photos si vous le pouvez.`,
   },
   {
-    title: '2. Visite et devis gratuits',
-    text: 'Volume, état du logement, accès (étage, ascenseur, couloirs). Devis détaillé sous 24 h, sans engagement.',
+    title: '2. Étude et visite technique',
+    text: 'Volume, accès (étage, ascenseur, escalier), état du logement et précautions à prendre, puis devis détaillé gratuit. Visite sur place gratuite si nécessaire pour chiffrer.',
   },
   {
-    title: '3. Tri et mise de côté',
-    text: 'Documents, papiers d’identité, argent, souvenirs et objets de valeur repérés avant tout déplacement. Liste ou photos sur demande, remise à l’occupant ou à la personne désignée.',
+    title: '3. Tri et débarras',
+    text: `Tri, débarras et évacuation des déchets vers des filières adaptées. ${WASTE_BORDEREAU_LINE}`,
   },
   {
-    title: '4. Évacuation',
-    text: 'Déchets et encombrants vers une filière adaptée (benne ou déchetterie). Bordereau de suivi remis si votre dossier l’exige.',
+    title: '4. Nettoyage approfondi',
+    text: 'Sols, murs, sanitaires et cuisine avec des produits professionnels adaptés.',
   },
   {
-    title: '5. Nettoyage et désinfection',
-    text: 'Lessivage des murs, sols et sanitaires, dégraissage cuisine, désinfection des surfaces avec produits professionnels adaptés au support.',
+    title: '5. Odeurs',
+    text: 'Après débarras et nettoyage : aération du logement et, si besoin, produits spécifiques contre les odeurs, avec les protections adaptées.',
   },
   {
     title: '6. Contrôle final',
-    text: 'Vérification avec vous, retouches si nécessaire, compte rendu avec photos si vous le souhaitez.',
+    text: 'Contrôle avec la personne qui nous a mandatés, et photos de suivi si vous le souhaitez.',
   },
 ] as const;
 
 const WHO_CAN_REQUEST = [
-  'L’occupant lui-même',
-  'Un proche (enfant, conjoint, famille), avec l’accord de la personne ou de son représentant légal',
-  'Un tuteur, un curateur ou un mandataire judiciaire',
-  'Un bailleur ou un syndic, dans le cadre de ses démarches',
-  'Un service social ou un organisme d’aide',
+  'Propriétaires',
+  'Familles de la personne concernée',
+  'Tuteurs ou mandataires, avec autorisation de la personne juridiquement habilitée',
 ] as const;
 
 const FAQ_DIOGENE: FAQItem[] = [
   {
-    question: 'Qu’est-ce que le syndrome de Diogène ?',
+    question: 'Qui peut demander l’intervention ?',
     answer:
-      'C’est un trouble du comportement qui se traduit par une accumulation d’objets ou de déchets (syllogomanie), une négligence de l’hygiène du logement et souvent un isolement social. Notre rôle n’est pas de juger, mais de remettre le logement en état de propreté et d’hygiène, de façon discrète et respectueuse.',
+      'Les propriétaires, les familles et les tuteurs. Nous vérifions l’autorisation de la personne juridiquement habilitée avant d’intervenir.',
   },
   {
-    question: 'Comment se déroule une intervention ?',
+    question: 'Que faites-vous si la personne refuse ?',
     answer:
-      'Après un appel confidentiel, visite et devis gratuits, puis tri, évacuation, nettoyage et désinfection. Une vérification finale est faite avec vous. Le détail des six étapes est présenté sur cette page.',
+      'Nous n’intervenons pas sans l’accord de la personne habilitée. Un médecin, une assistante sociale ou la mairie peuvent vous orienter.',
   },
   {
-    question: 'Intervenez-vous si la personne refuse ou n’est pas consciente du problème ?',
+    question: 'Que devient mon argent ou mes papiers ?',
     answer:
-      'Non, pas sans l’accord de l’occupant ou de son représentant légal. Mieux vaut d’abord passer par le médecin traitant, un service social ou la mairie (service d’hygiène). Nous pouvons vous aider à identifier le bon interlocuteur.',
+      'Tout objet de valeur ou document important est signalé à la direction, puis restitué à la personne habilitée via la personne qui nous a mandatés.',
   },
   {
-    question: 'Mes affaires personnelles seront-elles conservées ?',
+    question: 'Gérez-vous les cafards, les punaises de lit ou les rats ?',
     answer:
-      'Les documents, papiers d’identité, argent, souvenirs et objets de valeur sont repérés et mis de côté avant tout déplacement. Sur demande : liste ou photos ; remise à l’occupant ou à la personne que vous désignez.',
+      'Pas directement : nous travaillons avec un partenaire spécialisé, puis nous coordonnons le nettoyage. Nous ne réalisons pas ces traitements nous-mêmes.',
   },
   {
-    question: 'Comment assurez-vous la discrétion ?',
+    question: 'Pouvez-vous évacuer sans benne ?',
     answer:
-      'Véhicule banalisé sur demande, horaires adaptés, tenue neutre. Nous ne communiquons sur la nature de l’intervention ni au voisinage ni à des tiers, sauf personnes que vous indiquez (syndic, gardien) si c’est nécessaire à l’accès.',
+      `Nous organisons le débarras selon le volume : rotations vers les filières adaptées, ou location de benne sur étude. ${DIOGENE_VOIAGE_LINE}`,
   },
   {
     question: 'Combien de temps dure une intervention ?',
     answer:
-      'De quelques heures à plusieurs jours selon le volume et l’état du logement. Estimation précise lors de la visite.',
+      'De quelques heures à plusieurs jours selon le volume et l’état du logement. Estimation après l’étude.',
   },
   {
-    question: 'Intervenez-vous vite ?',
+    question: 'La discrétion est-elle respectée ?',
     answer:
-      'Réponse sous 2 h en horaires d’ouverture, devis sous 24 h après la visite, intervention en général sous 48 h selon disponibilité. Situation urgente (signalement, délai bailleur) : appelez-nous directement.',
+      `Oui : confidentialité, photos sans éléments identifiants autant que possible, aucune publication sans autorisation. ${DIOGENE_DISCRETION_LINE}`,
   },
   {
-    question: 'Le logement sera-t-il propre à la fin ?',
-    answer:
-      'Notre objectif est un logement nettoyé et désinfecté — remise en état de propreté et d’hygiène. Si des travaux sont nécessaires (peinture, revêtements, humidité structurelle), nous vous le disons après la visite.',
+    question: 'Êtes-vous assurés pour ce type d’intervention ?',
+    answer: RC_PRO_FAQ_ANSWER,
   },
   {
-    question: 'Que se passe-t-il après l’intervention ?',
+    question: 'Intervenez-vous pour un nettoyage syndrome de Diogène à Marseille et dans le 13 ?',
     answer:
-      'Le nettoyage ne traite pas la cause du problème. Nous vous conseillons un suivi avec un médecin ou un service social pour limiter une rechute. Un passage d’entretien ponctuel peut être chiffré au devis si vous le souhaitez.',
+      `Oui, sur ${ZONE_LABEL} : tri, débarras, nettoyage et coordination nuisibles via partenaire si besoin. Mandat de la personne juridiquement habilitée obligatoire. ${MOBILIZATION_AFTER_QUOTE}.`,
   },
 ];
-
-const QUOTE_FACTORS = [
-  'Volume à évacuer et surface du logement',
-  'Accès (étage sans ascenseur, couloirs étroits, distance de la benne)',
-  'État sanitaire (déchets souillés, moisissures, nuisibles)',
-  'Niveau de nettoyage et de désinfection nécessaire',
-  'Stationnement benne et autorisation de voirie si occupation du trottoir ou de la chaussée',
-  'Horaires et contraintes de discrétion',
-] as const;
 
 export function NettoyageDiogenePage() {
   return (
@@ -134,7 +129,7 @@ export function NettoyageDiogenePage() {
             '@type': 'Service',
             name: 'Nettoyage syndrome de Diogène à Marseille',
             description:
-              'Désencombrement, tri, nettoyage et désinfection de logement en situation d’accumulation. Intervention discrète, devis confidentiel.',
+              'Tri, débarras et nettoyage d’un logement en situation d’accumulation à Marseille et dans les Bouches-du-Rhône. Intervention discrète, étude et devis sur demande.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'AdministrativeArea', name: 'Bouches-du-Rhône' },
             serviceType: 'Nettoyage syndrome de Diogène',
@@ -145,7 +140,7 @@ export function NettoyageDiogenePage() {
 
       <ServicePageHero
         title="Nettoyage syndrome de Diogène à Marseille"
-        subtitle="Désencombrement, nettoyage et désinfection d'un logement, avec discrétion et sans jugement"
+        subtitle="Débarras, tri et nettoyage d'un logement, avec discrétion et sans jugement"
         badge="Discrétion & respect"
         badgeIcon={<Heart className="w-4 h-4" aria-hidden="true" />}
         imageSrc={IMAGES.hygieneLocauxSante}
@@ -162,21 +157,19 @@ export function NettoyageDiogenePage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <ScrollReveal>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Un proche, un locataire ou un voisin vit dans un{' '}
-              <strong>logement insalubre</strong> ou envahi par les objets et les déchets, et vous ne
-              savez pas par où commencer ? Nature Clean intervient à Marseille et dans les{' '}
-              {ZONE_LABEL} pour remettre le logement en{' '}
-              <strong>état de propreté et d’hygiène</strong>, en respectant la personne et ses
-              affaires.
+              Un logement envahi par les objets ou les déchets, un proche en difficulté, un locataire
+              dont la situation inquiète : ces situations sont souvent découvertes par la famille, un
+              voisin ou un médecin. Nature Clean intervient à Marseille et dans les {ZONE_LABEL} pour le
+              travail matériel : trier, débarrasser, évacuer et nettoyer le logement.
             </p>
             <p className="text-sm text-gray-600 mb-6">
-              Réponse sous 2 h en horaires d’ouverture (lundi–samedi, 8 h–18 h). Visite et devis
-              gratuits sous 24 h — le diagnostic et le devis sont sans engagement.
+              Nous demandons toujours l&apos;accord de la personne juridiquement habilitée avant
+              d&apos;intervenir. {LEAD_RESPONSE_SLA}.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button asChild size="lg" className="bg-emerald-700 hover:bg-emerald-800 font-bold">
                 <Link to="/devis?service=diogene">
-                  Demander un devis confidentiel
+                  Demander une étude confidentielle
                   <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
                 </Link>
               </Button>
@@ -242,9 +235,9 @@ export function NettoyageDiogenePage() {
             </h2>
             <BulletList lines={WHO_CAN_REQUEST} bulletClassName="text-emerald-600" className="mb-6" />
             <p className="text-sm text-gray-700 leading-relaxed bg-amber-50 border border-amber-100 rounded-xl p-5">
-              <strong className="text-gray-900">Nous n’intervenons pas</strong> sans l’accord de
-              l’occupant ou de son représentant légal. Si la situation est bloquée, tournez-vous
-              vers le médecin traitant, une assistante sociale ou le service d’hygiène de la mairie.
+              Avant toute intervention, nous vérifions l&apos;autorisation de la personne
+              juridiquement habilitée et les droits de l&apos;occupant.{' '}
+              <strong className="text-gray-900">Nous n&apos;intervenons pas sans cet accord.</strong>
             </p>
           </ScrollReveal>
         </div>
@@ -274,7 +267,24 @@ export function NettoyageDiogenePage() {
                 </div>
               ))}
             </MobileSnapRail>
+            <p className="text-center text-sm text-gray-600 mt-6 leading-relaxed">
+              {MOBILIZATION_AFTER_QUOTE}, selon nos disponibilités.
+            </p>
             <p className="text-center text-xs text-gray-400 mt-3 md:hidden">Glissez pour voir toutes les étapes</p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section className="py-16 bg-emerald-50 border-y border-emerald-100">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <ScrollReveal>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">Vos objets personnels</h2>
+            <p className="text-gray-700 leading-relaxed">
+              Tout objet de valeur ou document important trouvé pendant l&apos;intervention est signalé
+              par l&apos;agent à la direction. Nous contactons alors la personne qui nous a mandatés pour
+              organiser la restitution à la personne habilitée. Les effets personnels sont conservés selon
+              les instructions des personnes habilitées.
+            </p>
           </ScrollReveal>
         </div>
       </section>
@@ -282,34 +292,29 @@ export function NettoyageDiogenePage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <ScrollReveal>
-            <h2 className="text-3xl font-black text-gray-900 mb-8 text-center">Notre façon de travailler</h2>
+            <h2 className="text-3xl font-black text-gray-900 mb-8 text-center">Discrétion et équipement</h2>
           </ScrollReveal>
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {[
               {
                 icon: Heart,
-                title: 'Discrétion',
-                text: 'Véhicule banalisé sur demande, horaires adaptés, tenue neutre. Pas de communication sur l’intervention au voisinage ou à des tiers non désignés.',
+                title: 'Discrétion et confidentialité',
+                text: `Respect de la vie privée, photos de suivi sans éléments identifiants autant que possible, aucune publication sans autorisation. ${DIOGENE_DISCRETION_LINE}`,
               },
               {
                 icon: ShieldCheck,
-                title: 'Protection',
-                text: 'Combinaisons, gants et masques adaptés à la situation ; protection des parties communes pendant l’évacuation. Aiguilles ou déchets souillés : protocole renforcé ou recours à un intervenant spécialisé si nécessaire.',
+                title: 'Équipement de protection',
+                text: 'Combinaisons, gants, masques et chaussures de protection, adaptés aux risques du site.',
               },
               {
                 icon: CheckCircle2,
                 title: 'Équipe et assurance',
-                text: 'Personnel déclaré, couvert par notre assurance responsabilité civile professionnelle (RC Pro).',
+                text: RC_PRO_SHORT_LINE,
               },
               {
                 icon: Trash2,
-                title: 'Nuisibles',
-                text: 'Si des nuisibles sont constatés, traitement par un partenaire spécialisé ou solution adaptée — précisé au devis, avec les habilitations requises.',
-              },
-              {
-                icon: Sparkles,
-                title: 'Odeurs',
-                text: 'Nettoyage approfondi et aération en priorité. Nébulisation ou ozone uniquement si adapté : logement inoccupé pendant le traitement, puis aération avant toute réoccupation.',
+                title: 'Nuisibles : partenaire spécialisé',
+                text: 'En présence de cafards, punaises de lit ou rongeurs : partenaire pour désinsectisation ou dératisation, puis nous coordonnons le nettoyage. Nous ne réalisons pas ces traitements nous-mêmes.',
               },
             ].map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 0.05}>
@@ -336,8 +341,7 @@ export function NettoyageDiogenePage() {
                 <BulletList
                   bulletClassName="text-emerald-600"
                   lines={[
-                    'Tri et évacuation, nettoyage approfondi, désinfection',
-                    'Remise en état de propreté des sols, murs, sanitaires et cuisine',
+                    'Tri, débarras, évacuation des déchets et nettoyage approfondi du logement',
                   ]}
                 />
               </div>
@@ -349,9 +353,10 @@ export function NettoyageDiogenePage() {
                 <BulletList
                   bulletClassName="text-amber-600"
                   lines={[
-                    'Constater l’insalubrité ou la salubrité d’un logement (autorités compétentes : mairie, ARS)',
-                    'Travaux de rénovation (peinture, plomberie, électricité)',
-                    'Suivi médical ou social — le nettoyage ne traite pas la cause',
+                    'Travaux de rénovation',
+                    'Décontamination spécialisée',
+                    'Prise en charge des déchets dangereux',
+                    'Suivi médical ou social — le nettoyage ne traite pas la cause ; rapprochez-vous d’un médecin ou d’un service social',
                   ]}
                 />
               </div>
@@ -364,7 +369,7 @@ export function NettoyageDiogenePage() {
         image={IMAGES.hygieneLocauxSante}
         imageAlt="Matériel professionnel de nettoyage et d'hygiène"
         title="Besoin d’en parler ?"
-        subtitle="Appel confidentiel — Marseille et Bouches-du-Rhône (13). Devis sous 24 h après visite."
+        subtitle={`Appel confidentiel — ${ZONE_LABEL}. Étude sur place ou sur photos.`}
         devisLink="/devis?service=diogene"
       />
 
@@ -375,15 +380,49 @@ export function NettoyageDiogenePage() {
               Ce qui fait varier le devis
             </h2>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              Nous n’affichons pas de tarif standard : chaque{' '}
-              <strong>désencombrement d’appartement</strong> ou maison est différent. À Marseille,
-              comptez aussi les étages sans ascenseur, les couloirs étroits et l’organisation de la
-              benne.
+              Nous établissons un devis détaillé après étude, sans tarif standard. Facteurs
+              principaux :
             </p>
-            <BulletList lines={QUOTE_FACTORS} bulletClassName="text-emerald-600" />
+            <BulletList
+              lines={[
+                'Volume à évacuer',
+                'Accès (étage, ascenseur, distance du véhicule)',
+                'État du logement',
+                'Présence de nuisibles',
+                'Temps nécessaire',
+              ]}
+              bulletClassName="text-emerald-600"
+            />
           </ScrollReveal>
         </div>
       </section>
+
+      <ServiceSeoContentSection
+        title="Nettoyage syndrome de Diogène à Marseille : tri, débarras, hygiène"
+        lead="Sans jugement — pour les familles, propriétaires et mandataires qui doivent agir sur le logement."
+      >
+        <p>
+          Le <strong>nettoyage Diogène à Marseille</strong> regroupe le travail matériel que vous ne
+          pouvez pas assumer seul : trier, évacuer, lessiver et désodoriser un logement en situation
+          d&apos;accumulation. Nature Clean n&apos;intervient qu&apos;avec l&apos;accord de la personne
+          juridiquement habilitée — famille, tuteur, propriétaire ou syndic selon les cas.
+        </p>
+        <p>
+          Nous ne faisons pas de travaux de rénovation, de décontamination spécialisée ni de suivi
+          médical ou social. En présence de nuisibles, un <strong>partenaire</strong> traite
+          désinsectisation ou dératisation ; nous coordonnons ensuite le nettoyage. Discrétion :
+          confidentialité, photos sans identification si possible, pas de publication sans
+          autorisation.
+        </p>
+        <p>
+          {LEAD_RESPONSE_SLA}. {MOBILIZATION_AFTER_QUOTE}. Devis détaillé après étude (volume, accès,
+          état). Voir aussi nos fiches{' '}
+          <Link to="/services/nettoyage-gros-chantiers" className="text-green-800 font-semibold underline">
+            remise en état lourde
+          </Link>{' '}
+          si le besoin dépasse le seul syndrome de Diogène.
+        </p>
+      </ServiceSeoContentSection>
 
       <FAQSection
         items={FAQ_DIOGENE}
@@ -395,7 +434,7 @@ export function NettoyageDiogenePage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Besoin d’en parler ?</h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Appel confidentiel, visite et devis gratuits. {ZONE_LABEL}.
+            Appel confidentiel — devis détaillé après étude. {ZONE_LABEL}.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-gray-900 font-black">

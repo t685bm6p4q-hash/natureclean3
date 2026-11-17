@@ -24,7 +24,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'En combien de temps partez-vous ?',
     answer:
-      'Réponse sous 2 h aux heures d\'ouverture, devis sous 24 h. Sur une urgence déjà visitée, le démarrage peut être le jour même ou le lendemain, selon les accès et le volume à évacuer.',
+      'Prise en charge sous 4 h ouvrées aux heures d\'ouverture, devis détaillé après étude. Sur une urgence déjà visitée, le démarrage peut être le jour même ou le lendemain, selon les accès et le volume à évacuer.',
   },
   {
     question: 'Évacuez-vous les déchets et le stock abîmé ?',
@@ -68,7 +68,7 @@ export function RemiseEtatUrgenceCommercePage() {
             '@type': 'Service',
             name: 'Remise en état d\'urgence après dégradation à Marseille',
             description:
-              'Remise en état de magasin après saccage ou dégradation à Marseille : débarras, nettoyage intensif, sols, désinfection. Réponse sous 2 h, devis sous 24 h.',
+              'Remise en état de magasin après saccage ou dégradation à Marseille : débarras, nettoyage intensif, sols, désinfection. Prise en charge sous 4 h ouvrées, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'City', name: 'Marseille' },
             serviceType: 'Remise en état d\'urgence de commerce',
@@ -176,7 +176,7 @@ export function RemiseEtatUrgenceCommercePage() {
         image={IMAGES.magasinPretAPorterUrgence}
         imageAlt="Boutique marseillaise après remise en état d'urgence"
         title="Besoin de réouvrir après une dégradation ?"
-        subtitle="Réponse sous 2 h, devis sous 24 h — Marseille et Bouches-du-Rhône"
+        subtitle="Prise en charge sous 4 h ouvrées, devis détaillé après étude — Marseille et Bouches-du-Rhône"
         devisLink="/devis?service=commerces"
       />
 
@@ -201,7 +201,7 @@ export function RemiseEtatUrgenceCommercePage() {
             </Button>
             <Button asChild className="bg-green-700 hover:bg-green-800 font-bold">
               <Link to="/devis?service=commerces">
-                Demander un devis
+                Demander un devis gratuit
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Link>
             </Button>

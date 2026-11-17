@@ -22,7 +22,7 @@ export function NettoyageApresSinistre() {
     <>
       <SEO_Guardian 
         title="Nettoyage Après Dégât des Eaux Marseille | Nature Clean"
-        description="Remise en propreté après fuite ou humidité à Marseille et dans le 13. Périmètre d'intervention et devis sous 24 h. Incendie : prestations spécialisées à part."
+        description="Remise en propreté après fuite ou humidité à Marseille et dans le 13. Périmètre d'intervention et devis détaillé après étude. Incendie : prestations spécialisées à part."
         keywords="nettoyage après sinistre marseille, dégât des eaux 13, nettoyage après incendie marseille, remise en état post-sinistre, intervention urgence 13001"
         currentSection="blog"
 
@@ -228,9 +228,10 @@ export function NettoyageApresSinistre() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-white border-2 border-green-600 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-green-900 mb-3">⚡ Intervention 24/7</h3>
+                  <h3 className="text-lg font-semibold text-green-900 mb-3">⚡ Intervention sur organisation spécifique</h3>
                   <p className="text-gray-700">
-                    Disponible jour et nuit, week-ends et jours fériés. Délai moyen d'arrivée : <strong>2h sur Marseille</strong>.
+                    Disponible jour et nuit, week-ends et jours fériés sur organisation spécifique. Prise en charge sous{' '}
+                    <strong>4 h ouvrées</strong> aux heures d&apos;ouverture.
                   </p>
                 </div>
 
@@ -244,7 +245,7 @@ export function NettoyageApresSinistre() {
                 <div className="bg-white border-2 border-green-600 rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-green-900 mb-3">🔬 Équipement professionnel</h3>
                   <p className="text-gray-700">
-                    Déshumidificateurs industriels, pompes haute puissance, générateurs d'ozone, hygromètres de précision.
+                    Déshumidificateurs industriels, pompes haute puissance, aérateurs et hygromètres de précision.
                   </p>
                 </div>
 
@@ -294,7 +295,7 @@ export function NettoyageApresSinistre() {
                 🚨 URGENCE SINISTRE
               </h3>
               <p className="text-xl mb-6 opacity-90">
-                Dégât des eaux, incendie, inondation ? Intervention immédiate 24/7
+                Dégât des eaux, incendie, inondation ? Intervention immédiate sur organisation spécifique
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-white text-red-700 hover:bg-gray-100 font-bold text-lg">
@@ -304,11 +305,11 @@ export function NettoyageApresSinistre() {
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="!bg-transparent border-2 border-white !text-white hover:!bg-white/10 [&>*]:!text-white">
-                  <Link to="/devis">Demander un devis</Link>
+                  <Link to="/devis">Demander un devis gratuit</Link>
                 </Button>
               </div>
               <p className="mt-4 text-sm opacity-75">
-                Réponse sous 2 h en horaires d&apos;ouverture • Devis sous 24 h • Marseille et Bouches-du-Rhône
+                Prise en charge sous 4 h ouvrées en horaires d&apos;ouverture • Devis détaillé après étude • Marseille et Bouches-du-Rhône
               </p>
             </div>
 

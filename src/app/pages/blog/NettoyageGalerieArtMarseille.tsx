@@ -11,12 +11,12 @@ export function NettoyageGalerieArtMarseille() {
 
   useArticleJsonLd({
     headline: "Nettoyage de galerie d'art à Marseille : préserver les œuvres et valoriser les expositions",
-    description: "Spécialiste du nettoyage de galeries d'art et lieux d'exposition à Marseille. Entretien minutieux des sols, vitrines et cimaises sans risque pour vos œuvres. Devis sous 24h.",
+    description: "Spécialiste du nettoyage de galeries d'art et lieux d'exposition à Marseille. Entretien minutieux des sols, vitrines et cimaises sans risque pour vos œuvres. Devis détaillé après étude.",
     image: heroImageUrl,
     datePublished: '2026-09-11',
     dateModified: '2026-09-11',
     slug: 'nettoyage-galerie-art-marseille',
-    keywords: "nettoyage galerie art marseille, entretien espace exposition, nettoyage lieu culturel paca, propreté vernissage marseille, entretien cimaise vitrine",
+    keywords: "nettoyage galerie art marseille, entretien espace exposition, nettoyage lieu culturel 13, propreté vernissage marseille, entretien cimaise vitrine",
     articleSection: 'Cas clients',
     wordCount: 500,
   });
@@ -25,8 +25,8 @@ export function NettoyageGalerieArtMarseille() {
     <>
       <SEO_Guardian
         title="Nettoyage Galerie d'Art Marseille | Espaces d'Exposition | Nature Clean"
-        description="Spécialiste du nettoyage de galeries d'art et lieux d'exposition à Marseille. Entretien minutieux des sols, vitrines et cimaises sans risque pour vos œuvres. Devis sous 24h."
-        keywords="nettoyage galerie art marseille, entretien espace exposition, nettoyage lieu culturel paca, propreté vernissage marseille"
+        description="Spécialiste du nettoyage de galeries d'art et lieux d'exposition à Marseille. Entretien minutieux des sols, vitrines et cimaises sans risque pour vos œuvres. Devis détaillé après étude."
+        keywords="nettoyage galerie art marseille, entretien espace exposition, nettoyage lieu culturel 13, propreté vernissage marseille"
         currentSection="blog"
 
       />
@@ -109,7 +109,7 @@ export function NettoyageGalerieArtMarseille() {
                   },
                   {
                     title: "Entretien des sols à fort passage",
-                    desc: "Lavage, décapage et lustrage des bétons cirés, parquets massifs ou résines époxy pour garantir une brillance homogène sous les projecteurs.",
+                    desc: "Lavage, décapage doux et entretien des bétons cirés, parquets massifs ou résines époxy pour un rendu homogène sous les projecteurs.",
                   },
                   {
                     title: "Nettoyage des vitrages et cimaises",
@@ -162,7 +162,7 @@ export function NettoyageGalerieArtMarseille() {
                 {[
                   {
                     label: 'Avant vernissage',
-                    desc: "Grand nettoyage complet pour une ouverture au public parfaite : sols lustrés, vitrines sans trace, cimaises impeccables.",
+                    desc: "Grand nettoyage complet pour une ouverture au public parfaite : sols propres, vitrines sans trace, cimaises impeccables.",
                     color: 'bg-green-50 border-green-200',
                     badge: 'bg-green-700',
                   },
@@ -196,7 +196,7 @@ export function NettoyageGalerieArtMarseille() {
                   Vous gérez une galerie ou un espace culturel à Marseille ?
                 </h3>
                 <p className="text-lg mb-6 opacity-90">
-                  Devis gratuit sous 24h. Interventions en horaires décalés pour ne pas perturber vos expositions.
+                  Prise en charge sous 4 h ouvrées, devis détaillé après étude. Interventions en horaires décalés pour ne pas perturber vos expositions.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-white text-green-700 hover:bg-gray-100 font-bold">

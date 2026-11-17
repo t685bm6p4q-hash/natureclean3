@@ -49,7 +49,7 @@ export function MerciPage() {
         currentSection="merci"
         noindex
         title="Demande bien reçue | Nature Clean Marseille"
-        description="Votre demande de devis a bien été enregistrée. Nature Clean vous rappelle sous 24 h."
+        description="Votre demande de devis a bien été enregistrée. Prise en charge sous 4 h ouvrées (lun–ven 9 h–18 h)."
       />
 
       <section className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-gradient-to-b from-emerald-50 to-white">
@@ -63,7 +63,8 @@ export function MerciPage() {
           </h1>
 
           <p className="text-gray-600 text-lg leading-relaxed mb-2">
-            Notre équipe vous <strong>rappelle sous 24 h</strong> (souvent bien plus vite en journée)
+            Notre équipe prend en charge votre demande <strong>sous 4 h ouvrées</strong> en horaires
+            d&apos;ouverture, puis vous envoie un <strong>devis détaillé après étude</strong>
             pour affiner votre besoin et vous envoyer un devis personnalisé.
           </p>
 
@@ -75,7 +76,7 @@ export function MerciPage() {
 
           <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
             <Clock className="w-4 h-4 text-emerald-600" aria-hidden="true" />
-            Lun–Sam · 8h–18h · Marseille et Bouches-du-Rhône
+            Lun–ven, 9 h–18 h · Marseille et Bouches-du-Rhône
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">

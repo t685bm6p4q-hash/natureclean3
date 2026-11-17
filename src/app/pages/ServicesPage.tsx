@@ -10,11 +10,12 @@ import {
   PHONE_DISPLAY,
   PHONE_HREF,
   ARIA_PHONE,
-  FOUNDING_YEAR,
   GOOGLE_PROFILE_URL,
+  RC_PRO_FAQ_ANSWER,
   ZONE_LABEL,
 } from '@/app/utils/constants';
 import { ArrowRight, Phone, ExternalLink } from 'lucide-react';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 
 const SERVICE_SECTIONS = [
   {
@@ -40,7 +41,7 @@ const SERVICE_SECTIONS = [
     bullets: [
       'Menus gravats et déchets d\'entretien évacués si prévu au devis',
       'Équipe mobilisable en urgence de livraison',
-      'Certificat de nettoyage remis sur demande',
+      'Contrôle sur site et photos transmises sur demande',
     ],
   },
   {
@@ -90,7 +91,7 @@ const SERVICE_SECTIONS = [
     intro:
       'Tri, évacuation, nettoyage et désinfection d\'un logement en situation d\'accumulation, sans jugement. Avec l\'accord de l\'occupant ou de son représentant légal : familles, syndics, bailleurs, mandataires.',
     bullets: [
-      'Réponse sous 2 h, devis sous 24 h après visite',
+      'Prise en charge sous 4 h ouvrées, devis détaillé après étude',
       'Remise en propreté et hygiène — pas de constat d\'insalubrité',
       'Discrétion concrète (véhicule banalisé sur demande)',
     ],
@@ -101,11 +102,11 @@ const SERVICE_SECTIONS = [
     href: '/services/nettoyage-graffitis',
     linkLabel: 'Enlèvement de graffitis à Marseille',
     intro:
-      'Tags et graffitis sur façades, rideaux métalliques et vitrines, avec une technique choisie selon le support (aérogommage ou traitement chimique), après test préalable.',
+      'Tags et graffitis sur façades, rideaux métalliques et vitrines. Produits professionnels adaptés au graffiti et au support, après examen.',
     bullets: [
-      'Délai annoncé au devis ; appelez-nous en urgence',
-      'Protection anti-graffiti en option',
-      'Pour syndics, enseignes et gestionnaires de sites',
+      'Prise en charge sous 4 h ouvrées',
+      'Photos transmises avec la facture',
+      'Commerces, syndics et gestionnaires de sites',
     ],
   },
   {
@@ -114,11 +115,11 @@ const SERVICE_SECTIONS = [
     href: '/services/remise-etat-sols',
     linkLabel: 'Remise en état des sols à Marseille',
     intro:
-      'Décapage, cristallisation et lustrage de marbre, béton ciré, carrelage et autres revêtements, selon l\'état du support.',
+      'Décapage et traitement mécanisé à la monobrosse : marbre, carrelage, béton ciré, tommettes, selon compatibilité technique.',
     bullets: [
-      'Traitement adapté à chaque matériau',
-      'Protection après intervention',
-      'Devis après visite du revêtement',
+      'Méthode après examen du sol',
+      'Sans promesse de sol « comme neuf »',
+      'Devis détaillé sur étude',
     ],
   },
   {
@@ -129,8 +130,8 @@ const SERVICE_SECTIONS = [
     intro:
       'Vitrines, baies vitrées, façades vitrées, vérandas, intérieur comme extérieur.',
     bullets: [
-      'Perche et eau déminéralisée ; nacelle si la voirie le permet',
-      'Pas de pose de vitres (vitrerie)',
+      'Perches et échelles télescopiques ; eau déminéralisée',
+      'Accès complexes : partenaire spécialisé sur cordes',
       'Retouches si un défaut est constaté à la fin',
     ],
   },
@@ -196,17 +197,16 @@ const FAQ_SERVICES: FAQItem[] = [
   {
     question: 'Fournissez-vous les produits et le matériel ?',
     answer:
-      'Oui. Produits professionnels et matériel sont inclus dans chaque prestation. Environ 50 % de nos produits d\'entretien courant sont éco-labellisés.',
+      'Oui. Produits professionnels et matériel sont inclus dans chaque prestation.',
   },
   {
     question: 'Intervenez-vous le soir, la nuit ou le week-end ?',
     answer:
-      'Oui, sur contrat : créneaux possibles de 6 h à 22 h, y compris le week-end selon le planning. Notre standard administratif est ouvert du lundi au samedi, de 8 h à 18 h.',
+      'Oui, sur contrat : créneaux possibles de 6 h à 22 h, y compris le week-end selon le planning. Notre standard administratif est ouvert du lundi au vendredi, de 9 h à 18 h.',
   },
   {
     question: 'Êtes-vous assurés ?',
-    answer:
-      'Oui, Nature Clean est couverte par une assurance responsabilité civile professionnelle (RC Pro).',
+    answer: RC_PRO_FAQ_ANSWER,
   },
   {
     question: 'Proposez-vous des contrats récurrents sans engagement ?',
@@ -218,16 +218,26 @@ const FAQ_SERVICES: FAQItem[] = [
     answer:
       'Oui, selon disponibilité : fin de chantier avant remise des clés, remise en état d\'un commerce, tags à effacer rapidement. Appelez-nous au 04 84 89 68 75.',
   },
+  {
+    question: 'Quelle entreprise de nettoyage contacter pour une copropriété à Marseille ?',
+    answer:
+      'Nature Clean entretient halls, escaliers, ascenseurs et parkings sur contrat syndic : devis détaillé après visite, fiche de passage sur demande, RC Pro. Voir la fiche nettoyage de copropriétés.',
+  },
+  {
+    question: 'Couvrez-vous Aix-en-Provence, Aubagne et les autres communes du 13 ?',
+    answer:
+      'Oui : Marseille (13001 à 13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres, Martigues, et autres communes des Bouches-du-Rhône selon faisabilité. Détail sur la page Zones d\'intervention.',
+  },
 ];
 
 const PROCESS_STEPS = [
   {
     title: 'Vous nous contactez',
-    text: 'Réponse sous 2 h en horaires d\'ouverture (lundi–samedi, 8 h–18 h).',
+    text: 'Prise en charge sous 4 h ouvrées en horaires d\'ouverture (lundi–vendredi, 9 h–18 h).',
   },
   {
     title: 'Nous évaluons',
-    text: 'Visite ou échange de photos, puis devis détaillé, gratuit, sous 24 h.',
+    text: 'Visite ou échange de photos, puis devis détaillé après étude.',
   },
   {
     title: 'Nous intervenons',
@@ -277,9 +287,9 @@ export function ServicesPage() {
               Nos services de nettoyage professionnel à Marseille
             </h1>
             <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mb-8">
-              Depuis {FOUNDING_YEAR}, Nature Clean intervient auprès des syndics, entreprises,
+              Nature Clean intervient auprès des syndics, entreprises,
               commerçants, promoteurs et familles de {ZONE_LABEL}. Produits et matériel fournis,
-              équipes déclarées, assurance RC Pro. Réponse sous 2 h, devis gratuit sous 24 h.
+              équipes déclarées, assurance RC Pro. Prise en charge sous 4 h ouvrées, devis détaillé après étude.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 font-bold">
@@ -404,6 +414,41 @@ export function ServicesPage() {
         </div>
       </section>
 
+      <ServiceSeoContentSection
+        title="Entreprise de nettoyage professionnel à Marseille et dans le 13"
+        lead="Une seule structure pour le tertiaire, l’habitat collectif, les chantiers et les besoins spécifiques (Diogène, graffitis, sols)."
+      >
+        <p>
+          Nature Clean est une <strong>entreprise de nettoyage à Marseille</strong> (8<sup>e</sup>,
+          Traverse Pupat) qui regroupe sur le même site les prestations les plus demandées dans les{' '}
+          <strong>Bouches-du-Rhône</strong> : entretien de bureaux, copropriétés, fin de chantier,
+          commerces, lavage de vitres, cabinets médicaux, remise en état de sols, syndrome de Diogène
+          et enlèvement de graffitis. Produits et matériel fournis, personnel déclaré, assurance RC
+          Pro.
+        </p>
+        <p>
+          Nous ne publions pas de grille tarifaire nationale : chaque mission est chiffrée après{' '}
+          <strong>informations, photos, plans ou visite</strong>. Prise en charge d&apos;une demande
+          sous 4 h ouvrées (lun–ven 9 h–18 h). Mobilisation en général sous 48 h après validation du
+          devis. Créneaux d&apos;intervention sur site souvent entre 6 h et 22 h, calés au contrat.
+        </p>
+        <p>
+          Choisissez votre fiche détaillée ci-dessus ou consultez nos{' '}
+          <Link to="/zones-intervention" className="text-green-800 font-semibold underline">
+            zones d&apos;intervention
+          </Link>
+          , nos{' '}
+          <Link to="/realisations" className="text-green-800 font-semibold underline">
+            réalisations
+          </Link>{' '}
+          et le{' '}
+          <Link to="/blog" className="text-green-800 font-semibold underline">
+            blog
+          </Link>{' '}
+          pour les guides syndics, chantiers et devis.
+        </p>
+      </ServiceSeoContentSection>
+
       <GoogleReviews />
 
       <FAQSection
@@ -414,14 +459,14 @@ export function ServicesPage() {
 
       <section className="py-16 bg-gray-900">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Un devis gratuit sous 24 h</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Un devis détaillé après étude</h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-            Réponse sous 2 h en horaires d&apos;ouverture. {ZONE_LABEL}.
+            Prise en charge sous 4 h ouvrées en horaires d&apos;ouverture. {ZONE_LABEL}.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
               <Link to="/devis">
-                Demander un devis
+                Demander un devis gratuit
                 <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Link>
             </Button>

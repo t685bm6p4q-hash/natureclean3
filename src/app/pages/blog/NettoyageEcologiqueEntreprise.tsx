@@ -1,5 +1,10 @@
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
+import {
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  ARIA_PHONE,
+  RESPONSIBLE_PRACTICES_LINE,
+} from '@/app/utils/constants';
 import { Button } from '@/app/components/ui/button';
 import { Link } from 'react-router';
 import { ArrowLeft, Clock, Leaf, Droplets, Recycle, Heart, ShieldCheck, Phone } from 'lucide-react';
@@ -20,7 +25,7 @@ const FAQ_ITEMS: FAQItem[] = [
 export function NettoyageEcologiqueEntreprise() {
   useArticleJsonLd({
     headline: 'Nettoyage eco-responsable en entreprise : produits eco-labellises',
-    description: 'Pourquoi choisir des produits eco-labellises pour l\'entretien courant a Marseille. Labels, sante des occupants, RSE et engagement Nature Clean (~50 % eco-labellises).',
+    description: 'Pourquoi choisir des produits eco-labellises pour l\'entretien courant a Marseille. Labels, sante des occupants, RSE et pratiques responsables de Nature Clean.',
     image: IMAGES.produitsEcoHero,
     datePublished: '2026-02-20',
     dateModified: '2026-10-24',
@@ -44,7 +49,7 @@ export function NettoyageEcologiqueEntreprise() {
     {
       icon: ShieldCheck,
       title: 'Conformite RSE & image',
-      desc: 'Le nettoyage ecologique s\'integre dans votre politique RSE. C\'est un argument concret pour vos rapports extra-financiers, vos certifications (ISO 14001, B Corp) et votre marque employeur.',
+      desc: 'Le nettoyage eco-responsable s\'integre dans votre politique RSE. C\'est un argument concret pour vos rapports extra-financiers et votre marque employeur — sans promesse de certification imposee au prestataire.',
     },
     {
       icon: Recycle,
@@ -63,7 +68,7 @@ export function NettoyageEcologiqueEntreprise() {
     <>
       <SEO_Guardian
         title="Nettoyage Eco-Responsable Entreprise | Produits Eco-Labellisés | Nature Clean"
-        description="Produits eco-labellises pour l'entretien de bureaux a Marseille : labels, sante, RSE et ~50 % eco-labellises chez Nature Clean. Sans promesse ROI chiffre."
+        description="Produits eco-labellises pour l'entretien de bureaux a Marseille : labels, sante, RSE et pratiques responsables chez Nature Clean. Sans pourcentage affiche ni promesse ROI chiffre."
         keywords="nettoyage ecologique entreprise, produits eco-labellises nettoyage professionnel, nettoyage eco-responsable bureaux marseille, RSE nettoyage"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
@@ -194,13 +199,15 @@ export function NettoyageEcologiqueEntreprise() {
                   Notre engagement
                 </span>
                 <h2 className="text-2xl font-black text-white mb-3">
-                  Chez Nature Clean, environ 50 % de nos produits sont eco-labellises
+                  Chez Nature Clean : pratiques responsables, pas de pourcentage marketing
                 </h2>
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  Depuis notre creation en 2021, nous avons progressivement remplace nos produits conventionnels par des alternatives ecologiques certifiees. Notre objectif : atteindre 80% de produits eco-labellises d'ici 2027, sans compromis sur l'efficacite.
+                  {RESPONSIBLE_PRACTICES_LINE} Nous ne publions pas de part fixe de produits eco-labellises : labels et
+                  references sont detailles au devis sur demande. L&apos;entretien courant et la desinfection reglementee
+                  restent deux perimetres distincts.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
                     <Link to="/devis">Devis eco-responsable gratuit</Link>
                   </Button>
                   <Button asChild size="lg" variant="outlineOnDark">
@@ -222,7 +229,7 @@ export function NettoyageEcologiqueEntreprise() {
                 <ul className="space-y-3">
                   {[
                     'Peut fournir la liste des produits utilises avec les fiches techniques',
-                    'Utilise au moins 50% de produits eco-labellises (Ecolabel, Ecocert, Nature & Progres)',
+                    'Peut expliquer quels produits eco-labellises sont utilises et sur quelles zones (Ecolabel, Ecocert, Nature & Progres)',
                     'Forme ses equipes aux dosages et aux bonnes pratiques environnementales',
                     'Propose des microfibres reutilisables plutot que des lingettes jetables',
                     'Minimise les emballages plastiques et privilegie les concentres rechargeables',

@@ -140,7 +140,7 @@ export function ChecklistCoproSyndic() {
                   { title: 'Assurance RC Pro obligatoire', desc: 'Exigez une attestation d\'assurance Responsabilite Civile Professionnelle a jour. C\'est la garantie de couverture en cas de dommage dans les parties communes.' },
                   { title: 'References verifiables sur des coproprietes similaires', desc: 'Demandez au moins 3 references de coproprietes comparables (meme nombre de lots, meme type de prestations). Contactez les syndics pour avoir un retour reel.' },
                   { title: 'Audit gratuit des locaux avant devis', desc: 'Un prestataire serieux visite systematiquement les lieux avant d\'etablir un devis. Mefiance envers les devis "a l\'aveugle" bases uniquement sur la surface.' },
-                  { title: 'Produits eco-responsables et transparence', desc: 'Demandez la liste des produits utilises. Privilegiez les prestataires qui utilisent au moins 50% de produits eco-labellises (Ecolabel, Nature & Progres, etc.).' },
+                  { title: 'Produits eco-responsables et transparence', desc: 'Demandez la liste des produits utilises et les fiches techniques. Privilegiez un prestataire qui explique dosage, microfibres et tri plutot qu\'un pourcentage affiche sans preuve.' },
                   { title: 'Suivi qualite et reporting au syndic', desc: 'Un bon prestataire fournit un rapport mensuel avec photos, signale les anomalies (degradations, pannes) et propose des ajustements de frequence si necessaire.' },
                 ].map((item, i) => (
                   <div key={item.title} className="flex items-start gap-3">
@@ -199,10 +199,10 @@ export function ChecklistCoproSyndic() {
                   Nature Clean : votre partenaire coproprietes a Marseille
                 </h2>
                 <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-                  Audit gratuit, cahier des charges sur mesure et suivi au contrat. Depuis 2021 à Marseille et dans le 13.
+                  Audit gratuit, cahier des charges sur mesure et suivi au contrat. À Marseille à Marseille et dans le 13.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
                     <Link to="/devis?service=coproprietes">Demander un devis gratuit</Link>
                   </Button>
                   <Button asChild size="lg" variant="outlineOnDark">

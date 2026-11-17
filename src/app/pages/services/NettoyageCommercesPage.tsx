@@ -1,6 +1,16 @@
 import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import { Button } from '@/app/components/ui/button';
-import { Store, ArrowRight, Clock, Sparkles, Square } from 'lucide-react';
+import {
+  Store,
+  ArrowRight,
+  Clock,
+  Sparkles,
+  Square,
+  PhoneCall,
+  ClipboardList,
+  CalendarCheck,
+  UserCheck,
+} from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { BulletList } from '@/app/components/BulletList';
@@ -12,14 +22,22 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
+import { ZONE_LABEL } from '@/app/utils/constants';
 import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
-import { FOUNDING_YEAR } from '@/app/utils/constants';
+
+const CONTRACT_STEPS = [
+  { icon: PhoneCall, title: '1. Demande', text: 'Appel, formulaire ou e-mail. Prise en charge sous 4 h ouvrées (lun–ven 9 h–18 h).' },
+  { icon: ClipboardList, title: '2. Visite', text: 'Surface de vente, vitrines, sanitaires, horaires d’ouverture et accès livraison.' },
+  { icon: CalendarCheck, title: '3. Devis', text: 'Zones, fréquences, créneaux avant ou après ouverture. Devis détaillé après étude.' },
+  { icon: UserCheck, title: '4. Suivi', text: 'Référent magasin. Fiche de passage sur demande. Retour sur anomalie : reprise selon contrat.' },
+] as const;
 
 const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Pouvez-vous nettoyer avant l\'ouverture du commerce ?',
     answer:
-      'Oui. C\'est le créneau le plus demandé à Marseille : avant l\'ouverture ou après la fermeture, dans une plage 6 h–22 h. Sols, vitrines, sanitaires : vos équipes retrouvent le magasin propre. Le standard, lui, répond du lundi au samedi, 8 h–18 h.',
+      'Oui. C\'est le créneau le plus demandé à Marseille : avant l\'ouverture ou après la fermeture, dans une plage 6 h–22 h. Sols, vitrines, sanitaires : vos équipes retrouvent le magasin propre. Le standard, lui, répond du lundi au vendredi, 9 h–18 h.',
   },
   {
     question: 'Le nettoyage des vitrines est-il inclus dans le contrat ?',
@@ -34,7 +52,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Quel est le tarif pour l\'entretien d\'un commerce de 100 m² ?',
     answer:
-      'Le prix dépend de la fréquence, de la surface et des surfaces à traiter (sols, vitrines, sanitaires, réserve). Pas de grille affichée : devis gratuit sous 24 h après votre demande.',
+      'Le prix dépend de la fréquence, de la surface et des surfaces à traiter (sols, vitrines, sanitaires, réserve). Pas de grille affichée : devis détaillé après étude.',
   },
   {
     question: 'Intervenez-vous aussi pour les rideaux métalliques et façades ?',
@@ -60,7 +78,7 @@ export function NettoyageCommercesPage() {
             '@type': 'Service',
             name: 'Nettoyage de commerces à Marseille',
             description:
-              'Entretien régulier de commerces à Marseille depuis 2021 : avant ouverture, vitrines, sols, sanitaires. Réponse sous 2 h, devis sous 24 h.',
+              'Entretien régulier de commerces à Marseille : avant ouverture, vitrines, sols, sanitaires. Prise en charge sous 4 h ouvrées, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'City', name: 'Marseille' },
             serviceType: 'Entretien de commerces et magasins',
@@ -99,8 +117,7 @@ export function NettoyageCommercesPage() {
           <div className="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
             <p className="text-lg">
               Un sol propre, des rayons tenus et une vitrine sans traces : c&apos;est ce que voit un
-              client avant de pousser la porte. Nature Clean entretient des commerces à Marseille
-              depuis {FOUNDING_YEAR}, depuis le 8e.
+              client avant de pousser la porte. Nature Clean entretient des commerces à Marseille, base au 8e.
             </p>
             <p className="text-lg font-semibold text-gray-900">
               Boutiques, cafés, galeries : l&apos;entretien suit le type de commerce, pas un
@@ -108,11 +125,10 @@ export function NettoyageCommercesPage() {
             </p>
             <p>
               On intervient avant l&apos;ouverture ou après la fermeture — Vieux-Port, Canebière, La
-              Valentine (11e), Plan-de-Campagne, Aubagne. Produits et matériel fournis, environ 50 %
-              éco-labellisés. Zone : Marseille et les Bouches-du-Rhône.
+              Valentine (11e), Plan-de-Campagne, Aubagne. Produits et matériel professionnels fournis. Zone : Marseille et les Bouches-du-Rhône.
             </p>
             <p className="font-semibold text-green-700 text-center py-2">
-              Réponse sous 2 h, devis sous 24 h — horaires décalés 6 h–22 h
+              Prise en charge sous 4 h ouvrées, devis détaillé après étude — horaires décalés 6 h–22 h
             </p>
           </div>
         </div>
@@ -164,6 +180,31 @@ export function NettoyageCommercesPage() {
                 </ScrollReveal>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <ScrollReveal>
+            <h2 className="text-3xl font-black text-gray-900 mb-4 text-center">Comment on démarre</h2>
+            <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
+              Même logique que pour les bureaux : visite, cahier des charges, planning — sans promesse de délai fixe au devis.
+            </p>
+          </ScrollReveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {CONTRACT_STEPS.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <ScrollReveal key={step.title} delay={i * 0.06}>
+                  <div className="bg-gray-50 p-5 rounded-xl border border-gray-100 h-full">
+                    <Icon className="w-8 h-8 text-green-600 mb-3" aria-hidden="true" />
+                    <h3 className="font-bold text-gray-900 mb-2">{step.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{step.text}</p>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -324,7 +365,7 @@ export function NettoyageCommercesPage() {
                   lines={[
                     'Hygiène des sols et sanitaires',
                     'Plan de propreté après visite',
-                    '50 % de produits éco-labellisés',
+                    'Produits professionnels adaptés à chaque chantier',
                   ]}
                 />
               </div>
@@ -358,6 +399,35 @@ export function NettoyageCommercesPage() {
         </div>
       </section>
 
+      <ServiceSeoContentSection
+        title="Nettoyage de commerce et boutique à Marseille"
+        lead="Vitrine, sols, sanitaires : votre surface de vente doit être prête quand le rideau s’ouvre."
+      >
+        <p>
+          Le <strong>nettoyage de commerces à Marseille</strong> concerne boutiques, cafés, galeries et points de
+          vente qui veulent un passage régulier <strong>avant l&apos;ouverture</strong> ou{' '}
+          <strong>après la fermeture</strong>. Vieux-Port, centre, centres commerciaux, zones commerciales du 13 :
+          le calcaire, la poussière de rue et les flux de clients imposent un rythme local, pas un forfait national.
+          Nature Clean intervient depuis Marseille 8<sup>e</sup> sur {ZONE_LABEL}.
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Ce que couvre l’entretien courant</h3>
+        <p>
+          Sols et zones de circulation, sanitaires clients et équipes, comptoirs et vitrines intérieures. Le lavage
+          de vitrine en facade ou grande hauteur est détaillé sur la page{' '}
+          <Link to="/services/nettoyage-vitre" className="text-green-800 font-semibold underline">
+            nettoyage de vitres
+          </Link>
+          . Nous n&apos;annonçons pas le dégraissage technique de hottes en cuisine professionnelle : ce n&apos;est
+          pas le même métier.
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Contrat et interlocuteur magasin</h3>
+        <p>
+          Visite, cahier des charges, planning sur la plage 6 h–22 h selon contrat. Fiche de passage sur demande, référent
+          pour les retours terrain. Prise en charge sous 4 h ouvrées, devis détaillé après étude. Pas de grille tarifaire
+          affichée : le prix dépend de la surface, de la fréquence et des vitrines incluses.
+        </p>
+      </ServiceSeoContentSection>
+
       <GoogleReviews />
 
       <FAQSection
@@ -373,9 +443,9 @@ export function NettoyageCommercesPage() {
               Votre commerce mérite un entretien régulier
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Marseille et Bouches-du-Rhône — réponse sous 2 h, devis sous 24 h
+              Marseille et Bouches-du-Rhône — prise en charge sous 4 h ouvrées, devis détaillé après étude
             </p>
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black shadow-lg shadow-green-500/20">
+            <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black shadow-lg shadow-green-500/20">
               <Link to="/devis?service=commerces">
                 Demander un devis gratuit
                 <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />

@@ -140,7 +140,7 @@ export function NettoyageTerrasseMarseille() {
                   Besoin de faire nettoyer votre terrasse pour l'été ?
                 </h3>
                 <p className="text-lg mb-6 opacity-90">
-                  Devis gratuit sous 24h sur Marseille, Aix-en-Provence et Aubagne.
+                  Prise en charge sous 4 h ouvrées, devis détaillé après étude sur Marseille, Aix-en-Provence et Aubagne.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-white text-green-700 hover:bg-gray-100">

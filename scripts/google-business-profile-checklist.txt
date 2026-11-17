@@ -11,7 +11,7 @@ A. INFORMATIONS DE BASE (cohérence NAP = site natureclean.fr)
 [ ] Téléphone : 04 84 89 68 75 (même numéro partout)
 [ ] Site web : https://natureclean.fr
 [ ] Lien devis : https://natureclean.fr/devis (dans description ou bouton Réservation si configuré)
-[ ] Horaaires : Lun–Sam 8h–18h (aligné site) + mention urgence chantier sur demande
+[ ] Horaaires : Lun–ven, 9 h–18 h (aligné site) + mention urgence chantier sur demande
 [ ] Zone desservie : Marseille + communes 13 réellement couvertes (pas Cannes/Nice si non servies)
 
 ═══════════════════════════════════════════════════════════════
@@ -20,7 +20,7 @@ B. DESCRIPTION (750 car. max — inclure mots-clés naturels)
 Modèle à adapter :
 « Nature Clean, entreprise de nettoyage professionnel à Marseille (8e).
 Bureaux, copropriétés, fin de chantier, industriel et cabinets médicaux.
-Devis gratuit sous 24 h · Note 4,7/5 Google · Produits éco-responsables · RC Pro. »
+Devis détaillé après étude · Note 4,7/5 Google · Produits éco-responsables · RC Pro. »
 
 [ ] Pas de URL multiples ni de numéros en doublon
 [ ] Pas de promesses non vérifiables (« n°1 », « meilleur »)
@@ -48,7 +48,7 @@ E. PUBLICATIONS (2 / mois minimum)
 ═══════════════════════════════════════════════════════════════
 Idées :
 - Photo chantier + « Fin de chantier livré à Marseille »
-- « Devis gratuit 24 h » + lien /devis
+- « Prise en charge sous 4 h ouvrées, intervention en général sous 48 h » + lien /devis
 - Article blog : /blog/devis-nettoyage-marseille-guide
 - Saison : fin de chantier été, rentrée bureaux septembre
 
@@ -67,7 +67,7 @@ F. PRODUITS / SERVICES (si disponible dans l’interface)
 G. MESSAGES & RÉSERVATIONS
 ═══════════════════════════════════════════════════════════════
 [ ] Activer Messages Google + réponse < 4 h en journée
-[ ] Message d’accueil automatique avec téléphone et délai devis 24 h
+[ ] Message d’accueil automatique : téléphone + « Prise en charge sous 4 h ouvrées, intervention en général sous 48 h »
 
 ═══════════════════════════════════════════════════════════════
 H. SUIVI MENSUEL (tableau perso)

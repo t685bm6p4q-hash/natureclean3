@@ -27,7 +27,7 @@ export function ConversionBreak({
   imageAlt,
   title,
   subtitle,
-  urgencyText = 'Réponse sous 2 h, devis sous 24 h',
+  urgencyText = 'Prise en charge sous 4 h ouvrées, devis détaillé après étude',
   objectPosition,
   devisLink = '/devis',
 }: ConversionBreakProps) {
@@ -75,7 +75,7 @@ export function ConversionBreak({
             <Button
               asChild
               size="lg"
-              className="bg-green-500 hover:bg-green-400 text-gray-900 font-black shadow-lg shadow-green-500/20"
+              className="bg-green-500 hover:bg-green-400 text-white font-black shadow-lg shadow-green-500/20"
             >
               <Link to={devisLink}>
                 Demander un devis gratuit

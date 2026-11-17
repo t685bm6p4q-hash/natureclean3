@@ -74,7 +74,7 @@ export function BudgetBureaux2026() {
     <>
       <SEO_Guardian
         title="Prix Nettoyage Bureaux Marseille : Facteurs & Devis | Nature Clean"
-        description="Ce qui fait varier le prix d'un nettoyage de bureaux à Marseille : surface, fréquence, horaires, prestations. Sans grille chiffrée — devis gratuit sous 24 h."
+        description="Ce qui fait varier le prix d'un nettoyage de bureaux à Marseille : surface, fréquence, horaires, prestations. Sans grille chiffrée — devis détaillé après étude."
         keywords="prix nettoyage bureaux marseille, facteurs tarif entretien bureaux, devis nettoyage bureau 13"
         currentSection="blog"
         faqItems={FAQ_ITEMS}
@@ -170,7 +170,7 @@ export function BudgetBureaux2026() {
                 </h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
                   Visite sur site (ou échange détaillé avec plans), protocole écrit, devis ligne par ligne. Réponse sous{' '}
-                  <strong>2 h en horaires d&apos;ouverture</strong>, devis gratuit sous <strong>24 h</strong>.
+                  <strong>4 h ouvrées</strong> (lun–ven 9 h–18 h), devis détaillé après étude.
                 </p>
               </div>
             </ScrollReveal>
@@ -196,7 +196,7 @@ export function BudgetBureaux2026() {
                   Audit gratuit de vos locaux, devis détaillé et transparent. Aucun engagement.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+                  <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
                     <Link to="/devis?service=bureaux">Demander un devis gratuit</Link>
                   </Button>
                   <Button asChild size="lg" variant="outlineOnDark">

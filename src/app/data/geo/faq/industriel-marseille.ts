@@ -2,28 +2,28 @@ import type { FAQItem } from '@/app/components/FAQSection';
 
 export const FAQ_INDUSTRIEL_MARSEILLE: FAQItem[] = [
   {
-    question: 'Quels types de sites industriels nettoyez-vous a Marseille ?',
+    question: 'Quels types de sites industriels nettoyez-vous à Marseille ?',
     answer:
-      'Nous intervenons dans tous types d\'environnements industriels : entrepots logistiques, plateformes de distribution, ateliers de production, sites agroalimentaires, garages et concessions, imprimeries, ateliers metallurgiques. Chaque secteur a ses contraintes — notre devis integre une visite technique prealable.',
+      'Entrepôts, plateformes logistiques, ateliers de production, garages, imprimeries et locaux techniques. Chaque site est chiffré après visite ou photos : accès, sols, graisses, horaires.',
   },
   {
-    question: 'Pouvez-vous intervenir la nuit ou le week-end pour ne pas arreter la production ?',
+    question: 'Pouvez-vous intervenir la nuit ou le week-end pour ne pas arrêter la production ?',
     answer:
-      'Oui, c\'est notre fonctionnement standard pour les sites industriels marseillais. Nous intervenons 7j/7, de 22h a 6h pour les sites en production continue, ou le week-end pour les nettoyages approfondis. Vos lignes de production ne sont jamais interrompues.',
+      'Oui, sur organisation spécifique et créneaux calés au contrat (souvent en dehors des heures de production). Accueil téléphonique : lun–ven, 9 h–18 h.',
   },
   {
-    question: 'Disposez-vous du materiel pour le degraissage et le decapage industriel ?',
+    question: 'Disposez-vous du matériel pour le dégraissage et le nettoyage industriel ?',
     answer:
-      'Oui : autolaveuses autoportees, monobrosses haute vitesse, nettoyeurs haute pression eau chaude, decapeurs vapeur, aspirateurs industriels. Nous utilisons des degraissants alimentaires (HACCP) ou industriels selon votre secteur d\'activite.',
+      'Monobrosse, mini-autolaveuse, aspirateurs eau/poussière et matériel adapté au site. Produits professionnels choisis selon le support et l’usage — pas de référence à une marque ou une norme que nous n’affichons pas sur le site.',
   },
   {
-    question: 'Vos equipes sont-elles habilitees pour le travail en hauteur ?',
+    question: 'Vos équipes interviennent-ils en hauteur ?',
     answer:
-      'Oui, nos agents disposent des habilitations CACES nacelle et travail en hauteur pour le nettoyage des charpentes, structures metalliques, gaines de ventilation et eclairages industriels. Nous fournissons l\'attestation d\'habilitation sur demande.',
+      'En hauteur courante : perches et échelles télescopiques. Pour les accès complexes (charpentes, gaines, cordes) : partenaire spécialisé, coordonné par Nature Clean.',
   },
   {
-    question: 'Couvrez-vous les zones industrielles peripheriques de Marseille ?',
+    question: 'Couvrez-vous les zones industrielles périphériques de Marseille ?',
     answer:
-      'Oui, nous couvrons toutes les zones d\'activites de la metropole : Arnavant, La Cabucelle, Saint-Menet, La Valentine, Les Aygalades, Plan-de-Campagne, Vitrolles et la zone portuaire de Marseille-Fos. Notre siege a Marseille 8e garantit une reactivite optimale.',
+      'Marseille et tout le département des Bouches-du-Rhône (Vitrolles, Marignane, zones d’activités, Fos, etc.), sous réserve de faisabilité. Hors 13 : étude au cas par cas pour des contrats importants.',
   },
 ];

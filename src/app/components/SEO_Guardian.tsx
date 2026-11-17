@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { SEO_DATA } from '@/app/config/seo-data';
-import { BASE_URL } from '@/app/utils/constants';
+import { BASE_URL, RESPONSIBLE_PRACTICES_LINE } from '@/app/utils/constants';
 import { buildCleaningServiceJsonLd, serializeJsonLd } from '@/app/utils/cleaning-service-jsonld';
 
 interface SEOGuardianProps {
@@ -147,7 +147,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
       home: 'Accueil',
       services: 'Services',
       about: 'À Propos',
-      quote: 'Devis Gratuit',
+      quote: 'Devis gratuit',
       contact: 'Contact',
       realisations: 'Réalisations',
       actualites: 'Actualités',
@@ -233,7 +233,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
             'name': 'Quels sont les tarifs de nettoyage à Marseille ?',
             'acceptedAnswer': {
               '@type': 'Answer' as const,
-              'text': 'Nos tarifs varient selon le type de service, la surface et la fréquence d\'intervention. Demandez un devis gratuit au 04 84 89 68 75 pour obtenir une estimation personnalisée pour votre projet de nettoyage à Marseille.'
+              'text': 'Nos tarifs varient selon le type de service, la surface et la fréquence d\'intervention. Devis gratuit, sans engagement. Prise en charge sous 4 h ouvrées, devis détaillé après étude au 04 84 89 68 75.'
             }
           },
           {
@@ -249,7 +249,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
             'name': 'Utilisez-vous des produits écologiques ?',
             'acceptedAnswer': {
               '@type': 'Answer' as const,
-              'text': 'Oui, nous utilisons 50% de produits écologiques dans nos prestations de nettoyage, dans une démarche éco-responsable et respectueuse de l\'environnement.'
+              'text': RESPONSIBLE_PRACTICES_LINE
             }
           },
           {

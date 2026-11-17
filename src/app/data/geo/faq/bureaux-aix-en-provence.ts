@@ -18,11 +18,11 @@ export const FAQ_BUREAUX_AIX: FAQItem[] = [
   },
   {
     question: 'Quel délai pour démarrer un contrat à Aix ?',
-    answer: 'Réponse sous 2 h, devis sous 24 h après la visite. Démarrage généralement sous 48 h une fois le devis validé.',
+    answer: 'Prise en charge sous 4 h ouvrées, devis détaillé après la visite. Démarrage en général sous 48 h une fois le devis validé.',
   },
   {
     question: 'Proposez-vous le nettoyage de vitres à Aix ?',
     answer:
-      'Oui, vitres intérieures et extérieures, en option ou inclus selon le contrat. En centre-ville, on privilégie les perches plutôt que la nacelle dès que la hauteur le permet.',
+      'Oui, vitres intérieures et extérieures, en option ou inclus selon le contrat. Hauteurs atteignées avec perches ; cordes via un partenaire si le site l’exige — annoncé au devis.',
   },
 ];

@@ -24,8 +24,9 @@ import { ConversionBreak } from '@/app/components/ConversionBreak';
 import { FAQSection } from '@/app/components/FAQSection';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
+import { ZONE_LABEL } from '@/app/utils/constants';
 import { NATURE_CLEAN_PROVIDER } from '@/app/utils/cleaning-service-jsonld';
-import { FOUNDING_YEAR } from '@/app/utils/constants';
 
 const FAQ_ITEMS: FAQItem[] = [
   {
@@ -36,17 +37,17 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Pouvez-vous intervenir en dehors des heures de bureau ?',
     answer:
-      'Oui. C’est le mode le plus demandé à Marseille : avant 8 h ou après 19 h, dans une plage 6 h–22 h, pour que vos équipes retrouvent les locaux propres. Les grands plateaux se font souvent en binôme. Le standard téléphonique, lui, reste ouvert du lundi au samedi, 8 h–18 h.',
+      'Oui. C’est le mode le plus demandé à Marseille : avant 8 h ou après 19 h, dans une plage 6 h–22 h, pour que vos équipes retrouvent les locaux propres. Les grands plateaux se font souvent en binôme. Le standard téléphonique, lui, reste ouvert du lundi au vendredi, 9 h–18 h.',
   },
   {
     question: 'Les produits de nettoyage sont-ils fournis ?',
     answer:
-      'Oui. Produits et matériel viennent avec le contrat : vous n’avez rien à stocker. Environ 50 % de nos produits sont éco-labellisés. Les désinfectants de sanitaires et de surfaces tactiles sont des produits professionnels, distincts des produits d’entretien courants.',
+      'Oui. Produits et matériel viennent avec le contrat : vous n’avez rien à stocker. Produits professionnels fournis avec la prestation. Les désinfectants de sanitaires et de surfaces tactiles sont des produits professionnels, distincts des produits d’entretien courants.',
   },
   {
     question: 'Comment démarre un contrat d’entretien ?',
     answer:
-      'Visite des locaux, cahier des charges (zones, fréquences, horaires), devis sous 24 h, puis un interlocuteur dédié et un planning. Si l’agent habituel est absent, on le remplace. Un écart de qualité se signale sur le numéro dédié : on revient corriger, on n’attend pas la fin du mois.',
+      'Visite des locaux, cahier des charges (zones, fréquences, horaires), devis détaillé après étude, puis un interlocuteur dédié et un planning. Si l’agent habituel est absent, on le remplace. Un écart de qualité se signale sur le numéro dédié : on revient corriger, on n’attend pas la fin du mois.',
   },
   {
     question: 'Que se passe-t-il en cas d’absence ou de souci de qualité ?',
@@ -133,7 +134,7 @@ const contractSteps = [
   {
     icon: PhoneCall,
     title: '1. Demande',
-    text: 'Formulaire ou appel. Réponse sous 2 h aux heures d’ouverture.',
+    text: 'Formulaire ou appel. Prise en charge sous 4 h ouvrées.',
   },
   {
     icon: ClipboardList,
@@ -143,12 +144,12 @@ const contractSteps = [
   {
     icon: CalendarCheck,
     title: '3. Cahier des charges + devis',
-    text: 'Zones, fréquences, créneaux. Devis gratuit sous 24 h.',
+    text: 'Zones, fréquences, créneaux. Devis détaillé après étude.',
   },
   {
     icon: UserCheck,
-    title: '4. Planning et référent',
-    text: 'Un interlocuteur dédié. Absence d’agent : remplaçant. Écart qualité : on revient.',
+    title: '4. Planning, référent et suivi',
+    text: 'Un interlocuteur dédié. Fiche de passage ou compte-rendu si le contrat le prévoit. Absence d’agent : remplaçant. Écart constaté : reprise cadrée au contrat.',
   },
 ];
 
@@ -164,7 +165,7 @@ export function EntretienBureauxPage() {
             '@type': 'Service',
             name: 'Nettoyage de bureaux à Marseille',
             description:
-              'Entretien régulier de bureaux à Marseille depuis 2021 : horaires décalés, produits et matériel fournis, RC Pro. Réponse sous 2 h, devis sous 24 h.',
+              'Entretien régulier de bureaux à Marseille : horaires décalés, produits et matériel fournis, RC Pro. Prise en charge sous 4 h ouvrées, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: {
               '@type': 'City',
@@ -212,14 +213,13 @@ export function EntretienBureauxPage() {
                   vos équipes autant que par un client.
                 </p>
                 <p>
-                  Nature Clean entretient des bureaux à Marseille depuis {FOUNDING_YEAR}, depuis le
+                  Nature Clean entretient des bureaux à Marseille, depuis le
                   8e (Traverse Pupat). On intervient dans les arrondissements, y compris La
                   Valentine, et vers Aubagne ou Vitrolles quand le site est dans le 13. Tôt le matin
-                  ou en soirée, avec du matériel professionnel et des produits fournis — environ 50 %
-                  éco-labellisés.
+                  ou en soirée, avec matériel et produits professionnels fournis.
                 </p>
                 <p className="font-semibold text-green-700">
-                  Réponse sous 2 h, devis sous 24 h — horaires décalés 6 h–22 h
+                  Prise en charge sous 4 h ouvrées, devis détaillé après étude — horaires décalés 6 h–22 h
                 </p>
               </div>
 
@@ -230,7 +230,7 @@ export function EntretienBureauxPage() {
                     { bold: 'Horaires décalés', text: '— 6 h à 22 h, sans bloquer vos équipes' },
                     {
                       bold: 'Produits et matériel fournis',
-                      text: '— 50 % éco-labellisés, rien à stocker',
+                      text: '— Pratiques responsables, rien à stocker',
                     },
                     { bold: 'RC Pro', text: '— un référent de site, un numéro direct' },
                   ]}
@@ -369,7 +369,7 @@ export function EntretienBureauxPage() {
                     items: [
                       { bold: 'Nettoyage', text: 'et désinfection à chaque passage' },
                       { bold: 'Gestion', text: 'des consommables (savon, papier)' },
-                      { bold: 'Produits', text: 'professionnels, 50 % éco-labellisés' },
+                      { bold: 'Produits', text: 'professionnels, Pratiques responsables' },
                     ],
                   },
                   {
@@ -443,6 +443,50 @@ export function EntretienBureauxPage() {
           </div>
         </div>
       </section>
+
+      <ServiceSeoContentSection
+        title="Entretien de bureaux à Marseille : contrat, zones et calendrier"
+        lead="Open space, cabinets, sièges : un contrat d’entretien doit tenir la route sur le terrain marseillais — accès, calcaire, horaires d’équipes."
+      >
+        <p>
+          Nature Clean assure l&apos;<strong>entretien de bureaux à Marseille</strong> et dans les{' '}
+          <strong>Bouches-du-Rhône</strong> pour les responsables de site qui veulent un planning lisible :
+          salles de réunion, open space, sanitaires, kitchenettes et vitrages intérieurs. Notre base est au
+          8<sup>e</sup> arrondissement (Traverse Pupat) : déplacements courts vers le centre, La Valentine,
+          Euroméditerranée ou les zones d&apos;activités du département.
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Horaires sans bloquer vos équipes</h3>
+        <p>
+          Le passage se fait en général <strong>avant 8 h</strong> ou <strong>après 19 h</strong>, dans une
+          plage contractuelle souvent comprise entre 6 h et 22 h. Le standard téléphonique, lui, reste ouvert
+          du lundi au vendredi, de 9 h à 18 h — prise en charge d&apos;une demande sous 4 h ouvrées. Les
+          interventions à la semaine ou au mois s&apos;inscrivent dans un cahier des charges écrit : zones,
+          fréquences, produits et matériel fournis.
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Suivi qualité pour les sites occupés</h3>
+        <p>
+          Un référent de site, un remplaçant en cas d&apos;absence, et une <strong>fiche de passage</strong> ou
+          un compte-rendu si votre contrat le prévoit. En cas d&apos;écart constaté sur les sanitaires ou la
+          kitchenette, la reprise est cadrée au contrat — pas une promesse vague de « satisfaction totale ».
+          Assurance RC Pro et attestations transmises au montage du dossier.
+        </p>
+        <p>
+          Vitrines de magasin, façades en hauteur ou entretien de copropriété : ce sont d&apos;autres fiches
+          ({' '}
+          <Link to="/services/nettoyage-commerces" className="text-green-800 font-semibold underline">
+            commerces
+          </Link>
+          ,{' '}
+          <Link to="/services/nettoyage-vitre" className="text-green-800 font-semibold underline">
+            vitres
+          </Link>
+          ,{' '}
+          <Link to="/services/nettoyage-coproprietes" className="text-green-800 font-semibold underline">
+            copropriétés
+          </Link>
+          ). Ici, nous parlons du <strong>nettoyage récurrent de locaux tertiaires</strong> à {ZONE_LABEL}.
+        </p>
+      </ServiceSeoContentSection>
 
       <section className="py-12 bg-green-50 border-y border-green-100">
         <div className="container mx-auto px-4 max-w-4xl">

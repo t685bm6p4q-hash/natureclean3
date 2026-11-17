@@ -11,7 +11,7 @@
       "identifier": "urn:air:natureclean.fr:doc:llms",
       "displayName": "Guide Nature Clean pour agents IA",
       "type": "application/agent-skills+md",
-      "description": "Résumé markdown : services de nettoyage professionnel à Marseille et PACA, liens devis et contact.",
+      "description": "Résumé markdown : services de nettoyage professionnel à Marseille et dans les Bouches-du-Rhône, liens devis et contact.",
       "url": "https://natureclean.fr/llms.txt",
       "representativeQueries": [
         "Quels services de nettoyage propose Nature Clean à Marseille ?",

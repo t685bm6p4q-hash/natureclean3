@@ -22,7 +22,6 @@ import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { useState, useMemo } from 'react';
 import { IMAGES } from '@/app/utils/images';
 import {
-  FOUNDING_YEAR,
   PHONE_DISPLAY,
   PHONE_HREF,
   ARIA_PHONE,
@@ -299,7 +298,7 @@ export function RealisationsPage() {
 
       <ServicePageHero
         title="Nos réalisations de nettoyage à Marseille"
-        subtitle="Des interventions réelles, des photos et des cas clients, depuis 2021 — Marseille et Bouches-du-Rhône"
+        subtitle="Des interventions réelles, photos et cas clients — Marseille et Bouches-du-Rhône"
         imageSrc={IMAGES.finChantierEquipe}
         imageAlt="Équipe sur un chantier de nettoyage fin de travaux"
         breadcrumbs={[
@@ -312,20 +311,20 @@ export function RealisationsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
             <div className="bg-white rounded-xl p-4 border border-green-100">
-              <p className="text-2xl font-black text-green-700">Depuis {FOUNDING_YEAR}</p>
+              <p className="text-2xl font-black text-green-700">Équipe locale</p>
               <p className="text-gray-600 mt-1">{ZONE_LABEL}</p>
             </div>
             <div className="bg-white rounded-xl p-4 border border-green-100">
-              <p className="text-2xl font-black text-green-700">50 %</p>
-              <p className="text-gray-600 mt-1">Produits éco-labellisés (entretien courant)</p>
+              <p className="text-2xl font-black text-green-700">7</p>
+              <p className="text-gray-600 mt-1">Personnes en équipe</p>
             </div>
             <div className="bg-white rounded-xl p-4 border border-green-100">
               <p className="text-2xl font-black text-green-700">RC Pro</p>
               <p className="text-gray-600 mt-1">Assurance responsabilité civile professionnelle</p>
             </div>
             <div className="bg-white rounded-xl p-4 border border-green-100">
-              <p className="text-2xl font-black text-green-700">2 h / 24 h</p>
-              <p className="text-gray-600 mt-1">Réponse puis devis écrit gratuit</p>
+              <p className="text-2xl font-black text-green-700">4 h ouvrées</p>
+              <p className="text-gray-600 mt-1">Prise en charge des demandes</p>
             </div>
           </div>
         </div>
@@ -484,12 +483,12 @@ export function RealisationsPage() {
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Un projet de nettoyage ?</h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Réponse sous 2 h en horaires d&apos;ouverture, devis gratuit sous 24 h.
+              Prise en charge sous 4 h ouvrées, devis détaillé après étude.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
                 <Link to="/devis">
-                  Demander un devis
+                  Demander un devis gratuit
                   <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
                 </Link>
               </Button>

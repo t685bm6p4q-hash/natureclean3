@@ -75,10 +75,10 @@ export function NotFoundPage() {
                   <AlertCircle className="w-8 h-8 text-green-600 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-700">
-                  Demander un devis
+                  Demander un devis gratuit
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Obtenez un devis gratuit sous 24h
+                  Prise en charge sous 4 h ouvrées — devis détaillé après étude
                 </p>
               </Link>
             </div>

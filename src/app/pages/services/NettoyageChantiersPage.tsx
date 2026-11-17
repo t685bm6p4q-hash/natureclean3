@@ -13,12 +13,14 @@ import { IMAGES } from '@/app/utils/images';
 import { ServicePageHero } from '@/app/components/ServicePageHero';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { GoogleReviews } from '@/app/components/GoogleReviews';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
+import { ZONE_LABEL } from '@/app/utils/constants';
 
 const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Quel est le délai d\'intervention pour un nettoyage fin de chantier ?',
     answer:
-      'Réponse sous 2 h aux heures d\'ouverture, devis sous 24 h. Intervention sous 48 à 72 h. En urgence de livraison (remise des clés, visite de réception), on vise 24 h. La coordination avec les autres corps de métier se règle dès le premier appel.',
+      'Prise en charge sous 4 h ouvrées aux heures d\'ouverture, devis détaillé après étude. Intervention sous 48 à 72 h. En urgence de livraison (remise des clés, visite de réception), on vise 24 h. La coordination avec les autres corps de métier se règle dès le premier appel.',
   },
   {
     question: 'Évacuez-vous les gravats et déchets de chantier ?',
@@ -33,12 +35,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Combien coûte un nettoyage fin de chantier ?',
     answer:
-      'Tout dépend de la surface, de l\'état et de l\'accès. Pas de grille affichée : devis gratuit sous 24 h après votre demande, visite si le chantier le demande.',
+      'Tout dépend de la surface, de l\'état et de l\'accès. Pas de grille affichée : devis détaillé après étude, visite si le chantier le demande.',
   },
   {
     question: 'Travaillez-vous avec les promoteurs immobiliers ?',
     answer:
-      'Oui. On se cale sur la date de réception. Un certificat de nettoyage signé est remis sur demande pour votre dossier de réception. On ne dit pas qu\'il est « requis » par les assureurs : c\'est un document utile, pas une obligation que l\'on certifie à leur place.',
+      'Oui. On se cale sur la date de réception. Contrôle de fin de chantier avec le responsable sur site, et photos transmises sur demande — pas de « certificat de nettoyage requis par les assureurs ».',
   },
   {
     question: 'Que se passe-t-il s\'il reste des réserves après votre passage ?',
@@ -47,11 +49,26 @@ const FAQ_ITEMS: FAQItem[] = [
   },
 ];
 
+const CHANTIER_PHASES = [
+  {
+    title: '1. Déblaiement',
+    text: 'Évacuation des menus gravats et déchets de nettoyage (plâtre, sciure, cartons). Volumes de benne ou gros gravats : cadre au devis.',
+  },
+  {
+    title: '2. Dépoussiérage',
+    text: 'Poussière de gros œuvre et de finition : huisseries, plinthes, radiateurs, luminaires, locaux techniques.',
+  },
+  {
+    title: '3. Finitions et réception',
+    text: 'Sols, vitrages, sanitaires et détails livrés. Contrôle avec le responsable sur site et photos transmises sur demande.',
+  },
+] as const;
+
 const PROCESS_STEPS = [
   {
     icon: Phone,
     title: '1. Demande',
-    text: 'Réponse sous 2 h. On note la date de réception, l\'accès et ce qui reste sur place.',
+    text: 'Prise en charge sous 4 h ouvrées. On note la date de réception, l\'accès et ce qui reste sur place.',
   },
   {
     icon: ClipboardList,
@@ -61,12 +78,12 @@ const PROCESS_STEPS = [
   {
     icon: CalendarCheck,
     title: '3. Devis et créneau',
-    text: 'Devis sous 24 h. Intervention sous 48 à 72 h, 24 h en urgence de livraison.',
+    text: 'Devis détaillé après étude. Intervention sous 48 à 72 h, 24 h en urgence de livraison.',
   },
   {
     icon: RotateCcw,
     title: '4. Réception et reprise',
-    text: 'Check-list, certificat sur demande. Un oubli de nettoyage : on revient.',
+    text: 'Check-list, contrôle avec le responsable et photos sur demande. Un oubli de nettoyage : on revient.',
   },
 ];
 
@@ -82,7 +99,7 @@ export function NettoyageChantiersPage() {
             '@type': 'Service',
             name: 'Nettoyage de fin de chantier à Marseille',
             description:
-              'Nettoyage de fin de chantier à Marseille pour promoteurs, artisans et particuliers : voile de ciment, plâtre, vitres. Matériel fourni, RC Pro, devis sous 24 h.',
+              'Nettoyage de fin de chantier à Marseille pour promoteurs, artisans et particuliers : voile de ciment, plâtre, vitres. Matériel fourni, RC Pro, devis détaillé après étude.',
             provider: NATURE_CLEAN_PROVIDER,
             areaServed: { '@type': 'City', name: 'Marseille' },
             serviceType: 'Nettoyage fin de chantier et remise en état après travaux',
@@ -130,8 +147,16 @@ export function NettoyageChantiersPage() {
                 plâtre dans les huisseries : de la poussière de gros œuvre aux finitions. Matériel
                 professionnel fourni — autolaveuse, aspirateur, lessivage. On ne fait pas le gros œuvre.
               </p>
+              <p className="text-gray-600 text-sm">
+                Livraison clés en main promoteur ou artisan : c&apos;est ici. Remise en état lourde
+                d&apos;un logement (grand ménage, sortie de bail) :{' '}
+                <Link to="/services/nettoyage-gros-chantiers" className="font-semibold text-green-800 underline">
+                  fiche gros chantiers
+                </Link>
+                .
+              </p>
               <p className="font-bold text-green-700 text-lg mb-2">
-                Réponse sous 2 h · devis sous 24 h · intervention sous 48–72 h
+                Prise en charge sous 4 h ouvrées · devis détaillé après étude · intervention sous 48–72 h
                 <span className="block text-base font-semibold mt-1">Urgence livraison : 24 h</span>
               </p>
               <Button asChild size="lg" className="bg-green-700 hover:bg-green-800 font-bold shadow-md mt-6">
@@ -169,6 +194,26 @@ export function NettoyageChantiersPage() {
                   </ScrollReveal>
                 );
               })}
+            </div>
+
+            <ScrollReveal>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 text-center mt-14">
+                Déroulement en trois phases
+              </h2>
+              <p className="text-gray-500 text-center mb-8 max-w-2xl mx-auto text-sm">
+                Le même chantier peut être découpé selon votre planning : déblaiement, dépoussiérage, puis
+                finitions avant la réception.
+              </p>
+            </ScrollReveal>
+            <div className="grid md:grid-cols-3 gap-4">
+              {CHANTIER_PHASES.map((phase, i) => (
+                <ScrollReveal key={phase.title} delay={i * 0.06}>
+                  <div className="bg-white p-5 rounded-xl border border-green-100 shadow-sm h-full">
+                    <h3 className="font-bold text-gray-900 mb-2">{phase.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{phase.text}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
           </div>
         </div>
@@ -252,7 +297,7 @@ export function NettoyageChantiersPage() {
                   <div>
                     <p className="font-semibold text-green-700 mb-2">Délais dits clairement</p>
                     <p className="text-sm">
-                      Réponse 2 h, devis 24 h, intervention 48–72 h. Urgence livraison : 24 h.
+                      Prise en charge 4 h ouvrées, devis détaillé après étude, intervention 48–72 h. Urgence livraison : 24 h.
                       Marseille, Aubagne, La Ciotat — Bouches-du-Rhône.
                     </p>
                   </div>
@@ -281,7 +326,7 @@ export function NettoyageChantiersPage() {
         image={IMAGES.finChantierAppartement}
         imageAlt="Appartement après lessivage de fin de chantier à Marseille"
         title="Livrez un chantier propre le jour de la réception"
-        subtitle="Réponse sous 2 h, devis sous 24 h — intervention sous 48 à 72 h"
+        subtitle="Prise en charge sous 4 h ouvrées, devis détaillé après étude — intervention sous 48 à 72 h"
         objectPosition="object-center"
         devisLink="/devis?service=fin-chantier"
       />
@@ -476,6 +521,37 @@ export function NettoyageChantiersPage() {
         </div>
       </section>
 
+      <ServiceSeoContentSection
+        title="Entreprise de nettoyage fin de chantier à Marseille"
+        lead="Réception promoteur, artisan ou particulier : la propreté se joue après les corps d’état, pas au forceps le jour J."
+      >
+        <p>
+          Le <strong>nettoyage de fin de chantier à Marseille</strong> couvre la livraison d&apos;un logement ou
+          d&apos;un local tertiaire une fois les travaux terminés : voile de ciment, retombées de plâtre dans les
+          huisseries, traces de peinture, vitrages encore protégés par du film. Nature Clean intervient pour les{' '}
+          <strong>promoteurs</strong>, <strong>artisans</strong> et <strong>particuliers</strong> sur{' '}
+          {ZONE_LABEL}, avec du matériel professionnel sur place (aspiration fine, lessivage, vitres).
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Déblaiement, dépoussiérage, finitions</h3>
+        <p>
+          Nous déroulons en général trois temps : évacuation des menus gravats de nettoyage, dépoussiérage des
+          surfaces livrées, puis finitions sols/vitres/détails. Les volumes de benne ou gravats lourds sont cadres
+          au devis — nous ne remplaçons pas le corps d&apos;état qui gère le gros œuvre.
+        </p>
+        <h3 className="text-xl font-bold text-gray-900 pt-2">Réception et dossier</h3>
+        <p>
+          Contrôle avec le responsable sur site, photos transmises sur demande pour votre dossier de réception — pas
+          de « certificat de nettoyage exigé par les assureurs ». En urgence de livraison (remise des clés,
+          visite de réception), nous visons une mobilisation rapide si vous nous contactez tôt. Pour une{' '}
+          <strong>remise en état lourde</strong> de logement (grand ménage après rénovation, sortie de bail), voir
+          la fiche{' '}
+          <Link to="/services/nettoyage-gros-chantiers" className="text-green-800 font-semibold underline">
+            gros chantiers
+          </Link>
+          .
+        </p>
+      </ServiceSeoContentSection>
+
       <GoogleReviews />
 
       <section className="py-16 md:py-20 bg-gray-900">
@@ -485,10 +561,10 @@ export function NettoyageChantiersPage() {
               Propreté pour une livraison de chantier à Marseille
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Marseille et Bouches-du-Rhône — réponse sous 2 h, devis sous 24 h
+              Marseille et Bouches-du-Rhône — prise en charge sous 4 h ouvrées, devis détaillé après étude
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black">
+              <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black">
                 <Link to="/devis?service=fin-chantier">Demander un devis gratuit</Link>
               </Button>
               <Button asChild size="lg" variant="outlineOnDark">

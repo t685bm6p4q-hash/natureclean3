@@ -33,11 +33,65 @@ export const LOGO_URL = `${BASE_URL}/logo.svg`;
 /** Logo PNG pour les articles blog JSON-LD */
 export const LOGO_PNG_URL = `${BASE_URL}/logo.png`;
 
-// ─── Identite entreprise ─────��──────────────────────────
+// ─── Identite entreprise ─────────────────────────────────
 export const COMPANY_NAME = 'Nature Clean';
 export const COMPANY_FULL_NAME = 'Nature Clean Marseille';
+/** Réservé usage interne — ne pas afficher sur le site tant que le Kbis n’est pas vérifié. */
 export const FOUNDING_YEAR = '2021';
 export const SIRET = '89020726900022';
+export const TEAM_SIZE = 7;
+
+// ─── Horaires & SLA (questionnaire nov. 2026) ─────────────
+/** Accueil téléphonique */
+export const PHONE_RECEPTION_HOURS = 'Lun–ven, 9 h–18 h';
+export const PHONE_RECEPTION_HOURS_LONG =
+  'du lundi au vendredi, de 9 h à 18 h';
+
+/** Prise en charge d’une demande (appel, formulaire, e-mail) */
+export const LEAD_RESPONSE_SLA = `Prise en charge sous 4 h ouvrées (${PHONE_RECEPTION_HOURS})`;
+export const LEAD_RESPONSE_SLA_SHORT = 'Prise en charge sous 4 h ouvrées';
+
+/** Créneaux d’intervention sur site (contrat) */
+export const INTERVENTION_SCHEDULE_NOTE =
+  'Interventions principalement du lundi au samedi ; nuit, dimanche et jours fériés sur organisation spécifique.';
+
+export const INTERVENTION_ON_SITE_WINDOW =
+  'Créneaux d’intervention sur site (souvent 6 h–22 h) définis au contrat';
+
+export const QUOTE_PROCESS_LINE =
+  'Devis détaillé à partir des informations, photos, plans et surfaces transmis';
+
+export const MOBILIZATION_AFTER_QUOTE =
+  'Mobilisation en général sous 48 h après validation du devis';
+
+/** Copie éco / responsabilité (remplace les pourcentages éco-labellisés) */
+export const RESPONSIBLE_PRACTICES_SHORT =
+  'Microfibres réutilisables, dosage adapté des produits, tri des déchets, eau limitée lorsque c’est possible';
+
+export const RESPONSIBLE_PRACTICES_LINE = `Pratiques responsables : ${RESPONSIBLE_PRACTICES_SHORT}.`;
+
+export const GOOGLE_RATING_DISPLAY = '4,8/5';
+
+/** Pas de compteur d’avis figé sur le site — la fiche Google fait foi. */
+export const GOOGLE_RATING_SITE_NOTE =
+  'Note affichée : alignée sur la fiche Google Business Profile. Le nombre d’avis n’est pas publié en dur sur natureclean.fr.';
+
+/** RC Pro — ligne courte (tuiles, cartes). */
+export const RC_PRO_SHORT_LINE =
+  'Personnel déclaré, couvert par notre assurance responsabilité civile professionnelle (RC Pro) — attestation sur demande.';
+
+/** RC Pro — périmètre d’activités (questionnaire nov. 2026). */
+export const RC_PRO_FAQ_ANSWER =
+  'Oui : assurance responsabilité civile professionnelle (RC Pro), attestation sur demande. Elle couvre nos prestations d’entretien de locaux, vitres et façades vitrées, enlèvement de graffitis, fin de chantier, remise en état des sols, interventions après sinistre léger et nettoyage syndrome de Diogène — dans le cadre du contrat, hors déchets dangereux, travaux de rénovation et dommages immatériels non prévus.';
+
+export const WASTE_BORDEREAU_LINE =
+  'Traçabilité des déchets évacués : bordereau de suivi (BSD ou document équivalent) remis au donneur d’ordre lorsque la filière ou la réglementation l’impose.';
+
+export const DIOGENE_VOIAGE_LINE =
+  'Stationnement, rotations ou benne : organisation avant chantier. Demande d’autorisation de voirie auprès de la mairie si le stationnement sur voie publique l’exige — délais à anticiper.';
+
+export const DIOGENE_DISCRETION_LINE =
+  'Tenue sobre, véhicule banalisé sur demande, horaires calés avec vous pour limiter l’exposition aux voisins.';
 
 // ─── Geographie ─────────────────────────────────────────
 export const ZONE_LABEL = 'Marseille et Bouches-du-Rhône';

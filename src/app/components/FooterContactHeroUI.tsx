@@ -21,6 +21,8 @@ import {
   EMAIL,
   EMAIL_HREF,
   ARIA_PHONE,
+  PHONE_RECEPTION_HOURS,
+  OFFICE_ADDRESS_LINE,
 } from '@/app/utils/constants';
 
 const ZONE_LINKS = [
@@ -111,7 +113,7 @@ function FooterContactHeroUIInner() {
             >
               <Link to="/devis">
                 <FileText className="h-4 w-4 shrink-0" aria-hidden="true" />
-                Devis gratuit
+                Demander un devis gratuit
               </Link>
             </Button>
             <HeroButton
@@ -156,14 +158,14 @@ function FooterContactHeroUIInner() {
             <li className="flex items-start gap-3 px-2 py-2 text-sm text-default-400">
               <MapPin className="h-4 w-4 shrink-0 text-primary mt-0.5" aria-hidden="true" />
               <address className="not-italic leading-relaxed">
-                22 Traverse Pupat
+                {OFFICE_ADDRESS_LINE.split(', ')[0]}
                 <br />
-                13008 Marseille
+                {OFFICE_ADDRESS_LINE.split(', ')[1]}
               </address>
             </li>
             <li className="flex items-center gap-3 px-2 py-1 text-sm text-default-400">
               <Clock className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>Lun-Sam : 8h-18h</span>
+              <span>{PHONE_RECEPTION_HOURS}</span>
             </li>
           </ul>
           <Divider className="bg-default-200/30" />

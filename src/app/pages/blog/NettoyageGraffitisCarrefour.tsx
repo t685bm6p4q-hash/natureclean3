@@ -149,7 +149,7 @@ export function NettoyageGraffitisCarrefour() {
                   {
                     step: '02',
                     title: 'Effacement ciblé',
-                    desc: 'Techniques respectueuses des matériaux (aérogommage doux ou solutions maîtrisées) pour éliminer les pigments.',
+                    desc: 'Effacement testé au préalable sur une zone discrète, avec gels ou détergents adaptés au support pour éliminer les pigments.',
                   },
                   {
                     step: '03',
@@ -211,8 +211,8 @@ export function NettoyageGraffitisCarrefour() {
                   <Link to="/realisations" className="font-semibold text-green-800 underline">
                     Voir la fiche réalisation
                   </Link>{' '}
-                  ou demandez un diagnostic : réponse sous <strong>2 h</strong> en horaires d&apos;ouverture, devis sous{' '}
-                  <strong>24 h</strong>.
+                  ou demandez un diagnostic : prise en charge sous <strong>4 h ouvrées</strong> (lun–ven 9 h–18 h), devis détaillé
+                  après étude.
                 </p>
               </div>
             </section>
@@ -220,7 +220,7 @@ export function NettoyageGraffitisCarrefour() {
             <section className="mb-12">
               <div className="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl p-8 text-center shadow-lg">
                 <h3 className="text-2xl font-bold mb-3">Tags ou graffitis sur votre façade ?</h3>
-                <p className="text-lg mb-6 opacity-90">Marseille et Bouches-du-Rhône — devis gratuit sous 24 h.</p>
+                <p className="text-lg mb-6 opacity-90">Marseille et Bouches-du-Rhône — devis détaillé après étude.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button asChild size="lg" className="bg-white text-green-700 hover:bg-gray-100 font-bold">
                     <Link to="/devis">Demander un devis gratuit</Link>
@@ -243,7 +243,7 @@ export function NettoyageGraffitisCarrefour() {
                   className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
                 >
                   <h3 className="text-lg font-semibold text-green-700 mb-2">Nettoyage graffitis à Marseille →</h3>
-                  <p className="text-gray-600 text-sm">Effacement de tags, aérogommage et protection anti-graffiti.</p>
+                  <p className="text-gray-600 text-sm">Effacement de tags, test de support et protection anti-graffiti.</p>
                 </Link>
                 <Link
                   to="/blog/checklist-nettoyage-copropriete-syndic"

@@ -4,9 +4,25 @@ import { SEO_Guardian } from '@/app/components/SEO_Guardian';
 import {
   Leaf, ArrowRight, Phone, Sparkles, CheckCircle2,
   Star, MapPin, HardHat, Shield, Clock, Banknote, Building, Building2,
-  Recycle, Users, SprayCan, Cog, FileCheck, Eraser, Zap, Store, Heart,
+  Users, SprayCan, Cog, FileCheck, Eraser, Zap, Store, Heart,
 } from 'lucide-react';
-import { PHONE_DISPLAY, PHONE_HREF, ARIA_PHONE } from '@/app/utils/constants';
+import {
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  ARIA_PHONE,
+  LEAD_RESPONSE_SLA,
+  QUOTE_PROCESS_LINE,
+  PHONE_RECEPTION_HOURS_LONG,
+  INTERVENTION_SCHEDULE_NOTE,
+  TEAM_SIZE,
+  GOOGLE_RATING_DISPLAY,
+  GOOGLE_RATING_SITE_NOTE,
+  RC_PRO_FAQ_ANSWER,
+  RESPONSIBLE_PRACTICES_LINE,
+  ZONE_LABEL,
+  MOBILIZATION_AFTER_QUOTE,
+} from '@/app/utils/constants';
+import { ServiceSeoContentSection } from '@/app/components/ServiceSeoContentSection';
 import { Button } from '@/app/components/ui/button';
 import { ScrollReveal } from '@/app/components/ScrollReveal';
 import { ConversionBreak } from '@/app/components/ConversionBreak';
@@ -41,19 +57,19 @@ import { SERVED_CITIES_SHORT, MARSEILLE_QUARTIERS } from '@/app/config/zone-data
    ───────────────────────────────────────────── */
 
 const stats = [
-  { icon: Clock, value: '2021', label: 'Année de création' },
+  { icon: Users, value: String(TEAM_SIZE), label: 'Personnes en équipe' },
   { icon: Shield, value: 'RC Pro', label: 'Assurance professionnelle' },
-  { icon: Clock, value: '24 h', label: 'Devis gratuit' },
-  { icon: Recycle, value: '50 %', label: 'Produits éco-labellisés' },
+  { icon: Star, value: GOOGLE_RATING_DISPLAY, label: 'Note Google' },
+  { icon: Clock, value: '4 h', label: 'Prise en charge ouvrée' },
 ];
 
 const whyUs = [
-  { icon: SprayCan, title: 'Produits d\'entretien fournis', desc: 'Produits professionnels inclus dans chaque prestation — 50 % sont éco-labellisés. Vous ne fournissez rien.' },
-  { icon: Cog, title: 'Machinerie professionnelle', desc: 'Autolaveuses, monobrosses, aspirateurs industriels — matériel de pointe pour un résultat impeccable.' },
-  { icon: Users, title: 'Personnel formé & déclaré', desc: 'Équipes qualifiées, formées aux normes d\'hygiène et de sécurité, déclarées et en conformité.' },
-  { icon: Banknote, title: 'Tarifs transparents', desc: 'Devis détaillé, gratuit et sans engagement. Réponse sous 2 h, devis sous 24 h — sans frais cachés.' },
+  { icon: SprayCan, title: 'Produits d\'entretien fournis', desc: `Produits professionnels inclus dans chaque prestation. ${RESPONSIBLE_PRACTICES_LINE} Vous ne fournissez rien.` },
+  { icon: Cog, title: 'Matériel professionnel', desc: 'Monobrosse, mini-autolaveuse, aspirateurs eau/poussière et matériel de nettoyage de vitres — adapté à chaque chantier.' },
+  { icon: Users, title: 'Personnel formé & déclaré', desc: `Équipe de ${TEAM_SIZE} personnes, formée aux normes d'hygiène et de sécurité, déclarée et en conformité.` },
+  { icon: Banknote, title: 'Tarifs transparents', desc: 'Devis détaillé, gratuit et sans engagement. Prise en charge sous 4 h ouvrées, devis détaillé après étude — sans frais cachés.' },
   { icon: Shield, title: 'Assurance RC Pro', desc: 'Responsabilité civile professionnelle et garantie de résultat sur chaque intervention.' },
-  { icon: FileCheck, title: 'Contrats sur mesure', desc: 'Ponctuel ou récurrent, horaires flexibles 6h-22h, 7j/7 — on s\'adapte à vos contraintes.' },
+  { icon: FileCheck, title: 'Contrats sur mesure', desc: 'Ponctuel ou récurrent, horaires flexibles 6h-22h, créneaux sur organisation spécifique — on s\'adapte à vos contraintes.' },
 ];
 
 const zones = [...SERVED_CITIES_SHORT];
@@ -106,11 +122,11 @@ const HOME_FAQ: FAQItem[] = [
   },
   {
     question: 'Pourquoi ne pas afficher vos prix en ligne ?',
-    answer: 'Un nettoyage de bureaux, une fin de chantier et un logement très encombré n’ont rien en commun. Un prix affiché serait faux dans la plupart des cas, alors nous préférons un devis précis, gratuit et sous 24 h.',
+    answer: 'Un nettoyage de bureaux, une fin de chantier et un logement très encombré n’ont rien en commun. Un prix affiché serait faux dans la plupart des cas : nous établissons un devis détaillé après étude.',
   },
   {
     question: 'En combien de temps recevrai-je mon devis ?',
-    answer: 'Nous répondons à votre demande sous 2 h en horaires d’ouverture (lun–sam 8h–18h), et vous remettons un devis détaillé sous 24 h.',
+    answer: `${LEAD_RESPONSE_SLA}. ${QUOTE_PROCESS_LINE}. Visite technique à la demande ou si la complexité le justifie.`,
   },
   {
     question: 'Qui fournit les produits et le matériel ?',
@@ -118,11 +134,11 @@ const HOME_FAQ: FAQItem[] = [
   },
   {
     question: 'Vos produits sont-ils écologiques ?',
-    answer: 'Environ 50 % de nos produits d’entretien courant sont éco-labellisés. Pour la désinfection des locaux (cabinets médicaux notamment), nous utilisons des produits professionnels adaptés — sans stérilisation d’instruments ni gestion des DASRI.',
+    answer: `${RESPONSIBLE_PRACTICES_LINE} Nous ne parlons de produits éco-labellisés qu’avec les fiches et labels en main. Pour la désinfection (cabinets médicaux notamment), nous utilisons des produits professionnels adaptés — sans stérilisation d’instruments ni gestion des DASRI.`,
   },
   {
     question: 'Intervenez-vous en dehors des horaires de bureau, le week-end ?',
-    answer: 'Oui, dans le cadre de contrats sur mesure : horaires flexibles de 6 h à 22 h, 7 j/7, sans perturber votre activité. Notre standard est ouvert du lundi au samedi, de 8 h à 18 h.',
+    answer: `${INTERVENTION_SCHEDULE_NOTE} Créneaux souvent entre 6 h et 22 h, calés au contrat. Accueil téléphonique : ${PHONE_RECEPTION_HOURS_LONG}.`,
   },
   {
     question: 'Dans quelles zones intervenez-vous ?',
@@ -130,7 +146,7 @@ const HOME_FAQ: FAQItem[] = [
   },
   {
     question: 'Êtes-vous assurés ?',
-    answer: 'Oui. Nature Clean est couverte par une assurance responsabilité civile professionnelle (RC Pro) sur chaque intervention.',
+    answer: RC_PRO_FAQ_ANSWER,
   },
   {
     question: 'Comment se passe un nettoyage de fin de chantier ?',
@@ -181,11 +197,11 @@ const DIOGENE_HOME_FAQ: FAQItem[] = [
 const DIOGENE_STEPS = [
   {
     title: 'Appel et échange confidentiel',
-    desc: 'Vous nous décrivez la situation, sans filtre. Réponse sous 2 h en horaires d’ouverture.',
+    desc: 'Vous nous décrivez la situation, sans filtre. Prise en charge sous 4 h ouvrées en horaires d’ouverture.',
   },
   {
-    title: 'Visite et devis gratuit',
-    desc: 'Nous évaluons le volume, l’état du logement et les accès, puis vous remettons un devis détaillé sous 24 h.',
+    title: 'Visite et devis détaillé',
+    desc: 'Nous évaluons le volume, l’état du logement et les accès, puis vous remettons un devis détaillé après étude de votre besoin.',
   },
   {
     title: 'Tri et évacuation',
@@ -313,7 +329,7 @@ export function Home() {
             </h1>
             <p className="text-base md:text-xl text-gray-100 mb-6 md:mb-8 max-w-xl leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               Bureaux, copropriétés, fin de chantier — Nature Clean intervient à Marseille
-              et dans les Bouches-du-Rhône. Réponse sous 2 h, devis gratuit sous 24 h.
+              et dans les Bouches-du-Rhône. Prise en charge sous 4 h ouvrées, devis détaillé après étude.
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row md:gap-4">
@@ -321,10 +337,10 @@ export function Home() {
                 asChild
                 variant="shine"
                 size="lg"
-                className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-base px-8 shadow-lg shadow-green-500/25 w-full sm:w-auto border-green-400/40"
+                className="bg-green-500 hover:bg-green-400 text-white font-black text-base px-8 shadow-lg shadow-green-500/25 w-full sm:w-auto border-green-400/40"
               >
                 <Link to="/devis">
-                  Obtenir mon devis gratuit
+                  Demander un devis gratuit
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
@@ -786,22 +802,22 @@ export function Home() {
                       <span className="block text-green-400">& Tags à Marseille</span>
                     </h2>
                     <p className="text-gray-300 leading-relaxed mb-6">
-                      Effacement rapide de tags et graffitis sur tous supports — façades, murs, portails, vitres.
-                      Intervention sous 48h, aérogommage ou traitement chimique respectueux des matériaux.
+                      Effacement de tags sur façades, vitrines et rideaux : produits professionnels adaptés au
+                      support, après examen. Plus le tag est récent, mieux on limite l&apos;impact sur la surface.
                     </p>
                     <BulletList
                       className="mb-8"
                       bulletClassName="text-green-400"
                       itemClassName="text-gray-200"
                       lines={[
-                        'Tous supports : pierre, béton, métal, verre',
-                        'Aérogommage doux ou nettoyage chimique',
-                        'Application de protection anti-graffiti',
-                        'Devis gratuit sous 24h',
+                        'Pierre, béton, métal, verre — méthode sur étude',
+                        'Contrôle sur site et photos avec la facture',
+                        'Prise en charge sous 4 h ouvrées (lun–ven)',
+                        'Mobilisation en général sous 48 h après validation du devis',
                       ]}
                     />
                     <div className="flex flex-col sm:flex-row gap-3">
-                      <Button asChild className="bg-green-500 hover:bg-green-400 text-gray-900 font-black shadow-lg shadow-green-500/20">
+                      <Button asChild className="bg-green-500 hover:bg-green-400 text-white font-black shadow-lg shadow-green-500/20">
                         <Link to="/services/nettoyage-graffitis">
                           <Eraser className="w-4 h-4 mr-2" aria-hidden="true" />
                           Découvrir ce service
@@ -809,14 +825,14 @@ export function Home() {
                         </Link>
                       </Button>
                       <Button asChild variant="outline" className="border-white/40 text-white hover:bg-white/10 font-bold">
-                        <Link to="/devis" className="!border-white !bg-white/20 !text-white">Demander un devis</Link>
+                        <Link to="/devis" className="!border-white !bg-white/20 !text-white">Demander un devis gratuit</Link>
                       </Button>
                     </div>
                     {!HOME_SHORT && (
                       <div className="grid grid-cols-2 gap-4 mt-10">
                         {[
                           { value: '48h', label: "Délai d'intervention" },
-                          { value: '24h', label: 'Devis gratuit' },
+                          { value: '4 h', label: 'Devis gratuit' },
                           { value: 'RC Pro', label: 'Assurance' },
                           { value: '13', label: 'Dép. Bouches-du-Rhône' },
                         ].map((stat) => (
@@ -839,8 +855,8 @@ export function Home() {
                 afterSrc={getOptimizedCldUrl(IMAGES.effacementTagVitrine, 640)}
                 afterSrcSet={cldSrcSet(IMAGES.effacementTagVitrine, [400, 640, 700])}
                 sizes="(min-width: 1024px) 38vw, 100vw"
-                beforeAlt="Façade Carrefour à Marseille recouverte de graffitis, avant intervention Nature Clean"
-                afterAlt="Façade Carrefour à Marseille après effacement des tags — Nature Clean"
+                beforeAlt="Façade de grande surface à Marseille recouverte de graffitis, avant intervention Nature Clean"
+                afterAlt="Façade de grande surface à Marseille après effacement des tags — Nature Clean"
               />
             </div>
           </div>
@@ -886,7 +902,7 @@ export function Home() {
                     className="mb-6"
                     lines={[
                       'Personnel déclaré, RC Pro, véhicule banalisé sur demande',
-                      'Visite et devis gratuits sous 24 h',
+                      'Visite et devis détaillés après étude',
                       'Étapes détaillées et FAQ sur la fiche Diogène',
                     ]}
                   />
@@ -950,7 +966,7 @@ export function Home() {
                         lines={[
                           'Discrétion : véhicule banalisé sur demande, horaires adaptés',
                           'Personnel déclaré, assurance RC Pro',
-                          'Visite et devis gratuits sous 24 h — sans engagement',
+                          'Visite et devis détaillés après étude — sans engagement',
                           'Évacuation vers filières adaptées (benne ou déchetterie)',
                         ]}
                       />
@@ -1028,9 +1044,9 @@ export function Home() {
       <ConversionBreak
         image={IMAGES.equipeCamionnette}
         imageAlt="Équipe Nature Clean prête à intervenir à Marseille"
-        title="Devis gratuit sous 24 h"
+        title="Devis détaillé après étude"
         subtitle="Intervention à Marseille (13001 à 13016), Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Istres, Martigues et Salon-de-Provence."
-        urgencyText="Réponse sous 2 h, devis sous 24 h"
+        urgencyText="Prise en charge sous 4 h ouvrées, devis détaillé après étude"
       />
 
       {/* ═══════════════════════════════════════════
@@ -1090,9 +1106,8 @@ export function Home() {
                   </h2>
                 </div>
                 <p className="text-white/80 leading-relaxed mb-6">
-                  50 % de nos produits sont éco-labellisés pour l'entretien courant. Nous recourons aux
-                  normes de désinfection médicale uniquement lorsque la réglementation sanitaire l'exige —
-                  expertise pragmatique, propreté irréprochable, impact minimal.
+                  {RESPONSIBLE_PRACTICES_LINE} Produits professionnels adaptés à chaque chantier. Nous recourons
+                  aux normes de désinfection médicale uniquement lorsque la réglementation sanitaire l&apos;exige.
                 </p>
                 <Button asChild className="bg-white text-green-900 hover:bg-green-50 font-bold shadow-md">
                   <Link to="/a-propos" className="text-green-900">
@@ -1105,12 +1120,12 @@ export function Home() {
               <ScrollReveal direction="right" className={HOME_SHORT ? 'max-md:hidden' : undefined}>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">50 %</div>
-                    <div className="text-sm text-white/80 mt-1">Éco-labellisés</div>
+                    <div className="text-3xl font-black">Tri</div>
+                    <div className="text-sm text-white/80 mt-1">Déchets sur chantier</div>
                   </div>
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
-                    <div className="text-3xl font-black">Mix</div>
-                    <div className="text-sm text-white/80 mt-1">Marques pro éco</div>
+                    <div className="text-3xl font-black">Dosage</div>
+                    <div className="text-sm text-white/80 mt-1">Produits adaptés</div>
                   </div>
                   <div className="bg-white/15 rounded-xl p-5 text-center border border-white/20">
                     <div className="text-3xl font-black">Inclus</div>
@@ -1147,7 +1162,7 @@ export function Home() {
                 Entretien professionnel à Marseille et dans le 13
               </h2>
               <p className="text-lg text-gray-500">
-                Basés à Marseille 8e, nous intervenons à Marseille, Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres et Martigues — réponse sous 2 h, devis gratuit sous 24 h.
+                Basés à Marseille 8e, nous intervenons à Marseille, Aix-en-Provence, Aubagne, La Ciotat, Marignane, Vitrolles, Salon-de-Provence, Istres et Martigues — prise en charge sous 4 h ouvrées, devis détaillé après étude.
               </p>
             </div>
           </ScrollReveal>
@@ -1242,6 +1257,39 @@ export function Home() {
         </div>
       </section>
 
+      <ServiceSeoContentSection
+        title="Votre entreprise de nettoyage à Marseille (Bouches-du-Rhône)"
+        lead="Professionnels et particuliers : un interlocuteur, des prestations cadrées au devis."
+        className="bg-white border-t border-gray-100"
+      >
+        <p>
+          Que vous cherchiez un <strong>nettoyage de bureaux à Marseille</strong>, l&apos;entretien
+          d&apos;une copropriété, une <strong>fin de chantier</strong> avant livraison, le lavage de
+          vitrines en centre-ville ou une intervention <strong>syndrome de Diogène</strong>, Nature
+          Clean intervient depuis le 8<sup>e</sup> sur {ZONE_LABEL} et les communes du 13 (Aix,
+          Aubagne, La Ciotat, Vitrolles, etc.).
+        </p>
+        <p>
+          {RESPONSIBLE_PRACTICES_LINE} Équipe de {TEAM_SIZE} personnes. Standard téléphonique :{' '}
+          {PHONE_RECEPTION_HOURS_LONG}. {GOOGLE_RATING_SITE_NOTE} Note : {GOOGLE_RATING_DISPLAY}.
+        </p>
+        <p>
+          Explorez nos{' '}
+          <Link to="/services" className="text-green-800 font-semibold underline">
+            services de nettoyage professionnel
+          </Link>
+          , nos{' '}
+          <Link to="/zones-intervention" className="text-green-800 font-semibold underline">
+            zones
+          </Link>{' '}
+          et demandez un{' '}
+          <Link to="/devis" className="text-green-800 font-semibold underline">
+            devis
+          </Link>{' '}
+          (détaillé après étude de votre besoin).
+        </p>
+      </ServiceSeoContentSection>
+
       <FAQSection
         items={homeFaqForDisplay(HOME_FAQ_VISIBLE_COUNT)}
         title="Questions fréquentes sur nos services de nettoyage à Marseille"
@@ -1284,13 +1332,13 @@ export function Home() {
                 Prêt à transformer vos locaux ?
               </h2>
               <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-10 max-w-2xl mx-auto">
-                Contactez-nous pour un devis gratuit et personnalisé.
-                Réponse sous 2 h, devis sous 24 h — Marseille et Bouches-du-Rhône.
+                Contactez-nous pour un devis personnalisé.
+                {` ${LEAD_RESPONSE_SLA}. ${QUOTE_PROCESS_LINE}. ${MOBILIZATION_AFTER_QUOTE} — ${ZONE_LABEL}.`}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-gray-900 font-black text-lg px-10 shadow-xl shadow-green-500/20">
+                <Button asChild size="lg" className="bg-green-500 hover:bg-green-400 text-white font-black text-lg px-10 shadow-xl shadow-green-500/20">
                   <Link to="/devis">
-                    Obtenir mon devis gratuit
+                    Demander un devis gratuit
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>

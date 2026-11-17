@@ -53,7 +53,7 @@ const entrepriseServices = [
   { icon: Building2, label: 'Bureaux', href: '/services/entretien-bureaux', desc: 'Locaux tertiaires', thumb: IMAGES.entrepriseBureauxMarseille },
   { icon: Stethoscope, label: 'Cabinets médicaux', href: '/services/nettoyage-cabinet-medical-marseille', desc: 'Locaux de santé', thumb: IMAGES.cabinetMedical },
   { icon: Eraser, label: 'Graffitis', href: '/services/nettoyage-graffitis', desc: 'Effacement tags & façades', thumb: IMAGES.graffitiCarrefourAvant },
-  { icon: Layers, label: 'Sols', href: '/services/remise-etat-sols', desc: 'Décapage & cristallisation', thumb: IMAGES.monobrosseAction },
+  { icon: Layers, label: 'Sols', href: '/services/remise-etat-sols', desc: 'Décapage & monobrosse', thumb: IMAGES.monobrosseAction },
   { icon: Droplet, label: 'Vitres', href: '/services/nettoyage-vitre', desc: 'Lavage de vitres', thumb: IMAGES.facadeVitreeImmeuble },
 ] as const;
 
@@ -258,7 +258,7 @@ export function Header() {
     [navigate],
   );
 
-  /** Lien du bouton "Devis gratuit" — contextualisé si on est sur une page service */
+  /** Lien du bouton devis — contextualisé si on est sur une page service */
   const smartDevisLink = SERVICE_PAGE_DEVIS_MAP[location.pathname] ?? '/devis';
 
   return (
@@ -271,7 +271,7 @@ export function Header() {
           <ul className="flex items-center gap-5 list-none" aria-label="Informations entreprise">
             <li className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-              Lun-Sam : 8h-18h
+              Lun–ven, 9 h–18 h
             </li>
           </ul>
           <ul className="flex items-center gap-5 list-none" aria-label="Contact rapide">
