@@ -295,7 +295,7 @@ export function Header() {
           {/* Marque compacte : logo + titre alignés, baseline courte (1 ligne) */}
           <Link
             to="/"
-            className="flex min-h-[48px] min-w-0 max-w-[min(100%,13.5rem)] shrink-0 items-center gap-3 py-1 sm:max-w-[15rem] lg:max-w-[16rem]"
+            className="flex min-h-[48px] min-w-0 max-w-[min(100%,14.5rem)] shrink-0 items-center gap-2.5 py-1 sm:max-w-[16rem] md:max-w-[17.5rem] lg:max-w-[20.5rem] xl:max-w-[22rem]"
             aria-label={`Nature Clean — ${BRAND_SLOGAN_FULL}`}
           >
             <img
@@ -308,7 +308,7 @@ export function Header() {
               aria-hidden="true"
             />
             <div className="min-w-0 flex flex-col justify-center gap-px">
-              <span className="truncate text-[0.9375rem] font-black leading-none tracking-tight text-gray-900 lg:text-base">
+              <span className="text-[0.9375rem] font-black leading-none tracking-tight text-gray-900 lg:text-base whitespace-nowrap">
                 Nature Clean
               </span>
               <span className="ncm-brand-signature ncm-brand-signature--header">

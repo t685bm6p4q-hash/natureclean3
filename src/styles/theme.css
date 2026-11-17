@@ -306,6 +306,13 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .ncm-brand-signature--header {
+    overflow: visible;
+    text-overflow: unset;
+  }
+}
+
 .ncm-brand-signature--on-green {
   font-size: 1.125rem;
   line-height: 1.45;
@@ -468,7 +475,7 @@
 /* Carrousel services desktop — transform via --slide (pas de style inline hydratation) */
 .ncm-svc-carousel-track {
   transition: transform 500ms ease-out;
-  transform: translateX(calc(var(--slide, 0) * -100% / 3));
+  transform: translateX(calc(var(--slide, 0) * -100% / var(--cards-visible, 2)));
 }
 
 /* Mobile : sections sous le fold visibles tout de suite → Speed Index (desktop inchangé) */

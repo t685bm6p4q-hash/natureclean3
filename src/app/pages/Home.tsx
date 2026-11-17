@@ -323,11 +323,11 @@ export function Home() {
 
         <div className="ncm-hero-content relative z-10 container mx-auto px-4 pt-6 pb-6 md:pt-28 md:pb-10">
           <div className="max-w-lg md:max-w-3xl lg:max-w-4xl ncm-hero-fade-in">
-            <h1 className="ncm-display-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-4 md:mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+            <h1 className="ncm-display-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-4 md:mb-6">
               Entreprise de nettoyage
               <span className="block text-green-400">professionnel à Marseille</span>
             </h1>
-            <p className="text-base md:text-xl text-gray-100 mb-6 md:mb-8 max-w-xl leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+            <p className="text-base md:text-xl text-gray-100 mb-6 md:mb-8 max-w-xl leading-relaxed">
               Bureaux, copropriétés, fin de chantier — Nature Clean intervient à Marseille
               et dans les Bouches-du-Rhône. Prise en charge sous 4 h ouvrées, devis détaillé après étude.
             </p>

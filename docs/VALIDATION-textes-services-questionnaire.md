@@ -54,3 +54,7 @@
 ## Après validation
 
 Prévisualisation Vercel uniquement sur votre demande — **aucun push automatique**.
+
+## Relecture finale
+
+Checklist opérationnelle (URLs, mobile, SEO, sign-off) : **`docs/CHECKLIST-relecture-finale.md`**
