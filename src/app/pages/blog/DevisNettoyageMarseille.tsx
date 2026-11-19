@@ -80,7 +80,7 @@ export function DevisNettoyageMarseille() {
     <>
       <SEO_Guardian
         title="Devis Nettoyage Marseille Gratuit | Prise en charge 4 h ouvrées | Nature Clean"
-        description="Comment obtenir un devis nettoyage gratuit à Marseille ? Infos à préparer, prise en charge 4 h ouvrées, devis détaillé après étude — bureaux, copros, chantiers. Entreprise locale · 04 84 89 68 75."
+        description={`Comment obtenir un devis nettoyage gratuit à Marseille ? Infos à préparer, prise en charge 4 h ouvrées, devis détaillé après étude — bureaux, copros, chantiers. Entreprise locale · ${PHONE_DISPLAY}.`}
         keywords="devis nettoyage marseille, devis gratuit nettoyage marseille, entreprise nettoyage marseille devis, nettoyage professionnel marseille prix, demande devis 13"
         currentSection="blog"
         faqItems={FAQ_ITEMS}

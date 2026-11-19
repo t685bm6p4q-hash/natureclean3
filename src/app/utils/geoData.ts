@@ -4,6 +4,7 @@
  */
 
 import { IMAGES } from '@/app/utils/images';
+import { PHONE_DISPLAY } from '@/app/utils/constants';
 import type { FAQItem } from '@/app/components/FAQSection';
 import { FAQ_COPROPRIETES_LA_CIOTAT } from '@/app/data/geo/faq/coproprietes-la-ciotat';
 import { FAQ_BUREAUX_AIX } from '@/app/data/geo/faq/bureaux-aix-en-provence';
@@ -168,7 +169,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     seo: {
       title: 'Nettoyage Cabinet Médical Marseille | Désinfection | Nature Clean',
       description:
-        'Nettoyage cabinet médical à Marseille : dentistes, kinés, labos. Protocole désinfection & traçabilité. Devis après étude · 04 84 89 68 75 · Pratiques responsables.',
+        `Nettoyage cabinet médical à Marseille : dentistes, kinés, labos. Protocole désinfection & traçabilité. Devis après étude · ${PHONE_DISPLAY} · Pratiques responsables.`,
       keywords: 'nettoyage médical Marseille, entretien cabinet médical Marseille, hygiène locaux santé 13, nettoyage pharmacie Marseille, désinfection surfaces cabinet',
     },
     intro: 'À Marseille, un cabinet médical ou paramédical ne peut pas se permettre l\'approximation. Nature Clean entretient les locaux et surfaces des cabinets de médecins, spécialistes, kinésithérapeutes, dentistes, infirmières libérales, pharmacies et laboratoires — sans blocs opératoires ni zones stériles, sans gestion des DASRI. Produits bactéricides, virucides et fongicides adaptés aux zones définies au devis, traçabilité sur demande, discrétion entre deux consultations.',
@@ -313,7 +314,7 @@ export const GEO_PAGES: Record<string, GeoPageData> = {
     seo: {
       title: 'Nettoyage Industriel Marseille | Entrepôts & ateliers 13 | Nature Clean',
       description:
-        'Nettoyage industriel à Marseille : entrepôts, logistique, ateliers, dégraissage sols béton. Créneaux sur organisation · Prise en charge 4 h ouvrées · 04 84 89 68 75',
+        `Nettoyage industriel à Marseille : entrepôts, logistique, ateliers, dégraissage sols béton. Créneaux sur organisation · Prise en charge 4 h ouvrées · ${PHONE_DISPLAY}`,
       keywords:
         'nettoyage industriel marseille, nettoyage entrepot marseille, nettoyage atelier 13, dégraissage industriel marseille, société nettoyage industriel bouches-du-rhône',
     },

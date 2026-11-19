@@ -27,11 +27,11 @@ npx tsc --noEmit
 Cocher après une passe rapide sur **Accueil + Devis + Footer** :
 
 - [ ] **Adresse** : 22 Traverse Pupat, 13008 — nulle part « 24 avenue du Prado » (siège).
-- [ ] **Téléphone** : 04 84 89 68 75 — cliquable, cohérent header/footer.
+- [ ] **Téléphone** : 04 84 89 68 75 — cliquable, cohérent header/footer (`constants.ts`).
 - [ ] **Horaires accueil** : lun–ven 9 h–18 h (pas lun–sam 8–18 en accroche principale).
 - [ ] **SLA** : « prise en charge sous 4 h ouvrées » + « devis détaillé après étude » (pas « devis sous 24 h » systématique).
 - [ ] **Devis** : CTA « Devis gratuit » / « Demander un devis gratuit » cohérents ; page `/devis` alignée.
-- [ ] **Équipe** : 7 personnes si mentionné.
+- [ ] **Effectif** : aucun nombre de salariés affiché sur le site.
 - [ ] **Note Google** : 4,8/5 sans compteur d’avis figé sur le site (lien fiche OK).
 - [ ] **Année création** : aucune année Kbis affichée au public.
 - [ ] **RC Pro** : pas de « décennale » ; FAQ assurance = périmètre vitres / graffitis / Diogène / sinistres (accueil + `/services`).

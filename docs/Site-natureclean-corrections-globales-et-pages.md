@@ -14,7 +14,7 @@ Source : PDF bureau `Site natureclean.fr corrections globales et pages à rééc
 - **Intervention** : en général sous 48 h après validation ; parfois 24 h urgences clients existants.
 - **Zone** : Marseille + tout le 13 (liste villes) ; hors département au cas par cas.
 - **Clientèle** : pros et particuliers.
-- **Équipe** : 7 personnes.
+- **Effectif** : ne pas afficher de nombre de salariés.
 - **Note Google** : 4,8/5 affichée — **pas de compteur d’avis** en dur sur le site.
 - **Année création** : **ne pas afficher d’année** (Kbis non affiché).
 - **Assurance** : RC Pro + attestations sur demande — pas « décennale ».

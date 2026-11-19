@@ -14,6 +14,9 @@ export const PHONE_DISPLAY = '04 84 89 68 75';
 /** Telephone href (sans espaces) */
 export const PHONE_HREF = 'tel:0484896875';
 
+/** Schema.org / JSON-LD (E.164 France) */
+export const PHONE_E164 = '+33484896875';
+
 /** Telephone WhatsApp (format international) */
 const PHONE_WHATSAPP = '33783952804';
 
@@ -39,7 +42,6 @@ export const COMPANY_FULL_NAME = 'Nature Clean Marseille';
 /** Réservé usage interne — ne pas afficher sur le site tant que le Kbis n’est pas vérifié. */
 export const FOUNDING_YEAR = '2021';
 export const SIRET = '89020726900022';
-export const TEAM_SIZE = 7;
 
 // ─── Horaires & SLA (questionnaire nov. 2026) ─────────────
 /** Accueil téléphonique */

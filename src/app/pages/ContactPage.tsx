@@ -77,7 +77,7 @@ export function ContactPage() {
       setSubmitError(
         rejected
           ? 'Le contrôle anti-robot a expiré. Validez-le à nouveau, puis renvoyez le message.'
-          : 'L\'envoi a échoué. Appelez-nous au 04 84 89 68 75 ou réessayez dans quelques minutes.',
+          : `L'envoi a échoué. Appelez-nous au ${PHONE_DISPLAY} ou réessayez dans quelques minutes.`,
       );
     } finally {
       setIsSubmitting(false);

@@ -14,7 +14,6 @@ import {
   QUOTE_PROCESS_LINE,
   PHONE_RECEPTION_HOURS_LONG,
   INTERVENTION_SCHEDULE_NOTE,
-  TEAM_SIZE,
   GOOGLE_RATING_DISPLAY,
   GOOGLE_RATING_SITE_NOTE,
   RC_PRO_FAQ_ANSWER,
@@ -57,7 +56,6 @@ import { SERVED_CITIES_SHORT, MARSEILLE_QUARTIERS } from '@/app/config/zone-data
    ───────────────────────────────────────────── */
 
 const stats = [
-  { icon: Users, value: String(TEAM_SIZE), label: 'Personnes en équipe' },
   { icon: Shield, value: 'RC Pro', label: 'Assurance professionnelle' },
   { icon: Star, value: GOOGLE_RATING_DISPLAY, label: 'Note Google' },
   { icon: Clock, value: '4 h', label: 'Prise en charge ouvrée' },
@@ -66,7 +64,7 @@ const stats = [
 const whyUs = [
   { icon: SprayCan, title: 'Produits d\'entretien fournis', desc: `Produits professionnels inclus dans chaque prestation. ${RESPONSIBLE_PRACTICES_LINE} Vous ne fournissez rien.` },
   { icon: Cog, title: 'Matériel professionnel', desc: 'Monobrosse, mini-autolaveuse, aspirateurs eau/poussière et matériel de nettoyage de vitres — adapté à chaque chantier.' },
-  { icon: Users, title: 'Personnel formé & déclaré', desc: `Équipe de ${TEAM_SIZE} personnes, formée aux normes d'hygiène et de sécurité, déclarée et en conformité.` },
+  { icon: Users, title: 'Personnel formé & déclaré', desc: 'Agents formés aux normes d\'hygiène et de sécurité, déclarés et en conformité.' },
   { icon: Banknote, title: 'Tarifs transparents', desc: 'Devis détaillé, gratuit et sans engagement. Prise en charge sous 4 h ouvrées, devis détaillé après étude — sans frais cachés.' },
   { icon: Shield, title: 'Assurance RC Pro', desc: 'Responsabilité civile professionnelle et garantie de résultat sur chaque intervention.' },
   { icon: FileCheck, title: 'Contrats sur mesure', desc: 'Ponctuel ou récurrent, horaires flexibles 6h-22h, créneaux sur organisation spécifique — on s\'adapte à vos contraintes.' },
@@ -1270,7 +1268,7 @@ export function Home() {
           Aubagne, La Ciotat, Vitrolles, etc.).
         </p>
         <p>
-          {RESPONSIBLE_PRACTICES_LINE} Équipe de {TEAM_SIZE} personnes. Standard téléphonique :{' '}
+          {RESPONSIBLE_PRACTICES_LINE} Standard téléphonique :{' '}
           {PHONE_RECEPTION_HOURS_LONG}. {GOOGLE_RATING_SITE_NOTE} Note : {GOOGLE_RATING_DISPLAY}.
         </p>
         <p>

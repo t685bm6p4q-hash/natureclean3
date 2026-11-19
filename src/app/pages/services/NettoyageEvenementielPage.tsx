@@ -28,7 +28,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Quel préavis est nécessaire pour réserver ?',
     answer:
-      'Pour un gros congrès, comptez plutôt 2 à 4 semaines pour caler les équipes et le matériel. Pour une salle plus modeste, une semaine peut suffire. En urgence, appelez : on regarde le planning au 04 84 89 68 75.',
+      `Pour un gros congrès, comptez plutôt 2 à 4 semaines pour caler les équipes et le matériel. Pour une salle plus modeste, une semaine peut suffire. En urgence, appelez : on regarde le planning au ${PHONE_DISPLAY}.`,
   },
   {
     question: 'Fournissez-vous le matériel et les produits ?',

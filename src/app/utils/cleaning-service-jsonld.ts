@@ -9,6 +9,7 @@ import {
   COMPANY_NAME,
   EMAIL,
   LOGO_URL,
+  PHONE_E164,
   SIRET,
 } from '@/app/utils/constants';
 
@@ -51,7 +52,7 @@ export function buildCleaningServiceJsonLd(): Record<string, unknown> {
     description:
       "Entreprise d'entretien et de nettoyage professionnel à Marseille. Bureaux, copropriétés, fin de chantier et Diogène. Professionnels et particuliers. Intervention à Marseille et dans les Bouches-du-Rhône.",
     url: BASE_URL,
-    telephone: '+33484896875',
+    telephone: PHONE_E164,
     email: EMAIL,
     priceRange: '$$',
     currenciesAccepted: 'EUR',

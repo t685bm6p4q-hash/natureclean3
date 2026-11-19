@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { SEO_DATA } from '@/app/config/seo-data';
-import { BASE_URL, RESPONSIBLE_PRACTICES_LINE } from '@/app/utils/constants';
+import { BASE_URL, PHONE_DISPLAY, RESPONSIBLE_PRACTICES_LINE } from '@/app/utils/constants';
 import { buildCleaningServiceJsonLd, serializeJsonLd } from '@/app/utils/cleaning-service-jsonld';
 
 interface SEOGuardianProps {
@@ -233,7 +233,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
             'name': 'Quels sont les tarifs de nettoyage à Marseille ?',
             'acceptedAnswer': {
               '@type': 'Answer' as const,
-              'text': 'Nos tarifs varient selon le type de service, la surface et la fréquence d\'intervention. Devis gratuit, sans engagement. Prise en charge sous 4 h ouvrées, devis détaillé après étude au 04 84 89 68 75.'
+              'text': `Nos tarifs varient selon le type de service, la surface et la fréquence d'intervention. Devis gratuit, sans engagement. Prise en charge sous 4 h ouvrées, devis détaillé après étude au ${PHONE_DISPLAY}.`
             }
           },
           {
@@ -257,7 +257,7 @@ export function SEO_Guardian({ currentSection = 'home', title: overrideTitle, de
             'name': 'Quel est votre délai d\'intervention pour un nettoyage fin de chantier ?',
             'acceptedAnswer': {
               '@type': 'Answer' as const,
-              'text': 'Nous proposons des interventions rapides pour les nettoyages fin de chantier à Marseille. Contactez-nous au 04 84 89 68 75 pour connaître nos disponibilités et planifier votre remise en état.'
+              'text': `Nous proposons des interventions rapides pour les nettoyages fin de chantier à Marseille. Contactez-nous au ${PHONE_DISPLAY} pour connaître nos disponibilités et planifier votre remise en état.`
             }
           },
           {

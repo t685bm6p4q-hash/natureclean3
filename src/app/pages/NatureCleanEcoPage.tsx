@@ -27,7 +27,6 @@ import {
   SIRET,
   ZONE_LABEL,
   OFFICE_ADDRESS_LINE,
-  TEAM_SIZE,
   RESPONSIBLE_PRACTICES_LINE,
   RESPONSIBLE_PRACTICES_SHORT,
   PHONE_RECEPTION_HOURS,
@@ -141,8 +140,7 @@ export function NatureCleanEcoPage() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <ScrollReveal>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Notre siège est à Marseille 8e ({OFFICE_ADDRESS_LINE}). Équipe de{' '}
-                <strong>{TEAM_SIZE} personnes</strong>. Nous ne promettons pas de certification environnementale
+                Notre siège est à Marseille 8e ({OFFICE_ADDRESS_LINE}). Nous ne promettons pas de certification environnementale
                 générique, ni d&apos;objectif chiffré type « 80 % en 2027 » : nous détaillons produits, usages et
                 limites au devis.
               </p>
@@ -345,7 +343,7 @@ export function NatureCleanEcoPage() {
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-green-400" aria-hidden="true" />
-              Équipe de {TEAM_SIZE} personnes
+              Personnel déclaré
             </li>
           </ul>
         </div>

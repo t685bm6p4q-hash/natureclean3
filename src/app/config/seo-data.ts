@@ -1,3 +1,5 @@
+import { PHONE_DISPLAY } from '@/app/utils/constants';
+
 interface SEOEntry {
   readonly title: string;
   readonly description: string;
@@ -167,7 +169,7 @@ export const SEO_DATA: Record<string, SEOEntry> = {
   notfound: {
     title: 'Page introuvable | Nature Clean Marseille',
     description:
-      'Cette page n\'existe pas ou a été déplacée. Retrouvez nos services de nettoyage à Marseille, demandez un devis gratuit ou contactez Nature Clean au 04 84 89 68 75.',
+      `Cette page n'existe pas ou a été déplacée. Retrouvez nos services de nettoyage à Marseille, demandez un devis gratuit ou contactez Nature Clean au ${PHONE_DISPLAY}.`,
     keywords: '',
   },
 };

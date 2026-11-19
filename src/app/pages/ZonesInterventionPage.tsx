@@ -32,7 +32,6 @@ import {
   PHONE_DISPLAY,
   PHONE_HREF,
   ARIA_PHONE,
-  TEAM_SIZE,
 } from '@/app/utils/constants';
 import {
   SERVED_CITIES_LABELS,
@@ -185,11 +184,6 @@ export function ZonesInterventionPage() {
               <p className="text-3xl font-black text-green-600">{ZONE_SERVICE_LINKS.length}</p>
               <p className="text-sm font-bold text-gray-900">Prestations</p>
               <p className="text-xs text-gray-500">Fiches services détaillées</p>
-            </div>
-            <div className="col-span-2 md:col-span-1">
-              <p className="text-3xl font-black text-green-600">{TEAM_SIZE}</p>
-              <p className="text-sm font-bold text-gray-900">En équipe</p>
-              <p className="text-xs text-gray-500">Marseille 8e</p>
             </div>
           </div>
         </div>

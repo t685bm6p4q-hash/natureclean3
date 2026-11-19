@@ -315,8 +315,8 @@ export function RealisationsPage() {
               <p className="text-gray-600 mt-1">{ZONE_LABEL}</p>
             </div>
             <div className="bg-white rounded-xl p-4 border border-green-100">
-              <p className="text-2xl font-black text-green-700">7</p>
-              <p className="text-gray-600 mt-1">Personnes en équipe</p>
+              <p className="text-2xl font-black text-green-700">Devis gratuit</p>
+              <p className="text-gray-600 mt-1">Sans engagement</p>
             </div>
             <div className="bg-white rounded-xl p-4 border border-green-100">
               <p className="text-2xl font-black text-green-700">RC Pro</p>

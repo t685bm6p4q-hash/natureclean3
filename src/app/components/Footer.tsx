@@ -5,7 +5,6 @@ import {
   PHONE_RECEPTION_HOURS,
   OFFICE_ADDRESS_LINE,
   RESPONSIBLE_PRACTICES_LINE,
-  TEAM_SIZE,
   GOOGLE_RATING_DISPLAY,
 } from '@/app/utils/constants';
 import {
@@ -79,7 +78,7 @@ export function Footer() {
                 Google {GOOGLE_RATING_DISPLAY}
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 rounded-lg text-xs text-gray-300">
-                Équipe de {TEAM_SIZE} personnes
+                Personnel déclaré
               </span>
             </div>
           </div>

@@ -216,7 +216,7 @@ const FAQ_SERVICES: FAQItem[] = [
   {
     question: 'Intervenez-vous en urgence ?',
     answer:
-      'Oui, selon disponibilité : fin de chantier avant remise des clés, remise en état d\'un commerce, tags à effacer rapidement. Appelez-nous au 04 84 89 68 75.',
+      `Oui, selon disponibilité : fin de chantier avant remise des clés, remise en état d'un commerce, tags à effacer rapidement. Appelez-nous au ${PHONE_DISPLAY}.`,
   },
   {
     question: 'Quelle entreprise de nettoyage contacter pour une copropriété à Marseille ?',
